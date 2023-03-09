@@ -1,0 +1,68 @@
+CRITICAL - 2023-01-30 05:51:16 --> Class 'App\Libraries\Fpdi' not found
+in APPPATH\Libraries\GeneratePdf.php on line 11.
+ 1 APPPATH\Controllers\Document.php(423): App\Libraries\GeneratePdf->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-30 05:53:05 --> Class 'App\Controllers\Fpdi' not found
+in APPPATH\Controllers\Document.php on line 477.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-30 05:53:09 --> Class 'App\Controllers\Fpdi' not found
+in APPPATH\Controllers\Document.php on line 477.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-30 10:16:36 --> Use of undefined constant left - assumed 'left' (this will throw an Error in a future version of PHP)
+in APPPATH\Libraries\GeneratePdf.php on line 57.
+ 1 APPPATH\Libraries\GeneratePdf.php(57): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefined constant left - assumed \'left\' (this will throw an Error in a future version of PHP)', 'APPPATH\\Libraries\\GeneratePdf.php', 57, [...])
+ 2 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->preparePdf('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf', [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-30 10:17:36 --> Use of undefined constant left - assumed 'left' (this will throw an Error in a future version of PHP)
+in APPPATH\Libraries\GeneratePdf.php on line 57.
+ 1 APPPATH\Libraries\GeneratePdf.php(57): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefined constant left - assumed \'left\' (this will throw an Error in a future version of PHP)', 'APPPATH\\Libraries\\GeneratePdf.php', 57, [...])
+ 2 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->preparePdf('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf', [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-30 10:24:45 --> Use of undefined constant signerDocData - assumed 'signerDocData' (this will throw an Error in a future version of PHP)
+in APPPATH\Controllers\Document.php on line 412.
+ 1 APPPATH\Controllers\Document.php(412): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefined constant signerDocData - assumed \'signerDocData\' (this will throw an Error in a future version of PHP)', 'APPPATH\\Controllers\\Document.php', 412, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-30 10:26:31 --> Use of undefined constant left - assumed 'left' (this will throw an Error in a future version of PHP)
+in APPPATH\Libraries\GeneratePdf.php on line 58.
+ 1 APPPATH\Libraries\GeneratePdf.php(58): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefined constant left - assumed \'left\' (this will throw an Error in a future version of PHP)', 'APPPATH\\Libraries\\GeneratePdf.php', 58, [...])
+ 2 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->preparePdf('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf', [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-30 10:54:38 --> syntax error, unexpected '}'
+in APPPATH\Libraries\GeneratePdf.php on line 103.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Libraries\\GeneratePdf.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Libraries\\GeneratePdf')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Libraries\\GeneratePdf')
+ 4 APPPATH\Controllers\Document.php(418): spl_autoload_call('App\\Libraries\\GeneratePdf')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-30 13:26:30 --> Use of undefined constant newFontSize - assumed 'newFontSize' (this will throw an Error in a future version of PHP)
+in APPPATH\Libraries\GeneratePdf.php on line 79.
+ 1 APPPATH\Libraries\GeneratePdf.php(79): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Use of undefined constant newFontSize - assumed \'newFontSize\' (this will throw an Error in a future version of PHP)', 'APPPATH\\Libraries\\GeneratePdf.php', 79, [...])
+ 2 APPPATH\Controllers\Document.php(468): App\Libraries\GeneratePdf->preparePdf('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf', [...])
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()

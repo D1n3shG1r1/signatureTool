@@ -1,0 +1,30 @@
+CRITICAL - 2023-01-24 09:43:45 --> Call to a member function is() on null
+in APPPATH\Controllers\Document.php on line 333.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->sign()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-24 09:53:26 --> Call to a member function isGet() on null
+in APPPATH\Controllers\Document.php on line 334.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->sign()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-24 10:00:31 --> Call to a member function isget() on null
+in APPPATH\Controllers\Document.php on line 333.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->sign()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-24 10:00:42 --> Call to a member function isGet() on null
+in APPPATH\Controllers\Document.php on line 333.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->sign()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-24 10:00:43 --> Call to a member function isGet() on null
+in APPPATH\Controllers\Document.php on line 333.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->sign()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()

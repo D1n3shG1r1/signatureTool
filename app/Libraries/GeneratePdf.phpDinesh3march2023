@@ -1,0 +1,219 @@
+<?php
+namespace App\Libraries;
+use setasign\Fpdi\Fpdi;
+
+/*use setasign\Fpdf\Fpdf;
+use setasign\Fpdi\FpdfTpl;
+*/
+
+class GeneratePdf{
+
+    var $pdf;
+    var $fileIndex;
+    var $currentPage = 1;
+    var $numPages;
+    var $tplId;
+    // public $totalNumPages;
+
+    var $pageSize;
+
+
+    //public $fileIndex;
+    //public $currentPage = 1;
+    //public $tplId;
+    //public $fullPathToFile;
+    //public $numPages;
+
+    function __construct(){
+        //Library Object
+        $this->pdf = new Fpdi();
+    
+        
+    }
+    
+    function preparePdf($rootFolder, $srcFilePath, $data){
+        //??? needs to check variables
+        //Post Lunch 2-March-2023
+        /*-- fresh ---*/
+        $pxInMM = 3.77; //1mm equals to 3.77px
+        $mmInPx = 0.26; //1px equals to 0.26mm
+
+        $this->numPages = $this->pdf->setSourceFile($srcFilePath);
+        $totalNumPages = $this->numPages;
+        //$dimArr = $this->pdf->getTemplateSize($this->fileIndex);
+        //$this->pageSize = $dimArr;
+        $this->fileIndex = $this->pdf->importPage(1);
+
+        //echo "<pre>"; print_r($this->fileIndex); die;
+
+        $this->pdf->useTemplate($this->fileIndex,0,0,237, null,true);
+        
+        for($i = 1; $i <= $totalNumPages; $i++){
+            //$this->pdf->nextPage();
+            //$sizeArr = $this->pdf->getPageSize();
+
+            $this->pdf->importPage($i);
+            $this->pdf->addPage();
+ 
+            foreach($data as $k => $vl){
+
+                $elmType = $vl["elmType"];
+                $page = $vl["page"];
+                $pageTop = $vl["pageTop"];
+                $style = $vl["style"];
+                $font_size = $vl["font_size"];
+                $font_family = $vl["font_family"];
+                $font_style = $vl["font_style"];
+                $font_weight = $vl["font_weight"];
+                $text_decoration = $vl["text_decoration"];
+                $default_value = $vl["default_value"];
+                $default_user = $vl["default_user"];
+            
+
+                $styleArr = explode("; ", $style);
+                $styleAttributes = array();
+                foreach($styleArr as $tmpStyleRw){
+                    $tmpStyleRwVal = explode(":", $tmpStyleRw);
+                    $attrName = $tmpStyleRwVal[0];
+                    $attrValue = $tmpStyleRwVal[1];
+
+                    $styleAttributes[trim($attrName)] = trim($attrValue);
+                }
+
+                // echo "styleAttributes:<pre>"; print_r($styleArr); die;
+
+
+                $left = $styleAttributes["left"];
+                $top = $styleAttributes["top"];
+                $left = str_replace("px", "", $left);
+                $top = str_replace("px", "", $top);
+                
+                
+                $top = $pageTop;
+
+
+                $left = (int) $left;
+                $top = (int) $top;
+                
+                $newLeft = $left * $mmInPx;
+                $newLeft = $newLeft + 2;
+                $newTop = $top * $mmInPx;
+                $newTop = $newTop + 7;
+                
+                $newFontSize = str_replace("px", "", $font_size);    
+                $newFontSize = (int) $newFontSize - 2.5;
+                $newFontSize = 12;
+                //$newFontSize = 8.50;
+                //echo $newFontSize; die;
+                //echo $newLeft."--".$newTop; die;
+
+                
+                    
+                // add content to current page
+                if($i == $page){
+                    /*if($elmType == "signature" || $elmType == "signaturein"){
+                        //$this->pdf->Image( $rootFolder."userassets/mydocuments/1673874254153097/logo.png", 100, 60, 50, 50);
+                    }else{*/
+                        
+                        $this->pdf->SetFont("courier", "", $newFontSize);
+                        $this->pdf->SetTextColor(0, 0, 0);
+                        //$pdf->SetXY($newLeft, $newTop);
+                        //$pdf->Write(0, $default_value);
+                        
+                        $this->pdf->Text($newLeft, $newTop, $default_value);
+                    /*}*/
+                }
+
+        }
+       
+       }
+
+        $this->pdf->Output($rootFolder."userassets/mydocuments/1673874254153097/generated.pdf", "F");
+
+
+
+        /*-- fresh ---*/
+
+    }
+    
+
+}
+
+
+
+
+/*
+require("vendor/autoload.php");
+
+use setasign\Fpdi\Fpdi;
+use setasign\Fpdf\Fpdf;
+*/
+/*
+use setasign\Fpdi\Fpdi;
+use setasign\Fpdf\Fpdf;
+use setasign\Fpdi\FpdfTpl;
+
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+class GeneratePdf  extends FPDI{
+   
+    public $fileIndex;
+    public $currentPage = 1;
+    public $tplId;
+    public $fullPathToFile;
+    public $numPages;
+    function __construct($p){
+        //$this->fullPathToFile = "http://localhost/digitalsignature/$p";
+        $this->fullPathToFile = $p;
+        //$this->Header();
+        // echo "<pre>";
+        // print_r($this->fullPathToFile);
+        // die;
+    }
+
+    function createPdf(){
+        //$fullPathToFile = "sample.pdf";
+    }
+
+    function Header() {
+
+        // global $fullPathToFile;
+
+        if (is_null($this->fileIndex)) {
+
+            $this->numPages = $this->setSourceFile($this->fullPathToFile);
+            $this->fileIndex = $this->importPage(1);
+
+        } 
+        
+        $this->useTemplate($this->fileIndex, 0, 0,200);
+
+        
+        echo "<pre>";
+        print_r($this->numPages);
+        die;
+        
+    }
+
+    function nextPage() {
+        
+        if($this->currentPage != 1) {
+            $this->fileIndex = $this->importPage($this->currentPage);
+        }
+        
+        echo "<pre>";
+        print_r($this->importPage(2));
+        die;
+        
+        $this->addPage();
+
+        return ++$this->currentPage;
+    }
+
+}
+*/
+
+?>

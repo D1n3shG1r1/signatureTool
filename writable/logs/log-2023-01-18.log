@@ -1,0 +1,188 @@
+CRITICAL - 2023-01-18 11:27:37 --> Call to a member function move() on array
+in APPPATH\Controllers\Document.php on line 37.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->FileUpload()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 11:29:50 --> move_uploaded_file() expects parameter 1 to be string, array given
+in APPPATH\Controllers\Document.php on line 40.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'move_uploaded_file() expects parameter 1 to be string, array given', 'APPPATH\\Controllers\\Document.php', 40, [...])
+ 2 APPPATH\Controllers\Document.php(40): move_uploaded_file([...], 'FCPATH\\userassets\\uploads\\1674033916768190')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->FileUpload()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 11:33:31 --> syntax error, unexpected 'echo' (T_ECHO)
+in APPPATH\Controllers\Document.php on line 46.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Controllers\\Document.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Document')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Document')
+ 4 [internal function]: spl_autoload_call('App\\Controllers\\Document')
+ 5 SYSTEMPATH\CodeIgniter.php(892): class_exists('\\App\\Controllers\\Document', true)
+ 6 SYSTEMPATH\CodeIgniter.php(486): CodeIgniter\CodeIgniter->startController()
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 11:33:33 --> syntax error, unexpected 'echo' (T_ECHO)
+in APPPATH\Controllers\Document.php on line 46.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Controllers\\Document.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Document')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Document')
+ 4 [internal function]: spl_autoload_call('App\\Controllers\\Document')
+ 5 SYSTEMPATH\CodeIgniter.php(892): class_exists('\\App\\Controllers\\Document', true)
+ 6 SYSTEMPATH\CodeIgniter.php(486): CodeIgniter\CodeIgniter->startController()
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 11:36:15 --> Call to a member function move() on array
+in APPPATH\Controllers\Document.php on line 41.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->FileUpload()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 12:09:37 --> Allowed fields must be specified for model: "App\Models\ESignUploadedFiles"
+in SYSTEMPATH\BaseModel.php on line 1242.
+ 1 SYSTEMPATH\BaseModel.php(1242): CodeIgniter\Database\Exceptions\DataException::forInvalidAllowedFields('App\\Models\\ESignUploadedFiles')
+ 2 SYSTEMPATH\BaseModel.php(757): CodeIgniter\BaseModel->doProtectFields([...])
+ 3 SYSTEMPATH\Model.php(728): CodeIgniter\BaseModel->insert([...], true)
+ 4 APPPATH\Controllers\Document.php(63): CodeIgniter\Model->insert([...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->FileUpload()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 12:11:44 --> Allowed fields must be specified for model: "App\Models\ESignUploadedFiles"
+in SYSTEMPATH\BaseModel.php on line 1242.
+ 1 SYSTEMPATH\BaseModel.php(1242): CodeIgniter\Database\Exceptions\DataException::forInvalidAllowedFields('App\\Models\\ESignUploadedFiles')
+ 2 SYSTEMPATH\BaseModel.php(757): CodeIgniter\BaseModel->doProtectFields([...])
+ 3 SYSTEMPATH\Model.php(728): CodeIgniter\BaseModel->insert([...], true)
+ 4 APPPATH\Controllers\Document.php(63): CodeIgniter\Model->insert([...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->FileUpload()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 12:13:04 --> Allowed fields must be specified for model: "App\Models\ESignUploadedFiles"
+in SYSTEMPATH\BaseModel.php on line 1242.
+ 1 SYSTEMPATH\BaseModel.php(1242): CodeIgniter\Database\Exceptions\DataException::forInvalidAllowedFields('App\\Models\\ESignUploadedFiles')
+ 2 SYSTEMPATH\BaseModel.php(757): CodeIgniter\BaseModel->doProtectFields([...])
+ 3 SYSTEMPATH\Model.php(728): CodeIgniter\BaseModel->insert([...], false)
+ 4 APPPATH\Controllers\Document.php(63): CodeIgniter\Model->insert([...], false)
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->FileUpload()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 12:13:29 --> Allowed fields must be specified for model: "App\Models\ESignUploadedFiles"
+in SYSTEMPATH\BaseModel.php on line 1242.
+ 1 SYSTEMPATH\BaseModel.php(1242): CodeIgniter\Database\Exceptions\DataException::forInvalidAllowedFields('App\\Models\\ESignUploadedFiles')
+ 2 SYSTEMPATH\BaseModel.php(757): CodeIgniter\BaseModel->doProtectFields([...])
+ 3 SYSTEMPATH\Model.php(728): CodeIgniter\BaseModel->insert([...], false)
+ 4 APPPATH\Controllers\Document.php(63): CodeIgniter\Model->insert([...], false)
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->FileUpload()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 12:14:22 --> Undefined variable: page_title
+in APPPATH\Views\admin\header.php on line 61.
+ 1 APPPATH\Views\admin\header.php(61): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: page_title', 'APPPATH\\Views\\admin\\header.php', 61, [...])
+ 2 APPPATH\Views\admin\upload.php(1): include('APPPATH\\Views\\admin\\header.php')
+ 3 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\admin\\upload.php')
+ 4 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('admin/upload', [], true)
+ 6 APPPATH\Controllers\Document.php(28): view('admin/upload', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->upload()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 12:15:08 --> Allowed fields must be specified for model: "App\Models\ESignUploadedFiles"
+in SYSTEMPATH\BaseModel.php on line 1242.
+ 1 SYSTEMPATH\BaseModel.php(1242): CodeIgniter\Database\Exceptions\DataException::forInvalidAllowedFields('App\\Models\\ESignUploadedFiles')
+ 2 SYSTEMPATH\BaseModel.php(757): CodeIgniter\BaseModel->doProtectFields([...])
+ 3 SYSTEMPATH\Model.php(728): CodeIgniter\BaseModel->insert([...], false)
+ 4 APPPATH\Controllers\Document.php(64): CodeIgniter\Model->insert([...], false)
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->FileUpload()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 12:15:49 --> Undefined variable: uploadFileToDB
+in APPPATH\Controllers\Document.php on line 67.
+ 1 APPPATH\Controllers\Document.php(67): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: uploadFileToDB', 'APPPATH\\Controllers\\Document.php', 67, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->FileUpload()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 12:15:58 --> Undefined variable: uploadFileToDB
+in APPPATH\Controllers\Document.php on line 67.
+ 1 APPPATH\Controllers\Document.php(67): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: uploadFileToDB', 'APPPATH\\Controllers\\Document.php', 67, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->FileUpload()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 12:15:59 --> Undefined variable: uploadFileToDB
+in APPPATH\Controllers\Document.php on line 67.
+ 1 APPPATH\Controllers\Document.php(67): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: uploadFileToDB', 'APPPATH\\Controllers\\Document.php', 67, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->FileUpload()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 12:17:51 --> Allowed fields must be specified for model: "App\Models\ESignUploadedFiles"
+in SYSTEMPATH\BaseModel.php on line 1242.
+ 1 SYSTEMPATH\BaseModel.php(1242): CodeIgniter\Database\Exceptions\DataException::forInvalidAllowedFields('App\\Models\\ESignUploadedFiles')
+ 2 SYSTEMPATH\BaseModel.php(757): CodeIgniter\BaseModel->doProtectFields([...])
+ 3 SYSTEMPATH\Model.php(728): CodeIgniter\BaseModel->insert([...], false)
+ 4 APPPATH\Controllers\Document.php(63): CodeIgniter\Model->insert([...], false)
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->FileUpload()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 12:19:18 --> Allowed fields must be specified for model: "App\Models\ESignUploadedFiles"
+in SYSTEMPATH\BaseModel.php on line 1242.
+ 1 SYSTEMPATH\BaseModel.php(1242): CodeIgniter\Database\Exceptions\DataException::forInvalidAllowedFields('App\\Models\\ESignUploadedFiles')
+ 2 SYSTEMPATH\BaseModel.php(757): CodeIgniter\BaseModel->doProtectFields([...])
+ 3 SYSTEMPATH\Model.php(728): CodeIgniter\BaseModel->insert([...], false)
+ 4 APPPATH\Controllers\Document.php(63): CodeIgniter\Model->insert([...], false)
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->FileUpload()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 12:57:53 --> Too few arguments to function App\Controllers\Document::prepare(), 0 passed in C:\wamp64\www\digitalsignature\system\CodeIgniter.php on line 934 and exactly 1 expected
+in APPPATH\Controllers\Document.php on line 97.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepare()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 12:57:53 --> Too few arguments to function App\Controllers\Document::prepare(), 0 passed in C:\wamp64\www\digitalsignature\system\CodeIgniter.php on line 934 and exactly 1 expected
+in APPPATH\Controllers\Document.php on line 97.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepare()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 12:57:54 --> Too few arguments to function App\Controllers\Document::prepare(), 0 passed in C:\wamp64\www\digitalsignature\system\CodeIgniter.php on line 934 and exactly 1 expected
+in APPPATH\Controllers\Document.php on line 97.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepare()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 12:58:18 --> Too few arguments to function App\Controllers\Document::prepare(), 0 passed in C:\wamp64\www\digitalsignature\system\CodeIgniter.php on line 934 and exactly 1 expected
+in APPPATH\Controllers\Document.php on line 97.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepare()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 13:05:01 --> Call to undefined method CodeIgniter\Database\MySQLi\Result::result()
+in APPPATH\Models\ESignUploadedFiles.php on line 35.
+ 1 APPPATH\Controllers\Document.php(99): App\Models\ESignUploadedFiles->GetData('1674046469174791')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepare('1674046469174791')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 13:05:09 --> Call to undefined method CodeIgniter\Database\MySQLi\Builder::result()
+in APPPATH\Models\ESignUploadedFiles.php on line 35.
+ 1 APPPATH\Controllers\Document.php(99): App\Models\ESignUploadedFiles->GetData('1674046469174791')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepare('1674046469174791')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-18 13:06:37 --> Call to undefined method CodeIgniter\Database\MySQLi\Builder::first()
+in APPPATH\Models\ESignUploadedFiles.php on line 35.
+ 1 APPPATH\Controllers\Document.php(99): App\Models\ESignUploadedFiles->GetData('1674046469174791')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepare('1674046469174791')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()

@@ -1,0 +1,106 @@
+<?php 
+namespace App\Libraries;
+//$fullPathToFile = "C:/wamp64/www/digitalsignature/userassets/mydocuments/1673874254153097/5183472c3a4573cd1d85b040bf3edcf0.pdf";
+$fullPathToFile = "C:/wamp64/www/digitalsignature/userassets/mydocuments/1673874254153097/6f57ccc8e5b29a2e07824607d4df0ae4.pdf";
+include("testpdf.php");
+
+
+
+
+/*
+require_once('fpdf/fpdf.php');
+require_once('fpdi/src/fpdi.php');
+// require("vendor/autoload.php");
+// path of PDF file
+//$fullPathToFile = "C:/wamp64/www/digitalsignature/userassets/mydocuments/1673874254153097/5183472c3a4573cd1d85b040bf3edcf0.pdf";
+
+use setasign\Fpdi\Fpdi;
+// use setasign\Fpdf\Fpdf;
+
+class PDF extends FPDI {
+
+    //var $fullPathToFile = "C:/wamp64/www/digitalsignature/userassets/mydocuments/1673874254153097/5183472c3a4573cd1d85b040bf3edcf0.pdf";
+    var $fullPathToFile;
+    var $fileIndex;
+    var $currentPage = 1;
+    var $tplId;
+
+    function __construct($srcFile){
+       $this->fullPathToFile = $srcFile;
+       
+    }
+
+    function Header() {
+        //global $fullPathToFile;
+
+        if (is_null($this->fileIndex)) {
+        
+           $this->numPages = $this->setSourceFile($this->fullPathToFile);
+           $this->k = 2.8346456692913;
+           $this->fileIndex = $this->importPage(1);
+            
+        }
+        
+        $this->useTemplate($this->fileIndex, 0, 0,200);
+        // echo "<pre>";
+        // print_r($this);
+        // die;
+
+    }
+
+    function nextPage() {
+        if($this->currentPage != 1) {
+            $this->fileIndex = $this->importPage($this->currentPage);
+        //    echo "if";
+        }else{
+       //     echo "else";
+        }
+       // echo $this->currentPage."<br>";
+        $this->addPage();
+
+        return ++$this->currentPage;
+    }
+
+}
+
+class GeneratePdf extends PDF{
+    // genpdf GeneratePdf
+    var $pdff;
+    
+    function __construct($srcFile){
+        parent::__construct($srcFile);
+       // $this->pdff = new PDF($srcFile);
+    }
+
+    function genpdf(){
+        // initiate PDF
+        
+        
+
+        // go to first page
+        $this->nextPage();
+
+        // add content to current page
+        $this->SetFont("helvetica", "", 13);
+        $this->SetTextColor(220, 20, 60);
+        $this->Text(0, 3.5, "head");
+        $this->Text(13, 30, "I should not be here!");
+        $this->Text(169.5, 30, "Text2");
+
+
+        // move to next page and add content
+        $this->pdff->nextPage();
+
+        $this->pdff->SetFont("arial", "", 13);
+        $this->pdff->SetTextColor(65, 105, 225);
+        $this->pdff->Text(13, 30, "hello!");
+        $this->pdff->Text(169.5, 30, "Text3");
+        $this->pdff->Text(0, 3.5, "head");
+        //show the PDF in page
+  
+    $this->Output();
+
+    }
+    
+}
+*/

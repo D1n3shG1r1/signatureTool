@@ -1,0 +1,430 @@
+CRITICAL - 2023-01-27 07:39:59 --> Undefined variable: pdf
+in APPPATH\Controllers\Document.php on line 417.
+ 1 APPPATH\Controllers\Document.php(417): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: pdf', 'APPPATH\\Controllers\\Document.php', 417, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 07:41:16 --> Trying to access array offset on value of type null
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 1098.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1098): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', 'FCPATH\\vendor\\setasign\\fpdf\\fpdf.php', 1098, [...])
+ 2 FCPATH\vendor\setasign\fpdf\fpdf.php(316): FPDF->_beginpage(null, null, 0)
+ 3 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Libraries\GeneratePdf.php(45): setasign\Fpdi\FpdfTpl->AddPage()
+ 5 APPPATH\Controllers\Document.php(417): App\Libraries\GeneratePdf->nextPage()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 07:44:52 --> Trying to access array offset on value of type null
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 1098.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1098): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', 'FCPATH\\vendor\\setasign\\fpdf\\fpdf.php', 1098, [...])
+ 2 FCPATH\vendor\setasign\fpdf\fpdf.php(316): FPDF->_beginpage(null, null, 0)
+ 3 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Libraries\GeneratePdf.php(45): setasign\Fpdi\FpdfTpl->AddPage()
+ 5 APPPATH\Controllers\Document.php(417): App\Libraries\GeneratePdf->nextPage()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 07:51:43 --> Call to undefined method FPDF::setSourceFile()
+in APPPATH\Controllers\Document.php on line 420.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 07:53:54 --> Call to undefined method FPDF::file()
+in APPPATH\Controllers\Document.php on line 420.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 07:53:56 --> Call to undefined method FPDF::file()
+in APPPATH\Controllers\Document.php on line 420.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 07:53:56 --> Call to undefined method FPDF::file()
+in APPPATH\Controllers\Document.php on line 420.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 07:53:56 --> Call to undefined method FPDF::file()
+in APPPATH\Controllers\Document.php on line 420.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 07:54:27 --> FPDF error: Some data has already been output, can't send PDF file
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1057): FPDF->Error('Some data has already been output, can\'t send PDF file')
+ 2 FCPATH\vendor\setasign\fpdf\fpdf.php(1003): FPDF->_checkoutput()
+ 3 APPPATH\Controllers\Document.php(420): FPDF->Output('I', '/userassets/mydocuments/1673874254153097/5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 07:56:09 --> Trying to access array offset on value of type null
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 1098.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1098): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', 'FCPATH\\vendor\\setasign\\fpdf\\fpdf.php', 1098, [...])
+ 2 FCPATH\vendor\setasign\fpdf\fpdf.php(316): FPDF->_beginpage(null, null, 0)
+ 3 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Libraries\GeneratePdf.php(47): setasign\Fpdi\FpdfTpl->AddPage()
+ 5 APPPATH\Controllers\Document.php(417): App\Libraries\GeneratePdf->nextPage()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 07:57:30 --> Undefined property: App\Libraries\GeneratePdf::$numPages
+in APPPATH\Libraries\GeneratePdf.php on line 48.
+ 1 APPPATH\Libraries\GeneratePdf.php(48): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: App\\Libraries\\GeneratePdf::$numPages', 'APPPATH\\Libraries\\GeneratePdf.php', 48, [])
+ 2 APPPATH\Controllers\Document.php(417): App\Libraries\GeneratePdf->nextPage()
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 07:58:46 --> file_get_contents(/userassets/mydocuments/1673874254153097/5c960af14d51ddfe1c288a80cf305c98.pdf): failed to open stream: No such file or directory
+in APPPATH\Libraries\GeneratePdf.php on line 25.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'file_get_contents(/userassets/mydocuments/1673874254153097/5c960af14d51ddfe1c288a80cf305c98.pdf): failed to open stream: No such file or directory', 'APPPATH\\Libraries\\GeneratePdf.php', 25, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(25): file_get_contents('/userassets/mydocuments/1673874254153097/5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 3 APPPATH\Controllers\Document.php(414): App\Libraries\GeneratePdf->__construct('/userassets/mydocuments/1673874254153097/5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 08:00:19 --> Trying to access array offset on value of type null
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 1098.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1098): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', 'FCPATH\\vendor\\setasign\\fpdf\\fpdf.php', 1098, [...])
+ 2 FCPATH\vendor\setasign\fpdf\fpdf.php(316): FPDF->_beginpage(null, null, 0)
+ 3 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Libraries\GeneratePdf.php(50): setasign\Fpdi\FpdfTpl->AddPage()
+ 5 APPPATH\Controllers\Document.php(417): App\Libraries\GeneratePdf->nextPage()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 08:02:41 --> Trying to access array offset on value of type null
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 1098.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1098): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', 'FCPATH\\vendor\\setasign\\fpdf\\fpdf.php', 1098, [...])
+ 2 FCPATH\vendor\setasign\fpdf\fpdf.php(316): FPDF->_beginpage(null, null, 0)
+ 3 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Libraries\GeneratePdf.php(52): setasign\Fpdi\FpdfTpl->AddPage()
+ 5 APPPATH\Controllers\Document.php(419): App\Libraries\GeneratePdf->nextPage()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 09:03:00 --> Trying to access array offset on value of type null
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 1098.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1098): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', 'FCPATH\\vendor\\setasign\\fpdf\\fpdf.php', 1098, [...])
+ 2 FCPATH\vendor\setasign\fpdf\fpdf.php(316): FPDF->_beginpage(null, null, 0)
+ 3 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Libraries\GeneratePdf.php(52): setasign\Fpdi\FpdfTpl->AddPage()
+ 5 APPPATH\Controllers\Document.php(419): App\Libraries\GeneratePdf->nextPage()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 09:39:50 --> Trying to access array offset on value of type null
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 1098.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1098): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', 'FCPATH\\vendor\\setasign\\fpdf\\fpdf.php', 1098, [...])
+ 2 FCPATH\vendor\setasign\fpdf\fpdf.php(316): FPDF->_beginpage(null, null, 0)
+ 3 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Libraries\GeneratePdf.php(52): setasign\Fpdi\FpdfTpl->AddPage()
+ 5 APPPATH\Controllers\Document.php(419): App\Libraries\GeneratePdf->nextPage()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:05:53 --> file_get_contents(/userassets/mydocuments/1673874254153097/5c960af14d51ddfe1c288a80cf305c98.pdf): failed to open stream: No such file or directory
+in APPPATH\Controllers\Document.php on line 413.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'file_get_contents(/userassets/mydocuments/1673874254153097/5c960af14d51ddfe1c288a80cf305c98.pdf): failed to open stream: No such file or directory', 'APPPATH\\Controllers\\Document.php', 413, [...])
+ 2 APPPATH\Controllers\Document.php(413): file_get_contents('/userassets/mydocuments/1673874254153097/5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:12:20 --> file_get_contents(http://localhost/digitalsignature/C:/wamp64/www/digitalsignature/userassets/mydocuments/1673874254153097/5c960af14d51ddfe1c288a80cf305c98.pdf): failed to open stream: HTTP request failed! HTTP/1.1 403 Forbidden
+
+in APPPATH\Controllers\Document.php on line 417.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'file_get_contents(http://localhost/digitalsignature/C:/wamp64/www/digitalsignature/userassets/mydocuments/1673874254153097/5c960af14d51ddfe1c288a80cf305c98.pdf): failed to open stream: HTTP request failed! HTTP/1.1 403 Forbidden
+', 'APPPATH\\Controllers\\Document.php', 417, [...])
+ 2 APPPATH\Controllers\Document.php(417): file_get_contents('http://localhost/digitalsignature/C:/wamp64/www/digitalsignature/userassets/mydocuments/1673874254153097/5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:14:26 --> Trying to access array offset on value of type null
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 1098.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1098): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', 'FCPATH\\vendor\\setasign\\fpdf\\fpdf.php', 1098, [...])
+ 2 FCPATH\vendor\setasign\fpdf\fpdf.php(316): FPDF->_beginpage(null, null, 0)
+ 3 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Libraries\GeneratePdf.php(52): setasign\Fpdi\FpdfTpl->AddPage()
+ 5 APPPATH\Controllers\Document.php(423): App\Libraries\GeneratePdf->nextPage()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:16:34 --> Trying to access array offset on value of type null
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 1098.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1098): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to access array offset on value of type null', 'FCPATH\\vendor\\setasign\\fpdf\\fpdf.php', 1098, [...])
+ 2 FCPATH\vendor\setasign\fpdf\fpdf.php(316): FPDF->_beginpage(null, null, 0)
+ 3 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Libraries\GeneratePdf.php(59): setasign\Fpdi\FpdfTpl->AddPage()
+ 5 APPPATH\Controllers\Document.php(423): App\Libraries\GeneratePdf->nextPage()
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:17:10 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(53): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Controllers\Document.php(423): App\Libraries\GeneratePdf->nextPage()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:18:45 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(57): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Controllers\Document.php(423): App\Libraries\GeneratePdf->nextPage()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:20:21 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(57): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Controllers\Document.php(423): App\Libraries\GeneratePdf->nextPage()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:20:28 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(57): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Controllers\Document.php(423): App\Libraries\GeneratePdf->nextPage()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:22:14 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(41): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 4 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:22:46 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(41): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 4 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:23:13 --> Box name is invalid: "1"
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 250.
+ 1 APPPATH\Libraries\GeneratePdf.php(41): setasign\Fpdi\Fpdi->importPage(1, '1')
+ 2 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 3 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:23:20 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(41): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 4 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:24:14 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(41): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 4 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:24:15 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(41): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 4 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:24:15 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(41): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 4 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:24:16 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(41): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 4 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:24:16 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(41): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 4 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:24:16 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(41): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 4 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:24:39 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(41): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 4 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:24:39 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(41): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 4 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:24:44 --> Template does not exist!
+in FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php on line 105.
+ 1 FCPATH\vendor\setasign\fpdi\src\Fpdi.php(66): setasign\Fpdi\FpdfTpl->useTemplate(null, 0, 0, 200, null, false)
+ 2 APPPATH\Libraries\GeneratePdf.php(45): setasign\Fpdi\Fpdi->useTemplate(null, 0, 0, 200)
+ 3 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 4 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:25:36 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 386.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(386): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 386, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(41): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 4 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:25:44 --> FPDF error: No page has been added yet
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1464): FPDF->Error('No page has been added yet')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(467): FPDF->_out('q 0 J 1 w 0 j 0 G 0 g 0.3362 0 0 0.3362 0.0000 0.0000 cm /TPL0 Do Q')
+ 3 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(441): setasign\Fpdi\FpdfTpl->_out('q 0 J 1 w 0 j 0 G 0 g 0.3362 0 0 0.3362 0.0000 0.0000 cm /TPL0 Do Q')
+ 4 FCPATH\vendor\setasign\fpdi\src\Fpdi.php(59): setasign\Fpdi\Fpdi->useImportedPage('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf|1|1|CropBox', 0, 0, 200, null, false)
+ 5 APPPATH\Libraries\GeneratePdf.php(45): setasign\Fpdi\Fpdi->useTemplate('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf|1|1|CropBox', 0, 0, 200)
+ 6 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 7 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 9 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+10 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:27:43 --> FPDF error: No page has been added yet
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1464): FPDF->Error('No page has been added yet')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(467): FPDF->_out('q 0 J 1 w 0 j 0 G 0 g 0.3362 0 0 0.3362 0.0000 -283.0174 cm /TPL0 Do Q')
+ 3 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(441): setasign\Fpdi\FpdfTpl->_out('q 0 J 1 w 0 j 0 G 0 g 0.3362 0 0 0.3362 0.0000 -283.0174 cm /TPL0 Do Q')
+ 4 FCPATH\vendor\setasign\fpdi\src\Fpdi.php(59): setasign\Fpdi\Fpdi->useImportedPage('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf|1|1|CropBox', 0, 0, 200, null, false)
+ 5 APPPATH\Libraries\GeneratePdf.php(45): setasign\Fpdi\Fpdi->useTemplate('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf|1|1|CropBox', 0, 0, 200)
+ 6 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 7 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 8 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 9 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+10 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:27:49 --> Division by zero
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 385.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(385): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Division by zero', 'FCPATH\\vendor\\setasign\\fpdi\\src\\FpdiTrait.php', 385, [...])
+ 2 APPPATH\Libraries\GeneratePdf.php(41): setasign\Fpdi\Fpdi->importPage(1)
+ 3 APPPATH\Libraries\GeneratePdf.php(24): App\Libraries\GeneratePdf->Header()
+ 4 APPPATH\Controllers\Document.php(420): App\Libraries\GeneratePdf->__construct('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:29:47 --> Call to undefined method FPDF::setSourceFile()
+in APPPATH\Controllers\Document.php on line 422.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:30:39 --> Class 'setasign\Fpdf\Fpdf' not found
+in APPPATH\Controllers\Document.php on line 421.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:30:55 --> Class 'setasign\Fpdf\Fpdf' not found
+in APPPATH\Controllers\Document.php on line 421.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:35:03 --> FPDF error: No page has been added yet
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1464): FPDF->Error('No page has been added yet')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(467): FPDF->_out('q 0 J 1 w 0 j 0 G 0 g 0.9529 0 0 0.9529 0.0000 39.6361 cm /TPL0 Do Q')
+ 3 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(441): setasign\Fpdi\FpdfTpl->_out('q 0 J 1 w 0 j 0 G 0 g 0.9529 0 0 0.9529 0.0000 39.6361 cm /TPL0 Do Q')
+ 4 FCPATH\vendor\setasign\fpdi\src\Fpdi.php(59): setasign\Fpdi\Fpdi->useImportedPage('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf|1|1|CropBox', 0, 0, 200, null, false)
+ 5 APPPATH\Controllers\Document.php(427): setasign\Fpdi\Fpdi->useTemplate('FCPATH\\userassets\\mydocuments\\1673874254153097\\5c960af14d51ddfe1c288a80cf305c98.pdf|1|1|CropBox', 0, 0, 200)
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-01-27 12:38:08 --> fopen(logo.png): failed to open stream: No such file or directory
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 1275.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'fopen(logo.png): failed to open stream: No such file or directory', 'FCPATH\\vendor\\setasign\\fpdf\\fpdf.php', 1275, [...])
+ 2 FCPATH\vendor\setasign\fpdf\fpdf.php(1275): fopen('logo.png', 'rb')
+ 3 FCPATH\vendor\setasign\fpdf\fpdf.php(889): FPDF->_parsepng('logo.png')
+ 4 APPPATH\Controllers\Document.php(433): FPDF->Image('logo.png', 100, 60, 50, 50)
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
