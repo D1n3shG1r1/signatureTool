@@ -1,9 +1,15 @@
       var canvas;
       var signaturePad;
-
+      var TMP_USERLOCALE = {};
+      
       $(function(){
         
+          getUserLocale();
 
+          $("#pdfContainer").click(function() {
+            showThumbNails();
+          });
+          
           // preventing page from redirecting
           $("html").on("dragover", function(e) {
               e.preventDefault();
@@ -206,7 +212,8 @@
           console.log("vl:");
           console.log(vl);
           var tmpElm = vl;
-          var tmp_default_user = tmpElm.default_user;
+          var tmp_is_readonly = tmpElm.is_readonly; 
+          var tmp_is_required = tmpElm.is_required; 
           var tmp_default_value = tmpElm.default_value;
           var tmp_elmType = tmpElm.elmType;
           var tmp_font_family = tmpElm.font_family;
@@ -529,20 +536,8 @@
         
         var uniqId = randomStr();
 
-		/*
-        var signature = '<g id="signature_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'signature_'+uniqId+'\');">\
-                  <rect id="signature_'+uniqId+'_rect2" width="124" height="32" fill="#FDF7DB" stroke="#fdf7db"></rect>\
-                  <rect id="signature_'+uniqId+'_rect1" width="4" height="32" fill="#FAEA9E" stroke="#fdf7db"></rect>\
-                  <image height="32" width="120" id="signature_hAvla_image" x="4" xlink:href="sign-base64" preserveAspectRatio="xMinYMid meet"></image>\
-               </g>';
-
-        var singanturein = '<g id="signaturein_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'signaturein_'+uniqId+'\');">\
-                          <rect id="signaturein_'+uniqId+'_rect2" width="48" height="32" fill="#FDF7DB" stroke="#fdf7db"></rect>\
-                          <rect id="signaturein_'+uniqId+'_rect1" width="4" height="32" fill="#FAEA9E" stroke="#fdf7db"></rect>\
-                          <image height="32" width="44" id="signaturein_'+uniqId+'_image" x="4" xlink:href="sign-base64" preserveAspectRatio="xMinYMid meet"></image>\
-                       </g>';
-		*/
-		
+	      var tmp_is_readonly = parseInt(tmpElm.is_readonly); 
+        var tmp_is_required = parseInt(tmpElm.is_required); 
         var tmp_default_user = tmpElm.default_user;
         var tmp_default_value = tmpElm.default_value;
         var tmp_elmType = tmpElm.elmType;
@@ -559,35 +554,42 @@
         var tmp_userColor = tmpUserProp[3];
         
         var objType = tmp_elmType;
+        var contEditable = '';
+        var onKeyUpAttr = '';
+        if(tmp_is_required == 1 && tmp_is_readonly == 0){
+         // contEditable = 'contenteditable="true"';
+          /*onKeyUpAttr = 'onKeyup=changeDefault'*/
+        }
 
-        var signature = '<g id="signature_'+uniqId+'" class="pdf-form-element" onclick="openSignPad(\'signature_'+uniqId+'\');" style="'+tmp_style+'">\
+
+        var signature = '<g id="signature_'+uniqId+'" class="pdf-form-element" onclick="openSignPad(\'signature_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                       <rect id="signature_'+uniqId+'_rect2" width="124" height="32" fill="#FDF7DB" stroke="#fdf7db"></rect>\
                       <rect id="signature_'+uniqId+'_rect1" width="4" height="32" fill="#FAEA9E" stroke="#fdf7db"></rect>\
-                      <text id="signature_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'">\
+                      <text id="signature_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
               <tspan style="word-break: break-word;" x="4" dy="13">'+tmp_default_value+'</tspan>\
                       </text>\
                   </g>';
 
-        var signaturein = '<g id="signaturein_'+uniqId+'" class="pdf-form-element" onclick="openSignPad(\'signaturein_'+uniqId+'\');" style="'+tmp_style+'">\
+        var signaturein = '<g id="signaturein_'+uniqId+'" class="pdf-form-element" onclick="openSignPad(\'signaturein_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                           <rect id="signaturein_'+uniqId+'_rect2" width="48" height="32" fill="#FDF7DB" stroke="#fdf7db"></rect>\
                           <rect id="signaturein_'+uniqId+'_rect1" width="4" height="32" fill="#FAEA9E" stroke="#fdf7db"></rect>\
-                          <text id="signaturein_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'">\
+                          <text id="signaturein_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
 						  <tspan style="word-break: break-word;" x="4" dy="13">'+tmp_default_value+'</tspan>\
 						  </text>\
                        </g>';
 
-        var textbox =  '<g id="textbox_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'textbox_'+uniqId+'\');" style="'+tmp_style+'">\
+        var textbox =  '<g id="textbox_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'textbox_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                           <rect id="textbox_'+uniqId+'_rect2" width="80" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                           <rect id="textbox_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                          <text id="textbox_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="'+tmp_font_style+'" font-weight="'+tmp_font_weight+'" text-decoration="'+tmp_text_decoration+'" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'">\
+                          <text id="textbox_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="'+tmp_font_style+'" font-weight="'+tmp_font_weight+'" text-decoration="'+tmp_text_decoration+'" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
                           <tspan style="word-break: break-word;" x="4" dy="13">'+tmp_default_value+'</tspan>\
                           </text>\
                        </g>';
 	
-		    var datepicker = '<g id="datepicker_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'datepicker_'+uniqId+'\');">\
+		    var datepicker = '<g id="datepicker_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'datepicker_'+uniqId+'\');" '+contEditable+'>\
                            <rect id="datepicker_'+uniqId+'_rect2" width="74.078125" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                            <rect id="datepicker_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                           <text id="datepicker_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("dd/MM/yyyy")+'" date-format="dd/MM/yyyy" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0">\
+                           <text id="datepicker_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("dd/MM/yyyy")+'" date-format="dd/MM/yyyy" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
                            <tspan style="word-break: break-word;" x="4" dy="13">'+currentDate("dd/MM/yyyy")+'</tspan>\
                            </text>\
                        </g>';
@@ -612,42 +614,42 @@
                               </g>\
                            </g>';
 
-        var name = '<g id="name_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'name_'+uniqId+'\');">\
+        var name = '<g id="name_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'name_'+uniqId+'\');" '+contEditable+'>\
                        <rect id="name_'+uniqId+'_rect2" width="73.4072265625" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                        <rect id="name_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                       <text id="name_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="Text" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0">\
+                       <text id="name_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="Text" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
                         <tspan style="word-break: break-word;" x="4" dy="13">'+userName()+'</tspan>\
                        </text>\
                     </g>'; 
 
 
-        var email = '<g id="email_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'email_'+uniqId+'\');">\
+        var email = '<g id="email_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'email_'+uniqId+'\');" '+contEditable+'>\
                        <rect id="email_'+uniqId+'_rect2" width="168.15625" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                        <rect id="email_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                       <text id="email_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0">\
+                       <text id="email_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
                         <tspan style="word-break: break-word;" x="4" dy="13">'+userEmail()+'</tspan>\
                        </text>\
                     </g>';
 
-        var editableDate = '<g id="editableDate_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'editableDate_'+uniqId+'\');">\
+        var editableDate = '<g id="editableDate_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'editableDate_'+uniqId+'\');" '+contEditable+'>\
                              <rect id="editableDate_'+uniqId+'_rect2" width="95" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                              <rect id="editableDate_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                             <text id="editableDate_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("MM/dd/yyyy")+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0">\
+                             <text id="editableDate_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("MM/dd/yyyy")+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
                               <tspan style="word-break: break-word;" x="4" dy="13">MM/dd/yyyy</tspan>\
                              </text>\
                           </g>';
 
-        var label = '<g id="label_'+uniqId+'" class="pdf-form-element" style="visibility: visible;" onclick="openFieldSettings(\'label_'+uniqId+'\');">\
+        var label = '<g id="label_'+uniqId+'" class="pdf-form-element" style="visibility: visible;" onclick="openFieldSettings(\'label_'+uniqId+'\');" '+contEditable+'>\
                        <rect id="label_'+uniqId+'_rect1" width="80" height="17" fill="#f4f5eb" stroke="transparent"></rect>\
-                       <text id="label_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="Label" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0">\
+                       <text id="label_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="Label" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
                         <tspan style="word-break: break-word;" x="4" dy="13">Label</tspan>\
                        </text>\
                     </g>';
 
-        var hyperlink = '<g id="hyperlink_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'hyperlink_'+uniqId+'\');">\
+        var hyperlink = '<g id="hyperlink_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'hyperlink_'+uniqId+'\');" '+contEditable+'>\
                           <rect id="hyperlink_'+uniqId+'_rect1" width="90" height="20" fill="#f4f5eb" stroke="transparent"></rect>\
                           <image height="16" width="16" id="hyperlink_'+uniqId+'_hyperlinkicon" x="71.6875" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik01IDdDNC43MzQ3OCA3IDQuNDgwNDMgNy4xMDUzNiA0LjI5Mjg5IDcuMjkyODlDNC4xMDUzNiA3LjQ4MDQzIDQgNy43MzQ3OCA0IDhWMTlDNCAxOS4yNjUyIDQuMTA1MzYgMTkuNTE5NiA0LjI5Mjg5IDE5LjcwNzFDNC40ODA0MyAxOS44OTQ2IDQuNzM0NzggMjAgNSAyMEgxNkMxNi4yNjUyIDIwIDE2LjUxOTYgMTkuODk0NiAxNi43MDcxIDE5LjcwNzFDMTYuODk0NiAxOS41MTk2IDE3IDE5LjI2NTIgMTcgMTlWMTNDMTcgMTIuNDQ3NyAxNy40NDc3IDEyIDE4IDEyQzE4LjU1MjMgMTIgMTkgMTIuNDQ3NyAxOSAxM1YxOUMxOSAxOS43OTU3IDE4LjY4MzkgMjAuNTU4NyAxOC4xMjEzIDIxLjEyMTNDMTcuNTU4NyAyMS42ODM5IDE2Ljc5NTcgMjIgMTYgMjJINUM0LjIwNDM1IDIyIDMuNDQxMjkgMjEuNjgzOSAyLjg3ODY4IDIxLjEyMTNDMi4zMTYwNyAyMC41NTg3IDIgMTkuNzk1NiAyIDE5VjhDMiA3LjIwNDM1IDIuMzE2MDcgNi40NDEyOSAyLjg3ODY4IDUuODc4NjhDMy40NDEyOSA1LjMxNjA3IDQuMjA0MzUgNSA1IDVIMTFDMTEuNTUyMyA1IDEyIDUuNDQ3NzIgMTIgNkMxMiA2LjU1MjI4IDExLjU1MjMgNyAxMSA3SDVaIiBmaWxsPSIjMzMzMzMzIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTQgM0MxNCAyLjQ0NzcyIDE0LjQ0NzcgMiAxNSAySDIxQzIxLjU1MjMgMiAyMiAyLjQ0NzcyIDIyIDNWOUMyMiA5LjU1MjI4IDIxLjU1MjMgMTAgMjEgMTBDMjAuNDQ3NyAxMCAyMCA5LjU1MjI4IDIwIDlWNEgxNUMxNC40NDc3IDQgMTQgMy41NTIyOCAxNCAzWiIgZmlsbD0iIzMzMzMzMyIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTIxLjcwNzEgMi4yOTI4OUMyMi4wOTc2IDIuNjgzNDIgMjIuMDk3NiAzLjMxNjU4IDIxLjcwNzEgMy43MDcxMUwxMC43MDcxIDE0LjcwNzFDMTAuMzE2NiAxNS4wOTc2IDkuNjgzNDIgMTUuMDk3NiA5LjI5Mjg5IDE0LjcwNzFDOC45MDIzNyAxNC4zMTY2IDguOTAyMzcgMTMuNjgzNCA5LjI5Mjg5IDEzLjI5MjlMMjAuMjkyOSAyLjI5Mjg5QzIwLjY4MzQgMS45MDIzNyAyMS4zMTY2IDEuOTAyMzcgMjEuNzA3MSAyLjI5Mjg5WiIgZmlsbD0iIzMzMzMzMyIvPgo8L3N2Zz4K" preserveAspectRatio="xMinYMid meet" y="2"></image>\
-                          <text id="hyperlink_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#3E60FF" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0">\
+                          <text id="hyperlink_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#3E60FF" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
                            <tspan style="word-break: break-word;" x="4" dy="13">Hyperlink</tspan>\
                           </text>\
                        </g>';  
@@ -729,7 +731,10 @@
         var default_user = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("default-user");
         var line_height = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("line-height");
         var date_format = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("date-format");
-      
+
+        var is_readonly = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("is-readonly");
+        var is_required = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("is-required");
+        
         if(isReal(font_size) == false){
           font_size = "13px";
         }else if(isReal(font_family) == false){
@@ -751,12 +756,16 @@
         }
       
       
-        return {"font-size":font_size, "font-family":font_family, "font-style":font_style, "font-weight":font_weight, "text-decoration":text_decoration, "default-value":default_value, "default-user":default_user, "line-height":line_height, "date-format":date_format};
+        return {"font-size":font_size, "font-family":font_family, "font-style":font_style, "font-weight":font_weight, "text-decoration":text_decoration, "default-value":default_value, "default-user":default_user, "line-height":line_height, "date-format":date_format, "is-readonly":is_readonly, "is-required":is_required};
       
       }
 
+      function showThumbNails(){
+        $("#bs-thumbnail-prepare").show();
+        $("#Advance-fields").hide();
+      }
+
     function openFieldSettings(elmId){
- 
  
         event.stopPropagation();
 		hideElementBorder();
@@ -788,8 +797,9 @@
 		//Action buttons html for close & reset
 
 		var resetButton = '<span class="reset-icon"><img src="'+BASEURL+'/assets/images/Blue-Refresh.png" /></span>';
-		var closeButton = '<a class="settingsClose" href="javascript:void(0);">X</a>';
-			
+    resetButton = '';
+		var closeButton = '<a class="settingsClose" href="javascript:void(0);" onclick="showThumbNails();">X</a>';
+		var okButton = '<button type="button" class="btn btn-primary" onclcik="validate();">OK</button>';	
 			
 		//Date format html		
 		var dateFormat = '<div class="settingRow">\
@@ -847,7 +857,7 @@
                 </li>\
               </ul>\
             </div>';
-		
+      fontOptions = '';
 		//Assigned to users html	
 		var default_userArr = default_user.split(SEPERATOR);
 		var tmpCURRENTUSERNAME = default_userArr[0];
@@ -883,7 +893,7 @@
 
 		usersHtml += '</ul></div>';
 
-
+    usersHtml = '';
 		//Signature settings html
         var signatureSettings = '<div class="textSettingsConatiner">\
           <div class="textSettingsHeader borderColor">\
@@ -922,7 +932,7 @@
 		textBoxSettings += usersHtml;
 		  
         textBoxSettings +=  '<div class="settingRow">\
-              <label class="settingRowLabel">Default Text</label>\
+              <label class="settingRowLabel">Enter Text</label>\
               <textarea id="default-text" class="settingRowFields borderColor textColor" onKeyup="changeDefaultText(this, \''+elmId+'\');" style="width: 242px; height: 50px; resize: none;" placeholder="Add text here..."></textarea>\
             </div>';
         textBoxSettings += fontOptions;
@@ -941,7 +951,7 @@
 		labelSettings += usersHtml;
 		  
         labelSettings += '<div class="settingRow">\
-              <label class="settingRowLabel">Default Text</label>\
+              <label class="settingRowLabel">Enter Text</label>\
               <input type="text" class="settingRowFields borderColor textColor" onKeyup="changeDefaultText(this, \''+elmId+'\');" placeholder="Add text here..." />\
             </div>';
             
@@ -1066,6 +1076,10 @@
             
         }
 		
+        $("#bs-thumbnail-prepare").hide();
+        $("#Advance-fields").show();
+
+
         setTimeout(function(){
           
           //set values for settings elements
@@ -1080,7 +1094,7 @@
             $("#date-format").val(date_format);	
           }
           
-          $('.userLI.'+tmpUserClass).trigger("click");
+          //$('.userLI.'+tmpUserClass).trigger("click");
           
         }, 500);
         
@@ -1092,7 +1106,10 @@
       }
 
       function changeDefaultText(obj, DstElmId){
-          return false;
+          //return false;
+          
+          document.getElementById(DstElmId).style.height = 'unset';
+          
           var defltVl = $(obj).val();
           var elmIdParts = DstElmId.split("_");
           var  elmTyp = elmIdParts[0];
@@ -1102,12 +1119,22 @@
           $("#"+elmTyp+"_"+elmIdStr+"_text").attr("default-value", defltVl);
           
           var textHtml = '';
+          
           $.each(defltVlArr, function(i,v){
             textHtml += '<tspan style="word-break: break-word; width: 100%; float: left;" x="4" dy="13">'+v+'</tspan>';
-          })
+          });
+          var inithght = document.getElementById(DstElmId).clientHeight;
           
+          if(inithght < 30){
+            inithght = 30;
+          }
+          console.log("inithght2:"+inithght);
+          var newHeight = inithght+"px";
+
           //$("#"+elmTyp+"_"+elmIdStr+"_text tspan").text(defltVl);
           $("#"+elmTyp+"_"+elmIdStr+"_text").html(textHtml);
+
+          $("#"+DstElmId).css({"height":newHeight});
 
       }
 
@@ -1513,7 +1540,7 @@
     }
 
     function openSignPad(elmId){
-      
+      showThumbNails();
       event.stopPropagation();
       hideElementBorder();
           $("#"+elmId).addClass("pdf-form-element-border");
@@ -1807,15 +1834,17 @@
                 tmpSaveDataObj[default_user] = [];
             }
 
-            tmpSaveDataObj[default_user].push({"elmType":elmTyp, "elmId":elmId, "page":tmpPage, "pageTop":tmpPageTop, "style":tmpStyl, "font_size":font_size, "font_family":font_family, "font_style":font_style, "font_weight":font_weight, "text_decoration":text_decoration, "default_value":default_value, "default_user":default_user});
             
+            var dataSignType = '';
             if(elmTyp == "signature"){
           
               var dataSign = $("#"+elmId+"_text").attr("data-sign");
               tmpSignDataObj.push({"elemId":elmId, "bs64":dataSign});
             }
-            
-        });
+           
+            tmpSaveDataObj[default_user].push({"elmType":elmTyp, "elmId":elmId, "page":tmpPage, "pageTop":tmpPageTop, "style":tmpStyl, "font_size":font_size, "font_family":font_family, "font_style":font_style, "font_weight":font_weight, "text_decoration":text_decoration, "default_value":default_value, "default_user":default_user});
+        
+          });
 
         
         console.log("tmpSignDataObj");
@@ -1826,13 +1855,12 @@
 
 
         //=== saving sign code
-        /*
-        var ci = 0;
-        var li = tmpSignDataObj.length - 1;
-        saveSignBscode(tmpSignDataObj, ci, li);
-        */
-
-
+        var userDtTm = new Date().toLocaleString(); //system current date time
+        userDtTm = userDtTm.replace(",",""); 
+        userDtTm = userDtTm.trim();
+        
+        TMP_USERLOCALE["platform"] = getBrowserName();
+        TMP_USERLOCALE["userDtTm"] = userDtTm;
 
         
         //post data to save in db
@@ -1840,9 +1868,18 @@
         var signerDocumentId = $("#signerDocumentId").val();
         var signImgData = $("#fullsignbs64").val();
         var signIniImgData = $("#initsignbs64").val();
+        var signType = $("#signType").val();
 
         var rqsturl = "processsign";
-        var postdata = {"data":tmpSaveDataObj, "documentId":documentId, "signerDocumentId":signerDocumentId, "initials":signIniImgData, "sign":signImgData};
+        var postdata = {
+          "data":tmpSaveDataObj,
+          "documentId":documentId,
+          "signerDocumentId":signerDocumentId,
+          "initials":signIniImgData,
+          "sign":signImgData,
+          "signType":signType,
+          "userLocale":TMP_USERLOCALE
+        };
         var rqstType = "POST";
         callAjax(rqsturl, postdata, rqstType, function(resp){
             console.log("resp");
@@ -1865,6 +1902,38 @@
 
         }); 
         
+    }
+
+    function getBrowserName(){
+      var userAgent = navigator.userAgent;
+      var browserName;
+        // Detect Chrome
+        if (userAgent.indexOf("Chrome") > -1 && userAgent.indexOf("OPR") === -1) {
+          browserName = "Google Chrome";
+        }else if (userAgent.indexOf("Firefox") > -1) {
+          browserName = "Mozilla Firefox";
+        }
+        // Detect Safari
+        else if (userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Chrome") === -1) {
+          browserName = "Apple Safari";
+        }
+        // Detect Opera
+        else if (userAgent.indexOf("OPR") > -1) {
+          browserName = "Opera";
+        }
+        // Detect Edge
+        else if (userAgent.indexOf("Edg") > -1) {
+          browserName = "Microsoft Edge";
+        }
+        // Detect Internet Explorer
+        else if (userAgent.indexOf("Trident") > -1) {
+          browserName = "Microsoft Internet Explorer";
+        }
+        else {
+          browserName = "Unknown";
+        }
+
+      return browserName;
     }
 
     function saveSignBscode(obj, ci, li){
@@ -2097,7 +2166,8 @@
 
           $("#fullsignbs64").val(signImgData);
           $("#initsignbs64").val(signImgData);
-          
+          $("#signType").val(signTyp);
+
           if($fullsignElements.length > 0){
             
             $($fullsignElements).each(function(i,e){
@@ -2108,6 +2178,7 @@
 
               var txtElm = tmpElmId+"_text";
               //$("#"+txtElm).attr("data-sign",signImgData);
+              
               $("#"+txtElm).css({"opacity":0,"height":"0px", "width":"0px", "position":"absolute"});
               var signImg = "<img src=\""+signImgData+"\" style=\"width:100%; height: 100%;\">";
       
@@ -2126,6 +2197,7 @@
 
               var txtElm = tmpElmId+"_text";
               //$("#"+txtElm).attr("data-sign",signImgData);
+              $("#"+txtElm).attr("data-sign-type",signTyp);
               $("#"+txtElm).css({"opacity":0,"height":"0px", "width":"0px", "position":"absolute"});
               var signImg = "<img src=\""+signImgData+"\" style=\"width:100%; height: 100%;\">";
       
@@ -2148,6 +2220,7 @@
 
         $("#fullsignbs64").val(signImgData);
         $("#initsignbs64").val(signImgData);
+        $("#signType").val(signTyp);
           
           if($fullsignElements.length > 0){
             
@@ -2159,6 +2232,7 @@
 
               var txtElm = tmpElmId+"_text";
               //$("#"+txtElm).attr("data-sign",signImgData);
+              
               $("#"+txtElm).css({"opacity":0,"height":"0px", "width":"0px", "position":"absolute"});
               var signImg = "<img src=\""+signImgData+"\" style=\"width:100%; height: 100%;\">";
       
@@ -2177,6 +2251,7 @@
 
               var txtElm = tmpElmId+"_text";
               //$("#"+txtElm).attr("data-sign",signImgData);
+              $("#"+txtElm).attr("data-sign-type",signTyp);
               $("#"+txtElm).css({"opacity":0,"height":"0px", "width":"0px", "position":"absolute"});
               var signImg = "<img src=\""+signImgData+"\" style=\"width:100%; height: 100%;\">";
       
@@ -2199,7 +2274,7 @@
         
         $("#fullsignbs64").val(signImgData);
         $("#initsignbs64").val(signImgData);
-
+        $("#signType").val(signTyp);
           if($fullsignElements.length > 0){
             
             $($fullsignElements).each(function(i,e){
@@ -2210,6 +2285,7 @@
 
               var txtElm = tmpElmId+"_text";
               //$("#"+txtElm).attr("data-sign",signImgData);
+              
               $("#"+txtElm).css({"opacity":0,"height":"0px", "width":"0px", "position":"absolute"});
               var signImg = "<img src=\""+signImgData+"\" style=\"width:100%; height: 100%;\">";
       
@@ -2228,6 +2304,7 @@
 
               var txtElm = tmpElmId+"_text";
               //$("#"+txtElm).attr("data-sign",signImgData);
+                
               $("#"+txtElm).css({"opacity":0,"height":"0px", "width":"0px", "position":"absolute"});
               var signImg = "<img src=\""+signImgData+"\" style=\"width:100%; height: 100%;\">";
       
@@ -2236,70 +2313,33 @@
             });
           }
       
+          
       }
 
     
     }
 
-
+    
     function getUserLocale(){
       
       $.getJSON('https://json.geoiplookup.io/?callback=?', function(data) {
 
 
-      data.country_code
-      city
-      district
-      ip
-
-
-        //JSON.stringify(data, null, 2)
-      // console.log(JSON.stringify(data, null, 2));
-
-      /*{
-        "ip": "122.161.198.145",
-        "isp": "Bharti Airtel Ltd.",
-        "org": "BHARTI",
-        "hostname": "abts-north-static-145.198.161.122-airtelbroadband.in",
-        "latitude": 30.6946,
-        "longitude": 76.8504,
-        "postal_code": "",
-        "city": "Panchkula",
-        "country_code": "IN",
-        "country_name": "India",
-        "continent_code": "AS",
-        "continent_name": "Asia",
-        "region": "Haryana",
-        "district": "Panchkula",
-        "timezone_name": "Asia/Kolkata",
-        "connection_type": "Cable/DSL",
-        "asn_number": 24560,
-        "asn_org": "Bharti Airtel Limited",
-        "asn": "AS24560 - Bharti Airtel Limited",
-        "currency_code": "INR",
-        "currency_name": "Indian Rupee",
-        "success": true,
-        "premium": false
-      }*/
-
+      TMP_USERLOCALE["country_code"] = data.country_code;
+      TMP_USERLOCALE["city"] = data.city;
+      TMP_USERLOCALE["district"] = data.district;
+      TMP_USERLOCALE["ip"] = data.ip;
 
       });
     
-    
-    
-      var platform = navigator.platform;
-      var userAgent = navigator.userAgent;
-      var userAgentPlatform = userAgentData.platform;
-      var s = new Date().toLocaleString(); //system current date time
-
-      /*
-      console.log(s);
-
-      var tzRe = /\(([\w\s]+)\)/; // Look for "(", any words (\w) or spaces (\s), and ")"
-      var d = new Date().toString();
-      var tz = tzRe.exec(d)[1]; // timezone, i.e. "Pacific Daylight Time"
-      console.log(tz);
-      */
-    
     }
     
+    /*
+    console.log(s);
+
+    var tzRe = /\(([\w\s]+)\)/; // Look for "(", any words (\w) or spaces (\s), and ")"
+    var d = new Date().toString();
+    var tz = tzRe.exec(d)[1]; // timezone, i.e. "Pacific Daylight Time"
+    console.log(tz);
+    */
+  

@@ -137,6 +137,44 @@ class Document extends BaseController
 		
 		//return view('welcome_message');
     }
+
+	function test(){
+		/*
+		$fileId = "1674218633467744";
+		$docInfo = $this->document_model->getDocumentTitle($fileId);
+		echo "docInfo:<pre>"; print_r($docInfo);
+		*/
+		
+		$signersNameEmailData = array();
+		$signersNameEmailData[0]["name"] = "Dinesh Kumar";
+		$signersNameEmailData[0]["email"] = "upkit.dineshgiri@gmail.com";
+		$signersNameEmailData[1]["name"] = "Rashika Sapru";
+		$signersNameEmailData[1]["email"] = "upkit.rashikasapru@gmail.com";
+		
+		$emailData = array();
+		$emailData["signers"] = $signersNameEmailData;
+		$emailData["signerName"] = "Rashika Sapru";
+		$emailData["ownerName"] = "Dinesh Kumar";
+		$emailData["ownerEmail"] = "upkit.dineshgiri@gmail.com";  
+		$emailData["docTitle"] = "test contract";
+		$emailData["docLink"] = "https://google.com";
+		$emailData["expireyDate"] = date("Y-mmm-d H:i:s");
+		//$this->sendMail($emailData); //signerEmail signerName
+
+		$jsonStrUrlEnc = $this->Encription($jsonStr);
+		//echo $jsonStrUrlEnc; die;
+		$jsonStrUrlEnc = "e1d46561da8c90973f0fd3c893d22fac";
+		// $homePath = "digitalsignature/index.php/";
+		//echo FCPATH; die;
+		$homePath = publicFolder()."app/Controllers/Emailengine.php";
+		$homePath = FCPATH."index.php";
+		// echo "<pre>";
+		// print_r(publicFolder()."app/Controllers/Emailengine.php");
+		die;
+		exec("php $homePath emailengine sendDocuSingColl $jsonStrUrlEnc > /dev/null &", $out);
+		echo implode("\n", $out); die;
+
+	}
 	
 	function saveandsenddocument(){
 		$docId = $this->request->getPost('documentId'); //file id
@@ -151,12 +189,18 @@ class Document extends BaseController
 		//$uploadId = $this->document_model->InsertToDB($data);
 		$user = $this->document_model->getUserById($loginId);
 		$loginEmail = $user["email"];
+		$loginFirstName = $user["first_name"];
+		$loginLastName = $user["last_name"];
+		
 
 		$accessCodeMedia = "email";
 		$documentData = array();
 		$signersData = array();
+		$signersNameEmailData = array();
 		
 		//document data
+		$docInfo = $this->document_model->getDocumentTitle($fileId);
+		$documentTitle = $docInfo["file_name"];
 		$parentDocumentId = db_randomnumber(); //raw / source document Id primary key	
 		$documentId = random_unique_string();  // unique alphanumeric has string
 		/*		
@@ -244,6 +288,7 @@ class Document extends BaseController
 		$noOfParties = count($docdata);
 		$documentData["id"] = $parentDocumentId;
 		$documentData["documentId"] = $documentId;
+		$documentData["documentTitle"] = $documentTitle;
 		$documentData["documentPath"] = $documentSrcPath;
 		$documentData["senderId"] = $senderId;
 		$documentData["recieverId"] = $recieverIds;
@@ -310,7 +355,11 @@ class Document extends BaseController
 			$singleSignerData["lastReminder"] = $lastReminder;
 			$singleSignerData["documentSentDate"] = $documentSentDate;
 		
+
+			$signersNameEmailData[] = array("name" => $tmpUserName,"email" => $tmpUserEmail);
 			$signersData[] = $singleSignerData;
+
+
 		
 		}
 		
@@ -326,10 +375,15 @@ class Document extends BaseController
 		
 		if($docResponse > 0 && $signersDataResponse > 0){
 			//generate document link and share via email
-			$documentId = $signersData[0]["documentId"]; //link for first signer
-			$link = site_url("sign/?documentId=$documentId");	
-			echo $link;
+			
+			foreach($signersData as $signersDataRw){
+				
+				$tmpDocumentId = $signersDataRw["documentId"];
+			
+				$homePath = FCPATH."index.php";
+				exec("php $homePath emailengine sendDocuSingColl $tmpDocumentId > /dev/null &", $out);
 
+			}
 
 			$result = array("C" => 100, "R" => array(), "M" => "success");
 
@@ -338,9 +392,7 @@ class Document extends BaseController
 			$result = array("C" => 101, "R" => array(), "M" => "error");
 		}
 		
-		die;
-		//echo json_encode($result); die;
-
+		echo json_encode($result); die;
 	}
 
 	function sign(){
@@ -559,22 +611,40 @@ class Document extends BaseController
 
 	function processsign(){
 		$userId = "1673874254153097";
+		$userEmail = "upkit.dineshgiri@gmail.com";
 		$signerDocData = $this->request->getPost('data');
 		$documentId = $this->request->getPost('documentId');
 		$signerDocumentId = $this->request->getPost('signerDocumentId');
-		$masterDocument = "6f57ccc8e5b29a2e07824607d4df0ae4.pdf";
+		$masterDocument = $documentId.".pdf"; //"6f57ccc8e5b29a2e07824607d4df0ae4.pdf";
 		$initialsBS64 = $this->request->getPost('initials');
 		$signBS64 = $this->request->getPost('sign');
+		$signType = $this->request->getPost('signType');
+		
+		$userLocale = $this->request->getPost('userLocale');
+		$userLocale["email"] = $userEmail;
+		$userLocaleJson = json_encode($userLocale);
+		/*
+		$userLocale["country_code"]
+		$userLocale["city"]
+		$userLocale["district"]
+		$userLocale["ip"]
+		$userLocale["platform"]
+		$userLocale["userDtTm"]
+		*/
+		/*
 		echo $documentId."<pre>";
 		print_r($signerDocData);
+		print_r($userLocale);
+		*/
+		
 		
 		//echo "initialsBS64:".$initialsBS64.",signBS64:".$signBS64;
-		die;
+		//die;
 	
 		//create signatures png
 		//db_randomnumber();
-		
-		$folderPath = FCPATH . "650d5885e051cbf1361781a0366dab198ce52007\\" . $signerDocumentId; 
+		$secretFolder = "650d5885e051cbf1361781a0366dab198ce52007";
+		$folderPath = FCPATH . "$secretFolder\\" . $signerDocumentId; 
 	
 		create_local_folder($folderPath);
 		if($initialsBS64 != "" && $initialsBS64 != null){
@@ -624,7 +694,6 @@ class Document extends BaseController
 		$docData = $docData[0];
 		
 		
-		
 		$docData = array_values($signerDocData);
 		$docData = $docData[0];
 		$rootFolder = publicFolder();
@@ -633,80 +702,59 @@ class Document extends BaseController
 		$srcFilePath = $rootFolder."userassets/mydocuments/$userId//".$masterDocument;	
 		
 		$this->pdf = new GeneratePdf();	
-		$myStr = "";
+		
+		$hashCode = $this->Encription($userLocaleJson);
 		//$ciphertext = $this->Encription();
 		//die;
 		//$decrptdStr = $this->Decryption($ciphertext);
+		//echo "<pre>"; print_r($docData); die;
 
-		$resultFile = $this->pdf->preparePdf($rootFolder, $srcFilePath, $docData);
+		//update user filled data to signer document
+		$this->document_model->updatePartyFilledData($signerDocumentId, json_encode($signerDocData));
+
+		$resultFile = $this->pdf->preparePdf($rootFolder, $srcFilePath, $docData, $hashCode, $signerDocumentId);
+		
+		//--- Now saving log for signed document
+		//$hashCode
+		//$signerDocumentId
+		
+		//echo "documentInfo:<pre>"; print_r($documentInfo);
+		//die;
+		
+		//update document status	
+		$status = 'signed';
+
+		$updated = $this->document_model->updatePartySignStatus($documentId, $userEmail, $status);
 		
 		
+		if($updated > 0){
+			
+			$docStatusUpdated = $this->document_model->updateSignerDocStatus($signerDocumentId, $status);
+			if($docStatusUpdated > 0){
+				
+				$documentInfo = $this->document_model->getDocumentByUser($userId, $signerDocumentId);	
+
+				$insertData = array();
+				$insertData["id"] = db_randomnumber();
+				$insertData["signatureHash"] = $hashCode;
+				$insertData["documentId"] = $documentInfo["id"];
+				$insertData["parentDocumentId"] = $documentInfo["parentDocument"];
+				$insertData["signerId"] = $documentInfo["signerId"];
+				$insertData["senderId"] = $documentInfo["senderId"];
+				$insertData["documentStatus"] = 1; //signed
+				$insertData["signType"] = $signType;
+				
+				$insertRowId = $this->document_model->saveDocumentESignHash($insertData);
+			}
+			
+			$result = array("C" => 100, "R" => "document signed successfully", "M" => "success");
+		}else{
+			$result = array("C" => 101, "R" => "it seems something went wrong", "M" => "error");
+		}
 		
-		die;
-		include("testpdf.php");
-
-/*		
-		$cmd = 'curl -d '{"e-mail":"rafia@gmail.com", "password":"password123"}' -H "Content-Type: multipart/form-data" -X POST https://reqbin.com/echo/post/json -o test.html';
-		exec($cmd, $output);
-		echo "out:".$output;
-*/
-
-		die;
-		$docData = array_values($signerDocData);
-		$docData = $docData[0];
-		$rootFolder = publicFolder();
 		
-		//$srcFilePath = $rootFolder."userassets/mydocuments/1673874254153097/5c960af14d51ddfe1c288a80cf305c98.pdf";	
-		$srcFilePath = $rootFolder."userassets/mydocuments/1673874254153097//".$masterDocument;	
+		echo json_encode($result); die;
 		
-		$this->pdf = new GeneratePdf();	
-		
-		$resultFile = $this->pdf->preparePdf($rootFolder, $srcFilePath, $docData);
-		/*$destFilePath = $rootFolder."userassets/mydocuments/1673874254153097/dk.pdf";	
-		fileWrite($destFilePath,$resultFile);*/
-		echo "<pre>";
-		print_r($resultFile);
-		die;
-
-		$rootFolder = publicFolder();
-		
-		$srcFilePath = $rootFolder."userassets/mydocuments/1673874254153097/5c960af14d51ddfe1c288a80cf305c98.pdf";	
-		
-		$this->pdf = new GeneratePdf();	
-		$data = array("hello! how are you?", "New text is added.");
-		$this->pdf->preparePdf($srcFilePath, $data);
-
-		/*
-		
-		//Library Object
-		//$this->pdf = new Fpdi();
-		$this->pdf = new GeneratePdf($srcFilePath);
-
-		
-		$numPages = $this->pdf->setSourceFile($srcFilePath);
-        $fileIndex = $this->pdf->importPage(1);
-		$this->pdf->AddPage();
-		$this->pdf->useTemplate($fileIndex, 0, 0,200);
-		// add content to current page
-		$this->pdf->SetFont("helvetica", "", 20);
-		$this->pdf->SetTextColor(220, 20, 60);
-		$this->pdf->Text(50, 20, "I should not be here!");
-		$this->pdf->Text(80, 40, '<img src="">');
-		$this->pdf->Image( $rootFolder."userassets/mydocuments/1673874254153097/logo.png", 100, 60, 50, 50);
-
-		// move to next page and add content
-		$this->pdf->useTemplate($this->pdf->importPage(2), 0, 0,200);
-
-		$this->pdf->SetFont("arial", "", 15);
-		$this->pdf->SetTextColor(65, 105, 225);
-		$this->pdf->Text(50, 20, "Me neither!!!");
-
-		//show the PDF in page
-		$this->pdf->Output();
-
-		*/
-
-		die;
 	}
 
 	function processsignd(){
@@ -796,6 +844,39 @@ class Document extends BaseController
 		$dcrptdTxt = $encrypter->decrypt($ciphertext, array("key" => $sck, "blockSize" => 32));
 		return $dcrptdTxt;
     }
+
+	function sendMail($data) { 
+
+        $to = $data["to"];
+        $subject = $data["subject"]; //Signature Request: You need to review and sign {Document title}
+        $message = $data["message"]; //Hi Rashika, Dinesh Giri (upkit.dineshgiri@gmail.com) has requested you to review and sign the document {Document title}
+		$link = $data["link"];
+        
+		$message = $message ."<br>". $link;
+
+
+
+        $email = \Config\Services::email();
+        $email->setTo($to);
+        $email->setFrom('johndoe@gmail.com', 'Confirm Registration');
+        
+        $email->setSubject($subject);
+        $email->setMessage($message);
+        if ($email->send()) 
+		{
+            //echo 'Email successfully sent';
+			//update date time in db when email is sent
+        } 
+		else 
+		{
+			//write log if email failed
+            /*
+			$data = $email->printDebugger(['headers']);
+            print_r($data);
+			*/
+        }
+    }
+
 
 }
 ?>

@@ -53,8 +53,9 @@ $routes->post('/processsign', 'Document::processsign');
 $routes->post('/writesigndata', 'Document::writesigndata');
 
 
-
-
+// $routes->get('/sendDocuSingColl/(:any)', 'Emailengine::sendDocuSingColl');
+$routes->cli('emailengine/sendDocuSingColl/(:segment)', 'Emailengine::sendDocuSingColl/$1');
+$routes->get('/test', 'Document::test');
 // $routes->get('/prepare/{id}', 'Document::prepare');
 
 /*

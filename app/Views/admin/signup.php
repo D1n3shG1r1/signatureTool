@@ -1,5 +1,10 @@
 <?php include("header.php"); ?>
 <div class="container mt-5">
+	<div class="row mb-4">
+		<span class="appName"><img src="<?php echo base_url("/assets/images/logocl.png"); ?>" /></span>
+	</div>
+</div>
+<div class="container mt-5">
   <!-- Pills navs -->
   <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
     <li class="nav-item" role="presentation">

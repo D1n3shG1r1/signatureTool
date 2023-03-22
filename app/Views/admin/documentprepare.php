@@ -32,7 +32,8 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
           <input type="hidden" id="documentId" value="<?php echo $documentId; ?>">
         <div class="top-menu">
             <figure class="logo-wrap">
-                <span class="appName"><img src="<?php echo base_url("/assets/images/boldsign_sitelogo.svg"); ?>" /></span>
+                <!--<span class="appName"><img src="<?php //echo base_url("/assets/images/boldsign_sitelogo.svg"); ?>" /></span>-->
+                <span class="appName"><img src="<?php echo base_url("/assets/images/logocl.png"); ?>" /></span>
             </figure>
             <div class="">
               <span class="documentNameContainer conf-fields">Configure fields</span>

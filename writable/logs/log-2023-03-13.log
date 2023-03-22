@@ -1,0 +1,219 @@
+ERROR - 2023-03-13 11:50:55 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM `e_sign_document_signers` WHERE `signerId` = '1673874254153097'' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`,`pa...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`,`pa...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`,`pa...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(188): CodeIgniter\Database\BaseConnection->query('SELECT `id`,`pa...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(664): App\Models\Document_Model->getDocumentByUser('167387425415309...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->processsign()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-03-13 11:50:55 --> Call to a member function getRowArray() on bool
+in APPPATH\Models\Document_Model.php on line 189.
+ 1 APPPATH\Controllers\Document.php(664): App\Models\Document_Model->getDocumentByUser('1673874254153097')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-03-13 11:56:12 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM `e_sign_document_signers` WHERE `signerId` = '1673874254153097'' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`,`pa...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`,`pa...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`,`pa...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(188): CodeIgniter\Database\BaseConnection->query('SELECT `id`,`pa...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(664): App\Models\Document_Model->getDocumentByUser('167387425415309...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->processsign()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-03-13 11:56:12 --> Call to a member function getRowArray() on bool
+in APPPATH\Models\Document_Model.php on line 189.
+ 1 APPPATH\Controllers\Document.php(664): App\Models\Document_Model->getDocumentByUser('1673874254153097')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-03-13 11:58:32 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM `e_sign_document_signers` WHERE `signerId` = '1673874254153097'' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`,`pa...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`,`pa...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`,`pa...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(188): CodeIgniter\Database\BaseConnection->query('SELECT `id`,`pa...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(664): App\Models\Document_Model->getDocumentByUser('167387425415309...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->processsign()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-03-13 11:58:32 --> Call to a member function getRowArray() on bool
+in APPPATH\Models\Document_Model.php on line 189.
+ 1 APPPATH\Controllers\Document.php(664): App\Models\Document_Model->getDocumentByUser('1673874254153097')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-03-13 12:51:39 --> mysqli_sql_exception: Unknown column '6f57ccc8e5b29a2e07824607d4df0ae4' in 'where clause' in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `d...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `d...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `d...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(121): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `d...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2...', 'upkit.dineshgir...', 'signed')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->processsign()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-03-13 12:51:39 --> Call to a member function getRowArray() on bool
+in APPPATH\Models\Document_Model.php on line 122.
+ 1 APPPATH\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2e07824607d4df0ae4', 'upkit.dineshgiri@gmail.com', 'signed')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-03-13 12:53:31 --> mysqli_sql_exception: Unknown column '6f57ccc8e5b29a2e07824607d4df0ae4' in 'where clause' in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `d...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `d...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `d...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(121): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `d...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2...', 'upkit.dineshgir...', 'signed')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->processsign()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-03-13 12:53:31 --> Call to a member function getRowArray() on bool
+in APPPATH\Models\Document_Model.php on line 122.
+ 1 APPPATH\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2e07824607d4df0ae4', 'upkit.dineshgiri@gmail.com', 'signed')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-03-13 12:54:53 --> mysqli_sql_exception: Unknown column '6f57ccc8e5b29a2e07824607d4df0ae4' in 'where clause' in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `d...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `d...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `d...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(121): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `d...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2...', 'upkit.dineshgir...', 'signed')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->processsign()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-03-13 12:54:53 --> Call to a member function getRowArray() on bool
+in APPPATH\Models\Document_Model.php on line 122.
+ 1 APPPATH\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2e07824607d4df0ae4', 'upkit.dineshgiri@gmail.com', 'signed')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-03-13 12:57:17 --> mysqli_sql_exception: Unknown column 'signed' in 'field list' in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('UPDATE `e_sign_...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `e_sign_...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `e_sign_...')
+#3 C:\wamp64\www\digitalsignature\system\Database\BaseBuilder.php(2461): CodeIgniter\Database\BaseConnection->query('UPDATE `e_sign_...', Array, false)
+#4 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(143): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2...', 'upkit.dineshgir...', 'signed')
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->processsign()
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#8 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2023-03-13 12:58:28 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"email":"upkit.dineshgiri@gmail.com","status":"signed"}
+WHERE `documentId` = '6f' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('UPDATE `e_sign_...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `e_sign_...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `e_sign_...')
+#3 C:\wamp64\www\digitalsignature\system\Database\BaseBuilder.php(2461): CodeIgniter\Database\BaseConnection->query('UPDATE `e_sign_...', Array, false)
+#4 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(143): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2...', 'upkit.dineshgir...', 'signed')
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->processsign()
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#8 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#10 {main}
+ERROR - 2023-03-13 13:04:19 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"email":"upkit.dineshgiri@gmail.com","status":"signed"}
+WHERE `documentId` = '6f' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('UPDATE `e_sign_...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('UPDATE `e_sign_...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('UPDATE `e_sign_...')
+#3 C:\wamp64\www\digitalsignature\system\Database\BaseBuilder.php(2461): CodeIgniter\Database\BaseConnection->query('UPDATE `e_sign_...', Array, false)
+#4 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(143): CodeIgniter\Database\BaseBuilder->update()
+#5 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2...', 'upkit.dineshgir...', 'signed')
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->processsign()
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#8 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2023-03-13 13:14:22 --> Illegal string offset 'email'
+in APPPATH\Models\Document_Model.php on line 131.
+ 1 APPPATH\Models\Document_Model.php(131): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Illegal string offset \'email\'', 'APPPATH\\Models\\Document_Model.php', 131, [...])
+ 2 APPPATH\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2e07824607d4df0ae4', 'upkit.dineshgiri@gmail.com', 'signed')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-13 13:19:13 --> Illegal string offset 'email'
+in APPPATH\Models\Document_Model.php on line 131.
+ 1 APPPATH\Models\Document_Model.php(131): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Illegal string offset \'email\'', 'APPPATH\\Models\\Document_Model.php', 131, [...])
+ 2 APPPATH\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2e07824607d4df0ae4', 'upkit.dineshgiri@gmail.com', 'signed')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-13 13:20:04 --> Illegal string offset 'email'
+in APPPATH\Models\Document_Model.php on line 131.
+ 1 APPPATH\Models\Document_Model.php(131): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Illegal string offset \'email\'', 'APPPATH\\Models\\Document_Model.php', 131, [...])
+ 2 APPPATH\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2e07824607d4df0ae4', 'upkit.dineshgiri@gmail.com', 'signed')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-13 13:20:25 --> Illegal string offset 'email'
+in APPPATH\Models\Document_Model.php on line 131.
+ 1 APPPATH\Models\Document_Model.php(131): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Illegal string offset \'email\'', 'APPPATH\\Models\\Document_Model.php', 131, [...])
+ 2 APPPATH\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2e07824607d4df0ae4', 'upkit.dineshgiri@gmail.com', 'signed')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-13 13:22:00 --> Illegal string offset 'email'
+in APPPATH\Models\Document_Model.php on line 134.
+ 1 APPPATH\Models\Document_Model.php(134): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Illegal string offset \'email\'', 'APPPATH\\Models\\Document_Model.php', 134, [...])
+ 2 APPPATH\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2e07824607d4df0ae4', 'upkit.dineshgiri@gmail.com', 'signed')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-13 13:22:36 --> Illegal string offset 'email'
+in APPPATH\Models\Document_Model.php on line 134.
+ 1 APPPATH\Models\Document_Model.php(134): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Illegal string offset \'email\'', 'APPPATH\\Models\\Document_Model.php', 134, [...])
+ 2 APPPATH\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2e07824607d4df0ae4', 'upkit.dineshgiri@gmail.com', 'signed')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-13 13:24:16 --> Illegal string offset 'email'
+in APPPATH\Models\Document_Model.php on line 134.
+ 1 APPPATH\Models\Document_Model.php(134): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Illegal string offset \'email\'', 'APPPATH\\Models\\Document_Model.php', 134, [...])
+ 2 APPPATH\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2e07824607d4df0ae4', 'upkit.dineshgiri@gmail.com', 'signed')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-13 13:24:36 --> Illegal string offset 'email'
+in APPPATH\Models\Document_Model.php on line 134.
+ 1 APPPATH\Models\Document_Model.php(134): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Illegal string offset \'email\'', 'APPPATH\\Models\\Document_Model.php', 134, [...])
+ 2 APPPATH\Controllers\Document.php(671): App\Models\Document_Model->updatePartySignStatus('6f57ccc8e5b29a2e07824607d4df0ae4', 'upkit.dineshgiri@gmail.com', 'signed')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()

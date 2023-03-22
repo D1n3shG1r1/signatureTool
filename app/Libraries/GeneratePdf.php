@@ -23,8 +23,10 @@ class GeneratePdf{
     
     }
     
-    function preparePdf($rootFolder, $srcFilePath, $data){
+    function preparePdf($rootFolder, $srcFilePath, $data, $hashCode, $signerDocumentId){
         
+        //$userId = "1673874254153097";
+
         $numPages = $this->pdf->setSourceFile($srcFilePath);
         
         $pxInMM = 3.77; //1mm equals to 3.77px
@@ -97,8 +99,9 @@ class GeneratePdf{
                             $w = 45;
                             $h = 18;
                             
-                            //$this->pdf->Image( $rootFolder."userassets/mydocuments/1673874254153097/logo.png", 100, 60, 50, 50);
-                            $this->pdf->Image( $rootFolder."650d5885e051cbf1361781a0366dab198ce52007/ccca43b66c9b41b249c46d2ba96612a4/sign.png", $x, $y, $w, $h);
+                            //$this->pdf->Image( $rootFolder."650d5885e051cbf1361781a0366dab198ce52007/ccca43b66c9b41b249c46d2ba96612a4/sign.png", $x, $y, $w, $h);
+                            $this->pdf->Image( $rootFolder."650d5885e051cbf1361781a0366dab198ce52007/$signerDocumentId/sign.png", $x, $y, $w, $h);
+                            
                         }else{
                             
                             $this->pdf->SetFont("courier", "", $newFontSize);
@@ -112,15 +115,17 @@ class GeneratePdf{
 
             
             /*add hash key*/
+            /*$hashCode, $signerDocumentId*/
             $this->pdf->SetFont("courier", "", 10);
             $this->pdf->SetTextColor(0, 0, 0);
-            $this->pdf->Text(3, 5, "");
+            $this->pdf->Text(3, 5, "Document ID:".$signerDocumentId);
        }
         
        
 		//show the PDF in page
 		//$this->pdf->Output();
-        $this->pdf->Output($rootFolder."userassets/mydocuments/1673874254153097/generated.pdf", "F");
+        //$this->pdf->Output($rootFolder."userassets/mydocuments/$userId/$signerDocumentId.pdf", "F");
+        $this->pdf->Output($rootFolder."650d5885e051cbf1361781a0366dab198ce52007/$signerDocumentId/$signerDocumentId.pdf", "F");
 
         
     }

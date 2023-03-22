@@ -30,6 +30,7 @@ var DOCUMENTDATA = <?php echo  $document_data; ?>;
 <script src="<?php echo base_url("/assets/js/signature_pad.min.js");?>"></script>
 
 <script src="<?php echo base_url("assets/cropper-js/cropper.min.js"); ?>" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="<?php echo base_url("assets/css/signpage.css"); ?>" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="<?php echo base_url("assets/cropper-js/cropper.css"); ?>" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script src="<?php echo base_url("assets/cropper-js/cropper.js"); ?>" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
@@ -42,10 +43,13 @@ var DOCUMENTDATA = <?php echo  $document_data; ?>;
           <input type="hidden" id="signerDocumentId" value="<?php echo $signerDocumentId; ?>">
           <input type="hidden" id="fullsignbs64" value="">
           <input type="hidden" id="initsignbs64" value="">
+          <input type="hidden" id="signType" value="">
+          
           
         <div class="top-menu">
             <figure class="logo-wrap">
-                <span class="appName"><img src="<?php echo base_url("/assets/images/boldsign_sitelogo.svg"); ?>" /></span>
+                <!---<span class="appName"><img src="<?php //echo base_url("/assets/images/boldsign_sitelogo.svg"); ?>" /></span>--->
+                <span class="appName"><img src="<?php echo base_url("/assets/images/logocl.png"); ?>" /></span>
             </figure>
             <div class="">
               <span class="documentNameContainer conf-fields" style="display:none;">Configure fields</span>

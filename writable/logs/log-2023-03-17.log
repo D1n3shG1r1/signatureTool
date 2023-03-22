@@ -1,0 +1,69 @@
+CRITICAL - 2023-03-17 06:25:41 --> Call to undefined function App\Controllers\replace()
+in APPPATH\Controllers\Document.php on line 164.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->test()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-17 06:26:17 --> Call to undefined function App\Controllers\replace()
+in APPPATH\Controllers\Document.php on line 164.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->test()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-17 10:18:22 --> You must set the database table to be used with your query.
+in SYSTEMPATH\Database\BaseConnection.php on line 882.
+ 1 SYSTEMPATH\Model.php(640): CodeIgniter\Database\BaseConnection->table(null)
+ 2 SYSTEMPATH\Model.php(830): CodeIgniter\Model->builder()
+ 3 APPPATH\Controllers\Emailengine.php(39): CodeIgniter\Model->__call('getSignerDocumentDetails', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Emailengine->sendDocuSingColl('e1d46561da8c90973f0fd3c893d22fac')
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emailengine))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-03-17 11:20:54 --> mysqli_sql_exception: Unknown column 'fe563c70178fa7d9a76d2ffaee85d860' in 'where clause' in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `parentD...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `parentD...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `parentD...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Email_Model.php(25): CodeIgniter\Database\BaseConnection->query('SELECT `parentD...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Emailengine.php(40): App\Models\Email_Model->getSignerDocumentDetails('fe563c70178fa7d...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Emailengine->sendDocuSingColl('fe563c70178fa7d...')
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emailengine))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-03-17 11:20:54 --> Call to a member function getRowArray() on bool
+in APPPATH\Models\Email_Model.php on line 26.
+ 1 APPPATH\Controllers\Emailengine.php(40): App\Models\Email_Model->getSignerDocumentDetails('fe563c70178fa7d9a76d2ffaee85d860')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Emailengine->sendDocuSingColl('fe563c70178fa7d9a76d2ffaee85d860')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emailengine))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-03-17 11:37:28 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `first_n...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `first_n...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `first_n...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Email_Model.php(41): CodeIgniter\Database\BaseConnection->query('SELECT `first_n...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Emailengine.php(40): App\Models\Email_Model->getSignerDocumentDetails('fe563c70178fa7d...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Emailengine->sendDocuSingColl('fe563c70178fa7d...')
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emailengine))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-03-17 11:37:28 --> Call to a member function getRowArray() on bool
+in APPPATH\Models\Email_Model.php on line 42.
+ 1 APPPATH\Controllers\Emailengine.php(40): App\Models\Email_Model->getSignerDocumentDetails('fe563c70178fa7d9a76d2ffaee85d860')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Emailengine->sendDocuSingColl('fe563c70178fa7d9a76d2ffaee85d860')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emailengine))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-17 12:07:45 --> syntax error, unexpected ','
+in APPPATH\Controllers\Emailengine.php on line 81.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Controllers\\Emailengine.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers\\Emailengine')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers\\Emailengine')
+ 4 [internal function]: spl_autoload_call('App\\Controllers\\Emailengine')
+ 5 SYSTEMPATH\CodeIgniter.php(892): class_exists('\\App\\Controllers\\Emailengine', true)
+ 6 SYSTEMPATH\CodeIgniter.php(486): CodeIgniter\CodeIgniter->startController()
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
