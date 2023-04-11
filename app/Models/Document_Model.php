@@ -29,13 +29,15 @@ class Document_Model extends Model
 		}
 	}
 
-	public function GetData($id)
-	{
-		$table = $this->db->table('e_sign_uploaded_files');
-		$data = $table->where('id', $id)->get();
-
+	function getUploadedFileData($id, $userId){
 		
-		return $data;
+		$cmd = "SELECT `file_name`,`recipients`,`documentTitle` FROM `e_sign_uploaded_files` WHERE `id` = $id AND `user_id` = $userId";
+		
+		$query = $this->db->query($cmd);
+		$result = $query->getRowArray();
+		
+		return $result;
+		
 	}
 
 	function getUserById($id){
@@ -232,6 +234,90 @@ class Document_Model extends Model
 		$result = $query->getRowArray();
 		return $result;
 	}
+
+	function getDocExpiry($docId){
+		$cmd = "SELECT `expiresInDays`, `expiryDate`, `alertOneDyBfrExp` FROM `e_sign_uploaded_files` WHERE `id` = '$docId'";
+		$query = $this->db->query($cmd);
+		$result = $query->getRowArray();
+
+		return $result;
+	}
+	
+	function getDocRecipients($docId){
+		$cmd = "SELECT `recipients` FROM `e_sign_uploaded_files` WHERE `id` = '$docId'";
+		$query = $this->db->query($cmd);
+		$result = $query->getRowArray();
+
+		$recipients = array();
+
+		if(!empty($result) && $result["recipients"] != ""){
+			$recipients = json_decode($result["recipients"], true);
+		}
+
+		return $recipients;
+	}
+
+	function getDocOwnerEmail($docId){
+		
+		$result = array();
+		
+		$cmd = "SELECT `senderId` FROM `e_sign_documents` WHERE `id` = '$docId'";
+		$query = $this->db->query($cmd);
+		$documentResult = $query->getRowArray();
+
+		if(!empty($documentResult)){
+			$userID = $documentResult['senderId'];
+			$cmd = "SELECT `email` FROM `users` WHERE `id` = '$userID'";
+			$query = $this->db->query($cmd);
+			$userResult = $query->getRowArray();
+
+			if(!empty($userResult)){
+				$email = $userResult['email'];
+				$result["email"] = $email;
+			}
+
+		}
+
+		return $result;
+	}
+
+	function updateDocAccessOTP($docId, $otp){
+		
+		$result = array();	
+		$cmd = "SELECT `parentDocument`, `signerEmail`, `signerName` FROM `e_sign_document_signers` WHERE `documentId` = '$docId' AND `documentExpired` = 0";
+		$query = $this->db->query($cmd);
+		$signerResult = $query->getRowArray();
+		
+		if(!empty($signerResult)){
+			
+			$parentDocument = $signerResult['parentDocument'];
+			$cmd = "SELECT `uploadId`, `documentTitle` FROM `e_sign_documents` WHERE `id` = $parentDocument";
+			$query = $this->db->query($cmd);
+			$documentResult = $query->getRowArray();
+
+			$uploadId = $documentResult["uploadId"];
+			$cmd = "SELECT `documentTitle` FROM `e_sign_uploaded_files` WHERE `id` = $uploadId";
+			$query = $this->db->query($cmd);
+			$uploadResult = $query->getRowArray();
+			$customDocTitle = $uploadResult["documentTitle"];
+
+			$table = $this->db->table('e_sign_document_signers');
+			$table->set("otp", $otp);
+			$table->set("otpDateTime", date("Y-m-d H:i:s"));
+			$table->where('documentId', $docId);
+			$table->update();
+
+			if($this->db->affectedRows() > 0){
+				$result = $signerResult;
+				$result["customDocTitle"] = $customDocTitle;
+			}
+			
+		}
+
+		return $result;
+	}
+
+
 
 }
 ?>

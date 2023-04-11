@@ -20,6 +20,7 @@ class Document extends BaseController
 	public $admin_model = null;
 	public $document_model = null;
 	public $pdf = null;
+	public $router = null;
 	function __construct(){
 		
 		$this->session = \Config\Services::session();
@@ -31,12 +32,33 @@ class Document extends BaseController
 		//Model Object
 		$this->document_model = new Document_Model();
 		
+		$router = \CodeIgniter\Config\Services::router();
+		
+		$controllerNameUri = $router->controllerName();
+		$controllerNameUriParts = explode("\\", $controllerNameUri);
+		$controllerName = $controllerNameUriParts[count($controllerNameUriParts) - 1];
+		$methodName = $router->methodName();
+		
+		
+		helper("url");
 		helper("kitchen");
-
 		helper("EncryDcry");
 
+		$loginId = $this->session->get('loginId');
+		
+		if(!$loginId || $loginId == "" || $loginId == null){
+			if(strtolower($controllerName) != "document" && strtolower($methodName) != "sign"){
+				//skip session for signing doc
+				customredirect("signin");
+			}
+			
+		}
 		
 	}
+
+	private function is_session_available(){
+        return redirect()->to("signin"); die;
+    }
 
 	function upload(){
 		$data = array();
@@ -47,10 +69,61 @@ class Document extends BaseController
 	function fileupload(){
 
 		$loginId = $this->session->get('loginId');
-		$loginId = "1673874254153097";
+		//$loginId = "1673874254153097";
 
 		//echo "loginId:" . $loginId . ",FILES:<pre>";
+		//print_r($_POST);
 		//print_r($_FILES);
+
+		$RecipientNamesArr = $this->request->getPost('RecipientName');
+		$RecipientEmailsArr = $this->request->getPost('RecipientEmail');
+		$recipientAuthInputBttnsArr = $this->request->getPost('recipientAuthInputBttn');
+		$accessCodeOtpOptArr = $this->request->getPost('accessCodeOtpOpt');
+		$accessCodeArr = $this->request->getPost('accessCode');
+		$documentTitle  = $this->request->getPost('documentTitle');
+		$recipientMessage  = $this->request->getPost('recipientMessage');
+		$expiresInDays  = $this->request->getPost('expiresInDays');
+		$expiryDate = $this->request->getPost('expiryDate');
+		$alertOneDyBfrExp = $this->request->getPost('alertOneDyBfrExp');
+		
+		$recipientsArr = array();			
+			
+		foreach($RecipientEmailsArr as $k => $RcpntEmlRw){
+			
+			$tmpRwId = $k;
+			$tmpNm = $RecipientNamesArr[$tmpRwId];
+			$tmpEml = $RcpntEmlRw;
+
+			$tmpAuthChecked = $recipientAuthInputBttnsArr[$tmpRwId];
+			$tmpAccCodeOpt = $accessCodeOtpOptArr[$tmpRwId];
+			$authType = 0;
+			$tmpOtp = "";
+			$tmpAccessCode = "";
+
+			if($tmpAuthChecked == 1){
+				//checked
+				if($tmpAccCodeOpt == 1){
+					//otp
+					$authType = 1;
+					$tmpOtp = genOtp();
+				}else if($tmpAccCodeOpt == 2){
+					//access code
+					$authType = 2;
+					$tmpAccessCode = $accessCodeArr[$tmpRwId];
+				}
+			}else{
+				//unchecked
+				$authType = 0;
+			}
+
+			$recipientsArr[$tmpEml]["email"] = $tmpEml;
+			$recipientsArr[$tmpEml]["name"] = $tmpNm; 
+			$recipientsArr[$tmpEml]["authType"] = $authType; 
+			$recipientsArr[$tmpEml]["accessCode"] = $tmpAccessCode; 
+			$recipientsArr[$tmpEml]["otp"] = $tmpOtp; 
+		}
+
+		//print_r($recipientsArr); die;
 		
 		$file = $_FILES["fileupload"];
 		$fileName = $file['name'];
@@ -76,8 +149,16 @@ class Document extends BaseController
 			'file_name' => $fileName,
 			'system_file_name' => $newFileName,
 			'file_type' => $fileType,
-			'user_id'	=> $loginId
+			'user_id'	=> $loginId,
+			'recipients' => json_encode($recipientsArr),
+			'documentTitle' => $documentTitle,
+			'recipientMessage' => $recipientMessage,
+			'expiresInDays' => $expiresInDays,
+			'expiryDate' => date("Y-m-d H:i:s", strtotime($expiryDate)),
+			'alertOneDyBfrExp' => $alertOneDyBfrExp
 		);
+
+		//echo "<pre>"; print_r($data); die;
 
 		$uploadId = $this->document_model->InsertToDB($data);
 		$parameters = array();
@@ -114,28 +195,53 @@ class Document extends BaseController
 		die;
 	}
 
+	function pagenotfound(){
+		echo "404 page not found"; die;
+	}
+
     function prepare($fileId){
 
-		// $uploadedFile = $this->e_sign_upload->GetData($id);
+		$loginId = $this->session->get('loginId');
+		$loginEmail = $this->session->get('loginEmail');
 
-        // echo "<pre>"; print_r($uploadedFile);
-		// die;
-		$fileId = "1674218633467744";
-		$loginId = "1673874254153097";
-		$documentPath = "/userassets/uploads/" . $loginId;
-	
-		$fileExt = ".pdf";
-		$newFileName = $fileId.$fileExt;
-		$file_path = $documentPath."/".$newFileName;
+		$fileData = $this->document_model->getUploadedFileData($fileId, $loginId);
 
-		$data = array();
-		$data["page_tilte"] = "Document Prepare";
-		$data["document"] = $file_path;
-		$data["documentId"] = $fileId;
-		return view('admin/documentprepare', $data);
-		//return view('admin/header');
+		if(!empty($fileData)){
+			
+			$tmprecipientsJson = $fileData["recipients"];
+			$tmprecipientsArr = json_decode($tmprecipientsJson, true);
+			$finalRecipients = array();
+			$k = 0;
+			foreach($tmprecipientsArr as $rcpntrw){
+				$finalRecipients[$k]["name"] = $rcpntrw["name"];
+				$finalRecipients[$k]["email"] = $rcpntrw["email"];
+				$k++;
+			}
+
+
+
+			$documentPath = "/userassets/uploads/" . $loginId;
 		
-		//return view('welcome_message');
+			$fileExt = ".pdf";
+			$newFileName = $fileId.$fileExt;
+			$file_path = $documentPath."/".$newFileName;
+
+			$data = array();
+			$data["loginId"] = $loginId;
+			$data["loginEmail"] = $loginEmail;
+			$data["page_tilte"] = "Document Prepare";
+			$data["document"] = $file_path;
+			$data["documentId"] = $fileId;
+			$data["fileName"] = $fileData["file_name"];
+			$data["documentTitle"] = $fileData["documentTitle"];
+			$data["recipients"] = $finalRecipients;
+			
+			return view('admin/documentprepare', $data);
+
+		}else{
+			return redirect()->to("pagenotfound");
+		}
+
     }
 
 	function test(){
@@ -179,9 +285,16 @@ class Document extends BaseController
 	function saveandsenddocument(){
 		$docId = $this->request->getPost('documentId'); //file id
 		$docdata = $this->request->getPost('data');
+		
+		//echo "docId:".$docId."<br>";
+		//echo "<pre>";
+		//print_r($docdata);
+		
+		//die;
+		
 		$fileId = $docId;
-		$fileId = "1674218633467744";
-		$loginId = "1673874254153097";
+		
+		$loginId = $this->session->get('loginId');
 		$documentPath = FCPATH."/userassets/uploads/" . $loginId;
 		$destFolderPath = FCPATH."/userassets/mydocuments/" . $loginId;
 		//echo "<pre>"; print_r($docdata); die;
@@ -203,10 +316,9 @@ class Document extends BaseController
 		$documentTitle = $docInfo["file_name"];
 		$parentDocumentId = db_randomnumber(); //raw / source document Id primary key	
 		$documentId = random_unique_string();  // unique alphanumeric has string
-		/*		
-		TEMPORARY STOPED
+		
 		//move the uploaded file to Mydocuments and remove from uploads folder and uploades table		
-		create_local_folder($destFolderPath);
+		create_local_folder($destFolderPath); //TEMPORARY COMMENTED DUE TO DEV PURPOSE
 	
 		$fileExt = ".pdf";
 		$fileName = $fileId.$fileExt;
@@ -216,8 +328,19 @@ class Document extends BaseController
 		$destFile = $destFolderPath."/".$newFileName;
 		$src = $file_path; //source file
 		$dst = $destFile; //destination file
-		moveFileOneDirToAnother($src, $dst);
-		*/
+		moveFileOneDirToAnother($src, $dst);  //TEMPORARY COMMENTED DUE TO DEV PURPOSE
+		
+		//get recipients
+		$recipientsResult = $this->document_model->getDocRecipients($docId);
+		//echo "<pre>"; print_r($recipientsResult); die;
+
+		$docExpiryInfo = $this->document_model->getDocExpiry($docId);
+		$expiresInDays = $docExpiryInfo["expiresInDays"];
+		$expiryDate = $docExpiryInfo["expiryDate"];
+		$alertOneDyBfrExp = $docExpiryInfo["alertOneDyBfrExp"];
+		
+		
+
 		//get sender and reciever Ids
 		$tmpUserEmails = array();
 		$tmpUserIdEmails = array();
@@ -236,6 +359,8 @@ class Document extends BaseController
 
 		}
 	
+		//echo "<pre>"; print_r($tmpUserIdEmails); die;
+
 		$usersResult = $this->document_model->getUsersByEmail($tmpUserEmails);
 		if(!empty($usersResult)){
 			
@@ -255,6 +380,7 @@ class Document extends BaseController
 			$recieverIdsArr[] = $tmpVl["id"];
 		}
 		
+		//echo "<pre>"; print_r($recieverIdsArr); die;
 
 		$partyAssets = array();
 		$documentStatus = array();
@@ -266,11 +392,20 @@ class Document extends BaseController
 			$tmpTag = $asstskArr[2];
 			$tmpClr = $asstskArr[3];
 
+			$tmpRecipientRw = $recipientsResult[$tmpEmail];
+			//$tmpRecipientRw["email"];
+			//$tmpRecipientRw["name"];
+			$tmpauthType = $tmpRecipientRw["authType"];
+			$tmpaccessCode = $tmpRecipientRw["accessCode"];
+			$tmpotp = $tmpRecipientRw["otp"];
+
 			$tmpArr = array();
 			$tmpArr["dataFeilds"] = $asstsv;
 			$tmpArr["email"] = $tmpEmail;
 			$tmpArr["name"] = $tmpName;
-			$tmpArr["accesscode"] = ""; 
+			$tmpArr["authType"] = $tmpauthType;
+			$tmpArr["accesscode"] = $tmpaccessCode; 
+			$tmpArr["otp"] = $tmpotp; 
 			//Email, Name, Access code, data-feilds
 		
 			$partyAssets[] = $tmpArr;
@@ -282,11 +417,12 @@ class Document extends BaseController
 		$documentStatusJson = json_encode($documentStatus);
 
 
-		$documentSrcPath = "/userassets/mydocuments/" . $loginId."/".$destFile;
+		$documentSrcPath = "/userassets/mydocuments/" . $loginId."/".$newFileName;
 		$senderId = $loginId;
 		$recieverIds = implode(",", $recieverIdsArr);
 		$noOfParties = count($docdata);
 		$documentData["id"] = $parentDocumentId;
+		$documentData["uploadId"] = $fileId;
 		$documentData["documentId"] = $documentId;
 		$documentData["documentTitle"] = $documentTitle;
 		$documentData["documentPath"] = $documentSrcPath;
@@ -325,15 +461,15 @@ class Document extends BaseController
 				$internalUser = 0;
 			}
 			
-			$accessCode = 123456; //$tmpUserDocData["accessCode"];
-			
-			
+			$tmpRecipientRw = $recipientsResult[$tmpUserEmail];
+			$tmpauthType = $tmpRecipientRw["authType"];
+			$tmpaccessCode = $tmpRecipientRw["accessCode"];
+			$tmpotp = $tmpRecipientRw["otp"];
+
 			$crrDate = date("Y-m-d H:i:s");
-			$documentExpiry = date("Y-m-d H:i:s",  strtotime($crrDate." + 10 days"));
+			$documentExpiry = $expiryDate;
 			$lastReminder = $crrDate;
 			$documentSentDate = $crrDate;
-			
-			
 			
 			$documentId = random_unique_string(); // unique alphanumeric has string
 			
@@ -348,7 +484,11 @@ class Document extends BaseController
 			$singleSignerData["signerId"] = $signerId; //0 for external user and numericvalue for internal user
 			$singleSignerData["internalUser"] = $internalUser; // 0-external or 1-internal
 			$singleSignerData["document_data"] = $tmpUserDocJsonData;
-			$singleSignerData["accessCode"] = $accessCode;
+
+			$singleSignerData["authType"] = $tmpauthType;
+			$singleSignerData["otp"] = $tmpotp;
+			$singleSignerData["accessCode"] = $tmpaccessCode;
+			
 			$singleSignerData["accessCodeMedia"] = $accessCodeMedia;
 			$singleSignerData["documentExpiry"] = $documentExpiry;
 			$singleSignerData["documentExpired"] = 0; //0-not-expired, 1-expired
@@ -359,19 +499,21 @@ class Document extends BaseController
 			$signersNameEmailData[] = array("name" => $tmpUserName,"email" => $tmpUserEmail);
 			$signersData[] = $singleSignerData;
 
-
-		
 		}
 		
 		//--- save file data to db
 		//echo "<pre>documentdata:"; print_r($documentData);
-		//echo "signersData:"; print_r($signersData); 
+		//echo "signersData:<pre>"; print_r($signersData); 
+		//die;
 		$docResponse = $this->document_model->saveDocumentData($documentData);
 		
 		$signersDataResponse = $this->document_model->saveSignersDocumentData($signersData);
 		
-		//echo "docResponse:" . $docResponse;
-		//echo "signersDataResponse:" . $signersDataResponse;
+		/*
+		echo "docResponse:" . $docResponse;
+		echo "signersDataResponse:" . $signersDataResponse;
+		die;
+		*/
 		
 		if($docResponse > 0 && $signersDataResponse > 0){
 			//generate document link and share via email
@@ -393,73 +535,259 @@ class Document extends BaseController
 		}
 		
 		echo json_encode($result); die;
-	}
+	} 
 
 	function sign(){
-		//http://localhost/digitalsignature/sign/?documentId=ccca43b66c9b41b249c46d2ba96612a4
-		//if($request->is('get')){
-		//if($request->isGet()){
-			$docId = $this->request->getGet('documentId'); //file id
-			$loginId = "1673874254153097";
+		//http://localhost/digitalsignature/sign/?documentId=086256e9e2d5e7549c8e44bd4b062e30
+		
+		if($this->request->is('get')){
+
+			$docId = $this->request->getGet('documentId');
+			$t = $this->request->getGet('t');
+			$loginId = $this->session->get('loginId');
 
 			//get document ready and all its elements	
 			$signersData = $this->document_model->getSignerDocumentRawData($docId);
+			//echo "<pre>"; print_r($signersData); die;
 			if(!empty($signersData)){
+				
+				$authType = $signersData["signerData"]["authType"];
+				if($authType > 0){
+
+					if($t && $t == $this->session->get("docAccessToken")){
+
+						//update status to viewed from sent
+						$this->document_model->updateSignerDocStatus($docId, "viewed");
+						
+						$data = array();
+						$data["page_tilte"] = "Document Sign";
+						$data["document"] = $signersData["parentDoc"]["documentPath"];
+						$data["documentId"] = $signersData["parentDoc"]["documentId"];
+						$data["signersData"] = $signersData["signerData"];
+						
+						return view('admin/documentsign', $data);
+						
+					}else{
+						
+						//get email of document owner
+						$parentDocId = $signersData["signerData"]["parentDocument"];
+						$ownerResult = $this->document_model->getDocOwnerEmail($parentDocId);
+						
+						if($authType == 2){
+							
+							//access code form
+
+							$data = array();
+							$data["page_tilte"] = "Document Access Code";
+							$data["documentId"] = $docId;
+							$data["authType"] = $authType; //$signersData["signerData"]["authType"];
+							$data["ownerEmail"] = $ownerResult["email"];
+
+							return view('admin/accesscoderequired', $data);
+						
+						}else if($authType == 1){
+							
+							//otp form
+
+							//send otp
+							$this->sendDocAccessOtp($docId);
+							
+							$data = array();
+							$data["page_tilte"] = "Document Access Code";
+							$data["documentId"] = $docId;
+							$data["authType"] = $authType; // $signersData["signerData"]["authType"];
+							$data["ownerEmail"] = $ownerResult["email"];
+
+							return view('admin/accesscoderequired', $data);
+						}
+					}
+
+
+				}else{
+
+					$data = array();
+					$data["page_tilte"] = "Document Sign";
+					$data["document"] = $signersData["parentDoc"]["documentPath"];
+					$data["documentId"] = $signersData["parentDoc"]["documentId"];
+					$data["signersData"] = $signersData["signerData"];
 					
-				//echo "<pre>"; print_r($signersData); die;
+					return view('admin/documentsign', $data);
+				}
 		
-				$data = array();
-				$data["page_tilte"] = "Document Sign";
-				$data["document"] = $signersData["parentDoc"]["documentPath"];
-				$data["documentId"] = $signersData["parentDoc"]["documentId"];
-				$data["signersData"] = $signersData["signerData"];
-
-				//echo "<pre>"; print_r($data); die;
-
-				/*
-					//https://www.zoho.com/creator/newhelp/app-settings/understand-download-mobile-app.html
-				[parentDoc] => Array
-					(
-						[documentId] => 5c960af14d51ddfe1c288a80cf305c98
-						[documentPath] => /userassets/mydocuments/1673874254153097/5c960af14d51ddfe1c288a80cf305c98.pdf
-					)
-
-				[signerData] => Array
-					(
-						[id] => 1674558124690129
-						[parentDocument] => 167455812489382
-						[documentId] => e4fa0acd8b66ff416544a7d52057a08c
-						[signerEmail] => upkit.dineshgiri@gmail.com
-						[signerName] => Dinesh Kumar
-						[signerId] => 1673874254153097
-						[internalUser] => 1
-						[document_status] => 
-						[document_data] => [{"elmType":"signature","style":"z-index: 102; top: 81px; left: 181px; border-width: 1px 1px 1px 4px; border-style: solid; border-color: rgb(0, 123, 255); border-image: initial; background-color: rgba(0, 123, 255, 0.5);","font_size":"13px","font_family":"CourierPrime-Regular","font_style":"normal","font_weight":"normal","text_decoration":"none","default_value":"Signature of Dinesh Kumar","default_user":"Dinesh Kumar#DK#upkit.dineshgiri@gmail.com#DK#Me#DK##007bff"},{"elmType":"signaturein","style":"z-index: 102; top: 79px; left: 378px; border-width: 1px 1px 1px 4px; border-style: solid; border-color: rgb(0, 123, 255); border-image: initial; background-color: rgba(0, 123, 255, 0.5);","font_size":"13px","font_family":"CourierPrime-Regular","font_style":"normal","font_weight":"normal","text_decoration":"none","default_value":"DK","default_user":"Dinesh Kumar#DK#upkit.dineshgiri@gmail.com#DK#Me#DK##007bff"},{"elmType":"textbox","style":"z-index: 102; top: 73px; left: 501px; border-width: 1px 1px 1px 4px; border-style: solid; border-color: rgb(0, 123, 255); border-image: initial; background-color: rgba(0, 123, 255, 0.5);","font_size":"13px","font_family":"CourierPrime-Regular","font_style":"normal","font_weight":"normal","text_decoration":"none","default_value":"Text","default_user":"Dinesh Kumar#DK#upkit.dineshgiri@gmail.com#DK#Me#DK##007bff"}]
-						[accessCode] => 123456
-						[accessCodeMedia] => email
-						[documentExpiry] => 2023-02-03 11:02:04
-						[documentExpired] => 0
-						[lastReminder] => 2023-01-24 11:02:04
-						[documentSentDate] => 2023-01-24 11:02:04
-						[created_at] => 2023-01-24 16:32:04
-						[updated_at] => 2023-01-24 16:32:04
-					)
-	
-				*/
-				
-				return view('admin/documentsign', $data);
-				
 			}else{
 
 				//invalid link
-				die("It seems that the link has expiered!");
+				
+				$data = array();
+				$data["page_tilte"] = "Invalid Document Id";
+				
+				return view('admin/invalidlink', $data);
 
 			}
+
 			
-		//}else{
-		//	die("Invalid URL");
-		//}
+		}else if($this->request->isAJAX()){
+			//"accesscode":accesscode, "documentId":documentId
+			$documentId = $this->request->getPost('documentId');
+			$userAccessCode = $this->request->getPost('accesscode');
+			$authType = $this->request->getPost('authType');
+
+			$signersData = $this->document_model->getSignerDocumentRawData($documentId);
+			//echo "<pre>"; print_r($signersData); die;
+			if(!empty($signersData)){
+					
+				//$authType = $signersData["signerData"]["authType"];
+				if($authType == 2){
+					
+					$accessCode = $signersData["signerData"]["accessCode"];
+					
+					if($userAccessCode == $accessCode){
+						$accessToken = sha1(db_randomnumber());
+						$sessArr = array(
+							"docAccessToken" => $accessToken
+						);
+						
+						$this->session->set($sessArr);
+
+						$result = array(
+							'C' => 100,
+							'R' => array("accessToken" => $accessToken),
+							'M' => 'success'
+						);
+
+					}else{
+						$result = array(
+							'C' => 101,
+							'R' => array('message'=>'invalid access code'),
+							'M' => 'error'
+						);
+					}
+
+					echo json_encode($result); die;
+
+				}else if($authType == 1){
+					//validate otp
+					$accessCode = $signersData["signerData"]["otp"];
+					$otpDateTime = $signersData["signerData"]["otpDateTime"];
+					$currDtTm = date("Y-m-d H:i:s");
+
+					$fromDt = $otpDateTime;
+					$toDt = $currDtTm;
+					
+					$diff = dateDiffMinutes($fromDt, $toDt);
+					
+					if($diff < 15){
+
+						if($userAccessCode == $accessCode){
+							$accessToken = sha1(db_randomnumber());
+							$sessArr = array(
+								"docAccessToken" => $accessToken
+							);
+							
+							$this->session->set($sessArr);
+	
+							$result = array(
+								'C' => 100,
+								'R' => array("accessToken" => $accessToken),
+								'M' => 'success'
+							);
+	
+						}else{
+							//ivalid otp
+							$result = array(
+								'C' => 101,
+								'R' => array('message'=>'invalid otp'),
+								'M' => 'error'
+							);
+						}
+					}else{
+						//expired otp
+						$result = array(
+							'C' => 102,
+							'R' => array('message'=>'otp expired'),
+							'M' => 'error'
+						);
+					}
+					
+					echo json_encode($result); die;
+
+				}else{
+					//invalid auth type	
+					$result = array(
+						'C' => 103,
+						'R' => array('message'=>'invalid authentication'),
+						'M' => 'error'
+					);
+
+					echo json_encode($result); die;
+				}
+			}
+
+		}
+
+	}
+
+	function sendDocAccessOtp($docId = false){
 		
+		$isPost = 0;
+		
+		if($this->request->isAJAX()){
+			$docId = $this->request->getPost('documentId');
+			$isPost = 1;
+		}
+
+		if($docId){
+			$otp = genOtp();
+			$emailData = $this->document_model->updateDocAccessOTP($docId, $otp);
+			//echo "<pre>"; print_r($emailData); die;
+
+			$signerName = $emailData["signerName"];
+			$signerEmail = $emailData["signerEmail"];
+			$docTitle = $emailData["customDocTitle"];
+
+			$data = array();
+			$data["signerName"] = $signerName;
+			$data["otp"] = $otp;
+			$data["docTitle"] = $docTitle;
+			
+			$template = view('emailtemplates/DocuSingOTP_Template', $data);
+			$message = $template;
+
+			$to = $signerEmail;
+			$subject = "Your verification code for signing $docTitle";
+			
+			$email = \Config\Services::email();
+			$email->setTo($to);
+			$email->setFrom('johndoe@gmail.com', 'Confirm Registration');
+			
+			$email->setSubject($subject);
+			$email->setMessage($message);
+			if ($email->send()) 
+			{
+				//echo 'Email successfully sent';
+				if($isPost > 0){
+					$result = array('C' => 100, 'R' => array(), 'M' => 'success');
+					echo json_encode($result); die;
+				}else{
+					return 1;
+				}
+				
+			} 
+			else 
+			{
+				//write log if email failed
+				//$data = $email->printDebugger(['headers']);
+				
+				if($isPost > 0){
+					$result = array('C' => 101, 'R' => array('message' => 'try again'), 'M' => 'error');
+					echo json_encode($result); die;
+				}else{
+					return 0;
+				}
+				
+			}
+		}
+
 	}
 
 
@@ -610,8 +938,8 @@ class Document extends BaseController
 	}
 
 	function processsign(){
-		$userId = "1673874254153097";
-		$userEmail = "upkit.dineshgiri@gmail.com";
+		$userId = $this->session->get('loginId');
+		$userEmail = $this->session->get('loginEmail');
 		$signerDocData = $this->request->getPost('data');
 		$documentId = $this->request->getPost('documentId');
 		$signerDocumentId = $this->request->getPost('signerDocumentId');

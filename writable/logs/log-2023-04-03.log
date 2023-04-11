@@ -1,0 +1,12 @@
+CRITICAL - 2023-04-03 05:01:45 --> Invalid argument supplied for foreach()
+in APPPATH\Views\admin\header.php on line 60.
+ 1 APPPATH\Views\admin\header.php(60): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argument supplied for foreach()', 'APPPATH\\Views\\admin\\header.php', 60, [...])
+ 2 APPPATH\Views\admin\signin.php(1): include('APPPATH\\Views\\admin\\header.php')
+ 3 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\admin\\signin.php')
+ 4 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('admin/signin', [], true)
+ 6 APPPATH\Controllers\Admin.php(101): view('admin/signin', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Admin->signin()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()

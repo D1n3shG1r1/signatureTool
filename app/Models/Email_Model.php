@@ -31,16 +31,24 @@ class Email_Model extends Model
             $parentDocument = $signerResult["parentDocument"];
             
             //other signers
-            $cmd = "SELECT `signerEmail`, `signerName` FROM `e_sign_document_signers` WHERE `parentDocument` = $parentDocument";
+            $cmd = "SELECT `signerEmail`, `signerName`, `authType`, `otp`, `accessCode` FROM `e_sign_document_signers` WHERE `parentDocument` = $parentDocument";
             $query = $this->db->query($cmd);
             $signersResult = $query->getResultArray();
             
             //parent doc
-            $cmd = "SELECT `documentTitle`, `senderId` FROM `e_sign_documents` WHERE `id` = $parentDocument";
+            $cmd = "SELECT `documentTitle`, `senderId`, `uploadId` FROM `e_sign_documents` WHERE `id` = $parentDocument";
             $query = $this->db->query($cmd);
             $parentDocResult = $query->getRowArray();
             $senderId = $parentDocResult["senderId"];
             
+
+            //get doc upload info
+            $uploadId = $parentDocResult["uploadId"];
+            $cmd = "SELECT `documentTitle` AS `customDocumentTitle`, `recipientMessage`, `expiresInDays`, `expiryDate` FROM `e_sign_uploaded_files` WHERE `id` = $uploadId AND `user_id` = $senderId";
+            $query = $this->db->query($cmd);
+            $docUpladResult = $query->getRowArray();
+
+
             //owner
             $cmd = "SELECT `first_name`, `last_name`, `email` FROM `users` WHERE `id` = $senderId";
             $query = $this->db->query($cmd);
@@ -48,6 +56,9 @@ class Email_Model extends Model
        
             unset($signerResult["parentDocument"]);
             unset($parentDocResult["senderId"]);
+            unset($parentDocResult["uploadId"]);
+            
+            $parentDocResult  = array_merge($parentDocResult, $docUpladResult);
 
             $finalArr["signerResult"] = $signerResult;
             $finalArr["signersResult"] = $signersResult;
@@ -87,5 +98,34 @@ class Email_Model extends Model
         */
         
     }
+    
+    function updateOtpDateTime($docid, $param){
+        
+        $dt = $param["date"];
+        
+		$cmd = "UPDATE `e_sign_document_signers` SET `otpDateTime` = '$dt' WHERE `documentId` = '$docid'";
+				
+        $query = $this->db->query($cmd);
+				
+        if($this->db->affectedRows() > 0){
+            return 1;
+        }
+
+    }
+    
+    function updateDocStatusEmailSentDateTime($docid, $param){
+        
+        $status = $param["document_status"];
+        $dt = $param["documentSentDate"];
+        
+		$cmd = "UPDATE `e_sign_document_signers` SET `documentSentDate` = '$dt', `document_status` = '$status' WHERE `documentId` = '$docid'";
+				
+        $query = $this->db->query($cmd);
+				
+        if($this->db->affectedRows() > 0){
+            return 1;
+        }
+    }
+
 }
 ?>

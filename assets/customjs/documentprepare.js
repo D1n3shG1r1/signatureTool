@@ -584,7 +584,7 @@ $(function(){
         var textbox =  '<g id="textbox_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'textbox_'+uniqId+'\');">\
                           <rect id="textbox_'+uniqId+'_rect2" width="80" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                           <rect id="textbox_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                          <text id="textbox_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="Text" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" is-required="0" is-readonly="0">\
+                          <text id="textbox_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="Text" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" is-required="0" is-readonly="0" data-textcolor-rgb="0,0,0" data-textcolor-hex="#000">\
                           <tspan style="word-break: break-word;" x="4" dy="13">Text</tspan>\
                           </text>\
                        </g>';
@@ -592,7 +592,7 @@ $(function(){
 	    	var datepicker = '<g id="datepicker_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'datepicker_'+uniqId+'\');">\
                            <rect id="datepicker_'+uniqId+'_rect2" width="74.078125" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                            <rect id="datepicker_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                           <text id="datepicker_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("dd/MM/yyyy")+'" date-format="dd/MM/yyyy" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-required="0" is-readonly="0">\
+                           <text id="datepicker_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("dd/MM/yyyy")+'" date-format="dd/MM/yyyy" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-required="0" is-readonly="0" data-textcolor-rgb="0,0,0" data-textcolor-hex="#000">\
                            <tspan style="word-break: break-word;" x="4" dy="13">'+currentDate("dd/MM/yyyy")+'</tspan>\
                            </text>\
                        </g>';
@@ -620,7 +620,7 @@ $(function(){
         var name = '<g id="name_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'name_'+uniqId+'\');">\
                        <rect id="name_'+uniqId+'_rect2" width="73.4072265625" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                        <rect id="name_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                       <text id="name_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="Text" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-required="0" is-readonly="0">\
+                       <text id="name_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="Text" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-required="0" is-readonly="0" data-textcolor-rgb="0,0,0" data-textcolor-hex="#000">\
                         <tspan style="word-break: break-word;" x="4" dy="13">'+userName()+'</tspan>\
                        </text>\
                     </g>'; 
@@ -629,7 +629,7 @@ $(function(){
         var email = '<g id="email_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'email_'+uniqId+'\');">\
                        <rect id="email_'+uniqId+'_rect2" width="168.15625" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                        <rect id="email_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                       <text id="email_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-required="0" is-readonly="0">\
+                       <text id="email_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-required="0" is-readonly="0" data-textcolor-rgb="0,0,0" data-textcolor-hex="#000">\
                         <tspan style="word-break: break-word;" x="4" dy="13">'+userEmail()+'</tspan>\
                        </text>\
                     </g>';
@@ -637,14 +637,14 @@ $(function(){
         var editableDate = '<g id="editableDate_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'editableDate_'+uniqId+'\');">\
                              <rect id="editableDate_'+uniqId+'_rect2" width="95" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                              <rect id="editableDate_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                             <text id="editableDate_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("MM/dd/yyyy")+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-required="0" is-readonly="0">\
+                             <text id="editableDate_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("MM/dd/yyyy")+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-required="0" is-readonly="0" data-textcolor-rgb="0,0,0" data-textcolor-hex="#000">\
                               <tspan style="word-break: break-word;" x="4" dy="13">MM/dd/yyyy</tspan>\
                              </text>\
                           </g>';
 
         var label = '<g id="label_'+uniqId+'" class="pdf-form-element" style="visibility: visible;" onclick="openFieldSettings(\'label_'+uniqId+'\');">\
                        <rect id="label_'+uniqId+'_rect1" width="80" height="17" fill="#f4f5eb" stroke="transparent"></rect>\
-                       <text id="label_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="Label" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-required="0" is-readonly="0">\
+                       <text id="label_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="Label" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-required="0" is-readonly="0" data-textcolor-rgb="0,0,0" data-textcolor-hex="#000">\
                         <tspan style="word-break: break-word;" x="4" dy="13">Label</tspan>\
                        </text>\
                     </g>';
@@ -652,7 +652,7 @@ $(function(){
         var hyperlink = '<g id="hyperlink_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'hyperlink_'+uniqId+'\');">\
                           <rect id="hyperlink_'+uniqId+'_rect1" width="90" height="20" fill="#f4f5eb" stroke="transparent"></rect>\
                           <image height="16" width="16" id="hyperlink_'+uniqId+'_hyperlinkicon" x="71.6875" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik01IDdDNC43MzQ3OCA3IDQuNDgwNDMgNy4xMDUzNiA0LjI5Mjg5IDcuMjkyODlDNC4xMDUzNiA3LjQ4MDQzIDQgNy43MzQ3OCA0IDhWMTlDNCAxOS4yNjUyIDQuMTA1MzYgMTkuNTE5NiA0LjI5Mjg5IDE5LjcwNzFDNC40ODA0MyAxOS44OTQ2IDQuNzM0NzggMjAgNSAyMEgxNkMxNi4yNjUyIDIwIDE2LjUxOTYgMTkuODk0NiAxNi43MDcxIDE5LjcwNzFDMTYuODk0NiAxOS41MTk2IDE3IDE5LjI2NTIgMTcgMTlWMTNDMTcgMTIuNDQ3NyAxNy40NDc3IDEyIDE4IDEyQzE4LjU1MjMgMTIgMTkgMTIuNDQ3NyAxOSAxM1YxOUMxOSAxOS43OTU3IDE4LjY4MzkgMjAuNTU4NyAxOC4xMjEzIDIxLjEyMTNDMTcuNTU4NyAyMS42ODM5IDE2Ljc5NTcgMjIgMTYgMjJINUM0LjIwNDM1IDIyIDMuNDQxMjkgMjEuNjgzOSAyLjg3ODY4IDIxLjEyMTNDMi4zMTYwNyAyMC41NTg3IDIgMTkuNzk1NiAyIDE5VjhDMiA3LjIwNDM1IDIuMzE2MDcgNi40NDEyOSAyLjg3ODY4IDUuODc4NjhDMy40NDEyOSA1LjMxNjA3IDQuMjA0MzUgNSA1IDVIMTFDMTEuNTUyMyA1IDEyIDUuNDQ3NzIgMTIgNkMxMiA2LjU1MjI4IDExLjU1MjMgNyAxMSA3SDVaIiBmaWxsPSIjMzMzMzMzIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTQgM0MxNCAyLjQ0NzcyIDE0LjQ0NzcgMiAxNSAySDIxQzIxLjU1MjMgMiAyMiAyLjQ0NzcyIDIyIDNWOUMyMiA5LjU1MjI4IDIxLjU1MjMgMTAgMjEgMTBDMjAuNDQ3NyAxMCAyMCA5LjU1MjI4IDIwIDlWNEgxNUMxNC40NDc3IDQgMTQgMy41NTIyOCAxNCAzWiIgZmlsbD0iIzMzMzMzMyIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTIxLjcwNzEgMi4yOTI4OUMyMi4wOTc2IDIuNjgzNDIgMjIuMDk3NiAzLjMxNjU4IDIxLjcwNzEgMy43MDcxMUwxMC43MDcxIDE0LjcwNzFDMTAuMzE2NiAxNS4wOTc2IDkuNjgzNDIgMTUuMDk3NiA5LjI5Mjg5IDE0LjcwNzFDOC45MDIzNyAxNC4zMTY2IDguOTAyMzcgMTMuNjgzNCA5LjI5Mjg5IDEzLjI5MjlMMjAuMjkyOSAyLjI5Mjg5QzIwLjY4MzQgMS45MDIzNyAyMS4zMTY2IDEuOTAyMzcgMjEuNzA3MSAyLjI5Mjg5WiIgZmlsbD0iIzMzMzMzMyIvPgo8L3N2Zz4K" preserveAspectRatio="xMinYMid meet" y="2"></image>\
-                          <text id="hyperlink_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#3E60FF" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-required="0" is-readonly="0">\
+                          <text id="hyperlink_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#3E60FF" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-required="0" is-readonly="0" data-textcolor-rgb="0,0,0" data-textcolor-hex="#000">\
                            <tspan style="word-break: break-word;" x="4" dy="13">Hyperlink</tspan>\
                           </text>\
                        </g>';  
@@ -765,6 +765,11 @@ $(function(){
         var default_user = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("default-user");
         var line_height = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("line-height");
         var date_format = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("date-format");
+
+        var is_required = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("is-required");
+        var is_readonly = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("is-readonly");
+        var data_textcolor_rgb = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("data-textcolor-rgb");
+        var data_textcolor_hex = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("data-textcolor-hex");
       
         if(isReal(font_size) == false){
           font_size = "13px";
@@ -786,8 +791,7 @@ $(function(){
           date_format = "dd/MM/yyyy";
         }
       
-      
-        return {"font-size":font_size, "font-family":font_family, "font-style":font_style, "font-weight":font_weight, "text-decoration":text_decoration, "default-value":default_value, "default-user":default_user, "line-height":line_height, "date-format":date_format};
+        return {"font-size":font_size, "font-family":font_family, "font-style":font_style, "font-weight":font_weight, "text-decoration":text_decoration, "default-value":default_value, "default-user":default_user, "line-height":line_height, "date-format":date_format, "is_required":is_required, "is_readonly":is_readonly, "data_textcolor_rgb":data_textcolor_rgb, "data_textcolor_hex":data_textcolor_hex};
       
       }
 
@@ -854,7 +858,7 @@ $(function(){
               \
               <div class="row" id="font-style">\
                   <div class="col-lg-8">\
-                      <ul class="list-unstyled" id="font-weight">\
+                      <ul class="list-unstyled font-weight" id="font-weight">\
                           <li><a href="javascript:void(0);" class="font-weight-button bold textColor" onclick="changeBold(this, \''+elmId+'\');">B</a>\</li>\
                           <li><a href="javascript:void(0);" class="font-weight-button italic textColor" onclick="changeItalic(this, \''+elmId+'\');">I</a>\</li>\
                           <li><a href="javascript:void(0);" class="font-weight-button underline textColor"  onclick="changeUnderline(this, \''+elmId+'\');">U</a>\</li>\
@@ -880,7 +884,7 @@ $(function(){
                     <span id="color-picker">\
                         <label class="settingRowFontColorLabel">Font Color</label>\
                         <span class="color-action-box borderColor textColor">\
-                          <input type="text" id="colorPicker" value="#276cb8">\
+                          <input type="text" id="colorPicker" value="#000">\
                         </span>\
                     </span>\
                   </div>\
@@ -1129,13 +1133,13 @@ $(function(){
 			$('.userLI.'+tmpUserClass).trigger("click");
 			
       if($('#colorPicker').length > 0){
-        openColorPicker();
+        openColorPicker(elmId);
       }
 		}, 500);
         
       }
 
-      function openColorPicker(){
+      function openColorPicker(elmId){
         
         $('#colorPicker').spectrum({
           type: "color",
@@ -1143,15 +1147,17 @@ $(function(){
           showAlpha: false
         });
 
+
         setTimeout(function(){
-          $('.sp-container .sp-choose').click(function(){
-            setColorValues();
-          });
+          
+          $('.sp-container .sp-choose').text("Apply");
+          $('.sp-container .sp-choose').attr("onclick", "setColorValues('"+elmId+"');");
+
         },100);
 
       }
 
-      function setColorValues(){
+      function setColorValues(elmId){
         var clr = $('.sp-container .sp-input').val();
         var rgbBgClr = $(".sp-preview-inner").css("background-color");
         
@@ -1161,6 +1167,14 @@ $(function(){
         rgbBgClr = rgbBgClr.replace(" ","");
         $("#colorPicker").val(clr);
         $("#colorPicker").attr("data-rgb",rgbBgClr);
+        $("#"+elmId+"_text").attr("data-textcolor-rgb",rgbBgClr);
+        $("#"+elmId+"_text").attr("data-textcolor-hex",clr);
+        $("#"+elmId).css({"color":clr});
+
+        console.log("rgb:"+rgbBgClr);
+        console.log("clr:"+clr);
+
+
       }
 
       function changeDefaultText(obj, DstElmId){
@@ -1634,7 +1648,9 @@ $(function(){
             var default_user = $("#"+elmId+"_text").attr("default-user");
             var is_required = $("#"+elmId+"_text").attr("is-required");
             var is_readonly = $("#"+elmId+"_text").attr("is-readonly");
-
+            var data_textcolor_rgb = $("#"+elmId+"_text").attr("data-textcolor-rgb");
+            var data_textcolor_hex = $("#"+elmId+"_text").attr("data-textcolor-hex");
+            
             //var default_userParts = default_user.split(SEPERATOR);
 
             if(isReal(tmpSaveDataObj[default_user])){
@@ -1643,7 +1659,7 @@ $(function(){
                 tmpSaveDataObj[default_user] = [];
             }
 
-            tmpSaveDataObj[default_user].push({"elmType":elmTyp, "page":tmpPage, "pageTop":tmpPageTop, "style":tmpStyl, "font_size":font_size, "font_family":font_family, "font_style":font_style, "font_weight":font_weight, "text_decoration":text_decoration, "default_value":default_value, "default_user":default_user, "is_required":is_required, "is_readonly":is_readonly});
+            tmpSaveDataObj[default_user].push({"elmType":elmTyp, "page":tmpPage, "pageTop":tmpPageTop, "style":tmpStyl, "font_size":font_size, "font_family":font_family, "font_style":font_style, "font_weight":font_weight, "text_decoration":text_decoration, "default_value":default_value, "default_user":default_user, "is_required":is_required, "is_readonly":is_readonly, "data_textcolor_rgb":data_textcolor_rgb, "data_textcolor_hex": data_textcolor_hex});
 
             //console.log("tmpSaveDataObj");
             //console.log(tmpSaveDataObj);

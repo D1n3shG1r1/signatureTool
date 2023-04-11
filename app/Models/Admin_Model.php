@@ -45,7 +45,14 @@ class Admin_Model extends Model{
 		
 		if(!empty($result)){
 			if($result["email_verified"] > 0){
-				$this->session->set("loginId", $result["id"]);		
+				$sessArr = array(
+					"loginId" => $result["id"],
+					"loginEmail" => $result["email"],
+					"loginFName" => $result["first_name"],
+					"loginLName" => $result["last_name"]
+				);
+				//$this->session->set("loginId", $result["id"]);		
+				$this->session->set($sessArr);		
 			}
 			
 			return $result;
@@ -86,7 +93,15 @@ class Admin_Model extends Model{
 					if(!empty($result)){
 				
 						if($result["email_verified"] == 1){
-							$this->session->set("loginId", $result["id"]);	
+							$sessArr = array(
+								"loginId" => $result["id"],
+								"loginEmail" => $result["email"],
+								"loginFName" => $result["first_name"],
+								"loginLName" => $result["last_name"]
+							);
+							//$this->session->set("loginId", $result["id"]);		
+							$this->session->set($sessArr);
+							
 						}
 					}
 				

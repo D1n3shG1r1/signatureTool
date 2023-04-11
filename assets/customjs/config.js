@@ -100,21 +100,24 @@ function callAjax(rqsturl, postdata, rqstType, cb){
 			return false;
 		}
 	}
-	
+    
 	function showToastMsg(msg, err){
 		
 		if(err == 1){
 			//add error class
-			$(".toastMessage span").removeClass("errorMsg");
-			$(".toastMessage span").addClass("successMsg");
+			//$(".toastMessage span").removeClass("errorMsg");
+			//$(".toastMessage span").addClass("successMsg");
+            $(".toastMessage .alert").addClass("alert-danger");
+			$(".toastMessage .alert").removeClass("alert-success");
 		}else{
 			//remove error class
-			$(".toastMessage span").removeClass("successMsg");
-			$(".toastMessage span").addClass("errorMsg");
+			//$(".toastMessage span").removeClass("successMsg");
+			//$(".toastMessage span").addClass("errorMsg");
+            $(".toastMessage .alert").addClass("alert-success");
+			$(".toastMessage .alert").removeClass("alert-danger");
 		}
 		
-		$(".toastMessage span").html(msg);
-		alert(msg);
+		$(".toastMessage .alert").html(msg);
 		
 		$(".toastMessage").fadeIn(100);
 		setTimeout(function(){
@@ -140,15 +143,35 @@ function callAjax(rqsturl, postdata, rqstType, cb){
 		},2000);
 	}
 	*/
-	function showLoader(elmId){
-	  var loaderHtml = `<div class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div>`;   var loaderHtml = `<div class="spinner-border text-light" role="status"></div>`;
-	  $("#"+elmId).html(loaderHtml); } function hideLoader(elmId, content){
-	  $("#"+elmId).html(content);
+	
+    function showLoader(elmId){
+	    var loaderHtml = `<div class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div>`; var loaderHtml = `<div class="spinner-border text-light" role="status"></div>`;
+	    $("#"+elmId).html(loaderHtml);
+    }
+    
+    function hideLoader(elmId, content){
+	    $("#"+elmId).html(content);
 	}
-	 
+	
 	function validateEmail(email){
-	  return email.match(
-	    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-	  );
+	 return email.match(
+	 /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+	 );
 	}
 
+    function currentDateTime(){
+        var currentdate = new Date(); 
+        var datetime = "Last Sync: " + currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+        
+        var result = {"dateTime":datetime, "currentdate":currentdate};
+        return result;
+    }
+
+    function redirectTo(url){
+        window.location.href = url;
+    }

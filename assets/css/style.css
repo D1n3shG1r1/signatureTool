@@ -329,6 +329,7 @@
             border-bottom: 1px solid;
             border-top: 1px solid;
             font-weight: 600;
+            border-color: #b1becb;
         }
 
         .font-weight-button.italic{
@@ -337,6 +338,7 @@
             border-bottom: 1px solid;
             border-top: 1px solid;
             font-style: italic;
+            border-color: #b1becb;
         }
 
         .font-weight-button.underline{
@@ -345,8 +347,8 @@
             border-bottom: 1px solid;
             border-top: 1px solid;
             text-decoration: underline;
+            border-color: #b1becb;
         }
-
 
         .currentFontColor{
           border-right: 1px solid #000;
@@ -1489,13 +1491,18 @@
 
 .file-upload-text b{font-weight: 500;}
 
-.file-remove-a{
+.file-preview-a,.file-remove-a{
   text-decoration: none;
   font-weight: 500;
 }
 
 .file-remove-a .la.la-trash-alt{
   font-size: 17px;
+}
+
+.browseBttn{
+  margin: 20px;
+  width: 100px;
 }
 
 .browseBttn.btn-outline-primary:hover{
@@ -1510,7 +1517,7 @@
   border-color: #0d6efd;
 }
 
-.file-remove-a:hover {
+.file-preview-a:hover, .file-remove-a:hover {
   color: #0d6efd;
 }
 
@@ -1683,5 +1690,357 @@
   }
 }
 
-
 /*toggle button*/
+
+.toastMessage{
+	display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  /*width: 500px;*/
+}
+
+.recipient-srno{
+  border-radius: 50%;
+  padding: 0px 0px 0px 0px;
+  height: 24px;
+  width: 24px;
+  text-align: center;
+  display: inline-block;
+}
+
+.authenticateOptions{
+  display:none;
+  width: 275px;
+  padding: 0px 0px 15px 15px;
+  border-radius: 4px;
+}
+
+.authHead{
+  font-size: 16px;
+}
+
+.authHead b{
+  font-weight: 500;
+}
+
+.cb-value{
+  margin-left:15px;
+}
+
+.accesscodeProperties{
+  display: none;
+}
+
+.errorBorder{
+  border-color:#f83b3b;
+}
+
+.solidBorder{
+  border:1px solid #f83b3b;;
+}
+
+.signInUpFormContainer{
+  width: 450px;
+}
+
+.inputPlaceholderPosition{
+  position: absolute;
+}
+
+.inputPlaceholderAnimateTop{
+  margin-top: -48px;
+  margin-left: 13px;
+  font-size: 13px;
+  background-color: #fff;
+  color:#0D6EFD;
+}
+
+.inputPlaceholderAnimateCenter{
+  margin-top: -31px;
+  margin-left: 13px;
+  font-size: 16px;
+  color:#919191;
+}
+
+.form-control:focus {
+  box-shadow: none !important;
+}
+
+.btn:focus {
+  box-shadow: none !important;
+}
+
+.tab-login{
+  border: 1px solid #0d6efd !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.tab-register{
+  border: 1px solid #0d6efd !important;
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+.pills-login .form-outline .btn, .pills-register .form-outline .btn{
+  width: 100%;
+}
+
+.previewBox .documentPageHolder{
+  border-bottom: 1px solid;
+}
+
+.file-preview-a .animate-bg, .file-remove-a .animate-bg{clear:none; float:left; margin-left: 10px; width:40%;}
+
+.no-padding{padding:0px !important;}
+
+@keyframes placeHolderShimmer {
+  0% {
+      background-position: -400px 0
+  }
+
+  100% {
+      background-position: 400px 0
+  }
+}
+.animate-bg {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 800px 104px;
+  min-height: 10px;
+  display: block;
+  clear: both;
+}
+
+.font-weight .selected{
+  border-color:#0565ff;
+  color: #0565ff;
+  background-color: #e5efff;
+}
+
+.access-code-form{
+  width: 680px;
+  margin: auto;
+  padding: 20px 40px 20px 40px;
+  margin-top: 200px;
+  box-shadow: 0px 6px 14px 3px rgb(0 0 0 /10%);
+}
+
+.access-code-form .img-box{
+  float: left;
+  margin-right: 16px;
+  margin-top: 6px;
+}
+
+.access-code-form .content-box{
+  padding: 0px 0px 16px;
+  height: 100%;
+  width: 100%;
+}
+
+.access-code-form .authenticationDialog-header{
+  padding-bottom: 12px;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.access-code-form .authenticationDialog-sub-header{
+  font-size: 18px;
+}
+
+.access-code-form .bs-note-style {
+  height: auto;
+  background-color: #ffffeb;
+  padding: 8px;
+  font-size: 12px!important;
+  border-left: 2px solid #ffd438;
+  display: inline-block;
+}
+
+.access-code-form .access-code-footer-note {
+  float: left;
+  height: 100%;
+  width: 100%;
+  padding: 6px 8px 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: .3px;
+}
+
+.access-code-form .form-control{
+  height:45px;
+}
+
+.access-code-form .btn{
+  height:45px;
+}
+
+.access-code-form .bs-link-add-info-container{
+  float: left;
+  padding-top: 12px;
+}
+
+.access-code-form .bs-link-add-info {
+  display: inline-block;
+  text-align: center;
+  min-height: 25px;
+  line-height: 25px;
+}
+  
+.access-code-form .bs-hyperlink-style {
+  color: #0565ff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.bs-invalid-accesscode-text {
+  font-size: 11px;
+  color: #ff3b30;
+  margin-left: 5px;
+  margin-top: 1px;
+  letter-spacing: .24px;
+  display: none;
+  float: right;
+}
+
+.bs-remainingAuth-text {
+  font-size: 11px;
+  color: #666e80;
+  margin-left: 5px;
+  margin-top: 1px;
+  letter-spacing: .24px;
+  display: none;
+  float: right;
+}
+
+.access-code-row, .access-code-button-row{
+  height:80px;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.otp-expires-in{
+  float: left;
+  font-weight: 700;
+}
+
+.resendButton{
+  padding: 5px 5px 5px 5px;
+  text-align: center;
+}
+
+.resendButton .spinner-border {
+  color: #0d6efd !important;
+  font-size: 10px;
+  height: 20px;
+  width: 20px;
+}
+
+.sign-page-footer{
+  border: 1px solid #0000005e;
+  background-color: #0000005e;
+  height: 73px;
+  margin:auto;
+}
+
+.terms-modal .modal-dialog{
+  background: #fff;
+  border-radius: 10px;
+  display: flex;
+  bottom: 20px;
+  position: absolute;
+  left: calc(50% - 488px);
+}
+
+.terms-modal .modal-dialog .modal-content{
+  border-radius: 10px;
+}
+
+.terms-modal .modal-dialog .modal-body .terms-box{
+  float: left;
+  letter-spacing: 1px;
+  display: flex;
+}
+
+.terms-modal .modal-dialog .modal-body .action-box{
+  float: left;
+  text-align: right;
+  padding: 7px;
+}
+
+.terms-modal .modal-dialog .modal-body .terms-tick-box-span{
+  padding-top: 16px;
+}
+
+.terms-modal .modal-dialog .modal-body span{
+  padding:10px;
+}
+
+.terms-modal .modal-dialog .modal-body .terms-tick-box{
+  height:20px;
+  width:20px;
+  cursor: pointer;
+}
+
+.continueBttn{
+  width: 150px;
+}
+
+.button-disabled{
+  pointer-events: none;
+  background-color: #f7fafc;
+  border-color:#cbd5e0;
+  color:#a0aec0;
+}
+
+.bs-form-element-type {
+    background-color: #ffcc01!important;
+    border-color: #ffc820!important;
+    border-radius: 4px 0 0 4px!important;
+    color: #333!important;
+    font-family: Heebo,open sans,"sans-serif",-apple-system,BlinkMacSystemFont;
+    font-size: 12px;
+    line-height: 24px;
+    letter-spacing: .18px;
+    font-weight: 500;
+    position: relative;
+    border-radius: 10px;
+  }
+  
+  .bs-form-element-type:before {
+    content: "";
+    position: absolute;
+    right: -12px;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 12px solid #ffcc01!important;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+  }
+  
+  #bsCustomButton .e-tooltip {
+    margin-top: 4px;
+  }
+  
+  .bs-custom-button {
+    cursor: pointer;
+  }
+
+  .bsCustomButton{
+    display: none;
+    text-align: center;
+    position: absolute;
+    width: auto;
+    transition: top 1s ease 0s;
+    top: 112px;
+    left: 10.5px;
+  }

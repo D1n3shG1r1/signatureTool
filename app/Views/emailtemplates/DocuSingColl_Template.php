@@ -170,6 +170,16 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
 
       </td>
     </tr>
+
+    <!-- Additional Message -->
+    <tr>
+      <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:helvetica,sans-serif;" align="left">
+        <h1 style="margin: 0px; line-height: 140%; text-align: left; word-wrap: break-word; font-size: 14px; font-weight: 500;"><?php echo $additionalMessage; ?></h1>
+      </td>
+    </tr>
+    <!-- / Additional Message -->
+
+
   </tbody>
 </table>
 
@@ -353,7 +363,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
       <td style="overflow-wrap:break-word;word-break:break-word;padding:10px;font-family:helvetica,sans-serif;" align="left">
         
   <div style="font-size: 12px; line-height: 140%; text-align: center; word-wrap: break-word;">
-    <p style="line-height: 140%;"><span style="color: #95a5a6; line-height: 16.8px;">This email was sent to you by Dinesh Giri (<a rel="noopener" href="mailto:<?php echo $ownerEmail;?>" target="_blank"><?php echo $ownerEmail;?></a>) using BoldSign, which is an application for electronically signing documents online.</span></p>
+    <p style="line-height: 140%;"><span style="color: #95a5a6; line-height: 16.8px;">This email was sent to you by <?php echo $ownerName; ?> (<a rel="noopener" href="mailto:<?php echo $ownerEmail;?>" target="_blank"><?php echo $ownerEmail;?></a>) using SCIP-Sign, which is an application for electronically signing documents online.</span></p>
   </div>
 
       </td>

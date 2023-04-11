@@ -36,6 +36,26 @@ var DOCUMENTDATA = <?php echo  $document_data; ?>;
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.4/cropper.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
 
 <script src="<?php echo base_url("/assets/customjs/documentsign.js");?>"></script>
+<script>
+$(function(){
+  
+  setTimeout(function(){
+    $("#termsModal").modal("show");
+  }, 500);
+});  
+
+function acceptTerms(elmId){
+  if($("#"+elmId).is(":checked")){
+    $("#continueBttn").removeClass("button-disabled");
+    $("#continueBttn").addClass("btn-primary");
+    $("#continueBttn").removeClass("btn-outline-primary");
+  }else{
+    $("#continueBttn").addClass("button-disabled");
+    $("#continueBttn").addClass("btn-outline-primary");
+    $("#continueBttn").removeClass("btn-primary");
+  }
+}
+</script>
 <main>
   
     <div id="mainPageHeader" class="container-fluid" style="margin-bottom: 70px;">
@@ -48,7 +68,6 @@ var DOCUMENTDATA = <?php echo  $document_data; ?>;
           
         <div class="top-menu">
             <figure class="logo-wrap">
-                <!---<span class="appName"><img src="<?php //echo base_url("/assets/images/boldsign_sitelogo.svg"); ?>" /></span>--->
                 <span class="appName"><img src="<?php echo base_url("/assets/images/logocl.png"); ?>" /></span>
             </figure>
             <div class="">
@@ -56,16 +75,20 @@ var DOCUMENTDATA = <?php echo  $document_data; ?>;
               <span class="documentNameContainer">Samplepdf.pdf</span>
             </div>
             <ul class="top-right-btns list-unstyled">
-               
+                  
+                  <!---
                   <li>
                     <button class="btn btn-primary">Preview</button>
                   </li>
+                  --->
                   <li>
-                    <button class="btn btn-warning" onclick="startSigning();">Start</button>
+                    <button class="btn btn-primary" onclick="startSigning();">Start signing</button>
                   </li>
+                  <!---
                   <li>
                     <a class="btn-cross" href="javascript:void(0);">X</a>
                   </li>
+                  --->
                
               </ul>
         </div>
@@ -226,15 +249,30 @@ var DOCUMENTDATA = <?php echo  $document_data; ?>;
     </div>
 
   </div>
-  <div id="main-page-footer">
-    <button onclick="processSign();">Finish</button>
-  </div>
   
 </main>
 
+
+<!--- Terms of use --->
+<div class="modal fade terms-modal" id="termsModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="terms-box col-10">
+            <span class="terms-tick-box-span"><input type="checkbox" class="terms-tick-box" id="terms-tick-box" onchange="acceptTerms('terms-tick-box');"></span>
+            <span for="terms-tick-box">I have read and agree to the <a href="javascript:void(0);">Electronic Signature Disclosure Terms</a> and <a href="javascript:void(0);">ScipSign's Terms of Use</a></span>
+          </div>
+          <div class="action-box col-2">
+            <!--<button class="button-disabled" onclick="processSign();">Continue</button> <button onclick="processSign();">Finish</button>-->
+            <button id="continueBttn" class="continueBttn btn btn-outline-primary button-disabled" data-bs-dismiss="modal">Continue</button>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<!--- /- Terms of use --->
+
 <!--- Signature pad --->
-
-
 <div class="modal fade sign-modal" id="signModal" tabindex="-1" aria-labelledby="signModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-dialog-centered">
     <div class="modal-content">
@@ -390,6 +428,6 @@ var DOCUMENTDATA = <?php echo  $document_data; ?>;
     </div>
   </div>
 </div>
-  <!--- /Signature pad --->
+  <!--- /-Signature pad --->
 
 <?php include('footer.php'); ?>

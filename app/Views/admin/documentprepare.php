@@ -1,5 +1,47 @@
-<?php include('header.php'); 
-  
+<?php
+
+include('header.php'); 
+
+/*
+
+Array
+(
+    [page_tilte] => Document Prepare
+    [document] => /userassets/uploads/1673874254153097/1680260575625909.pdf
+    [documentId] => 1680260575625909
+    [fileName] => SSHA_VRPL.pdf
+    [documentTitle] => SSHA VRPL AGREEMENT
+    [recipients] => Array
+        (
+            [0] => Array
+                (
+                    [name] => Dinesh
+                    [email] => upkit.dineshgiri@gmail.com
+                )
+
+            [1] => Array
+                (
+                    [name] => Rashika
+                    [email] => upkit.rashikasapru@gmail.com
+                )
+
+            [2] => Array
+                (
+                    [name] => Kishan
+                    [email] => upkit.pamposhdhar@gmail.com
+                )
+
+        )
+
+)
+
+$SELECTEDUSERS = array(
+  array("name" => $CURRENTUSERNAME_1, "initials" => $CURRENTUSERINITIALS_1, "email" => $CURRENTUSEREMAIL_1, "tag" => $CURRENTUSERTAG_1, "color" => $CURRENTUSERCOLOR_1),
+  array("name" => $CURRENTUSERNAME_2, "initials" => $CURRENTUSERINITIALS_2, "email" => $CURRENTUSEREMAIL_2, "tag" => $CURRENTUSERTAG_2, "color" => $CURRENTUSERCOLOR_2),
+  array("name" => $CURRENTUSERNAME_3, "initials" => $CURRENTUSERINITIALS_3, "email" => $CURRENTUSEREMAIL_3, "tag" => $CURRENTUSERTAG_3, "color" => $CURRENTUSERCOLOR_3),
+);
+*/
+
 ?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url("/assets/js/spectrum.min.css");?>">
@@ -18,6 +60,7 @@ var CURRENTUSERCOLOR_1 = "<?php //echo $CURRENTUSERCOLOR_1; ?>";
 var SELECTEDUSERS = <?php //echo json_encode($SELECTEDUSERS); ?>;
 var SEPERATOR = '#DK#';	
 */
+
 //var UPLOADEDFILE = BASEURL + '/userassets/uploads/samplepdf.pdf';
 var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
 

@@ -332,7 +332,19 @@
         </div>';
 
         $('#formElementsContainer').append(contextMenu);
+        
+        var inputTipsy = '<div id="bsCustomButton" class="bsCustomButton">\
+        <div class="bs-form-element-type">\
+          <span style="padding: 0px 12px;" id="tipsyText">Insert Signature</span>\
+        </div>\
+        <div class="e-control e-tooltip e-lib">\
+          <span id="bs-span-custom-button" class="bs-span-custom-button" style="height: 24px; width: 24px;">\
+            <img height="24" width="12" src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9JzMwMHB4JyB3aWR0aD0nMzAwcHgnICBmaWxsPSIjNGE1NTY4IiB4bWxuczp4PSJodHRwOi8vbnMuYWRvYmUuY29tL0V4dGVuc2liaWxpdHkvMS4wLyIgeG1sbnM6aT0iaHR0cDovL25zLmFkb2JlLmNvbS9BZG9iZUlsbHVzdHJhdG9yLzEwLjAvIiB4bWxuczpncmFwaD0iaHR0cDovL25zLmFkb2JlLmNvbS9HcmFwaHMvMS4wLyIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDEwMCAxMDA7IiB4bWw6c3BhY2U9InByZXNlcnZlIj48c3dpdGNoPjxmb3JlaWduT2JqZWN0IHJlcXVpcmVkRXh0ZW5zaW9ucz0iaHR0cDovL25zLmFkb2JlLmNvbS9BZG9iZUlsbHVzdHJhdG9yLzEwLjAvIiB4PSIwIiB5PSIwIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIj48L2ZvcmVpZ25PYmplY3Q+PGcgaTpleHRyYW5lb3VzPSJzZWxmIj48Zz48cGF0aCBkPSJNNTAsNTIuOGMyLjMsMCw0LjYtMC45LDYuMi0yLjZMODksMTcuNWMzLjQtMy40LDMuNC05LDAtMTIuNGMtMy40LTMuNC05LTMuNC0xMi40LDBMNTAsMzEuNkwyMy41LDUuMSAgICAgYy0zLjQtMy40LTktMy40LTEyLjQsMGMtMS43LDEuNy0yLjYsNC0yLjYsNi4yYzAsMi4yLDAuOSw0LjUsMi42LDYuMmwzMi43LDMyLjdDNDUuNCw1MS45LDQ3LjcsNTIuOCw1MCw1Mi44eiI+PC9wYXRoPjxwYXRoIGQ9Ik01Ni4yLDk0LjlMODksNjIuMmMzLjQtMy40LDMuNC05LDAtMTIuNGMtMy40LTMuNC05LTMuNC0xMi40LDBMNTAsNzYuM0wyMy41LDQ5LjhjLTMuNC0zLjQtOS0zLjQtMTIuNCwwICAgICBjLTEuNywxLjctMi42LDQtMi42LDYuMmMwLDIuMiwwLjksNC41LDIuNiw2LjJsMzIuNywzMi43YzEuNiwxLjYsMy45LDIuNiw2LjIsMi42QzUyLjMsOTcuNSw1NC42LDk2LjYsNTYuMiw5NC45eiI+PC9wYXRoPjwvZz48L2c+PC9zd2l0Y2g+PC9zdmc+" class="bs-custom-button">\
+          </span>\
+        </div>\
+      </div>';
 
+      $('#formElementsContainer').append(inputTipsy);
 
         $('<svg>', {
             "id": 'formElementsContainer_SVG',
@@ -565,7 +577,7 @@
         var signature = '<g id="signature_'+uniqId+'" class="pdf-form-element" onclick="openSignPad(\'signature_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                       <rect id="signature_'+uniqId+'_rect2" width="124" height="32" fill="#FDF7DB" stroke="#fdf7db"></rect>\
                       <rect id="signature_'+uniqId+'_rect1" width="4" height="32" fill="#FAEA9E" stroke="#fdf7db"></rect>\
-                      <text id="signature_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
+                      <text id="signature_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
               <tspan style="word-break: break-word;" x="4" dy="13">'+tmp_default_value+'</tspan>\
                       </text>\
                   </g>';
@@ -573,7 +585,7 @@
         var signaturein = '<g id="signaturein_'+uniqId+'" class="pdf-form-element" onclick="openSignPad(\'signaturein_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                           <rect id="signaturein_'+uniqId+'_rect2" width="48" height="32" fill="#FDF7DB" stroke="#fdf7db"></rect>\
                           <rect id="signaturein_'+uniqId+'_rect1" width="4" height="32" fill="#FAEA9E" stroke="#fdf7db"></rect>\
-                          <text id="signaturein_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
+                          <text id="signaturein_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
 						  <tspan style="word-break: break-word;" x="4" dy="13">'+tmp_default_value+'</tspan>\
 						  </text>\
                        </g>';
@@ -581,7 +593,7 @@
         var textbox =  '<g id="textbox_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'textbox_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                           <rect id="textbox_'+uniqId+'_rect2" width="80" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                           <rect id="textbox_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                          <text id="textbox_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="'+tmp_font_style+'" font-weight="'+tmp_font_weight+'" text-decoration="'+tmp_text_decoration+'" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
+                          <text id="textbox_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="'+tmp_font_style+'" font-weight="'+tmp_font_weight+'" text-decoration="'+tmp_text_decoration+'" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
                           <tspan style="word-break: break-word;" x="4" dy="13">'+tmp_default_value+'</tspan>\
                           </text>\
                        </g>';
@@ -589,7 +601,7 @@
 		    var datepicker = '<g id="datepicker_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'datepicker_'+uniqId+'\');" '+contEditable+'>\
                            <rect id="datepicker_'+uniqId+'_rect2" width="74.078125" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                            <rect id="datepicker_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                           <text id="datepicker_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("dd/MM/yyyy")+'" date-format="dd/MM/yyyy" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
+                           <text id="datepicker_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("dd/MM/yyyy")+'" date-format="dd/MM/yyyy" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
                            <tspan style="word-break: break-word;" x="4" dy="13">'+currentDate("dd/MM/yyyy")+'</tspan>\
                            </text>\
                        </g>';
@@ -617,7 +629,7 @@
         var name = '<g id="name_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'name_'+uniqId+'\');" '+contEditable+'>\
                        <rect id="name_'+uniqId+'_rect2" width="73.4072265625" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                        <rect id="name_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                       <text id="name_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="Text" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
+                       <text id="name_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="Text" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
                         <tspan style="word-break: break-word;" x="4" dy="13">'+userName()+'</tspan>\
                        </text>\
                     </g>'; 
@@ -626,7 +638,7 @@
         var email = '<g id="email_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'email_'+uniqId+'\');" '+contEditable+'>\
                        <rect id="email_'+uniqId+'_rect2" width="168.15625" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                        <rect id="email_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                       <text id="email_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
+                       <text id="email_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
                         <tspan style="word-break: break-word;" x="4" dy="13">'+userEmail()+'</tspan>\
                        </text>\
                     </g>';
@@ -634,14 +646,14 @@
         var editableDate = '<g id="editableDate_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'editableDate_'+uniqId+'\');" '+contEditable+'>\
                              <rect id="editableDate_'+uniqId+'_rect2" width="95" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                              <rect id="editableDate_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                             <text id="editableDate_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("MM/dd/yyyy")+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
+                             <text id="editableDate_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("MM/dd/yyyy")+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
                               <tspan style="word-break: break-word;" x="4" dy="13">MM/dd/yyyy</tspan>\
                              </text>\
                           </g>';
 
         var label = '<g id="label_'+uniqId+'" class="pdf-form-element" style="visibility: visible;" onclick="openFieldSettings(\'label_'+uniqId+'\');" '+contEditable+'>\
                        <rect id="label_'+uniqId+'_rect1" width="80" height="17" fill="#f4f5eb" stroke="transparent"></rect>\
-                       <text id="label_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="Label" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
+                       <text id="label_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="Label" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
                         <tspan style="word-break: break-word;" x="4" dy="13">Label</tspan>\
                        </text>\
                     </g>';
@@ -649,7 +661,7 @@
         var hyperlink = '<g id="hyperlink_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'hyperlink_'+uniqId+'\');" '+contEditable+'>\
                           <rect id="hyperlink_'+uniqId+'_rect1" width="90" height="20" fill="#f4f5eb" stroke="transparent"></rect>\
                           <image height="16" width="16" id="hyperlink_'+uniqId+'_hyperlinkicon" x="71.6875" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik01IDdDNC43MzQ3OCA3IDQuNDgwNDMgNy4xMDUzNiA0LjI5Mjg5IDcuMjkyODlDNC4xMDUzNiA3LjQ4MDQzIDQgNy43MzQ3OCA0IDhWMTlDNCAxOS4yNjUyIDQuMTA1MzYgMTkuNTE5NiA0LjI5Mjg5IDE5LjcwNzFDNC40ODA0MyAxOS44OTQ2IDQuNzM0NzggMjAgNSAyMEgxNkMxNi4yNjUyIDIwIDE2LjUxOTYgMTkuODk0NiAxNi43MDcxIDE5LjcwNzFDMTYuODk0NiAxOS41MTk2IDE3IDE5LjI2NTIgMTcgMTlWMTNDMTcgMTIuNDQ3NyAxNy40NDc3IDEyIDE4IDEyQzE4LjU1MjMgMTIgMTkgMTIuNDQ3NyAxOSAxM1YxOUMxOSAxOS43OTU3IDE4LjY4MzkgMjAuNTU4NyAxOC4xMjEzIDIxLjEyMTNDMTcuNTU4NyAyMS42ODM5IDE2Ljc5NTcgMjIgMTYgMjJINUM0LjIwNDM1IDIyIDMuNDQxMjkgMjEuNjgzOSAyLjg3ODY4IDIxLjEyMTNDMi4zMTYwNyAyMC41NTg3IDIgMTkuNzk1NiAyIDE5VjhDMiA3LjIwNDM1IDIuMzE2MDcgNi40NDEyOSAyLjg3ODY4IDUuODc4NjhDMy40NDEyOSA1LjMxNjA3IDQuMjA0MzUgNSA1IDVIMTFDMTEuNTUyMyA1IDEyIDUuNDQ3NzIgMTIgNkMxMiA2LjU1MjI4IDExLjU1MjMgNyAxMSA3SDVaIiBmaWxsPSIjMzMzMzMzIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTQgM0MxNCAyLjQ0NzcyIDE0LjQ0NzcgMiAxNSAySDIxQzIxLjU1MjMgMiAyMiAyLjQ0NzcyIDIyIDNWOUMyMiA5LjU1MjI4IDIxLjU1MjMgMTAgMjEgMTBDMjAuNDQ3NyAxMCAyMCA5LjU1MjI4IDIwIDlWNEgxNUMxNC40NDc3IDQgMTQgMy41NTIyOCAxNCAzWiIgZmlsbD0iIzMzMzMzMyIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTIxLjcwNzEgMi4yOTI4OUMyMi4wOTc2IDIuNjgzNDIgMjIuMDk3NiAzLjMxNjU4IDIxLjcwNzEgMy43MDcxMUwxMC43MDcxIDE0LjcwNzFDMTAuMzE2NiAxNS4wOTc2IDkuNjgzNDIgMTUuMDk3NiA5LjI5Mjg5IDE0LjcwNzFDOC45MDIzNyAxNC4zMTY2IDguOTAyMzcgMTMuNjgzNCA5LjI5Mjg5IDEzLjI5MjlMMjAuMjkyOSAyLjI5Mjg5QzIwLjY4MzQgMS45MDIzNyAyMS4zMTY2IDEuOTAyMzcgMjEuNzA3MSAyLjI5Mjg5WiIgZmlsbD0iIzMzMzMzMyIvPgo8L3N2Zz4K" preserveAspectRatio="xMinYMid meet" y="2"></image>\
-                          <text id="hyperlink_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#3E60FF" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'">\
+                          <text id="hyperlink_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#3E60FF" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
                            <tspan style="word-break: break-word;" x="4" dy="13">Hyperlink</tspan>\
                           </text>\
                        </g>';  
@@ -669,7 +681,6 @@
           "hyperlink":hyperlink
 
         };
-
 
         var elm = elemJson[objType];
 		
@@ -719,8 +730,8 @@
       function getElementSavedAttributes(elmId){
         
         var elmIdParts = elmId.split("_");
-            var elmTyp = elmIdParts[0];
-            var elmIdStr = elmIdParts[1];
+        var elmTyp = elmIdParts[0];
+        var elmIdStr = elmIdParts[1];
         
         var font_size = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("font-size");
         var font_family = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("font-family");
@@ -734,6 +745,7 @@
 
         var is_readonly = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("is-readonly");
         var is_required = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("is-required");
+        var is_value_given = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("is-value-given");
         
         if(isReal(font_size) == false){
           font_size = "13px";
@@ -756,7 +768,7 @@
         }
       
       
-        return {"font-size":font_size, "font-family":font_family, "font-style":font_style, "font-weight":font_weight, "text-decoration":text_decoration, "default-value":default_value, "default-user":default_user, "line-height":line_height, "date-format":date_format, "is-readonly":is_readonly, "is-required":is_required};
+        return {"font-size":font_size, "font-family":font_family, "font-style":font_style, "font-weight":font_weight, "text-decoration":text_decoration, "default-value":default_value, "default-user":default_user, "line-height":line_height, "date-format":date_format, "is-readonly":is_readonly, "is-required":is_required, "is-value-given":is_value_given};
       
       }
 
@@ -768,7 +780,7 @@
     function openFieldSettings(elmId){
  
         event.stopPropagation();
-		hideElementBorder();
+		    hideElementBorder();
         $("#"+elmId).addClass("pdf-form-element-border");
         initResizeElement(document.getElementById(elmId));
 
@@ -777,276 +789,286 @@
         var  elmTyp = elmIdParts[0];
         var  elmIdStr = elmIdParts[1];
 
-		//"font-size":font_size, "font-family":font_family, "font-style":font_style, "font-weight":font_weight, "text-decoration":text_decoration, "default-value":default_value, "default-user":default_user, "line-height":line_height, "date-format":date_format
+        //"font-size":font_size, "font-family":font_family, "font-style":font_style, "font-weight":font_weight, "text-decoration":text_decoration, "default-value":default_value, "default-user":default_user, "line-height":line_height, "date-format":date_format
 
-		var fieldValuesObj = getElementSavedAttributes(elmId);
-		console.log("fieldValuesObj");
-		console.log(fieldValuesObj);
-		
-		var font_size = fieldValuesObj["font-size"];
-		var font_family = fieldValuesObj["font-family"];
-		var font_style = fieldValuesObj["font-style"];
-		var font_weight = fieldValuesObj["font-weight"];
-		var text_decoration = fieldValuesObj["text-decoration"];
-		var default_value = fieldValuesObj["default-value"];
-		var default_user = fieldValuesObj["default-user"];
-		var line_height = fieldValuesObj["line-height"];
-		var date_format = fieldValuesObj["date-format"];
+        var fieldValuesObj = getElementSavedAttributes(elmId);
+        console.log("fieldValuesObj");
+        console.log(fieldValuesObj);
+        
+        var font_size = fieldValuesObj["font-size"];
+        var font_family = fieldValuesObj["font-family"];
+        var font_style = fieldValuesObj["font-style"];
+        var font_weight = fieldValuesObj["font-weight"];
+        var text_decoration = fieldValuesObj["text-decoration"];
+        var default_value = fieldValuesObj["default-value"];
+        var default_user = fieldValuesObj["default-user"];
+        var line_height = fieldValuesObj["line-height"];
+        var date_format = fieldValuesObj["date-format"];
+        var is_value_given = fieldValuesObj["is-value-given"];
 
-		//Dynamic HTML Strings
-		//Action buttons html for close & reset
+        //Dynamic HTML Strings
+        //Action buttons html for close & reset
 
-		var resetButton = '<span class="reset-icon"><img src="'+BASEURL+'/assets/images/Blue-Refresh.png" /></span>';
-    resetButton = '';
-		var closeButton = '<a class="settingsClose" href="javascript:void(0);" onclick="showThumbNails();">X</a>';
-		var okButton = '<button type="button" class="btn btn-primary" onclcik="validate();">OK</button>';	
-			
-		//Date format html		
-		var dateFormat = '<div class="settingRow">\
-              <label class="settingRowLabel">Date format</label>\
-              <select class="settingRowFields borderColor textColor" id="date-format" onchange="changeDateFormat(this, \''+elmId+'\');">\
-                <option value="dd/MM/yyyy">dd/MM/yyyy</option>\
-                <option value="MM/dd/yyyy">MM/dd/yyyy</option>\
-                <option value="dd-MMM-yyyy">dd-MMM-yyyy</option>\
-                <option value="MMM-dd-yyyy">MMM-dd-yyyy</option>\
-                <option value="MMM dd, yyyy">MMM dd, yyyy</option>\
-                <option value="dd MMM, yyyy">dd MMM, yyyy</option>\
-              </select>\
-            </div>';
-		
-		//Font options html
-		var fontOptions = '<div class="settingRow">\
-              <label class="settingRowLabel">Font</label>\
-              <select class="settingRowFields borderColor textColor" id="font-family" onchange="changeFontFamily(this, \''+elmId+'\');">\
-                <option value="CourierPrime-Regular">Courier</option>\
-                <option value="Helvetica">Helvetica</option>\
-                <option value="NotoSans-Regular">Noto Sans</option>\
-                <option value="Times-New-Roman">Times New Roman</option>\
-              </select>\
-              <ul class="settingRowFields borderColor" id="font-style">\
-                <li class="settingRowFieldsLi">\
-                  <span id="font-weight">\
-                  <a href="javascript:void(0);" class="font-weight-button bold textColor" onclick="changeBold(this, \''+elmId+'\');">B</a>\
-                  <a href="javascript:void(0);" class="font-weight-button italic textColor" onclick="changeItalic(this, \''+elmId+'\');">I</a>\
-                  <a href="javascript:void(0);" class="font-weight-button underline textColor"  onclick="changeUnderline(this, \''+elmId+'\');">U</a>\
-                  </span>\
-				<span id="font-size">\
-                    <input id="font-size-input" class="borderColor textColor" type="number" max="72" min="7" value="13" onkeyup="changeFontSize(this, \''+elmId+'\');" onchange="changeFontSize(this, \''+elmId+'\');"/>\
-                      <!--<span>\
-                        <a href="javascript:void(0);">+</a>\
-                        <a href="javascript:void(0);">-</a>\
-                    </span>-->\
-                  </span>\
-                </li>\
-                <li class="settingRowFieldsLi">\
-                  <span id="line-height">\
-                    <label class="settingRowLineHeightLabel">Line Height</label>\
-                    <input id="line-height-input" class="borderColor textColor" type="number" max="100" min="15" value="15" onkeyup="changeLineHeight(this, \''+elmId+'\');" onchange="changeLineHeight(this, \''+elmId+'\');"/>\
-                    <!---<span>\
-                      <a href="javascript:void(0);">+</a>\
-                      <a href="javascript:void(0);">-</a>\
-                    </span>--->\
-                  </span>\
-                  <span id="color-picker">\
-                    <label class="settingRowFontColorLabel">Font Color</label>\
-                    <span class="color-action-box borderColor textColor">\
-                      <a href="javascript:void(0);" class="currentFontColor"><span></span></a>\
-                      <a href="javascript:void(0);" class="selectFontColor" onclick="openColorPicker();" data-jscolor="{width: 141,position: \'right\',previewPosition: \'right\', previewSize: 40,palette: [\'#000000\', \'#7d7d7d\', \'#870014\', \'#ec1c23\', \'#ff7e26\', \'#fef100\', \'#22b14b\', \'#00a1e7\', \'#3f47cc\', \'#a349a4\', \'#ffffff\', \'#c3c3c3\', \'#b87957\', \'#feaec9\', \'#ffc80d\', \'#eee3af\', \'#b5e61d\', \'#99d9ea\', \'#7092be\', \'#c8bfe7\',]}">s-c</a>\
-					</span>\
-                  </span>\
-                </li>\
-              </ul>\
-            </div>';
-      fontOptions = '';
-		//Assigned to users html	
-		var default_userArr = default_user.split(SEPERATOR);
-		var tmpCURRENTUSERNAME = default_userArr[0];
-		var tmpCURRENTUSEREMAIL = default_userArr[1];
-		var tmpCURRENTUSERTAG = default_userArr[2];
-		var tmpCURRENTUSERCOLOR = default_userArr[3];
-		var tmpUserClass = tmpCURRENTUSERCOLOR.replace("#","");
-		
-		var usersHtml = '<div class="settingRow">\
-            <label class="settingRowLabel">Assigned to</label>\
-			<span class="settingRowFields borderColor textColor">\
-				<span class="currentUserNameSpanBox">\
-					<span class="currentUserNameSpan" id="currentUserNameSpan">\
-						<span class="userColor" style="background-color:'+tmpCURRENTUSERCOLOR+'"></span><span>'+tmpCURRENTUSERTAG+'</span>\
-					</span>\
-					<a href="javascript:void(0);" onclick="openUsersList();">></a>\
-				</span>\
-				<!--<input type="hidden" id="currentUserNameHidden" value="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"/>-->\
-				<input type="hidden" id="currentUserNameHidden" value="'+default_user+'"/>\
-			</span>\
-			<ul class="settingRowFields borderColor textColor select-user" id="select-user">';
-
-		$.each(SELECTEDUSERS, function(idx, vl){
-			
-			var tmpName = vl.name;
-			var tmpEmail =  vl.email;
-			var tmpTag = vl.tag;
-			var tmpClr = vl.color;
-			var tmpClass = tmpClr.replace("#","");
-			usersHtml += '<li class="userLI '+tmpClass+'" data-value="'+tmpName+SEPERATOR+tmpEmail+SEPERATOR+tmpTag+SEPERATOR+tmpClr+'" onclick="assignUserToField(this,\''+elmId+'\');"><span class="userColor" style="background-color:'+tmpClr+'"></span><span>'+tmpTag+'</span></li>';
-			
-		});
-
-		usersHtml += '</ul></div>';
-
-    usersHtml = '';
-		//Signature settings html
-        var signatureSettings = '<div class="textSettingsConatiner">\
-          <div class="textSettingsHeader borderColor">\
-            <span style="margin-right: 4px; font-size: 18px;"><strong>Textbox settings</strong></span>\
-			'+resetButton+'\
-			'+closeButton+'\
-          </div>\
-          <div class="textSettingsBody">';
-		  
-		signatureSettings += usersHtml;
-		signatureSettings += '</div>\
-        </div>';
-
-		//Signature Initials settings html
-		var signatureinSettings = '<div class="textSettingsConatiner">\
-          <div class="textSettingsHeader borderColor">\
-            <span style="margin-right: 4px; font-size: 18px;"><strong>Textbox settings</strong></span>\
-            '+resetButton+'\
-            '+closeButton+'\
-          </div>\
-          <div class="textSettingsBody">';
-		  
-		signatureinSettings += usersHtml;
-		signatureinSettings += '</div>\
-        </div>';
-
-		//Textbox settings html
-        var textBoxSettings = '<div class="textSettingsConatiner">\
-          <div class="textSettingsHeader borderColor">\
-            <span style="margin-right: 4px; font-size: 18px;"><strong>Textbox settings</strong></span>\
-            '+resetButton+'\
-            '+closeButton+'\
-          </div>\
-          <div class="textSettingsBody">';
-		  
-		textBoxSettings += usersHtml;
-		  
-        textBoxSettings +=  '<div class="settingRow">\
-              <label class="settingRowLabel">Enter Text</label>\
-              <textarea id="default-text" class="settingRowFields borderColor textColor" onKeyup="changeDefaultText(this, \''+elmId+'\');" style="width: 242px; height: 50px; resize: none;" placeholder="Add text here..."></textarea>\
-            </div>';
-        textBoxSettings += fontOptions;
-        textBoxSettings += '</div>\
-        </div>';
-
-		//Label settings html	
-        var labelSettings = '<div class="textSettingsConatiner">\
-          <div class="textSettingsHeader borderColor">\
-            <span style="margin-right: 4px; font-size: 18px;"><strong>Label settings</strong></span>\
-            '+resetButton+'\
-            '+closeButton+'\
-          </div>\
-          <div class="textSettingsBody">'
-		  
-		labelSettings += usersHtml;
-		  
-        labelSettings += '<div class="settingRow">\
-              <label class="settingRowLabel">Enter Text</label>\
-              <input type="text" class="settingRowFields borderColor textColor" onKeyup="changeDefaultText(this, \''+elmId+'\');" placeholder="Add text here..." />\
-            </div>';
-            
-		labelSettings += fontOptions;
-		labelSettings += '</div>\
-        </div>';
-
-		//Hyperlink settings html
-        var hyperlinkSettings = '<div class="textSettingsConatiner">\
-          <div class="textSettingsHeader borderColor">\
-            <span style="margin-right: 4px; font-size: 18px;"><strong>Hyperlink settings</strong></span>\
-            '+resetButton+'\
-            '+closeButton+'\
-          </div>\
-          <div class="textSettingsBody">';
-		  
-		hyperlinkSettings += usersHtml;
-        hyperlinkSettings += '<div class="settingRow">\
-              <label class="settingRowLabel">Text to Display*</label>\
-              <input type="text" class="settingRowFields borderColor textColor" onKeyup="changeDefaultText(this, \''+elmId+'\');" placeholder="Add text here..." />\
-            </div>\
-            <div class="settingRow">\
-              <label class="settingRowLabel">Hyperlink URL*</label>\
-              <input type="text" class="settingRowFields borderColor textColor" onKeyup="changeDefaultHyperlink(this, \''+elmId+'\');" placeholder="Enter your URL here..." />\
-            </div>';
-           
-		hyperlinkSettings += fontOptions;
-		hyperlinkSettings += '</div>\
-        </div>';
-
-		//Signed Date settings html 
-        var dateSignedSettings = '<div class="textSettingsConatiner">\
-          <div class="textSettingsHeader borderColor">\
-            <span style="margin-right: 4px; font-size: 18px;"><strong>Date format settings</strong></span>\
-            '+resetButton+'\
-            '+closeButton+'\
-          </div>\
-          <div class="textSettingsBody">';
-		  
-		dateSignedSettings += usersHtml;
-		dateSignedSettings += dateFormat;
-		dateSignedSettings += fontOptions;
-        dateSignedSettings += '</div>\
-        </div>';
-
-      
-		//Editable Date settings html
-        var dateEditableSettings = '<div class="textSettingsConatiner">\
-          <div class="textSettingsHeader borderColor">\
-            <span style="margin-right: 4px; font-size: 18px;"><strong>Date format settings</strong></span>\
-            '+resetButton+'\
-            '+closeButton+'\
-          </div>\
-          <div class="textSettingsBody">';
+        var resetButton = '<span class="reset-icon"><img src="'+BASEURL+'/assets/images/Blue-Refresh.png" /></span>';
+        resetButton = '';
+        var closeButton = '<a class="settingsClose" href="javascript:void(0);" onclick="showThumbNails();">X</a>';
+        var okButton = '<button type="button" class="btn btn-primary" onclcik="validate();">OK</button>';	
           
-		dateEditableSettings += usersHtml;
-		  
-		dateEditableSettings += '<div class="settingRow">\
-              <label class="settingRowLabel">Set Date</label>\
-              <input type="text" readonly class="settingRowFields borderColor textColor" id="datePicker" onchange="changeDate(this, \''+elmId+'\');">\
+        //Date format html		
+        var dateFormat = '<div class="settingRow">\
+                  <label class="settingRowLabel">Date format</label>\
+                  <select class="settingRowFields borderColor textColor" id="date-format" onchange="changeDateFormat(this, \''+elmId+'\');">\
+                    <option value="dd/MM/yyyy">dd/MM/yyyy</option>\
+                    <option value="MM/dd/yyyy">MM/dd/yyyy</option>\
+                    <option value="dd-MMM-yyyy">dd-MMM-yyyy</option>\
+                    <option value="MMM-dd-yyyy">MMM-dd-yyyy</option>\
+                    <option value="MMM dd, yyyy">MMM dd, yyyy</option>\
+                    <option value="dd MMM, yyyy">dd MMM, yyyy</option>\
+                  </select>\
+                </div>';
+        
+        //Font options html
+        var fontOptions = '<div class="settingRow">\
+                  <label class="settingRowLabel">Font</label>\
+                  <select class="settingRowFields borderColor textColor" id="font-family" onchange="changeFontFamily(this, \''+elmId+'\');">\
+                    <option value="CourierPrime-Regular">Courier</option>\
+                    <option value="Helvetica">Helvetica</option>\
+                    <option value="NotoSans-Regular">Noto Sans</option>\
+                    <option value="Times-New-Roman">Times New Roman</option>\
+                  </select>\
+                  <ul class="settingRowFields borderColor" id="font-style">\
+                    <li class="settingRowFieldsLi">\
+                      <span id="font-weight">\
+                      <a href="javascript:void(0);" class="font-weight-button bold textColor" onclick="changeBold(this, \''+elmId+'\');">B</a>\
+                      <a href="javascript:void(0);" class="font-weight-button italic textColor" onclick="changeItalic(this, \''+elmId+'\');">I</a>\
+                      <a href="javascript:void(0);" class="font-weight-button underline textColor"  onclick="changeUnderline(this, \''+elmId+'\');">U</a>\
+                      </span>\
+            <span id="font-size">\
+                        <input id="font-size-input" class="borderColor textColor" type="number" max="72" min="7" value="13" onkeyup="changeFontSize(this, \''+elmId+'\');" onchange="changeFontSize(this, \''+elmId+'\');"/>\
+                          <!--<span>\
+                            <a href="javascript:void(0);">+</a>\
+                            <a href="javascript:void(0);">-</a>\
+                        </span>-->\
+                      </span>\
+                    </li>\
+                    <li class="settingRowFieldsLi">\
+                      <span id="line-height">\
+                        <label class="settingRowLineHeightLabel">Line Height</label>\
+                        <input id="line-height-input" class="borderColor textColor" type="number" max="100" min="15" value="15" onkeyup="changeLineHeight(this, \''+elmId+'\');" onchange="changeLineHeight(this, \''+elmId+'\');"/>\
+                        <!---<span>\
+                          <a href="javascript:void(0);">+</a>\
+                          <a href="javascript:void(0);">-</a>\
+                        </span>--->\
+                      </span>\
+                      <span id="color-picker">\
+                        <label class="settingRowFontColorLabel">Font Color</label>\
+                        <span class="color-action-box borderColor textColor">\
+                          <a href="javascript:void(0);" class="currentFontColor"><span></span></a>\
+                          <a href="javascript:void(0);" class="selectFontColor" onclick="openColorPicker();" data-jscolor="{width: 141,position: \'right\',previewPosition: \'right\', previewSize: 40,palette: [\'#000000\', \'#7d7d7d\', \'#870014\', \'#ec1c23\', \'#ff7e26\', \'#fef100\', \'#22b14b\', \'#00a1e7\', \'#3f47cc\', \'#a349a4\', \'#ffffff\', \'#c3c3c3\', \'#b87957\', \'#feaec9\', \'#ffc80d\', \'#eee3af\', \'#b5e61d\', \'#99d9ea\', \'#7092be\', \'#c8bfe7\',]}">s-c</a>\
+              </span>\
+                      </span>\
+                    </li>\
+                  </ul>\
+                </div>';
+          fontOptions = '';
+        //Assigned to users html	
+        var default_userArr = default_user.split(SEPERATOR);
+        var tmpCURRENTUSERNAME = default_userArr[0];
+        var tmpCURRENTUSEREMAIL = default_userArr[1];
+        var tmpCURRENTUSERTAG = default_userArr[2];
+        var tmpCURRENTUSERCOLOR = default_userArr[3];
+        var tmpUserClass = tmpCURRENTUSERCOLOR.replace("#","");
+        
+        var usersHtml = '<div class="settingRow">\
+                <label class="settingRowLabel">Assigned to</label>\
+          <span class="settingRowFields borderColor textColor">\
+            <span class="currentUserNameSpanBox">\
+              <span class="currentUserNameSpan" id="currentUserNameSpan">\
+                <span class="userColor" style="background-color:'+tmpCURRENTUSERCOLOR+'"></span><span>'+tmpCURRENTUSERTAG+'</span>\
+              </span>\
+              <a href="javascript:void(0);" onclick="openUsersList();">></a>\
+            </span>\
+            <!--<input type="hidden" id="currentUserNameHidden" value="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"/>-->\
+            <input type="hidden" id="currentUserNameHidden" value="'+default_user+'"/>\
+          </span>\
+          <ul class="settingRowFields borderColor textColor select-user" id="select-user">';
+
+        $.each(SELECTEDUSERS, function(idx, vl){
+          
+          var tmpName = vl.name;
+          var tmpEmail =  vl.email;
+          var tmpTag = vl.tag;
+          var tmpClr = vl.color;
+          var tmpClass = tmpClr.replace("#","");
+          usersHtml += '<li class="userLI '+tmpClass+'" data-value="'+tmpName+SEPERATOR+tmpEmail+SEPERATOR+tmpTag+SEPERATOR+tmpClr+'" onclick="assignUserToField(this,\''+elmId+'\');"><span class="userColor" style="background-color:'+tmpClr+'"></span><span>'+tmpTag+'</span></li>';
+          
+        });
+
+        usersHtml += '</ul></div>';
+
+        usersHtml = '';
+        //Signature settings html
+        var signatureSettings = '<div class="textSettingsConatiner">\
+              <div class="textSettingsHeader borderColor">\
+                <span style="margin-right: 4px; font-size: 18px;"><strong>Textbox settings</strong></span>\
+          '+resetButton+'\
+          '+closeButton+'\
+              </div>\
+              <div class="textSettingsBody">';
+          
+        signatureSettings += usersHtml;
+        signatureSettings += '</div>\
             </div>';
-			
-		dateEditableSettings += dateFormat;
-        dateEditableSettings += fontOptions;
-		dateEditableSettings += '</div>\
+
+        //Signature Initials settings html
+        var signatureinSettings = '<div class="textSettingsConatiner">\
+              <div class="textSettingsHeader borderColor">\
+                <span style="margin-right: 4px; font-size: 18px;"><strong>Textbox settings</strong></span>\
+                '+resetButton+'\
+                '+closeButton+'\
+              </div>\
+              <div class="textSettingsBody">';
+          
+        signatureinSettings += usersHtml;
+        signatureinSettings += '</div>\
+            </div>';
+
+        //Textbox settings html
+        var textBoxSettings = '<div class="textSettingsConatiner">\
+              <div class="textSettingsHeader borderColor">\
+                <span style="margin-right: 4px; font-size: 18px;"><strong>Textbox settings</strong></span>\
+                '+resetButton+'\
+                '+closeButton+'\
+              </div>\
+              <div class="textSettingsBody">';
+          
+        textBoxSettings += usersHtml;
+          
+            textBoxSettings +=  '<div class="settingRow">\
+                  <label class="settingRowLabel">Enter Text</label>\
+                  <textarea id="default-text" class="settingRowFields borderColor textColor" onKeyup="changeDefaultText(this, \''+elmId+'\');" style="width: 242px; height: 50px; resize: none;" placeholder="Add text here..."></textarea>\
+                </div>';
+            textBoxSettings += fontOptions;
+            textBoxSettings += '</div>\
+            <div class="textSettingsFooter">\
+              <button class="btn btn-primary" onclick="okayValue(\'default-text\',\''+elmId+'\');">Okay</button>\
+            </div>\
+          </div>';
+
+        //Label settings html	
+            var labelSettings = '<div class="textSettingsConatiner">\
+              <div class="textSettingsHeader borderColor">\
+                <span style="margin-right: 4px; font-size: 18px;"><strong>Label settings</strong></span>\
+                '+resetButton+'\
+                '+closeButton+'\
+              </div>\
+              <div class="textSettingsBody">';
+          
+        labelSettings += usersHtml;
+          
+            labelSettings += '<div class="settingRow">\
+                  <label class="settingRowLabel">Enter Text</label>\
+                  <input type="text" id="default-text" class="settingRowFields borderColor textColor" onKeyup="changeDefaultText(this, \''+elmId+'\');" placeholder="Add text here..." />\
+                </div>';
+                
+        labelSettings += fontOptions;
+        labelSettings += '</div>\
+        <div class="textSettingsFooter">\
+          <button class="btn btn-primary" onclick="okayValue(\'default-text\',\''+elmId+'\');">Okay</button>\
+        </div>\
         </div>';
 
+        //Hyperlink settings html
+            var hyperlinkSettings = '<div class="textSettingsConatiner">\
+              <div class="textSettingsHeader borderColor">\
+                <span style="margin-right: 4px; font-size: 18px;"><strong>Hyperlink settings</strong></span>\
+                '+resetButton+'\
+                '+closeButton+'\
+              </div>\
+              <div class="textSettingsBody">';
+          
+        hyperlinkSettings += usersHtml;
+            hyperlinkSettings += '<div class="settingRow">\
+                  <label class="settingRowLabel">Text to Display*</label>\
+                  <input type="text" class="settingRowFields borderColor textColor" onKeyup="changeDefaultText(this, \''+elmId+'\');" placeholder="Add text here..." />\
+                </div>\
+                <div class="settingRow">\
+                  <label class="settingRowLabel">Hyperlink URL*</label>\
+                  <input type="text" class="settingRowFields borderColor textColor" id="default-text" onKeyup="changeDefaultHyperlink(this, \''+elmId+'\');" placeholder="Enter your URL here..." />\
+                </div>';
+              
+        hyperlinkSettings += fontOptions;
+        hyperlinkSettings += '</div>\
+        <div class="textSettingsFooter">\
+          <button class="btn btn-primary" onclick="okayValue(\'default-text\',\''+elmId+'\');">Okay</button>\
+        </div>\
+            </div>';
 
-		//Name settings html
-        var nameSettings = '<div class="textSettingsConatiner">\
-          <div class="textSettingsHeader borderColor">\
-            <span style="margin-right: 4px; font-size: 18px;"><strong>Name settings</strong></span>\
-            '+resetButton+'\
-            '+closeButton+'\
-          </div>\
-          <div class="textSettingsBody">';
-		
-		nameSettings += usersHtml;
-		nameSettings += fontOptions;
-		nameSettings += '</div>\
-        </div>';
-	
-		//Email settings html
-        var emailSettings = '<div class="textSettingsConatiner">\
-          <div class="textSettingsHeader borderColor">\
-            <span style="margin-right: 4px; font-size: 18px;"><strong>Email settings</strong></span>\
-            '+resetButton+'\
-            '+closeButton+'\
-          </div>\
-          <div class="textSettingsBody">';
-		  
-		emailSettings += usersHtml;
-		emailSettings += fontOptions;
-		emailSettings += '</div>\
-        </div>';
+        //Signed Date settings html 
+            var dateSignedSettings = '<div class="textSettingsConatiner">\
+              <div class="textSettingsHeader borderColor">\
+                <span style="margin-right: 4px; font-size: 18px;"><strong>Date format settings</strong></span>\
+                '+resetButton+'\
+                '+closeButton+'\
+              </div>\
+              <div class="textSettingsBody">';
+          
+        dateSignedSettings += usersHtml;
+        dateSignedSettings += dateFormat;
+        dateSignedSettings += fontOptions;
+        dateSignedSettings += '</div>\
+            </div>';
+
+          
+        //Editable Date settings html
+            var dateEditableSettings = '<div class="textSettingsConatiner">\
+              <div class="textSettingsHeader borderColor">\
+                <span style="margin-right: 4px; font-size: 18px;"><strong>Date format settings</strong></span>\
+                '+resetButton+'\
+                '+closeButton+'\
+              </div>\
+              <div class="textSettingsBody">';
+              
+        dateEditableSettings += usersHtml;
+          
+        dateEditableSettings += '<div class="settingRow">\
+                  <label class="settingRowLabel">Set Date</label>\
+                  <input type="text" readonly class="settingRowFields borderColor textColor" id="datePicker" onchange="changeDate(this, \''+elmId+'\');">\
+                </div>';
+          
+        dateEditableSettings += dateFormat;
+            dateEditableSettings += fontOptions;
+        dateEditableSettings += '</div>\
+            </div>';
+
+
+        //Name settings html
+            var nameSettings = '<div class="textSettingsConatiner">\
+              <div class="textSettingsHeader borderColor">\
+                <span style="margin-right: 4px; font-size: 18px;"><strong>Name settings</strong></span>\
+                '+resetButton+'\
+                '+closeButton+'\
+              </div>\
+              <div class="textSettingsBody">';
+        
+        nameSettings += usersHtml;
+        nameSettings += fontOptions;
+        nameSettings += '</div>\
+            </div>';
+      
+        //Email settings html
+            var emailSettings = '<div class="textSettingsConatiner">\
+              <div class="textSettingsHeader borderColor">\
+                <span style="margin-right: 4px; font-size: 18px;"><strong>Email settings</strong></span>\
+                '+resetButton+'\
+                '+closeButton+'\
+              </div>\
+              <div class="textSettingsBody">';
+          
+        emailSettings += usersHtml;
+        emailSettings += fontOptions;
+        emailSettings += '</div>\
+            </div>';
 
 	
 
@@ -1535,8 +1557,80 @@
 
 
     /*==== New Code for Signature process ====*/
+    var inputSequence = [];
+    var currInptElmIdx;
     function startSigning(){
-     //scroll document input wise one by one for sign collection
+      //scroll document input wise one by one for sign collection
+      inputSequence = [];
+      var mvTpsyIdx;
+      var mvTpsyObj = {};
+      $(".pdf-form-element").each(function(i,e){
+
+        var tmpInptElmId = $(e).attr("id");
+        
+        if(i < 1){
+          
+          var elmTop = $(e).css("top");
+          var elmLft = $(e).css("left");
+          mvTpsyIdx = i; 
+          mvTpsyObj = {"top":elmTop, "left":elmLft};
+          
+          if(mvTpsyIdx >= 0 && isReal(mvTpsyObj)){
+            moveInputTipsy(mvTpsyIdx, mvTpsyObj);
+          }
+
+        }
+        
+        /*var arrIdx =  inputSequence.indexOf(tmpInptElmId);
+
+        if(arrIdx > -1){*/
+          currInptElmIdx = i;
+          inputSequence.push(tmpInptElmId);
+        /*}*/
+      
+      });
+
+    }
+
+    function moveInputTipsy(i, obj){
+      
+      var tmpLftStr = obj.left;
+      var tmpLftNum = tmpLftStr.replace("px", "");
+      tmpLftNum = parseInt(tmpLftNum) - 120;
+      var newTmpLft = tmpLftNum+"px";
+
+      $("#bsCustomButton").css({"top":obj.top, "left":newTmpLft});
+      $("#bsCustomButton").show();
+      
+      $("#bs-span-custom-button").attr("onclick", "gotoNextElm("+i+");");
+    }
+
+    function gotoNextElm(pi){
+      
+      var arrSz = inputSequence.length;
+      var i = pi + 1;
+      var nxtElm = inputSequence[i];
+      
+      if(i < arrSz){
+        
+        if(isReal(nxtElm)){
+        
+          var e = $("#"+nxtElm);
+  
+          var elmTop = $(e).css("top");
+          var elmLft = $(e).css("left");
+          mvTpsyIdx = i; 
+          mvTpsyObj = {"top":elmTop, "left":elmLft};
+          
+          if(mvTpsyIdx >= 0 && isReal(mvTpsyObj)){
+            
+            moveInputTipsy(mvTpsyIdx, mvTpsyObj);
+          }
+        
+        }
+
+      }
+      
     }
 
     function openSignPad(elmId){

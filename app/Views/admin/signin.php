@@ -8,14 +8,14 @@
 
 
 <!-- Pills navs -->
-<div class="container mt-5">
+<div class="signInUpFormContainer container mt-5">
 	<ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
 	<li class="nav-item" role="presentation">
-		<a class="nav-link active" id="tab-login" data-mdb-toggle="pill" role="tab"
+		<a class="nav-link active tab-login" id="tab-login" data-mdb-toggle="pill" role="tab"
 		aria-controls="pills-login" aria-selected="true" href="<?php echo base_url("signin"); ?>">Login</a>
 	</li>
 	<li class="nav-item" role="presentation">
-		<a class="nav-link" id="tab-register" data-mdb-toggle="pill" role="tab"
+		<a class="nav-link tab-register" id="tab-register" data-mdb-toggle="pill" role="tab"
 		aria-controls="pills-register" aria-selected="false" href="<?php echo base_url("signup"); ?>" >Register</a>
 	</li>
 	</ul>
@@ -23,19 +23,19 @@
 
 	<!-- Pills content -->
 	<div class="tab-content">
-	<div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+	<div class="tab-pane fade show active pills-login" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
 		<form action="javascript:void(0);">
 		
 		<!-- Email input -->
 		<div class="form-outline mb-4">
-			<input type="email" id="loginEmail" class="form-control" />
-			<label class="form-label" for="loginEmail">Email</label>
+			<input type="email" id="loginEmail" class="form-control" onfocus="setPlaceholder('loginEmailPlaceholder');" onfocusout="resetPlaceholder('loginEmailPlaceholder');"/>
+			<label id="loginEmailPlaceholder" class="form-label inputPlaceholderPosition inputPlaceholderAnimateCenter" for="loginEmail">Email address</label>
 		</div>
-
+		
 		<!-- Password input -->
 		<div class="form-outline mb-4">
-			<input type="password" id="loginPassword" class="form-control" />
-			<label class="form-label" for="loginPassword">Password</label>
+			<input type="password" id="loginPassword" class="form-control" onfocus="setPlaceholder('loginPasswordPlaceholder');" onfocusout="resetPlaceholder('loginPasswordPlaceholder');"/>
+			<label id="loginPasswordPlaceholder" class="form-label inputPlaceholderPosition inputPlaceholderAnimateCenter" for="loginPassword">Password</label>
 		</div>
 
 		<!-- 2 column grid layout -->
@@ -57,7 +57,9 @@
 		-->
 
 		<!-- Submit button -->
-		<button type="submit" class="btn btn-primary btn-block mb-4" onclick="signIn();">Sign in</button>
+		<div class="form-outline mb-4">
+			<button type="submit" class="btn btn-primary btn-block mb-4" onclick="signIn();">Sign in</button>
+		</div>
 
 		<!-- Register buttons -->
 		<div class="text-center">
@@ -70,6 +72,22 @@
 </div>
 <script>
 	var accountVerification = "<?php echo $accountVerification; ?>";
+
+	function setPlaceholder(elmId){
+		$("#"+elmId).addClass("inputPlaceholderAnimateTop",125);
+		$("#"+elmId).removeClass("inputPlaceholderAnimateCenter",125);		
+	}
+
+	function  resetPlaceholder(elmId){
+		
+		var forAttr = $("#"+elmId).attr("for");
+		
+		if(!isReal($("#"+forAttr).val())){
+			$("#"+elmId).addClass("inputPlaceholderAnimateCenter",125);
+			$("#"+elmId).removeClass("inputPlaceholderAnimateTop",125);
+		}
+	}
+
 	function signIn(){
 		
 		var email = $("#loginEmail").val();

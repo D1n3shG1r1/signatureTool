@@ -20,19 +20,69 @@
     "warning"=>"#ffc107",
     "danger"=>"#dc3545",
     "light"=>"#f8f9fa",
-    "dark"=>"#343a40"
+    "dark"=>"#343a40",
+	"night-blue"=>"#151B54",
+	"silk-blue"=>"#488AC7",
+	"blue-angel"=>"#B7CEEC",
+	"lavender-blue"=>"#E3E4FA",
+	"electric-blue"=>"#9AFEFF",	
+	"tiffany-blue"=>"#81D8D0",
+	"sea-turtle-green"=>"#438D80",
+	"olive"=>"#808000",
+	"green-leaves"=>"#3A5F0B",	
+	"moss-green"=>"#8A9A5B",	
+	"acid-green"=>"#B0BF1A",	
+	"organic-brown"=>"#E3F9A6",	
+	"parchment"=>"#FFFFC2",	
+	"mint-cream"=>"#F5FFFA",	
+	"champagne"=>"#F7E7CE",	
+	"coral-peach"=>"#FBD5AB", 
+	"macaroni-and-cheese"=>"#F2BB66",	
+	"sage"=>"#BCB88A",	
+	"caramel"=>"#C68E17",	
+	"dark-beige"=>"#9F8C76",	
+	"old-burgundy"=>"#43302E",	
+	"coral-brown"=>"#9E4638",
+	"tomato"=>"#FF6347",	
+	"purple-lily"=>"#550A35",	
+	"tulip-pink"=>"#C25A7C",	
+	"pink-plum"=>"#B93B8F",	
+	"blush"=>"#FFE6E8",	
+	"chocolate"=>"#D2691E",	
+	"metallic-green"=>"#7C9D8E",
+	"papaya-whip" => "#FFEFD5"
 	);
 
+	$COLORSINDXARR = array("#C0C0C0","#C9C0BB","#E5E4E2","#98AFC7","#737CA1","#728FCE","#87AFC7","#87CEFA","#B7CEEC","#BDEDFF","#B0E0E6","#E3E4FA","#EBF4FA","#CCFFFF","#8EEBEC","#66CDAA","#40E0D0","#3B9C9C","#848B79","#6AA121","#8A9A5B","#73A16C","#99C68E","#9CB071","#98FF98","#E3F9A6","#C2E5D3","#E8F1D4","#FFFFC2","#F5F5DC","#F7E7CE","#FAEBD7","#FFE4B5","#FBE7A1","#E8E4C9","#F2BB66","#C19A6B","#E6BF83","#C2B280","#BCB88A","#B5A642","#D4A017","#AB784E","#835C3B","#A0522D","#C34A2C","#F9966B","#F98B88","#7F525D","#E8ADAA");
 
+	
+$SELECTEDUSERS = array();
+if(!$recipients){
+	$recipients = array();
+}
+foreach($recipients as $k=> $tmpRcp){
+  
+  $tag = $tmpRcp["name"];
+  if(strtolower($tmpRcp["email"]) == strtolower($loginEmail)){
+    $tag = "Me";
+  }
+
+  $SELECTEDUSERS[] = array(
+    "name" => $tmpRcp["name"],
+    "initials" => ucwords($tmpRcp["name"]),
+    "email" => $tmpRcp["email"],
+    "tag" => ucfirst($tag),
+    "color" => $COLORSINDXARR[$k]
+  );
+}
   //$hostUrl = "http://localhost/esigntool/";
   
-
-  $CURRENTUSERNAME_1 = "Dinesh Kumar";
-  $CURRENTUSERINITIALS_1 = "DK";
-  $CURRENTUSEREMAIL_1 = "upkit.dineshgiri@gmail.com";
-  $CURRENTUSERTAG_1 = "Me";
-  $CURRENTUSERCOLOR_1 = $COLORSARR["blue"];
-
+  $CURRENTUSERNAME_1 = $SELECTEDUSERS[0]["name"];
+  $CURRENTUSERINITIALS_1 = $SELECTEDUSERS[0]["initials"];
+  $CURRENTUSEREMAIL_1 = $SELECTEDUSERS[0]["email"];
+  $CURRENTUSERTAG_1 = $SELECTEDUSERS[0]["tag"];
+  $CURRENTUSERCOLOR_1 = $SELECTEDUSERS[0]["color"];
+/*
   $CURRENTUSERNAME_2 = "Kishan Rathore";
   $CURRENTUSERINITIALS_2 = "KR";
   $CURRENTUSEREMAIL_2 = "upkit.rashikasapru@gmail.com";
@@ -44,12 +94,12 @@
   $CURRENTUSEREMAIL_3 = "upkit.pamposhdhar@gmail.com";
   $CURRENTUSERTAG_3 = "Pamposh";
   $CURRENTUSERCOLOR_3 = $COLORSARR["orange"];
-
-  $SELECTEDUSERS = array(
+*/
+  /*$SELECTEDUSERS = array(
     array("name" => $CURRENTUSERNAME_1, "initials" => $CURRENTUSERINITIALS_1, "email" => $CURRENTUSEREMAIL_1, "tag" => $CURRENTUSERTAG_1, "color" => $CURRENTUSERCOLOR_1),
     array("name" => $CURRENTUSERNAME_2, "initials" => $CURRENTUSERINITIALS_2, "email" => $CURRENTUSEREMAIL_2, "tag" => $CURRENTUSERTAG_2, "color" => $CURRENTUSERCOLOR_2),
     array("name" => $CURRENTUSERNAME_3, "initials" => $CURRENTUSERINITIALS_3, "email" => $CURRENTUSEREMAIL_3, "tag" => $CURRENTUSERTAG_3, "color" => $CURRENTUSERCOLOR_3),
-  );
+  );*/
 
  //echo "<pre>"; print_r($_SERVER["DOCUMENT_ROOT"]); die;
  ?>

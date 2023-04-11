@@ -29,8 +29,13 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+//$routes->get('/', 'Home::index');
+
+$routes->get('/pagenotfound', 'Document::pagenotfound');
+$routes->get('/', 'Admin::signin');
 $routes->get('/signin', 'Admin::signin');
+//$routes->addRedirect('/signin', 'signin');
+
 $routes->post('/signin', 'Admin::signin');
 $routes->get('/signup', 'Admin::signup');
 $routes->post('/signup', 'Admin::signup');
@@ -45,6 +50,8 @@ $routes->post('/fileupload', 'Document::fileupload');
 $routes->post('/filedelete', 'Document::filedelete');
 $routes->post('/send', 'Document::saveandsenddocument');
 $routes->get('/sign', 'Document::sign');
+$routes->post('/verifyaccesscode', 'Document::sign');
+
 //$routes->get('/processsign', 'Document::processsign');
 
 $routes->get('/processsignstatic', 'Document::processsignstatic');
@@ -53,9 +60,12 @@ $routes->post('/processsign', 'Document::processsign');
 $routes->post('/writesigndata', 'Document::writesigndata');
 
 
-// $routes->get('/sendDocuSingColl/(:any)', 'Emailengine::sendDocuSingColl');
 $routes->cli('emailengine/sendDocuSingColl/(:segment)', 'Emailengine::sendDocuSingColl/$1');
 $routes->get('/test', 'Document::test');
+$routes->post('/sendDocAccessOtp', 'Document::sendDocAccessOtp');
+$routes->get('emailengine/sendDocuSingColl/(:segment)', 'Emailengine::sendDocuSingColl/$1');
+$routes->get('emailengine/sendOtpEmail/(:segment)', 'Emailengine::sendOtpEmail/$1');
+
 // $routes->get('/prepare/{id}', 'Document::prepare');
 
 /*

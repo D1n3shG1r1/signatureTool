@@ -4,15 +4,15 @@
 		<span class="appName"><img src="<?php echo base_url("/assets/images/logocl.png"); ?>" /></span>
 	</div>
 </div>
-<div class="container mt-5">
+<div class="signInUpFormContainer container mt-5">
   <!-- Pills navs -->
   <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
     <li class="nav-item" role="presentation">
-      <a class="nav-link" id="tab-login" data-mdb-toggle="pill" role="tab"
+      <a class="nav-link tab-login" id="tab-login" data-mdb-toggle="pill" role="tab"
         aria-controls="pills-login" aria-selected="true" href="<?php echo site_url("signin"); ?>">Login</a>
     </li>
     <li class="nav-item" role="presentation">
-      <a class="nav-link active" id="tab-register" data-mdb-toggle="pill" role="tab"
+      <a class="nav-link active tab-register" id="tab-register" data-mdb-toggle="pill" role="tab"
         aria-controls="pills-register" aria-selected="false" href="<?php echo site_url("signup"); ?>">Register</a>
     </li>
   </ul>
@@ -20,37 +20,37 @@
 
   <!-- Pills content -->
   <div class="tab-content">
-    <div class="tab-pane fade show active" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+    <div class="tab-pane fade show active pills-register" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
       <form action="javascript:void(0);">
         
         <!-- Name input -->
         <div class="form-outline mb-4">
-          <input type="text" id="registerFName" class="form-control" />
-          <label class="form-label" for="registerFName">First Name</label>
+          <input type="text" id="registerFName" class="form-control" onfocus="setPlaceholder('registerFNamePlaceholder');" onfocusout="resetPlaceholder('registerFNamePlaceholder');"/>
+          <label class="form-label inputPlaceholderPosition inputPlaceholderAnimateCenter" id="registerFNamePlaceholder" for="registerFName">First Name</label>
         </div>
 
         <!-- Username input -->
         <div class="form-outline mb-4">
-          <input type="text" id="registerLName" class="form-control" />
-          <label class="form-label" for="registerLName">Last Name</label>
+          <input type="text" id="registerLName" class="form-control" onfocus="setPlaceholder('registerLNamePlaceholder');" onfocusout="resetPlaceholder('registerLNamePlaceholder');"/>
+          <label class="form-label inputPlaceholderPosition inputPlaceholderAnimateCenter" id="registerLNamePlaceholder" for="registerLName">Last Name</label>
         </div>
 
         <!-- Email input -->
         <div class="form-outline mb-4">
-          <input type="email" id="registerEmail" class="form-control" />
-          <label class="form-label" for="registerEmail">Email</label>
+          <input type="email" id="registerEmail" class="form-control" onfocus="setPlaceholder('registerEmailPlaceholder');" onfocusout="resetPlaceholder('registerEmailPlaceholder');"/>
+          <label class="form-label inputPlaceholderPosition inputPlaceholderAnimateCenter" id="registerEmailPlaceholder" for="registerEmail">Email</label>
         </div>
 
         <!-- Password input -->
         <div class="form-outline mb-4">
-          <input type="password" id="registerPassword" class="form-control" />
-          <label class="form-label" for="registerPassword">Password</label>
+          <input type="password" id="registerPassword" class="form-control" onfocus="setPlaceholder('registerPasswordPlaceholder');" onfocusout="resetPlaceholder('registerPasswordPlaceholder');"/>
+          <label class="form-label inputPlaceholderPosition inputPlaceholderAnimateCenter" id="registerPasswordPlaceholder" for="registerPassword">Password</label>
         </div>
 
         <!-- Repeat Password input -->
         <div class="form-outline mb-4">
-          <input type="password" id="registerRepeatPassword" class="form-control" />
-          <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+          <input type="password" id="registerRepeatPassword" class="form-control" onfocus="setPlaceholder('registerRepeatPasswordPlaceholder');" onfocusout="resetPlaceholder('registerRepeatPasswordPlaceholder');"/>
+          <label class="form-label inputPlaceholderPosition inputPlaceholderAnimateCenter" id="registerRepeatPasswordPlaceholder" for="registerRepeatPassword">Repeat password</label>
         </div>
 
         <!-- Checkbox -->
@@ -64,13 +64,32 @@
         </div>
       -->
         <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-3" onclick="signUp();">Sign Up</button>
+        <div class="form-outline mb-4">
+          <button type="submit" class="btn btn-primary btn-block mb-3" onclick="signUp();">Sign Up</button>
+        </div>
       </form>
     </div>
   </div>
   <!-- Pills content -->
 </div>
 <script>
+
+  
+	function setPlaceholder(elmId){
+		$("#"+elmId).addClass("inputPlaceholderAnimateTop",125);
+		$("#"+elmId).removeClass("inputPlaceholderAnimateCenter",125);		
+	}
+
+	function  resetPlaceholder(elmId){
+    
+		var forAttr = $("#"+elmId).attr("for");
+		
+		if(!isReal($("#"+forAttr).val())){
+		  $("#"+elmId).addClass("inputPlaceholderAnimateCenter",125);
+		  $("#"+elmId).removeClass("inputPlaceholderAnimateTop",125);
+    }
+	}
+
 	function signUp(){
 		
 		var registerFName = $("#registerFName").val();

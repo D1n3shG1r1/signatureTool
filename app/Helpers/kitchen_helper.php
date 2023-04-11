@@ -1,4 +1,5 @@
 <?php
+
 if(!function_exists('touchFile')){
     function touchFile($fileName){
         if($fileName){
@@ -144,5 +145,33 @@ if(!function_exists('fileRead')){
     }
 }
 
+
+if(!function_exists('genOtp')){
+    function genOtp(){
+
+        $otp = rand(000000,999999);
+        return $otp;
+    }
+}
+
+if(!function_exists('customredirect')){
+    function customredirect($routeName){
+        
+        header('Location: '.site_url($routeName)); die;
+    }
+}
+
+if(!function_exists('dateDiffMinutes')){
+    function dateDiffMinutes($dt1, $dt2){
+        
+        $from = strtotime($dt1);
+        $to = strtotime($dt2);
+
+        //$hourdiff = round((strtotime($time1) - strtotime($time2))/3600, 1);
+
+        $diff = round(abs($to - $from) / 60,2);
+        return $diff;
+    }
+}
 
 ?>

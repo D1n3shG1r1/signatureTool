@@ -1,0 +1,39 @@
+ERROR - 2023-03-31 11:14:18 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND `user_id` = 1673874254153097' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `file_na...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `file_na...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `file_na...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(37): CodeIgniter\Database\BaseConnection->query('SELECT `file_na...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(189): App\Models\Document_Model->getUploadedFileData(NULL, '167387425415309...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->prepare('168026057562590...')
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-03-31 11:14:18 --> Call to a member function getRowArray() on bool
+in APPPATH\Models\Document_Model.php on line 38.
+ 1 APPPATH\Controllers\Document.php(189): App\Models\Document_Model->getUploadedFileData(null, '1673874254153097')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepare('1680260575625909')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-31 11:46:59 --> Call to a member function get() on null
+in APPPATH\Views\admin\documentprepare.php on line 2.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('admin/documentprepare', [], true)
+ 4 APPPATH\Controllers\Document.php(223): view('admin/documentprepare', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepare('1680260575625909')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-31 11:50:38 --> Call to undefined function uc_words()
+in APPPATH\Views\admin\documentprepare.php on line 13.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('admin/documentprepare', [], true)
+ 4 APPPATH\Controllers\Document.php(226): view('admin/documentprepare', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepare('1680260575625909')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
