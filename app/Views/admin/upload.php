@@ -259,6 +259,7 @@
                         </div>
                         <div class="mb-4 custom-checkbox">
                             <input type="checkbox" name="alertOneDyBfrExp" id="alertOneDyBfrExp" onchange="setalertOneDyBfrExp('alertOneDyBfrExp');" value="0"> <label>Alert 1 day before expiry</label>
+                            <input type="hidden" id="alertOneDyBfrExpInput" name="alertOneDyBfrExpInput" value="0">
                         </div>
                         <!--
                             <div class="mb-4">
@@ -744,8 +745,10 @@
     function setalertOneDyBfrExp(elmId){
         if($("#"+elmId).is(":checked")){
             $("#"+elmId).val(1);
+            $("#alertOneDyBfrExpInput").val(1);
         }else{
             $("#"+elmId).val(0);
+            $("#alertOneDyBfrExpInput").val(0);
         }
     }
 

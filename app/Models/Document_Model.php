@@ -21,7 +21,8 @@ class Document_Model extends Model
 		//echo "insertData:<pre>"; print_r($insertData); die;
 		$table = $this->db->table('e_sign_uploaded_files');
 		$table->insert($insertData);
-	
+		//echo $query = $this->db->getLastQuery();
+		
 		if($this->db->affectedRows() > 0){
 			return $insertData["id"];
 		}else{
@@ -92,9 +93,8 @@ class Document_Model extends Model
 	function getSignerDocumentRawData($docId){
 
 		$result = array();	
+		//$cmd = "SELECT * FROM `e_sign_document_signers` WHERE `documentId` = '$docId' AND `documentExpired` = 0 AND `document_status` != 'signed'";
 		$cmd = "SELECT * FROM `e_sign_document_signers` WHERE `documentId` = '$docId' AND `documentExpired` = 0";
-		
-		
 		$query = $this->db->query($cmd);
 		$signerResult = $query->getRowArray();
 		
@@ -107,7 +107,6 @@ class Document_Model extends Model
 			$query = $this->db->query($cmd);
 			$parentDocResult = $query->getRowArray();
 		
-
 			$result["parentDoc"] = $parentDocResult;
 			$result["signerData"] = $signerResult;
 
@@ -132,7 +131,7 @@ class Document_Model extends Model
 	}
 
 	function updatePartySignStatus($documentId, $email, $status){
-		
+		$isComplete = 1;
 		$cmd = "SELECT `id`, `document_status` FROM `e_sign_documents` WHERE `documentId` = '$documentId'";
 		
 		$query = $this->db->query($cmd);
@@ -151,6 +150,12 @@ class Document_Model extends Model
 				}
 			}
 			
+
+			foreach($newUpdateArr as $tmpNewUpdateRw){
+				if(strtolower($tmpNewUpdateRw["status"]) != "signed"){
+					$isComplete = 0;
+				}
+			}
 		}
 
 		if(!empty($newUpdateArr)){
@@ -158,6 +163,7 @@ class Document_Model extends Model
 			
 			$table = $this->db->table('e_sign_documents');
 			$table->set('document_status', $newUpdateJson);
+			$table->set('isComplete', $isComplete);
 			$table->where('documentId', $documentId);
 			$table->update();
 			
@@ -171,6 +177,9 @@ class Document_Model extends Model
 		}
 		
 	}
+
+	
+	
 
 	function updateSignerDocStatus($signerDocumentId, $status){
 		
@@ -199,14 +208,13 @@ class Document_Model extends Model
 		}
 	}
 
-	function getDocumentByUser($signerId, $signerDocumentId){
+	function getDocumentByUser($signerEmail, $signerDocumentId){
 		$result = array();	
-		$cmd = "SELECT `id`,`parentDocument`,`signerId` FROM `e_sign_document_signers` WHERE `signerId` = '$signerId' AND `documentId` ='$signerDocumentId'";
+		$cmd = "SELECT `id`,`parentDocument`,`signerId`, `signerEmail` FROM `e_sign_document_signers` WHERE `signerEmail` = '$signerEmail' AND `documentId` ='$signerDocumentId'";
 		
 		$query = $this->db->query($cmd);
 		$result = $query->getRowArray();
 		
-
 		if(!empty($result)){
 			$parentDocumentId = $result["parentDocument"];
 			//get document owner
@@ -281,6 +289,15 @@ class Document_Model extends Model
 		return $result;
 	}
 
+
+	function getSenderIdByDoc($docId){
+		
+		$cmd = "SELECT `senderId` FROM `e_sign_documents` WHERE `documentId` = '$docId'";
+		$query = $this->db->query($cmd);
+		$documentResult = $query->getRowArray();
+		return $documentResult;
+	}
+
 	function updateDocAccessOTP($docId, $otp){
 		
 		$result = array();	
@@ -317,6 +334,105 @@ class Document_Model extends Model
 		return $result;
 	}
 
+	function getMyDocuments($userId,$offset=0){
+	
+		$cmd = "SELECT `uploadId`, `documentId`, `no_of_parties`, `documentPath`, `isComplete`, `created_at` FROM `e_sign_documents` WHERE `senderId` = $userId LIMIT 10 OFFSET $offset";
+		$query = $this->db->query($cmd);
+		$documentRows = $query->getResultArray();
+		
+		if(!empty($documentRows)){
+			$docDetailsArr = array();
+			$uploadIdsArr = array();
+
+			foreach($documentRows as $docRw){
+				$uploadIdsArr[] = $docRw['uploadId'];
+			}
+			
+			$uploadIdsStr = implode(",", $uploadIdsArr);
+			//get document custom-title
+			$cmd = "SELECT `id`,`file_name`, `system_file_name`, `documentTitle` FROM `e_sign_uploaded_files` WHERE `id` IN($uploadIdsStr) AND `user_id` = $userId";
+			$query = $this->db->query($cmd);
+			$uploadRows = $query->getResultArray();
+
+			if(!empty($uploadRows)){
+				foreach($uploadRows as $upldRw){
+					$tmpId = $upldRw["id"];
+					$docDetailsArr[$tmpId] = $upldRw;
+				}
+			}
+
+			foreach($documentRows as &$docRw){
+				$tmpId = $docRw['uploadId'];
+				
+				$docRw['docDetails'] = $docDetailsArr[$tmpId];
+			}
+
+		}
+
+		return $documentRows;
+
+	}
+
+
+	function getSignedDocument($documentId, $userId){
+
+		$cmd = "SELECT `id`, `uploadId`, `documentId`, `no_of_parties`, `documentPath`, `isComplete`, `created_at` FROM `e_sign_documents` WHERE `senderId` = $userId AND `documentId` = '$documentId'";
+		$query = $this->db->query($cmd);
+		$documentRow = $query->getRowArray();
+		
+		//document details
+		//echo "<pre>";
+		//print_r($documentRow);
+		$finalResult = array();
+		if(!empty($documentRow)){
+			
+			$finalResult["masterDocument"] = $documentRow;
+
+			$parentDocumentId = $documentRow["id"];
+			$uploadId = $documentRow["uploadId"];
+
+			$cmd = "SELECT `first_name`, `last_name`, `email` FROM `users` WHERE `id` = $userId";
+			$query = $this->db->query($cmd);
+			$userRow = $query->getRowArray();	
+			
+			//sender details	
+			//print_r($userRow);
+			$finalResult["sender"] = $userRow;
+
+			//get uploaded file
+			$cmd = "SELECT `file_name`, `recipients` FROM `e_sign_uploaded_files` WHERE `id` = $uploadId";
+			$query = $this->db->query($cmd);
+			$recipentsRow = $query->getRowArray();	
+			$recipients = json_decode($recipentsRow['recipients'], true);
+			//print_r($recipentsRow);
+
+
+			//get signers document
+			$cmd = "SELECT `id`, `parentDocument`, `documentId`, `signerEmail`, `document_status` FROM `e_sign_document_signers` WHERE `parentDocument` = $parentDocumentId";
+			$query = $this->db->query($cmd);
+			$recipentsDocs = $query->getResultArray();	
+
+			$recipientWiseData = array();
+			//print_r($recipentsDocs);
+			foreach($recipentsDocs as $tmpSignerDoc){
+				$recipientWiseData[$tmpSignerDoc["signerEmail"]] = $tmpSignerDoc;
+			}
+
+			foreach($recipients as $k => &$tmpSignerDocc){
+				$tmpData = $recipientWiseData[$k];
+				$tmpSignerDocc["document"] = $tmpData;
+			}
+
+			$recipentsRow['recipients'] = json_encode($recipients);
+			$finalResult["recipents"] = $recipentsRow;
+			//print_r($recipentsRow);
+			//print_r($finalResult);
+
+		}
+
+		return $finalResult;
+
+	}
 
 
 }

@@ -269,9 +269,9 @@
             border-radius: 50%;
         }
 
-        input[type="text"].settingRowFields{
+        /*input[type="text"].settingRowFields{
           width: 95%;
-        }
+        }*/
 
 
 		.select-user{
@@ -800,7 +800,8 @@
 }
 
 .pre-signwrap
-{   border-radius: 4px;
+{   cursor:pointer; 
+    border-radius: 4px;
     padding: 0px;
     margin-bottom: 30px;
     position: relative;
@@ -1461,6 +1462,7 @@
   border: 1px solid #ddd;
   box-shadow: none !important;
 }
+
 .add-recipient-table td button:hover,
 .add-recipient-table td button:focus
 {
@@ -1733,7 +1735,7 @@
 }
 
 .errorBorder{
-  border-color:#f83b3b;
+  border-color:#f83b3b !important;
 }
 
 .solidBorder{
@@ -2044,3 +2046,82 @@
     top: 112px;
     left: 10.5px;
   }
+
+  .textSettingsFooter{
+    text-align:right;
+  }
+
+.prepare-success-modal .templateHeader {
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: .32px;
+  color: #333;
+  white-space: normal!important;
+  display: flex;
+  padding: 25px 40px 25px 40px;
+}
+
+.templateHeader .text-content {
+  width: calc(100% - 64px);
+  margin: auto;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.prepare-success-modal .modal-footer{
+  text-align: center;
+  border-top: 1px solid #dee2e6;
+  display: flow-root;
+}
+
+.prepare-success-modal .modal-dialog{margin-top: 370px;}
+
+
+.prepare-success-modal .btn-outline-primary:hover{
+  color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.prepare-success-modal .btn-primary:hover{
+  color: #fff;
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.main-dashboard-body{
+  display: flex;
+  padding-top: 10px
+}
+
+.dashboard-vertical-nav-bar{
+  height:850px;
+  border: 1px solid;
+  width: 210px;
+  padding-top: 20px;
+  border:none;
+  border-right: 1px solid #ddd;
+}
+
+.dashboard-content{
+  margin-left: 58px;
+  padding-top: 20px;
+}
+
+.nav-link{
+  color:#000;
+}
+
+.active{
+  color:#0d6efd;
+}
+
+.finishBttn .spinner-border{
+  width: 20px;
+  height: 20px;
+  font-size: 13px;
+  margin-left: 11px;
+  margin-right: 11px;
+  padding: unset !important;
+}

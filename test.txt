@@ -1,0 +1,13 @@
+php 'C:\wamp64\www\digitalsignature\index.php emailengine sendDocuSingColl afad9cd64d8edc755ef426d56bc9522c' > /dev/null &
+
+
+ maindocid:afad9cd64d8edc755ef426d56bc9522c
+
+
+ docDetails:{"signerResult":{"documentId":"afad9cd64d8edc755ef426d56bc9522c","signerEmail":"upkit.rashikasapru@gmail.com","signerName":"Rashika Sapru","documentExpiry":"2023-04-23 23:59:59"},"signersResult":[{"signerEmail":"upkit.rashikasapru@gmail.com","signerName":"Rashika Sapru","authType":"0","otp":"","accessCode":""}],"docResult":{"documentTitle":"SSHA_VRPL.pdf","customDocumentTitle":"","recipientMessage":"","expiresInDays":"10","expiryDate":"2023-04-23 23:59:59"},"ownerResult":{"first_name":"Dinesh","last_name":"Kumar","email":"upkit.dineshgiri@gmail.com"}}
+
+
+ tmpData:{"signerName":"Rashika Sapru","ownerName":"Dinesh Kumar","ownerEmail":"upkit.dineshgiri@gmail.com","docTitle":"","additionalMessage":"","docLink":"http:\/\/localhost\/digitalsignature\/index.php\/sign\/?documentId=afad9cd64d8edc755ef426d56bc9522c","expireyDate":"2023-04-23 23:59:59","signers":[{"name":"Rashika Sapru","email":"upkit.rashikasapru@gmail.com"}]}
+
+
+ email sent

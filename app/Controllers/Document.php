@@ -47,7 +47,8 @@ class Document extends BaseController
 		$loginId = $this->session->get('loginId');
 		
 		if(!$loginId || $loginId == "" || $loginId == null){
-			if(strtolower($controllerName) != "document" && strtolower($methodName) != "sign"){
+			
+			if(strtolower($controllerName) == "document" && strtolower($methodName) != "sign"){
 				//skip session for signing doc
 				customredirect("signin");
 			}
@@ -71,9 +72,10 @@ class Document extends BaseController
 		$loginId = $this->session->get('loginId');
 		//$loginId = "1673874254153097";
 
-		//echo "loginId:" . $loginId . ",FILES:<pre>";
-		//print_r($_POST);
-		//print_r($_FILES);
+		/*echo "loginId:" . $loginId . ",FILES:<pre>";
+		print_r($_POST);
+		print_r($_FILES);
+		die;*/
 
 		$RecipientNamesArr = $this->request->getPost('RecipientName');
 		$RecipientEmailsArr = $this->request->getPost('RecipientEmail');
@@ -84,7 +86,9 @@ class Document extends BaseController
 		$recipientMessage  = $this->request->getPost('recipientMessage');
 		$expiresInDays  = $this->request->getPost('expiresInDays');
 		$expiryDate = $this->request->getPost('expiryDate');
-		$alertOneDyBfrExp = $this->request->getPost('alertOneDyBfrExp');
+		//$alertOneDyBfrExp = $this->request->getPost('alertOneDyBfrExp');
+		$alertOneDyBfrExp = $this->request->getPost('alertOneDyBfrExpInput');
+		
 		
 		$recipientsArr = array();			
 			
@@ -205,7 +209,9 @@ class Document extends BaseController
 		$loginEmail = $this->session->get('loginEmail');
 
 		$fileData = $this->document_model->getUploadedFileData($fileId, $loginId);
-
+		
+		//echo "fileData:<pre>"; print_r($fileData); die;
+		
 		if(!empty($fileData)){
 			
 			$tmprecipientsJson = $fileData["recipients"];
@@ -245,30 +251,24 @@ class Document extends BaseController
     }
 
 	function test(){
-		/*
-		$fileId = "1674218633467744";
-		$docInfo = $this->document_model->getDocumentTitle($fileId);
-		echo "docInfo:<pre>"; print_r($docInfo);
-		*/
 		
-		$signersNameEmailData = array();
-		$signersNameEmailData[0]["name"] = "Dinesh Kumar";
-		$signersNameEmailData[0]["email"] = "upkit.dineshgiri@gmail.com";
-		$signersNameEmailData[1]["name"] = "Rashika Sapru";
-		$signersNameEmailData[1]["email"] = "upkit.rashikasapru@gmail.com";
+		$tmpDocumentId = "afad9cd64d8edc755ef426d56bc9522c";
+		$homePath = FCPATH."index.php";
+		$cmd = "php '$homePath emailengine sendDocuSingColl $tmpDocumentId' > /dev/null &";
 		
-		$emailData = array();
-		$emailData["signers"] = $signersNameEmailData;
-		$emailData["signerName"] = "Rashika Sapru";
-		$emailData["ownerName"] = "Dinesh Kumar";
-		$emailData["ownerEmail"] = "upkit.dineshgiri@gmail.com";  
-		$emailData["docTitle"] = "test contract";
-		$emailData["docLink"] = "https://google.com";
-		$emailData["expireyDate"] = date("Y-mmm-d H:i:s");
-		//$this->sendMail($emailData); //signerEmail signerName
+		$fpath = FCPATH."/test.txt";
+		$fp = fopen($fpath, "w");
+		fwrite($fp, $cmd);
+		fclose($fp);
 
-		$jsonStrUrlEnc = $this->Encription($jsonStr);
-		//echo $jsonStrUrlEnc; die;
+		//exec("php $homePath emailengine sendDocuSingColl $tmpDocumentId > /dev/null &", $out);
+		//echo $cmd;
+		echo $cmd;
+		exec("php $cmd", $out);
+
+		echo "out:" . implode("\n", $out); die;
+
+		/*	
 		$jsonStrUrlEnc = "e1d46561da8c90973f0fd3c893d22fac";
 		// $homePath = "digitalsignature/index.php/";
 		//echo FCPATH; die;
@@ -279,6 +279,7 @@ class Document extends BaseController
 		die;
 		exec("php $homePath emailengine sendDocuSingColl $jsonStrUrlEnc > /dev/null &", $out);
 		echo implode("\n", $out); die;
+		*/
 
 	}
 	
@@ -521,10 +522,26 @@ class Document extends BaseController
 			foreach($signersData as $signersDataRw){
 				
 				$tmpDocumentId = $signersDataRw["documentId"];
-			
-				$homePath = FCPATH."index.php";
-				exec("php $homePath emailengine sendDocuSingColl $tmpDocumentId > /dev/null &", $out);
+				
+				/*
+				$fpath = FCPATH."/test.txt";
+				$fp = fopen($fpath, "a+");
+				fwrite($fp, "\n\n\n tmpDocumentId:".$tmpDocumentId);
+				fclose($fp);
 
+
+				$fpath = FCPATH."/test.txt";
+				$homePath = FCPATH."index.php";
+				$fp = fopen($fpath, "a+");
+				
+				fwrite($fp, "cmd:php $homePath emailengine sendDocuSingColl $tmpDocumentId > /dev/null &");
+				fclose($fp);
+				*/
+
+				$homePath = FCPATH."index.php";
+				//exec("php $homePath emailengine sendDocuSingColl $tmpDocumentId > /dev/null &", $out);
+				exec("php $homePath emailengine sendDocuSingColl $tmpDocumentId");
+				
 			}
 
 			$result = array("C" => 100, "R" => array(), "M" => "success");
@@ -548,7 +565,9 @@ class Document extends BaseController
 
 			//get document ready and all its elements	
 			$signersData = $this->document_model->getSignerDocumentRawData($docId);
+			
 			//echo "<pre>"; print_r($signersData); die;
+
 			if(!empty($signersData)){
 				
 				$authType = $signersData["signerData"]["authType"];
@@ -611,6 +630,8 @@ class Document extends BaseController
 					$data["documentId"] = $signersData["parentDoc"]["documentId"];
 					$data["signersData"] = $signersData["signerData"];
 					
+					//echo "data:<pre>"; print_r($data); die;
+
 					return view('admin/documentsign', $data);
 				}
 		
@@ -938,8 +959,16 @@ class Document extends BaseController
 	}
 
 	function processsign(){
-		$userId = $this->session->get('loginId');
-		$userEmail = $this->session->get('loginEmail');
+		
+		//$userId = $this->session->get('loginId');
+		//$userEmail = $this->session->get('loginEmail');
+		//$userId = $this->request->getPost('signerId');
+		
+		$rootFolder = publicFolder();
+		$signerName = $this->request->getPost('signerName');
+		$userEmail = $this->request->getPost('signerEmail');
+		$userDir = genshastring($userEmail);
+
 		$signerDocData = $this->request->getPost('data');
 		$documentId = $this->request->getPost('documentId');
 		$signerDocumentId = $this->request->getPost('signerDocumentId');
@@ -951,26 +980,12 @@ class Document extends BaseController
 		$userLocale = $this->request->getPost('userLocale');
 		$userLocale["email"] = $userEmail;
 		$userLocaleJson = json_encode($userLocale);
-		/*
-		$userLocale["country_code"]
-		$userLocale["city"]
-		$userLocale["district"]
-		$userLocale["ip"]
-		$userLocale["platform"]
-		$userLocale["userDtTm"]
-		*/
-		/*
-		echo $documentId."<pre>";
-		print_r($signerDocData);
-		print_r($userLocale);
-		*/
 		
-		
-		//echo "initialsBS64:".$initialsBS64.",signBS64:".$signBS64;
-		//die;
-	
+		//get sender id by document
+		$senderResult = $this->document_model->getSenderIdByDoc($documentId);
+		$ownerId = $senderResult["senderId"];
+
 		//create signatures png
-		//db_randomnumber();
 		$secretFolder = "650d5885e051cbf1361781a0366dab198ce52007";
 		$folderPath = FCPATH . "$secretFolder\\" . $signerDocumentId; 
 	
@@ -980,6 +995,7 @@ class Document extends BaseController
 			$foldedChadarCode = chadarmodbs64($initialsBS64);
 			$file = $folderPath."\\initials.txt";
 			fileWrite($file,$foldedChadarCode);
+			//echo $file."<br>";
 		}
 
 		if($signBS64 != "" && $signBS64 != null){
@@ -987,7 +1003,9 @@ class Document extends BaseController
 			$foldedChadarCode = chadarmodbs64($signBS64);
 			$file = $folderPath."\\sign.txt";
 			fileWrite($file,$foldedChadarCode);
+			//echo $file."<br>";
 		}
+
 		
 		//write sign png
 		$filePath = $folderPath."\\sign.txt";
@@ -1017,65 +1035,62 @@ class Document extends BaseController
 
 		}
 		
-		$fullPathToFile = $rootFolder."userassets/mydocuments/$userId//".$masterDocument;	
+		$downloadUrl = site_url($secretFolder."/".$signerDocumentId."/".$signerDocumentId.".pdf");	
+
+
 		$docData = array_values($signerDocData);
 		$docData = $docData[0];
 		
 		
 		$docData = array_values($signerDocData);
 		$docData = $docData[0];
-		$rootFolder = publicFolder();
 		
-		
-		$srcFilePath = $rootFolder."userassets/mydocuments/$userId//".$masterDocument;	
+		$srcFilePath = $rootFolder."userassets/mydocuments/$ownerId//".$masterDocument;	
 		
 		$this->pdf = new GeneratePdf();	
 		
 		$hashCode = $this->Encription($userLocaleJson);
-		//$ciphertext = $this->Encription();
-		//die;
-		//$decrptdStr = $this->Decryption($ciphertext);
-		//echo "<pre>"; print_r($docData); die;
+		
+		
 
 		//update user filled data to signer document
-		$this->document_model->updatePartyFilledData($signerDocumentId, json_encode($signerDocData));
-
-		$resultFile = $this->pdf->preparePdf($rootFolder, $srcFilePath, $docData, $hashCode, $signerDocumentId);
+		$updt = $this->document_model->updatePartyFilledData($signerDocumentId, json_encode($signerDocData));
+		
+		$resultFile = $this->pdf->preparePdf($rootFolder, $srcFilePath, $docData, $hashCode, $signerDocumentId, $secretFolder);
 		
 		//--- Now saving log for signed document
-		//$hashCode
-		//$signerDocumentId
-		
-		//echo "documentInfo:<pre>"; print_r($documentInfo);
-		//die;
-		
+	
 		//update document status	
 		$status = 'signed';
 
 		$updated = $this->document_model->updatePartySignStatus($documentId, $userEmail, $status);
-		
-		
+		//$updated = 1;
 		if($updated > 0){
 			
 			$docStatusUpdated = $this->document_model->updateSignerDocStatus($signerDocumentId, $status);
 			if($docStatusUpdated > 0){
 				
-				$documentInfo = $this->document_model->getDocumentByUser($userId, $signerDocumentId);	
+				$documentInfo = $this->document_model->getDocumentByUser($userEmail, $signerDocumentId);	
 
 				$insertData = array();
 				$insertData["id"] = db_randomnumber();
 				$insertData["signatureHash"] = $hashCode;
 				$insertData["documentId"] = $documentInfo["id"];
 				$insertData["parentDocumentId"] = $documentInfo["parentDocument"];
+				$insertData["signerEmail"] = $documentInfo["signerEmail"];
 				$insertData["signerId"] = $documentInfo["signerId"];
 				$insertData["senderId"] = $documentInfo["senderId"];
 				$insertData["documentStatus"] = 1; //signed
 				$insertData["signType"] = $signType;
 				
 				$insertRowId = $this->document_model->saveDocumentESignHash($insertData);
+				
+				$result = array("C" => 100, "R" => array("downloadurl" => $downloadUrl), "M" => "success");
+			
+			}else{
+				$result = array("C" => 102, "R" => "it seems something went wrong with signer's document status", "M" => "error");	
 			}
 			
-			$result = array("C" => 100, "R" => "document signed successfully", "M" => "success");
 		}else{
 			$result = array("C" => 101, "R" => "it seems something went wrong", "M" => "error");
 		}
@@ -1205,6 +1220,34 @@ class Document extends BaseController
         }
     }
 
+	function dashboard(){
+
+		$userId = $this->session->get('loginId');
+		$userEmail = $this->session->get('loginEmail');
+		
+		$offset = 0;	
+
+		$result = $this->document_model->getMyDocuments($userId,$offset);
+		
+		$data = array();
+		$data["page_tilte"] = "Dashboard";
+		$data["documents"] = $result;
+		return view('admin/dashboard', $data);	
+	}
+	
+	function signeddocument($documentId){
+		
+		$userId = $this->session->get('loginId');
+		$result = $this->document_model->getSignedDocument($documentId, $userId);
+
+		//echo "result:<pre>"; print_r($result);
+
+		$data = array();
+		$data["page_tilte"] = "Overview";
+		$data["document"] = $result;
+		return view('admin/documentOverview', $data);		
+
+	}
 
 }
 ?>

@@ -46,12 +46,12 @@ $SELECTEDUSERS = array(
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url("/assets/js/spectrum.min.css");?>">
 <script>
-/*
-var FCPATH = "<?php //echo $_SERVER["DOCUMENT_ROOT"]; //FCPATH; ?>";
-var SITEURL = "<?php //echo site_url(); ?>";
-var BASEURL = "<?php //echo base_url(); ?>";
-var SERVICEURL = "<?php //echo site_url(); ?>";
-var CURRENTUSERINITIALS_1 = "<?php //echo $CURRENTUSERINITIALS_1; ?>";
+
+var FCPATH = "<?php echo $_SERVER["DOCUMENT_ROOT"]; //FCPATH; ?>";
+var SITEURL = "<?php echo site_url(); ?>";
+var BASEURL = "<?php echo base_url(); ?>";
+var SERVICEURL = "<?php echo site_url(); ?>";
+/*var CURRENTUSERINITIALS_1 = "<?php //echo $CURRENTUSERINITIALS_1; ?>";
 var CURRENTUSERNAME_1 = "<?php //echo $CURRENTUSERNAME_1; ?>";
 var CURRENTUSEREMAIL_1 = "<?php //echo $CURRENTUSEREMAIL_1; ?>";
 var CURRENTUSERTAG_1 = "<?php //echo $CURRENTUSERTAG_1; ?>";
@@ -75,7 +75,6 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
           <input type="hidden" id="documentId" value="<?php echo $documentId; ?>">
         <div class="top-menu">
             <figure class="logo-wrap">
-                <!--<span class="appName"><img src="<?php //echo base_url("/assets/images/boldsign_sitelogo.svg"); ?>" /></span>-->
                 <span class="appName"><img src="<?php echo base_url("/assets/images/logocl.png"); ?>" /></span>
             </figure>
             <div class="">
@@ -88,7 +87,7 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
                     <button class="btn btn-primary">Preview</button>
                   </li>
                   <li>
-                    <button class="btn btn-warning" onclick="extractAndSaveGElements();">Send</button>
+                    <button class="btn btn-warning" id="sendBttn" onclick="extractAndSaveGElements();">Send</button>
                   </li>
                   <li>
                     <a class="btn-cross" href="javascript:void(0);">X</a>
@@ -253,4 +252,26 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
       </div>
     </div>
 </main>
+
+<div class="modal fade prepare-success-modal" id="prepare-success-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="content-box">
+          <div class="templateHeader">
+            <div style="margin-right: 24px;">
+              <img src="<?php echo base_url("/assets/images/successtick.svg"); ?>" alt="" width="40" height="40">
+            </div>
+            <div class="text-content">Document has been sent successfully.</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer"> 
+        <button type="button" class="btn btn-outline-primary" onclick="gotoDashboard();">Go to dashboard</button>
+        <button type="button" class="btn btn-primary" onclick="createNewDocument();">Create new document</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php include('footer.php'); ?>

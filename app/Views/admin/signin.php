@@ -121,7 +121,7 @@
 			
 			callAjax(rqsturl, postdata, rqstType, function(resp){
 				if(resp.C == 100){
-					window.location.href = "<?php echo base_url('upload'); ?>";
+					window.location.href = "<?php echo site_url('dashboard'); ?>";
 				}else if(resp.C == 102){
 					var err = 1;
 					showToastMsg("Un-Verified Account.", err);	

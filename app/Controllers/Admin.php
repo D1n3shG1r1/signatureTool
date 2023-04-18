@@ -139,5 +139,12 @@ class Admin extends BaseController
 	
 	}
 	
+	function logout(){
+		
+		$this->session->destroy();
+
+		return redirect()->to("signin");
+	}
+
 }
 ?>

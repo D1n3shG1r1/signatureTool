@@ -145,7 +145,8 @@ function callAjax(rqsturl, postdata, rqstType, cb){
 	*/
 	
     function showLoader(elmId){
-	    var loaderHtml = `<div class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div>`; var loaderHtml = `<div class="spinner-border text-light" role="status"></div>`;
+	    var loaderHtml = `<div class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div>`; 
+        var loaderHtml = `<div class="spinner-border text-light" role="status"></div>`;
 	    $("#"+elmId).html(loaderHtml);
     }
     

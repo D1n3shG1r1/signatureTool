@@ -534,14 +534,11 @@
       }
 
       function userName(){
-        var fName = "Dinesh";
-        var lName = "Kumar";
-        return fName +" "+ lName;
+        return SIGNERNAME_GLB;
       }
 
       function userEmail(){
-        var email = "upkit.dineshgiri@gmail.com";
-        return email;
+        return SIGNEREMAIL_GLB;
       }
 
       function getElementTypeG(tmpElm){
@@ -550,6 +547,7 @@
 
 	      var tmp_is_readonly = parseInt(tmpElm.is_readonly); 
         var tmp_is_required = parseInt(tmpElm.is_required); 
+        var tmp_placeholder_hint = tmpElm.placeholder_hint;
         var tmp_default_user = tmpElm.default_user;
         var tmp_default_value = tmpElm.default_value;
         var tmp_elmType = tmpElm.elmType;
@@ -577,7 +575,7 @@
         var signature = '<g id="signature_'+uniqId+'" class="pdf-form-element" onclick="openSignPad(\'signature_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                       <rect id="signature_'+uniqId+'_rect2" width="124" height="32" fill="#FDF7DB" stroke="#fdf7db"></rect>\
                       <rect id="signature_'+uniqId+'_rect1" width="4" height="32" fill="#FAEA9E" stroke="#fdf7db"></rect>\
-                      <text id="signature_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
+                      <text id="signature_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
               <tspan style="word-break: break-word;" x="4" dy="13">'+tmp_default_value+'</tspan>\
                       </text>\
                   </g>';
@@ -585,7 +583,7 @@
         var signaturein = '<g id="signaturein_'+uniqId+'" class="pdf-form-element" onclick="openSignPad(\'signaturein_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                           <rect id="signaturein_'+uniqId+'_rect2" width="48" height="32" fill="#FDF7DB" stroke="#fdf7db"></rect>\
                           <rect id="signaturein_'+uniqId+'_rect1" width="4" height="32" fill="#FAEA9E" stroke="#fdf7db"></rect>\
-                          <text id="signaturein_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
+                          <text id="signaturein_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
 						  <tspan style="word-break: break-word;" x="4" dy="13">'+tmp_default_value+'</tspan>\
 						  </text>\
                        </g>';
@@ -593,7 +591,7 @@
         var textbox =  '<g id="textbox_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'textbox_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                           <rect id="textbox_'+uniqId+'_rect2" width="80" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                           <rect id="textbox_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                          <text id="textbox_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="'+tmp_font_style+'" font-weight="'+tmp_font_weight+'" text-decoration="'+tmp_text_decoration+'" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
+                          <text id="textbox_'+uniqId+'_text" x="4" font-size="'+tmp_font_size+'" font-family="'+tmp_font_family+'" fill="#000000" font-style="'+tmp_font_style+'" font-weight="'+tmp_font_weight+'" text-decoration="'+tmp_text_decoration+'" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="'+tmp_placeholder_hint+'">\
                           <tspan style="word-break: break-word;" x="4" dy="13">'+tmp_default_value+'</tspan>\
                           </text>\
                        </g>';
@@ -601,7 +599,7 @@
 		    var datepicker = '<g id="datepicker_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'datepicker_'+uniqId+'\');" '+contEditable+'>\
                            <rect id="datepicker_'+uniqId+'_rect2" width="74.078125" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                            <rect id="datepicker_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                           <text id="datepicker_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("dd/MM/yyyy")+'" date-format="dd/MM/yyyy" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
+                           <text id="datepicker_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("dd/MM/yyyy")+'" date-format="dd/MM/yyyy" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
                            <tspan style="word-break: break-word;" x="4" dy="13">'+currentDate("dd/MM/yyyy")+'</tspan>\
                            </text>\
                        </g>';
@@ -629,7 +627,7 @@
         var name = '<g id="name_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'name_'+uniqId+'\');" '+contEditable+'>\
                        <rect id="name_'+uniqId+'_rect2" width="73.4072265625" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                        <rect id="name_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                       <text id="name_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="Text" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
+                       <text id="name_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="Text" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
                         <tspan style="word-break: break-word;" x="4" dy="13">'+userName()+'</tspan>\
                        </text>\
                     </g>'; 
@@ -638,7 +636,7 @@
         var email = '<g id="email_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'email_'+uniqId+'\');" '+contEditable+'>\
                        <rect id="email_'+uniqId+'_rect2" width="168.15625" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                        <rect id="email_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                       <text id="email_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
+                       <text id="email_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
                         <tspan style="word-break: break-word;" x="4" dy="13">'+userEmail()+'</tspan>\
                        </text>\
                     </g>';
@@ -646,14 +644,14 @@
         var editableDate = '<g id="editableDate_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'editableDate_'+uniqId+'\');" '+contEditable+'>\
                              <rect id="editableDate_'+uniqId+'_rect2" width="95" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                              <rect id="editableDate_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                             <text id="editableDate_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("MM/dd/yyyy")+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
+                             <text id="editableDate_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("MM/dd/yyyy")+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
                               <tspan style="word-break: break-word;" x="4" dy="13">MM/dd/yyyy</tspan>\
                              </text>\
                           </g>';
 
         var label = '<g id="label_'+uniqId+'" class="pdf-form-element" style="visibility: visible;" onclick="openFieldSettings(\'label_'+uniqId+'\');" '+contEditable+'>\
                        <rect id="label_'+uniqId+'_rect1" width="80" height="17" fill="#f4f5eb" stroke="transparent"></rect>\
-                       <text id="label_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="Label" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
+                       <text id="label_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="Label" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
                         <tspan style="word-break: break-word;" x="4" dy="13">Label</tspan>\
                        </text>\
                     </g>';
@@ -661,7 +659,7 @@
         var hyperlink = '<g id="hyperlink_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'hyperlink_'+uniqId+'\');" '+contEditable+'>\
                           <rect id="hyperlink_'+uniqId+'_rect1" width="90" height="20" fill="#f4f5eb" stroke="transparent"></rect>\
                           <image height="16" width="16" id="hyperlink_'+uniqId+'_hyperlinkicon" x="71.6875" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik01IDdDNC43MzQ3OCA3IDQuNDgwNDMgNy4xMDUzNiA0LjI5Mjg5IDcuMjkyODlDNC4xMDUzNiA3LjQ4MDQzIDQgNy43MzQ3OCA0IDhWMTlDNCAxOS4yNjUyIDQuMTA1MzYgMTkuNTE5NiA0LjI5Mjg5IDE5LjcwNzFDNC40ODA0MyAxOS44OTQ2IDQuNzM0NzggMjAgNSAyMEgxNkMxNi4yNjUyIDIwIDE2LjUxOTYgMTkuODk0NiAxNi43MDcxIDE5LjcwNzFDMTYuODk0NiAxOS41MTk2IDE3IDE5LjI2NTIgMTcgMTlWMTNDMTcgMTIuNDQ3NyAxNy40NDc3IDEyIDE4IDEyQzE4LjU1MjMgMTIgMTkgMTIuNDQ3NyAxOSAxM1YxOUMxOSAxOS43OTU3IDE4LjY4MzkgMjAuNTU4NyAxOC4xMjEzIDIxLjEyMTNDMTcuNTU4NyAyMS42ODM5IDE2Ljc5NTcgMjIgMTYgMjJINUM0LjIwNDM1IDIyIDMuNDQxMjkgMjEuNjgzOSAyLjg3ODY4IDIxLjEyMTNDMi4zMTYwNyAyMC41NTg3IDIgMTkuNzk1NiAyIDE5VjhDMiA3LjIwNDM1IDIuMzE2MDcgNi40NDEyOSAyLjg3ODY4IDUuODc4NjhDMy40NDEyOSA1LjMxNjA3IDQuMjA0MzUgNSA1IDVIMTFDMTEuNTUyMyA1IDEyIDUuNDQ3NzIgMTIgNkMxMiA2LjU1MjI4IDExLjU1MjMgNyAxMSA3SDVaIiBmaWxsPSIjMzMzMzMzIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTQgM0MxNCAyLjQ0NzcyIDE0LjQ0NzcgMiAxNSAySDIxQzIxLjU1MjMgMiAyMiAyLjQ0NzcyIDIyIDNWOUMyMiA5LjU1MjI4IDIxLjU1MjMgMTAgMjEgMTBDMjAuNDQ3NyAxMCAyMCA5LjU1MjI4IDIwIDlWNEgxNUMxNC40NDc3IDQgMTQgMy41NTIyOCAxNCAzWiIgZmlsbD0iIzMzMzMzMyIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTIxLjcwNzEgMi4yOTI4OUMyMi4wOTc2IDIuNjgzNDIgMjIuMDk3NiAzLjMxNjU4IDIxLjcwNzEgMy43MDcxMUwxMC43MDcxIDE0LjcwNzFDMTAuMzE2NiAxNS4wOTc2IDkuNjgzNDIgMTUuMDk3NiA5LjI5Mjg5IDE0LjcwNzFDOC45MDIzNyAxNC4zMTY2IDguOTAyMzcgMTMuNjgzNCA5LjI5Mjg5IDEzLjI5MjlMMjAuMjkyOSAyLjI5Mjg5QzIwLjY4MzQgMS45MDIzNyAyMS4zMTY2IDEuOTAyMzcgMjEuNzA3MSAyLjI5Mjg5WiIgZmlsbD0iIzMzMzMzMyIvPgo8L3N2Zz4K" preserveAspectRatio="xMinYMid meet" y="2"></image>\
-                          <text id="hyperlink_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#3E60FF" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0">\
+                          <text id="hyperlink_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#3E60FF" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
                            <tspan style="word-break: break-word;" x="4" dy="13">Hyperlink</tspan>\
                           </text>\
                        </g>';  
@@ -746,29 +744,33 @@
         var is_readonly = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("is-readonly");
         var is_required = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("is-required");
         var is_value_given = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("is-value-given");
+        var placeholder_hint = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("placeholder-hint");
         
-        if(isReal(font_size) == false){
+        console.log("lh:" + isReal(line_height));
+        
+        if(!isReal(font_size)){
           font_size = "13px";
-        }else if(isReal(font_family) == false){
+        }else if(!isReal(font_family)){
           font_family = "CourierPrime-Regular";
-        }else if(isReal(font_style) == false){
+        }else if(!isReal(font_style)){
           font_style = "normal";
-        }else if(isReal(font_weight) == false){
+        }else if(!isReal(font_weight)){
           font_weight = "normal";
-        }else if(isReal(text_decoration) == false){
+        }else if(!isReal(text_decoration)){
           text_decoration = "none";
-        }else if(isReal(default_value) == false){
-          default_value = "Text";
-        }else if(isReal(default_user) == false){
+        }else if(!isReal(default_value)){
+          //default_value = "Text";
+          default_value = "";
+        }else if(!isReal(default_user)){
           default_user = CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1;
-        }else if(isReal(line_height) == false){
+        }else if(line_height == "" || line_height == null || line_height == undefined){
           line_height = "15px";
-        }else if(isReal(date_format) == false){
+        }else if(!isReal(date_format)){
           date_format = "dd/MM/yyyy";
         }
       
       
-        return {"font-size":font_size, "font-family":font_family, "font-style":font_style, "font-weight":font_weight, "text-decoration":text_decoration, "default-value":default_value, "default-user":default_user, "line-height":line_height, "date-format":date_format, "is-readonly":is_readonly, "is-required":is_required, "is-value-given":is_value_given};
+        return {"font-size":font_size, "font-family":font_family, "font-style":font_style, "font-weight":font_weight, "text-decoration":text_decoration, "default-value":default_value, "default-user":default_user, "line-height":line_height, "date-format":date_format, "is-readonly":is_readonly, "is-required":is_required, "is-value-given":is_value_given, "placeholder-hint":placeholder_hint};
       
       }
 
@@ -805,6 +807,12 @@
         var line_height = fieldValuesObj["line-height"];
         var date_format = fieldValuesObj["date-format"];
         var is_value_given = fieldValuesObj["is-value-given"];
+        var placeholder_hint = fieldValuesObj["placeholder-hint"];
+        
+
+        if(!isReal(line_height)){
+          line_height = "15px";
+        }
 
         //Dynamic HTML Strings
         //Action buttons html for close & reset
@@ -942,11 +950,11 @@
               </div>\
               <div class="textSettingsBody">';
           
-        textBoxSettings += usersHtml;
-          
+            textBoxSettings += usersHtml;
+         
             textBoxSettings +=  '<div class="settingRow">\
-                  <label class="settingRowLabel">Enter Text</label>\
-                  <textarea id="default-text" class="settingRowFields borderColor textColor" onKeyup="changeDefaultText(this, \''+elmId+'\');" style="width: 242px; height: 50px; resize: none;" placeholder="Add text here..."></textarea>\
+                  <label class="settingRowLabel">'+placeholder_hint+'</label>\
+                  <textarea id="default-text" class="settingRowFields borderColor textColor" onKeyup="changeDefaultText(this, \''+elmId+'\');" style="resize: none;" placeholder="'+placeholder_hint+'">'+default_value+'</textarea>\
                 </div>';
             textBoxSettings += fontOptions;
             textBoxSettings += '</div>\
@@ -1017,7 +1025,9 @@
         dateSignedSettings += dateFormat;
         dateSignedSettings += fontOptions;
         dateSignedSettings += '</div>\
-            </div>';
+        <div class="textSettingsFooter">\
+        </div>\
+        </div>';
 
           
         //Editable Date settings html
@@ -1039,6 +1049,8 @@
         dateEditableSettings += dateFormat;
             dateEditableSettings += fontOptions;
         dateEditableSettings += '</div>\
+        <div class="textSettingsFooter">\
+        </div>\
             </div>';
 
 
@@ -1068,9 +1080,9 @@
         emailSettings += usersHtml;
         emailSettings += fontOptions;
         emailSettings += '</div>\
+        <div class="textSettingsFooter">\
+        </div>\
             </div>';
-
-	
 
         if(elmTyp == "signature"){
           $("#Advance-fields").html(signatureSettings);
@@ -1122,13 +1134,61 @@
         
       }
 
+      function okayValue(s, d){
+        
+        var sv = $("#"+s).val();
+        var svh = $("#"+s).html();
+        var tmpIsReadonly = $("#"+d+"_text").attr("is-readonly");
+        var tmpIsRequired = $("#"+d+"_text").attr("is-required");
+        var tmpIsValueGiven = $("#"+d+"_text").attr("is-value-given");
+        
+        if(parseInt(tmpIsRequired) == 1 && !isReal(sv)){
+          
+          $("#"+s).addClass("errorBorder");
+          
+          $("#"+s).keyup(function(){
+            $("#"+s).removeClass("errorBorder");
+          });
+          
+          return false;
+
+        }else{
+        
+          document.getElementById(d).style.height = 'unset';
+          
+          var svArr = sv.split("\n");
+          
+          var textHtml = '';
+          $.each(svArr, function(i,v){
+            textHtml += '<tspan style="word-break: break-word; width: 100%; float: left;" x="4" dy="13">'+v+'</tspan>';
+          });
+
+          $("#"+d+"_text").html(textHtml);
+          $("#"+d+"_text").attr("is-value-given",1);
+          $("#"+d+"_text").attr("default-value",sv);
+
+          var inithght = document.getElementById(d).clientHeight;
+
+          if(inithght < 30){
+            inithght = 30;
+          }
+          
+          var newHeight = inithght+"px";
+          $("#"+d).css({"height":newHeight});
+          
+          showThumbNails();
+        }
+        
+      }
+
+
       function openColorPicker(){
         //$("#colorPicker").trigger("click");
         //$("#colorPicker").trigger("focus");
       }
 
       function changeDefaultText(obj, DstElmId){
-          //return false;
+          return false;
           
           document.getElementById(DstElmId).style.height = 'unset';
           
@@ -1648,8 +1708,6 @@
       //"font-size":font_size, "font-family":font_family, "font-style":font_style, "font-weight":font_weight, "text-decoration":text_decoration, "default-value":default_value, "default-user":default_user, "line-height":line_height, "date-format":date_format
   
       var fieldValuesObj = getElementSavedAttributes(elmId);
-      console.log("fieldValuesObj");
-      console.log(fieldValuesObj);
       
       var font_size = fieldValuesObj["font-size"];
       var font_family = fieldValuesObj["font-family"];
@@ -1668,6 +1726,8 @@
       
       $("#signUseBttn").attr("data-elm",elmId);
       $("#pills-type-tab").trigger("click");
+      $("#signInput").keyup();
+      
 
     }
 
@@ -1896,12 +1956,13 @@
       return cb(caseType);
     }
 
-
-
     function processSign(){
         var tmpSaveDataObj = {};
         var tmpSignDataObj = [];
+        var hasEmptyRequiredField = 0;
         
+        var blankReqElms = [];
+
         $(".pdf-form-element").each(function(idx, elm){
 
             var tmpPage = $(elm).attr("page"); 
@@ -1919,6 +1980,15 @@
             var text_decoration = $("#"+elmId+"_text").attr("text-decoration");
             var default_value = $("#"+elmId+"_text").attr("default-value");
             var default_user = $("#"+elmId+"_text").attr("default-user");
+            
+            var is_required = $("#"+elmId+"_text").attr("is-required");
+            var is_value_given = $("#"+elmId+"_text").attr("is-value-given");
+
+            //validate inputs
+            if(parseInt(is_required) == 1 && (parseInt(is_value_given) == 0 || is_value_given == undefined || is_value_given == null || is_value_given == "")){
+              hasEmptyRequiredField = 1;
+              blankReqElms.push(elmId);
+            }
 
             //var default_userParts = default_user.split(SEPERATOR);
 
@@ -1956,7 +2026,6 @@
         TMP_USERLOCALE["platform"] = getBrowserName();
         TMP_USERLOCALE["userDtTm"] = userDtTm;
 
-        
         //post data to save in db
         var documentId = $("#documentId").val();
         var signerDocumentId = $("#signerDocumentId").val();
@@ -1972,30 +2041,63 @@
           "initials":signIniImgData,
           "sign":signImgData,
           "signType":signType,
-          "userLocale":TMP_USERLOCALE
+          "userLocale":TMP_USERLOCALE,
+          "signerName":SIGNERNAME_GLB,
+          "signerEmail":SIGNEREMAIL_GLB,
+          "signerId":SIGNERID_GLB
         };
-        var rqstType = "POST";
-        callAjax(rqsturl, postdata, rqstType, function(resp){
-            console.log("resp");
-            console.log(resp);
-            if(resp.C == 100){
-              
-              var msg = "Thankyou for signing the document.";
-              var err = 0;
-              showToastMsg(msg, err);
 
-              //redirect to dashboard
+        if(hasEmptyRequiredField == 1){
+          
+          //fill required fields
+          
+          var msg = "Please fill the required fields.";
+          var err = 1;
+          showToastMsg(msg, err);
 
-            }else{
-              
-              var msg = "Please try again.";
-              var err = 1;
-              showToastMsg(msg, err);
-              
-            }
+          $.each(blankReqElms, function(i,e){
+            $("#"+e).addClass("errorBorder");
+            $("#"+e).click(function(){
+              $("#"+e).removeClass("errorBorder");
+            });
+          });
 
-        }); 
-        
+        }else{
+          
+          showLoader("finishBttn");
+
+          var rqstType = "POST";
+          callAjax(rqsturl, postdata, rqstType, function(resp){
+              
+              if(resp.C == 100){
+                
+                var msg = "Thankyou for signing the document.";
+                var err = 0;
+                showToastMsg(msg, err);
+
+                var result = resp.R;
+                var downloadurl = result.downloadurl;
+                var onclickAttr = 'downloadDocument("'+downloadurl+'");';
+
+                $("#sign-success-modal #dwnld-bttn").attr("onclick", onclickAttr);
+
+                $("#sign-success-modal").modal("show");
+
+                downloadDocument(downloadurl);
+
+              }else{
+                
+                var msg = "Please try again.";
+                var err = 1;
+                showToastMsg(msg, err);
+                
+              }
+
+              hideLoader("finishBttn", "Finish");
+          });
+
+        }
+
     }
 
     function getBrowserName(){
@@ -2242,65 +2344,82 @@
         
       if(signTyp == "type"){
         
-        var elmId = $("#signUseBttn").attr("data-elm");
-       // $("#"+elmId+" img").remove();
-  
-        html2canvas(document.getElementById("selectedSign"),
-        {
-          allowTaint: true,
-          useCORS: true,
-          backgroundColor:null
-        }).then(function (canvas) {
+        var signInput = $("#signInput").val();
+        if(signInput == "" || signInput == null || signInput == undefined){
           
-          var signImgData = canvas.toDataURL("image/png");
+          $("#signInput").addClass("errorBorder"); 
+          $("#signInput").keyup(function(){
+            $("#signInput").removeClass("errorBorder"); 
+          });
+
+          return false;
+        }else{
           
-
-          $fullsignElements = $('g[id^=signature_]');
-          $signInitElements = $('g[id^=signaturein_]');
-
-          $("#fullsignbs64").val(signImgData);
-          $("#initsignbs64").val(signImgData);
-          $("#signType").val(signTyp);
-
-          if($fullsignElements.length > 0){
-            
-            $($fullsignElements).each(function(i,e){
-
-              var tmpElmId = $(e).attr("id");
-              
-              $("#"+tmpElmId+" img").remove();
-
-              var txtElm = tmpElmId+"_text";
-              //$("#"+txtElm).attr("data-sign",signImgData);
-              
-              $("#"+txtElm).css({"opacity":0,"height":"0px", "width":"0px", "position":"absolute"});
-              var signImg = "<img src=\""+signImgData+"\" style=\"width:100%; height: 100%;\">";
-      
-              $("#"+tmpElmId).append(signImg);
-              
-            });
+          var elmId = $("#signUseBttn").attr("data-elm");
+          // $("#"+elmId+" img").remove();
           
-          }
-
-          if($signInitElements.length > 0){
-            $($signInitElements).each(function(i,e){
-
-              var tmpElmId = $(e).attr("id");
-              
-              $("#"+tmpElmId+" img").remove();
-
-              var txtElm = tmpElmId+"_text";
-              //$("#"+txtElm).attr("data-sign",signImgData);
-              $("#"+txtElm).attr("data-sign-type",signTyp);
-              $("#"+txtElm).css({"opacity":0,"height":"0px", "width":"0px", "position":"absolute"});
-              var signImg = "<img src=\""+signImgData+"\" style=\"width:100%; height: 100%;\">";
-      
-              $("#"+tmpElmId).append(signImg);
-              
-            });
-          }
-  
-        });
+           html2canvas(document.getElementById("selectedSign"),
+           {
+             allowTaint: true,
+             useCORS: true,
+             backgroundColor:null
+           }).then(function (canvas) {
+             
+             var signImgData = canvas.toDataURL("image/png");
+             
+   
+             $fullsignElements = $('g[id^=signature_]');
+             $signInitElements = $('g[id^=signaturein_]');
+   
+             $("#fullsignbs64").val(signImgData);
+             $("#initsignbs64").val(signImgData);
+             $("#signType").val(signTyp);
+   
+             if($fullsignElements.length > 0){
+               
+               $($fullsignElements).each(function(i,e){
+   
+                 var tmpElmId = $(e).attr("id");
+                 
+                 $("#"+tmpElmId+" img").remove();
+   
+                 var txtElm = tmpElmId+"_text";
+                 //$("#"+txtElm).attr("data-sign",signImgData);
+                 
+                 //$("#"+elmId+"_text").attr("is-value-given",1);
+                 $("#"+txtElm).attr("is-value-given",1);
+                 $("#"+txtElm).css({"opacity":0,"height":"0px", "width":"0px", "position":"absolute"});
+                 var signImg = "<img src=\""+signImgData+"\" style=\"width:100%; height: 100%;\">";
+         
+                 $("#"+tmpElmId).append(signImg);
+                 
+               });
+             
+             }
+   
+             if($signInitElements.length > 0){
+               $($signInitElements).each(function(i,e){
+   
+                 var tmpElmId = $(e).attr("id");
+                 
+                 $("#"+tmpElmId+" img").remove();
+   
+                 var txtElm = tmpElmId+"_text";
+                 //$("#"+txtElm).attr("data-sign",signImgData);
+                 $("#"+txtElm).attr("is-value-given",1);
+                 $("#"+txtElm).attr("data-sign-type",signTyp);
+                 $("#"+txtElm).css({"opacity":0,"height":"0px", "width":"0px", "position":"absolute"});
+                 var signImg = "<img src=\""+signImgData+"\" style=\"width:100%; height: 100%;\">";
+         
+                 $("#"+tmpElmId).append(signImg);
+                 
+               });
+             }
+     
+           });
+           
+           $("#signModal").modal("hide");
+        }
 
       }else if(signTyp == "draw"){
         
@@ -2326,7 +2445,7 @@
 
               var txtElm = tmpElmId+"_text";
               //$("#"+txtElm).attr("data-sign",signImgData);
-              
+              $("#"+txtElm).attr("is-value-given",1);
               $("#"+txtElm).css({"opacity":0,"height":"0px", "width":"0px", "position":"absolute"});
               var signImg = "<img src=\""+signImgData+"\" style=\"width:100%; height: 100%;\">";
       
@@ -2345,6 +2464,7 @@
 
               var txtElm = tmpElmId+"_text";
               //$("#"+txtElm).attr("data-sign",signImgData);
+              $("#"+txtElm).attr("is-value-given",1);
               $("#"+txtElm).attr("data-sign-type",signTyp);
               $("#"+txtElm).css({"opacity":0,"height":"0px", "width":"0px", "position":"absolute"});
               var signImg = "<img src=\""+signImgData+"\" style=\"width:100%; height: 100%;\">";
@@ -2354,6 +2474,8 @@
             });
           }
   
+          $("#signModal").modal("hide");
+
       }else if(signTyp == "upload"){
 
         var elmId = $("#signUseBttn").attr("data-elm");
@@ -2379,7 +2501,7 @@
 
               var txtElm = tmpElmId+"_text";
               //$("#"+txtElm).attr("data-sign",signImgData);
-              
+              $("#"+txtElm).attr("is-value-given",1);
               $("#"+txtElm).css({"opacity":0,"height":"0px", "width":"0px", "position":"absolute"});
               var signImg = "<img src=\""+signImgData+"\" style=\"width:100%; height: 100%;\">";
       
@@ -2398,7 +2520,7 @@
 
               var txtElm = tmpElmId+"_text";
               //$("#"+txtElm).attr("data-sign",signImgData);
-                
+              $("#"+txtElm).attr("is-value-given",1);
               $("#"+txtElm).css({"opacity":0,"height":"0px", "width":"0px", "position":"absolute"});
               var signImg = "<img src=\""+signImgData+"\" style=\"width:100%; height: 100%;\">";
       
@@ -2406,7 +2528,8 @@
               
             });
           }
-      
+          
+          $("#signModal").modal("hide");
           
       }
 
@@ -2428,6 +2551,21 @@
     
     }
     
+    
+    
+    function downloadDocument(downloadurl){
+        
+        var downloadurlArr = downloadurl.split("/");
+        var tmpFlNm = downloadurlArr[downloadurlArr.length - 1];
+        var link = document.createElement('a');
+        link.href = downloadurl;
+        link.download = tmpFlNm;
+        link.dispatchEvent(new MouseEvent('click'));
+
+    }
+
+
+
     /*
     console.log(s);
 

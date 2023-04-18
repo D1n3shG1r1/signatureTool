@@ -35,12 +35,24 @@ class Emailengine extends BaseController
 
     function sendDocuSingColl($maindocid) { 
         //emailengine/sendDocuSingColl
-        //$maindocid = "d4417524f1aaddbbdde6c3e01b2a87af";
-        //$maindocid = "1683be41c13f92cf5e9ca17d94757948";
-        //$maindocid = "086256e9e2d5e7549c8e44bd4b062e30";
+    
+        /*
+        $fpath = FCPATH."/test.txt";
+        $fp = fopen($fpath, "a+");
+        fwrite($fp, "\n\n\n maindocid:".$maindocid);
+        fclose($fp);
+        */
+
         $docDetails = $this->email_model->getSignerDocumentDetails($maindocid);
         //echo "<pre>"; print_r($docDetails); die;
         
+        /*
+        $fp = fopen($fpath, "a+");
+        fwrite($fp, "\n\n\n docDetails:".json_encode($docDetails));
+        fclose($fp);
+        */        
+
+
         $ownerResult = $docDetails["ownerResult"];
         $docResult = $docDetails["docResult"];
         $signerResult = $docDetails["signerResult"];
@@ -102,6 +114,10 @@ class Emailengine extends BaseController
         $data["accessCode"]         = $accessCode;
         */
 
+        /*$fp = fopen($fpath, "a+");
+        fwrite($fp, "\n\n\n tmpData:".json_encode($data));
+        fclose($fp);*/
+
         $template = view('emailtemplates/DocuSingColl_Template', $data);
 
         $to = $signerEmail;
@@ -118,11 +134,16 @@ class Emailengine extends BaseController
         if ($email->send()) 
 		{
             //echo 'Email successfully sent';
-
+            /*
+            $fp = fopen($fpath, "a+");
+            fwrite($fp, "\n\n\n email sent");
+            fclose($fp);
+            */            
             //update date time in db when email is sent
             $param = array();
             $param["document_status"] = "sent";
             $param["documentSentDate"] = date("Y-m-d H:i:s");
+
             $this->email_model->updateDocStatusEmailSentDateTime($maindocid, $param);
             
             if($authType == 1){
@@ -149,8 +170,14 @@ class Emailengine extends BaseController
 			//write log if email failed
             
 			$data = $email->printDebugger(['headers']);
+            
             //print_r($data);
-			
+			/*
+            $fp = fopen($fpath, "a+");
+            fwrite($fp, "\n\n\n email error:".json_encode($data));
+            fclose($fp);
+            */
+            //echo "exe:".json_encode($data);
         }
         
     }

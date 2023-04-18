@@ -24,6 +24,10 @@
 var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
 var DOCUMENTDATA = <?php echo  $document_data; ?>;
 
+var SIGNERNAME_GLB = "<?php echo $signerName; ?>";
+var SIGNEREMAIL_GLB = "<?php echo $signerEmail; ?>";
+var SIGNERID_GLB = "<?php echo $signerId; ?>";
+
 </script>
 <script src="<?php echo base_url("/assets/js/pdf.min.js");?>"></script>
 <script src="<?php echo base_url("/assets/js/html2canvas.js");?>"></script>
@@ -84,11 +88,12 @@ function acceptTerms(elmId){
                   <li>
                     <button class="btn btn-primary" onclick="startSigning();">Start signing</button>
                   </li>
-                  <!---
+                  
                   <li>
-                    <a class="btn-cross" href="javascript:void(0);">X</a>
+                    <!--<button class="button-disabled" onclick="processSign();">Continue</button>-->
+                    <button id="finishBttn" class="finishBttn btn btn-warning" onclick="processSign();">Finish</button>
                   </li>
-                  --->
+                  
                
               </ul>
         </div>
@@ -263,7 +268,6 @@ function acceptTerms(elmId){
             <span for="terms-tick-box">I have read and agree to the <a href="javascript:void(0);">Electronic Signature Disclosure Terms</a> and <a href="javascript:void(0);">ScipSign's Terms of Use</a></span>
           </div>
           <div class="action-box col-2">
-            <!--<button class="button-disabled" onclick="processSign();">Continue</button> <button onclick="processSign();">Finish</button>-->
             <button id="continueBttn" class="continueBttn btn btn-outline-primary button-disabled" data-bs-dismiss="modal">Continue</button>
           </div>
         </div>
@@ -306,31 +310,31 @@ function acceptTerms(elmId){
                   <div class="col-12">
                       <div class="form-group name-input">
                           <label>Your Name</label>
-                          <input id="signInput" type="text" placeholder="Enter Name..." value="" maxlength="55" onpaste="typeSign(this,event);"; onkeypress="allowAlphabetsOnly(event);" onkeyup="typeSign(this,event);" class="form-control" placeholder="Enter your name">
+                          <input id="signInput" type="text" placeholder="Enter Name..." value="<?php echo $signerName; ?>" maxlength="55" onpaste="typeSign(this,event);"; onkeypress="allowAlphabetsOnly(event);" onkeyup="typeSign(this,event);" class="form-control">
                       </div>
                   </div>
                   <div class="w-100 mt-4"></div>
                   <div class="col-lg-6">
                       <div class="pre-signwrap activesign" onclick="choseSignStyle(this);">
-                          <span id="selectedSign" class="signValue font-1">Dinesh Giri</span>
+                          <span id="selectedSign" class="signValue font-1"><?php echo $signerName; ?></span>
                           <div class="check-mark la la-check"></div>
                       </div>
                   </div>
                   <div class="col-lg-6">
                       <div class="pre-signwrap" onclick="choseSignStyle(this);">
-                          <span class="signValue font-2">Dinesh Giri</span>
+                          <span class="signValue font-2"><?php echo $signerName; ?></span>
                           <div class="check-mark la"></div>
                       </div>
                   </div>
                   <div class="col-lg-6 mb-0">
                       <div class="pre-signwrap" onclick="choseSignStyle(this);">
-                          <span class="signValue font-3">Dinesh Giri</span>
+                          <span class="signValue font-3"><?php echo $signerName; ?></span>
                           <div class="check-mark la"></div>
                       </div>
                   </div>
                   <div class="col-lg-6 mb-0">
                       <div class="pre-signwrap" onclick="choseSignStyle(this);">
-                          <span class="signValue font-4">Dinesh Giri</span>
+                          <span class="signValue font-4"><?php echo $signerName; ?></span>
                           <div class="check-mark la"></div>
                       </div>
                   </div>
@@ -420,7 +424,7 @@ function acceptTerms(elmId){
                 </li>
             </ul>
          </div>
-         <button id="signUseBttn" type="button" class="btn btn-primary" style="float:right;" data-bs-dismiss="modal" onclick="createTypeToSign();">Accept & Use</button>
+         <button id="signUseBttn" type="button" class="btn btn-primary" style="float:right;" onclick="createTypeToSign();">Accept & Use</button>
          <button type="button" class="btn btn-secondary"  style="float:right; margin-right: 10px;" data-bs-dismiss="modal">Cancel</button>
          
         </div>
@@ -429,5 +433,28 @@ function acceptTerms(elmId){
   </div>
 </div>
   <!--- /-Signature pad --->
+
+  <!--- Document signed modal --->
+  
+<div class="modal fade sign-success-modal" id="sign-success-modal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="content-box">
+          <div class="templateHeader">
+            <div style="margin-right: 24px;">
+              <img src="<?php echo base_url("/assets/images/successtick.svg"); ?>" alt="" width="40" height="40">
+            </div>
+            <div class="text-content">Document has been downloaded successfully.</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer"> 
+        <button type="button" id="dwnld-bttn" class="btn btn-primary" onclick="downloadDocument();">Download</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--- / Document signed modal --->
 
 <?php include('footer.php'); ?>

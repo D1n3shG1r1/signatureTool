@@ -127,10 +127,12 @@ if(!function_exists('moveFileOneDirToAnother')){
         //if( !copy($src, $dst) ) { 
         if( !rename($src, $dst) ) { 
             
-            echo "File can't be copied! \n"; 
+            //echo "File can't be copied! \n"; 
+            return 0;
         } 
         else { 
-            echo "File has been copied! \n"; 
+            //echo "File has been copied! \n"; 
+            return 1;
         } 
 
     }
@@ -174,4 +176,9 @@ if(!function_exists('dateDiffMinutes')){
     }
 }
 
+if(!function_exists('genshastring')){
+    function genshastring($str){
+        return sha1($str);
+    }
+}
 ?>

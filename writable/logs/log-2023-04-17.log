@@ -1,0 +1,38 @@
+ERROR - 2023-04-17 09:18:51 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `p...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `p...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `p...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(412): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `p...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1235): App\Models\Document_Model->getSignedDocument('bcbbfa332901052...', '167387425415309...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->signeddocument('bcbbfa332901052...')
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-04-17 09:18:51 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 413.
+ 1 APPPATH\Controllers\Document.php(1235): App\Models\Document_Model->getSignedDocument('bcbbfa332901052f417265b0b3637d7c', '1673874254153097')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->signeddocument('bcbbfa332901052f417265b0b3637d7c')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-17 09:20:06 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `p...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `p...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `p...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(412): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `p...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1235): App\Models\Document_Model->getSignedDocument('bcbbfa332901052...', '167387425415309...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->signeddocument('bcbbfa332901052...')
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-04-17 09:20:06 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 413.
+ 1 APPPATH\Controllers\Document.php(1235): App\Models\Document_Model->getSignedDocument('bcbbfa332901052f417265b0b3637d7c', '1673874254153097')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->signeddocument('bcbbfa332901052f417265b0b3637d7c')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()

@@ -23,10 +23,10 @@ class GeneratePdf{
     
     }
     
-    function preparePdf($rootFolder, $srcFilePath, $data, $hashCode, $signerDocumentId){
+    function preparePdf($rootFolder, $srcFilePath, $data, $hashCode, $signerDocumentId, $secretFolder){
         
         //$userId = "1673874254153097";
-
+        
         $numPages = $this->pdf->setSourceFile($srcFilePath);
         
         $pxInMM = 3.77; //1mm equals to 3.77px
@@ -43,7 +43,7 @@ class GeneratePdf{
             $adjustpagesize = true;
             
             $this->pdf->useTemplate($fileIndex,0,0,237, null,true);
-            //echo "<pre>"; print_r($data); die;
+            
 
             foreach($data as $k => $vl){
 
@@ -99,8 +99,7 @@ class GeneratePdf{
                             $w = 45;
                             $h = 18;
                             
-                            //$this->pdf->Image( $rootFolder."650d5885e051cbf1361781a0366dab198ce52007/ccca43b66c9b41b249c46d2ba96612a4/sign.png", $x, $y, $w, $h);
-                            $this->pdf->Image( $rootFolder."650d5885e051cbf1361781a0366dab198ce52007/$signerDocumentId/sign.png", $x, $y, $w, $h);
+                            $this->pdf->Image( $rootFolder."$secretFolder/$signerDocumentId/sign.png", $x, $y, $w, $h);
                             
                         }else{
                             
@@ -124,9 +123,7 @@ class GeneratePdf{
        
 		//show the PDF in page
 		//$this->pdf->Output();
-        //$this->pdf->Output($rootFolder."userassets/mydocuments/$userId/$signerDocumentId.pdf", "F");
-        $this->pdf->Output($rootFolder."650d5885e051cbf1361781a0366dab198ce52007/$signerDocumentId/$signerDocumentId.pdf", "F");
-
+        $this->pdf->Output($rootFolder."$secretFolder/$signerDocumentId/$signerDocumentId.pdf", "F");
         
     }
     
