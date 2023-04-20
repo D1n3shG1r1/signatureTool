@@ -68,6 +68,7 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
 <script src="<?php echo base_url("/assets/js/pdf.min.js");?>"></script>
 <script src="<?php echo base_url("/assets/js/spectrum.min.js");?>"></script>
 <script src="<?php echo base_url("/assets/customjs/documentprepare.js");?>"></script>
+
 <main>
 
 
@@ -102,20 +103,22 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
         <h4 class="left-panel-title">Fields</h4>
       <div class="bs-form-field-container" >
             <div class="bs-form-field-row">
-              <div id="signature_parent" onclick="addElement(this);" class="bs-form-field bs-form-left-field" aria-grabbed="true">
+      
+            <div id="signature_parent" ondrag="grabDragElementId(this);" class="bs-form-field bs-form-left-field" aria-grabbed="true" draggable="true">
                 <div class="bs-form-field-icon">
                   <span class="sf-icon-NeedstoSign">
-                    <img class="fields-icon" src="<?php echo base_url("/assets/images/sign.png"); ?>" />
+                    <img class="fields-icon" src="<?php echo base_url("/assets/images/sign.png"); ?>" draggable="false"/>
                   </span>
                 </div>
                 <div class="bs-form-field-text">
                   <span>Signature</span>
                 </div>
               </div>
-              <div id="signaturein_parent" onclick="addElement(this);" class="bs-form-field bs-form-right-field">
+            
+              <div id="signaturein_parent" ondrag="grabDragElementId(this);" class="bs-form-field bs-form-right-field" aria-grabbed="true" draggable="true">
                 <div class="bs-form-field-icon">
                   <span class="sf-icon-Initial">
-                    <img class="fields-icon" src="<?php echo base_url("/assets/images/in.png"); ?>" /> 
+                    <img class="fields-icon" src="<?php echo base_url("/assets/images/in.png"); ?>" draggable="false"/> 
                   </span>
                 </div>
                 <div class="bs-form-field-text">
@@ -124,20 +127,20 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
               </div>
             </div>
             <div class="bs-form-field-row">
-              <div id="textbox_parent" onclick="addElement(this);" class="bs-form-field bs-form-left-field" aria-grabbed="false">
+              <div id="textbox_parent" ondrag="grabDragElementId(this);" class="bs-form-field bs-form-left-field" aria-grabbed="true" draggable="true">
                 <div class="bs-form-field-icon">
                   <span class="sf-icon-TypeField">
-                    <img class="fields-icon" src="<?php echo base_url("/assets/images/textbox.png"); ?>" /> 
+                    <img class="fields-icon" src="<?php echo base_url("/assets/images/textbox.png"); ?>" draggable="false"/> 
                   </span>
                 </div>
                 <div class="bs-form-field-text">
                   <span>Textbox</span>
                 </div>
               </div>
-              <div id="datepicker_parent" onclick="addElement(this);" class="bs-form-field bs-form-right-field">
+              <div id="datepicker_parent" ondrag="grabDragElementId(this);" class="bs-form-field bs-form-right-field" aria-grabbed="true" draggable="true">
                 <div class="bs-form-field-icon">
                   <span class="sf-icon-Calendar">
-                    <img class="fields-icon" src="<?php echo base_url("/assets/images/Date.png"); ?>" /> 
+                    <img class="fields-icon" src="<?php echo base_url("/assets/images/Date.png"); ?>" draggable="false"/> 
                   </span>
                 </div>
                 <div class="bs-form-field-text">
@@ -146,20 +149,20 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
               </div>
             </div>
             <div class="bs-form-field-row">
-              <div id="checkbox_parent" onclick="addElement(this);" class="bs-form-field bs-form-left-field">
+              <div id="checkbox_parent" ondrag="grabDragElementId(this);" class="bs-form-field bs-form-left-field" aria-grabbed="true" draggable="true">
                 <div class="bs-form-field-icon">
                   <span class="sf-icon-Checkbox">
-                    <img class="fields-icon" src="<?php echo base_url("/assets/images/checkbox.png"); ?>" /> 
+                    <img class="fields-icon" src="<?php echo base_url("/assets/images/checkbox.png"); ?>" draggable="false"/> 
                   </span>
                 </div>
                 <div class="bs-form-field-text">
                   <span>Checkbox</span>
                 </div>
               </div>
-              <div id="radiobutton_parent" onclick="addElement(this);" class="bs-form-field bs-form-right-field">
+              <div id="radiobutton_parent" ondrag="grabDragElementId(this);" class="bs-form-field bs-form-right-field" aria-grabbed="true" draggable="true">
                 <div class="bs-form-field-icon">
                   <span class="sf-icon-Radiobutton">
-                    <img class="fields-icon" src="<?php echo base_url("/assets/images/radio.png"); ?>" /> 
+                    <img class="fields-icon" src="<?php echo base_url("/assets/images/radio.png"); ?>" draggable="false"/> 
                   </span>
                 </div>
                 <div class="bs-form-field-text">
@@ -168,20 +171,20 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
               </div>
             </div>
             <div class="bs-form-field-row">
-              <div id="name_parent" onclick="addElement(this);" class="bs-form-field bs-form-left-field">
+              <div id="name_parent" ondrag="grabDragElementId(this);" class="bs-form-field bs-form-left-field" aria-grabbed="true" draggable="true">
                 <div class="bs-form-field-icon">
                   <span class="sf-icon-User">
-                    <img class="fields-icon" src="<?php echo base_url("/assets/images/user.png"); ?>" /> 
+                    <img class="fields-icon" src="<?php echo base_url("/assets/images/user.png"); ?>" draggable="false"/> 
                   </span>
                 </div>
                 <div class="bs-form-field-text">
                   <span>Name</span>
                 </div>
               </div>
-              <div id="email_parent" onclick="addElement(this);" class="bs-form-field bs-form-right-field">
+              <div id="email_parent" ondrag="grabDragElementId(this);" class="bs-form-field bs-form-right-field" aria-grabbed="true" draggable="true">
                 <div class="bs-form-field-icon">
                   <span class="sf-icon-Mail">
-                    <img class="fields-icon" src="<?php echo base_url("/assets/images/email.png"); ?>" /> 
+                    <img class="fields-icon" src="<?php echo base_url("/assets/images/email.png"); ?>" draggable="false"/> 
                   </span>
                 </div>
                 <div class="bs-form-field-text">
@@ -190,20 +193,20 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
               </div>
             </div>
             <div class="bs-form-field-row">
-              <div id="editableDate_parent" onclick="addElement(this);" class="bs-form-field bs-form-left-field">
+              <div id="editableDate_parent" ondrag="grabDragElementId(this);" class="bs-form-field bs-form-left-field" aria-grabbed="true" draggable="true">
                 <div class="bs-form-field-icon">
                   <span class="sf-icon-editable-date">
-                    <img class="fields-icon" src="<?php echo base_url("/assets/images/Date Editable.png"); ?>" /> 
+                    <img class="fields-icon" src="<?php echo base_url("/assets/images/Date Editable.png"); ?>" draggable="false"/> 
                   </span>
                 </div>
                 <div class="bs-form-field-text">
                   <span>Editable Date</span>
                 </div>
               </div>
-              <div id="image_parent" onclick="addElement(this);" class="bs-form-field bs-form-right-field">
+              <div id="image_parent" ondrag="grabDragElementId(this);" class="bs-form-field bs-form-right-field" aria-grabbed="true" draggable="true">
                 <div class="bs-form-field-icon">
                   <span class="cs-icon-Image">
-                    <img class="fields-icon" src="<?php echo base_url("/assets/images/Photo.png"); ?>" /> 
+                    <img class="fields-icon" src="<?php echo base_url("/assets/images/Photo.png"); ?>" draggable="false"/> 
                   </span>
                 </div>
                 <div class="bs-form-field-text">
@@ -214,20 +217,20 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
             <!---->
             <!---<div style="border-bottom: 1px solid rgb(210, 215, 222); margin-top: 16px;"></div>--->
             <div class="bs-form-field-row">
-              <div id="label_parent" onclick="addElement(this);" class="bs-form-field bs-form-left-field">
+              <div id="label_parent" ondrag="grabDragElementId(this);" class="bs-form-field bs-form-left-field" aria-grabbed="true" draggable="true">
                 <div class="bs-form-field-icon">
                   <span class="sf-icon-IncreaseFontSize">
-                    <img class="fields-icon" src="<?php echo base_url("/assets/images/Label.png"); ?>" /> 
+                    <img class="fields-icon" src="<?php echo base_url("/assets/images/Label.png"); ?>" draggable="false"/> 
                   </span>
                 </div>
                 <div class="bs-form-field-text">
                   <span>Label</span>
                 </div>
               </div>
-              <div id="hyperlink_parent" onclick="addElement(this);" class="bs-form-field bs-form-right-field">
+              <div id="hyperlink_parent" ondrag="grabDragElementId(this);" class="bs-form-field bs-form-right-field" aria-grabbed="true" draggable="true">
                 <div class="bs-form-field-icon">
                   <span class="sf-icon-hyperlink">
-                    <img class="fields-icon" src="<?php echo base_url("/assets/images/Link.png"); ?>" /> 
+                    <img class="fields-icon" src="<?php echo base_url("/assets/images/Link.png"); ?>" draggable="false"/> 
                   </span>
                 </div>
                 <div class="bs-form-field-text">

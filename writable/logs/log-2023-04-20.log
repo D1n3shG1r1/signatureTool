@@ -1,0 +1,22 @@
+CRITICAL - 2023-04-20 12:51:44 --> json_decode() expects parameter 1 to be string, array given
+in APPPATH\Views\admin\documentOverview.php on line 5.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'json_decode() expects parameter 1 to be string, array given', 'APPPATH\\Views\\admin\\documentOverview.php', 5, [...])
+ 2 APPPATH\Views\admin\documentOverview.php(5): json_decode([...])
+ 3 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\admin\\documentOverview.php')
+ 4 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('admin/documentOverview', [], true)
+ 6 APPPATH\Controllers\Document.php(1248): view('admin/documentOverview', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->signeddocument('9e46469837ca059298a22b6d6afbdd1d')
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-20 13:34:17 --> Cannot use object of type stdClass as array
+in APPPATH\Views\admin\documentOverview.php on line 114.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('admin/documentOverview', [], true)
+ 4 APPPATH\Controllers\Document.php(1248): view('admin/documentOverview', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->signeddocument('9e46469837ca059298a22b6d6afbdd1d')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()

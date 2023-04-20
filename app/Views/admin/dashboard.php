@@ -60,7 +60,7 @@
                                 <td>'.$status.'</td>
                                 <td>
                                     <a href="'.base_url($documentPath).'" target="_blank">View Document</a>
-                                    <a href="'.site_url("documentdetails/".$documentId).'" target="_blank">Details</a>
+                                    <a href="'.site_url("signeddocument/".$documentId).'" target="_blank">Details</a>
                                 </td>
                             </tr>';    
 
