@@ -11,6 +11,8 @@ use App\Libraries\GeneratePdf; //import library
 
 use Config\Encryption;
 use Config\Services;
+use Config\Esign;
+
 //use setasign\Fpdi\FpdfTpl;
 
 class Document extends BaseController
@@ -21,11 +23,16 @@ class Document extends BaseController
 	public $document_model = null;
 	public $pdf = null;
 	public $router = null;
+	public $esign_config = null;
+	
 	function __construct(){
-		
+		//session object
 		$this->session = \Config\Services::session();
 		$this->session->start();
-		
+	
+		//config object
+		$this->esign_config = new \Config\Esign();
+
 		//Request Object
 		$this->request = \Config\Services::request();
 		
@@ -252,6 +259,16 @@ class Document extends BaseController
 
 	function test(){
 		
+		/*
+		$rootFolder = publicFolder();
+		$secretFolder = $this->esign_config->SECRETFOLDER; 
+		echo $rootFolder.$secretFolder."/"; die;
+		$this->pdf = new GeneratePdf();	
+		$this->pdf->prepareConsolidateCompletionCertificate(0,0,0,0,0,0);
+		*/
+
+		die;
+
 		$tmpDocumentId = "afad9cd64d8edc755ef426d56bc9522c";
 		$homePath = FCPATH."index.php";
 		$cmd = "php '$homePath emailengine sendDocuSingColl $tmpDocumentId' > /dev/null &";
@@ -986,6 +1003,8 @@ class Document extends BaseController
 		$ownerId = $senderResult["senderId"];
 
 		//create signatures png
+		
+		//$secretFolder = $this->esign_config->SECRETFOLDER;
 		$secretFolder = "650d5885e051cbf1361781a0366dab198ce52007";
 		$folderPath = FCPATH . "$secretFolder\\" . $signerDocumentId; 
 	
@@ -1085,6 +1104,11 @@ class Document extends BaseController
 				
 				$insertRowId = $this->document_model->saveDocumentESignHash($insertData);
 				
+
+				//send completed document to signer
+
+
+
 				$result = array("C" => 100, "R" => array("downloadurl" => $downloadUrl), "M" => "success");
 			
 			}else{

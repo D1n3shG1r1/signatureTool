@@ -60,17 +60,19 @@ $routes->post('/processsign', 'Document::processsign');
 $routes->post('/writesigndata', 'Document::writesigndata');
 
 $routes->cli('emailengine/sendDocuSingColl/(:any)', 'Emailengine::sendDocuSingColl/$1');
+$routes->cli('emailengine/sendCompletedDocumentToSigner/(:any)', 'Emailengine::sendCompletedDocumentToSigner/$1');
 
-$routes->get('/test', 'Document::test');
 $routes->post('/sendDocAccessOtp', 'Document::sendDocAccessOtp');
-$routes->get('emailengine/sendDocuSingColl/(:any)', 'Emailengine::sendDocuSingColl/$1');
+
 $routes->get('emailengine/sendOtpEmail/(:segment)', 'Emailengine::sendOtpEmail/$1');
 $routes->get('/dashboard', 'Document::dashboard');
 $routes->get('/signeddocument/(:any)', 'Document::signeddocument/$1');
 $routes->get('/logout', 'Admin::logout');
 
-
-
+//test routes
+$routes->get('emailengine/sendCompletedDocumentToSigner/(:any)', 'Emailengine::sendCompletedDocumentToSigner/$1');
+$routes->get('emailengine/sendDocuSingColl/(:any)', 'Emailengine::sendDocuSingColl/$1');
+$routes->get('/test', 'Document::test');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

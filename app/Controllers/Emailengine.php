@@ -7,6 +7,7 @@ use App\Controllers\BaseController;
 //use App\Libraries\GeneratePdf; //import library
 //use Config\Encryption;
 //use Config\Services;
+use Config\Esign;
 
 class Emailengine extends BaseController
 {
@@ -15,11 +16,20 @@ class Emailengine extends BaseController
     public $email_model = null;
     public $request = null;
 	public $session = null;
+    public $esign_config = null;
+    public $FROMEMAIL = null;
+    public $FROMNAME = null;
+
 	function __construct(){
 		
 		$this->session = \Config\Services::session();
 		$this->session->start();
 		
+        //config object
+		$this->esign_config = new \Config\Esign();
+        $this->FROMEMAIL = $this->esign_config->FROMEMAIL;
+        $this->FROMNAME = $this->esign_config->FROMNAME;
+
 		//Request Object
 		$this->request = \Config\Services::request();
 		
@@ -34,25 +44,9 @@ class Emailengine extends BaseController
 	}
 
     function sendDocuSingColl($maindocid) { 
-        //emailengine/sendDocuSingColl
-    
-        /*
-        $fpath = FCPATH."/test.txt";
-        $fp = fopen($fpath, "a+");
-        fwrite($fp, "\n\n\n maindocid:".$maindocid);
-        fclose($fp);
-        */
-
-        $docDetails = $this->email_model->getSignerDocumentDetails($maindocid);
-        //echo "<pre>"; print_r($docDetails); die;
         
-        /*
-        $fp = fopen($fpath, "a+");
-        fwrite($fp, "\n\n\n docDetails:".json_encode($docDetails));
-        fclose($fp);
-        */        
-
-
+        $docDetails = $this->email_model->getSignerDocumentDetails($maindocid);
+        
         $ownerResult = $docDetails["ownerResult"];
         $docResult = $docDetails["docResult"];
         $signerResult = $docDetails["signerResult"];
@@ -114,10 +108,6 @@ class Emailengine extends BaseController
         $data["accessCode"]         = $accessCode;
         */
 
-        /*$fp = fopen($fpath, "a+");
-        fwrite($fp, "\n\n\n tmpData:".json_encode($data));
-        fclose($fp);*/
-
         $template = view('emailtemplates/DocuSingColl_Template', $data);
 
         $to = $signerEmail;
@@ -134,11 +124,7 @@ class Emailengine extends BaseController
         if ($email->send()) 
 		{
             //echo 'Email successfully sent';
-            /*
-            $fp = fopen($fpath, "a+");
-            fwrite($fp, "\n\n\n email sent");
-            fclose($fp);
-            */            
+                       
             //update date time in db when email is sent
             $param = array();
             $param["document_status"] = "sent";
@@ -172,12 +158,7 @@ class Emailengine extends BaseController
 			$data = $email->printDebugger(['headers']);
             
             //print_r($data);
-			/*
-            $fp = fopen($fpath, "a+");
-            fwrite($fp, "\n\n\n email error:".json_encode($data));
-            fclose($fp);
-            */
-            //echo "exe:".json_encode($data);
+			//echo "exe:".json_encode($data);
         }
         
     }
@@ -221,6 +202,64 @@ class Emailengine extends BaseController
         }
     }
 
+    function sendCompletedDocumentToSigner($documentId=false){
+        //emailengine/sendCompletedDocumentToSigner
+        
 
+        $secretFolder = $this->esign_config->SECRETFOLDER;
+        $documentId = "37a3235a19a98fd3e4bf7b0bcbe74669";
+        $emailDocData = $this->email_model->getCompletedDocument($documentId);
+
+        if(!empty($emailDocData)){
+
+            $documentId = $emailDocData["documentId"];
+            $signerName = $emailDocData["signerName"];
+            $signerEmail = $emailDocData["signerEmail"];
+            $documentTitle = $emailDocData["documentTitle"];
+        
+            $attachmentMime = "application/pdf";
+            $folderPath = FCPATH . "$secretFolder\\" . $documentId; 
+            $fileUrl_1 =  $folderPath."\\".$documentId.".pdf";
+            $fileName_1 = $documentTitle.".pdf";
+
+            $fileUrl_2 =  $folderPath."\\".$documentId."_CertificateOfCompletion.pdf";
+            $fileName_2 = $documentTitle."_Certificate_Of_Completion.pdf";
+
+            
+
+            $data = array();
+            $data["signerName"] = $signerName;
+            $data["docTitle"] = $documentTitle;
+            
+            $template = view('emailtemplates/DocuSingnedSigner_Template', $data);
+            $message = $template;
+            
+            $to = $signerEmail;
+            $subject = "You have successfully signed $documentTitle";
+            
+            $email = \Config\Services::email();
+            $email->setTo($to);
+            $email->setFrom($this->FROMEMAIL, $this->FROMNAME);
+            
+            $email->setSubject($subject);
+            $email->setMessage($message);
+            $email->attach(file_get_contents($fileUrl_1), 'attachment', $fileName_1, $attachmentMime);
+            $email->attach(file_get_contents($fileUrl_2), 'attachment', $fileName_2, $attachmentMime);
+            if ($email->send()) 
+            {
+                //echo 'Email successfully sent';
+                return 1;
+            } 
+            else 
+            {
+                //write log if email failed
+                //echo $data = $email->printDebugger(['headers']);
+                return 0;
+                
+            }
+        
+        }
+        
+    }
 }
 ?>

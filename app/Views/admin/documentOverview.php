@@ -1,9 +1,10 @@
 <?php include("header.php"); 
-
+$folderId = "650d5885e051cbf1361781a0366dab198ce52007";
 $masterDocument = $document["masterDocument"];
 $sender = $document["sender"];
 $recipentsData = $document["recipents"];
 $recipents = json_decode($recipentsData["recipients"]);
+$documentTitle = $recipentsData["documentTitle"];
 
 ?>
 
@@ -12,17 +13,23 @@ $recipents = json_decode($recipentsData["recipients"]);
     display: flex;
     padding-top: 40px;
 }
-
+/*
 .main-overview-body .container{
     margin-left:0px;
     border:1px solid;
+}
+*/
+
+.main-overview-body .main-summary{
+    padding-left: 60px;
+    padding-right: 60px;
 }
 
 .document-overview-content {
     line-height: 1.43;
     line-height: 1.43;
     border-bottom: 1px solid #ddd;
-    padding: 10px 0 30px 0px;
+    padding: 10px 0 45px 0px;
 }
 
 .overview-text, .overview-text-label{
@@ -38,6 +45,62 @@ $recipents = json_decode($recipentsData["recipients"]);
 .document-overview-content .row .col-2{
     text-align: right;
 }
+
+.recipients-nav-row{
+    margin-top: 45px;
+}
+
+.recipients-nav{width: auto;}
+
+.recipients-nav .nav-item .nav-link{
+    color:#666e80;
+}
+
+.recipients-row .table, .recipients-row .table thead{
+    color:#666e80;
+}
+
+.recipients-row .table thead tr th{
+    font-weight: 500;
+}
+
+.recipients-nav .nav-item .nav-link.active{
+    color:#0D6EFD;
+}
+
+.recipients-nav .nav-item .inactive-nav-highlight{
+    border-bottom: 1px solid #ddd;
+    padding-top: 3px;
+}
+
+.recipients-nav .nav-item .active-nav-highlight{
+    border: 2px solid #0D6EFD;
+    border-radius: 4px;
+}
+
+.recipients-row{
+    margin-top:25px;
+}
+
+.recipients-row .table .la-check-circle:before{
+    font-size: 17px;
+    padding: 0px 2px 0px 0px;
+}
+
+.recipients-row .table .recipeintEmail{
+    color:#0D6EFD;
+    max-width: 200px;
+    word-break: break-all;
+}
+
+.recipients-row .table .recipeintName{
+    max-width: 200px;
+    word-break: break-all;
+}
+
+.documentNameContainer{
+    color:#666e80;   
+}
 </style>
 
 <main>
@@ -50,7 +113,7 @@ $recipents = json_decode($recipentsData["recipients"]);
         </figure>
         <div class="">
             <!--<span class="documentNameContainer conf-fields">Configure fields</span>-->
-            <span class="documentNameContainer">sample</span>
+            <span class="documentNameContainer"><?php echo $documentTitle; ?></span>
         </div>
     </div>    
 </div>
@@ -59,7 +122,7 @@ $recipents = json_decode($recipentsData["recipients"]);
     <?php include("navbar.php"); ?>
 
 
-    <div class="container">
+    <div class="container-fluid main-summary">
         <div class="document-overview-content row group">
             <div class="row">
                 <div class="col-2">
@@ -116,23 +179,26 @@ $recipents = json_decode($recipentsData["recipients"]);
             </div>
         </div>
 
-        <div class="row">
-            <ul class="nav">
+        <div class="row recipients-nav-row"> 
+            <ul class="nav recipients-nav">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Recipients Details</a>
+                    <div class="active-nav-highlight col-12"></div>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="display:none;">
                     <a class="nav-link" href="#">Document History</a>
+                    <div class="inactive-nav-highlight col-12"></div>
                 </li>
             </ul>
         </div>
-        <div class="row">
+        <div class="row recipients-row">
         
             <table class="table">
-                <thead>
+                <thead class="table-light">
                     <tr>
                         <th scope="col">Recipients</th>
                         <th scope="col">Email ID</th>
+                        <th scope="col">Last Activity</th>
                         <th scope="col">Status</th>
                         <th scope="col">Authentication</th>
                         <th scope="col">View</th>
@@ -140,22 +206,41 @@ $recipents = json_decode($recipentsData["recipients"]);
                 </thead>
                 <tbody>
                     <?php 
+                    
                     if(!empty($recipents)){
                         foreach($recipents as $tmpRecipent){
                             $tmpEmail = $tmpRecipent->email;
                             $tmpName =  $tmpRecipent->name;
                             $tmpAuthType = $tmpRecipent->authType;
                             $tmpDocStatus = $tmpRecipent->document->document_status;
-                            $tmpDocumentId = $tmpRecipent->documentId;
+                            $tmpDocumentId = $tmpRecipent->document->documentId;
+                            
+                            if($tmpAuthType == 1){
+                                //otp
+                                $tmpAuthTypeTxt = "OTP";
+                            }else if($tmpAuthType == 2){
+                                //access code
+                                $tmpAuthTypeTxt = "Access Code";
+                            }else{
+                                //nil
+                                $tmpAuthTypeTxt = "-";
+                            }
+
+                            
+                            if(strtolower($tmpDocStatus) == "signed"){
+                                $tmpDocStatus = '<i class="las la-check-circle"></i>'.$tmpDocStatus;
+                            }
+
                             
                             $tr .= '<tr>
-                                <td>'.$tmpName.'</td>
-                                <td>'.$tmpEmail.'</td>
+                                <td class="recipeintName">'.$tmpName.'</td>
+                                <td class="recipeintEmail">'.$tmpEmail.'</td>
+                                <td>0000-00-00 00:00:00</td>
                                 <td>'.$tmpDocStatus.'</td>
-                                <td>'.$tmpAuthType.'</td>
-                                <td>'.$tmpDocumentId.'</td>
+                                <td>'.$tmpAuthTypeTxt.'</td>
+                                <td><button type="button" class="btn btn-outline-primary col-12" onclick="showDocument(\''.$tmpDocumentId.'\');">View</button></td>
                             </tr>';   
-    
+                            
                         }
                     }else{
                         $tr = '<tr><td>It seems that you have no recipients yet.</td></tr>';
@@ -171,5 +256,17 @@ $recipents = json_decode($recipentsData["recipients"]);
 
 
 </div>
+
 </main>
+
+<script>
+    
+    function showDocument(docId){
+        var url = '<?php echo base_url("$folderId"); ?>/'+docId+'/'+docId+'.pdf';
+        window.open(url,"_blank");
+    }
+
+
+</script>
+
 <?php include("footer.php"); ?>

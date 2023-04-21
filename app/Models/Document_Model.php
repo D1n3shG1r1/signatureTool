@@ -400,7 +400,7 @@ class Document_Model extends Model
 			$finalResult["sender"] = $userRow;
 
 			//get uploaded file
-			$cmd = "SELECT `file_name`, `recipients` FROM `e_sign_uploaded_files` WHERE `id` = $uploadId";
+			$cmd = "SELECT `file_name`, `documentTitle`, `recipients` FROM `e_sign_uploaded_files` WHERE `id` = $uploadId";
 			$query = $this->db->query($cmd);
 			$recipentsRow = $query->getRowArray();	
 			$recipients = json_decode($recipentsRow['recipients'], true);
@@ -426,7 +426,7 @@ class Document_Model extends Model
 			$recipentsRow['recipients'] = json_encode($recipients);
 			$finalResult["recipents"] = $recipentsRow;
 			//print_r($recipentsRow);
-			//print_r($finalResult);
+			//echo "<pre>"; print_r($finalResult); die;
 
 		}
 

@@ -127,5 +127,38 @@ class Email_Model extends Model
         }
     }
 
+    function getCompletedDocument($documentId){
+        
+        $result = array();
+
+        $cmd = "SELECT `parentDocument`, `documentId`, `signerEmail`, `signerName`, `documentExpiry` FROM `e_sign_document_signers` WHERE `documentId` = '$documentId'";
+        $query = $this->db->query($cmd);
+        $signerRow = $query->getRowArray();
+
+        if(!empty($signerRow)){
+            $tmpParentDoc = $signerRow["parentDocument"];
+        
+            $cmd = "SELECT `uploadId` FROM `e_sign_documents` WHERE `id` = $tmpParentDoc";
+            $query = $this->db->query($cmd);
+            $parentDocumentRow = $query->getRowArray();
+            
+            if(!empty($parentDocumentRow)){
+                $uploadId = $parentDocumentRow["uploadId"];
+                $cmd = "SELECT `documentTitle` FROM `e_sign_uploaded_files` WHERE `id` = $uploadId";
+                $query = $this->db->query($cmd);
+                $uploadedDocumentRow = $query->getRowArray();    
+
+                $result["documentId"] = $signerRow["documentId"];
+                $result["signerName"] = $signerRow["signerName"];
+                $result["signerEmail"] = $signerRow["signerEmail"];
+                $result["documentTitle"] = $uploadedDocumentRow["documentTitle"];
+            
+            }
+        
+        }
+
+        return $result;
+    }
+
 }
 ?>
