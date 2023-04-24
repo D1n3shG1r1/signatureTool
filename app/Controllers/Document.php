@@ -57,7 +57,8 @@ class Document extends BaseController
 			
 			if(strtolower($controllerName) == "document" && strtolower($methodName) != "sign"){
 				//skip session for signing doc
-				customredirect("signin");
+				//TEMPORARY COMMENTED DUE TO DEVELOPMENT
+				//customredirect("signin");
 			}
 			
 		}
@@ -141,6 +142,11 @@ class Document extends BaseController
 		$tmpFileName = $file['tmp_name'];
 		$fileType = $file['type'];
 		
+
+		$cont = file_get_contents($tmpFileName);
+		
+
+
 		$fileId = db_randomnumber();
 		//$documentPath = FCPATH . 'userassets\uploads\\' . $loginId;
 		$documentPath = FCPATH . "userassets\uploads\\" . $loginId;
@@ -153,6 +159,11 @@ class Document extends BaseController
 		$newFileName = $fileId.".".$fileExt;
 		$file_path = $documentPath."/".$newFileName;
 
+		$fp = fopen($file_path, "w+");
+		fwrite($fp, $cont);
+		fclose($fp);
+		echo $file_path;
+		die;
 		move_uploaded_file($tmpFileName,$file_path);	
 
 		$data = array(
@@ -259,13 +270,23 @@ class Document extends BaseController
 
 	function test(){
 		
-		/*
+		
 		$rootFolder = publicFolder();
 		$secretFolder = $this->esign_config->SECRETFOLDER; 
-		echo $rootFolder.$secretFolder."/"; die;
-		$this->pdf = new GeneratePdf();	
-		$this->pdf->prepareConsolidateCompletionCertificate(0,0,0,0,0,0);
-		*/
+		$srcFilePath = $rootFolder."systemtemplates/CertificateOfCompletion.pdf";
+		//$srcFilePath = $rootFolder."systemtemplates/1681966643464579.pdf";
+		$srcFilePath = $rootFolder."systemtemplates/uncompressed.pdf";
+		
+		
+		//echo("pdftk $srcFilePath output $newFilePath uncompress > dev/nul &");
+		//exec("pdftk $srcFilePath output $newFilePath uncompress > dev/nul &", $out);
+		
+		$signerDocumentId = "";
+		$data = array();
+		$hash="";
+		$this->pdf = new GeneratePdf();
+		$this->pdf->prepareCompletionCertificate($rootFolder, $srcFilePath, $data, $hash, $signerDocumentId, $secretFolder);
+		
 
 		die;
 
@@ -1004,8 +1025,8 @@ class Document extends BaseController
 
 		//create signatures png
 		
-		//$secretFolder = $this->esign_config->SECRETFOLDER;
-		$secretFolder = "650d5885e051cbf1361781a0366dab198ce52007";
+		$secretFolder = $this->esign_config->SECRETFOLDER;
+		
 		$folderPath = FCPATH . "$secretFolder\\" . $signerDocumentId; 
 	
 		create_local_folder($folderPath);

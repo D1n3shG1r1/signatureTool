@@ -578,12 +578,17 @@ function AcceptPageBreak()
 
 function Cell($w, $h=0, $txt='', $border=0, $ln=0, $align='', $fill=false, $link='')
 {
+	
+	//$this->y = $cy;
+	//$this->x = $cx;
+	//$h = 5;
 	// Output a cell
 	$k = $this->k;
 	if($this->y+$h>$this->PageBreakTrigger && !$this->InHeader && !$this->InFooter && $this->AcceptPageBreak())
 	{
 		// Automatic page break
 		$x = $this->x;
+		
 		$ws = $this->ws;
 		if($ws>0)
 		{
@@ -830,6 +835,91 @@ function Write($h, $txt, $link='')
 				if($i==$j)
 					$i++;
 				$this->Cell($w,$h,substr($s,$j,$i-$j),0,2,'',false,$link);
+			}
+			else
+			{
+				$this->Cell($w,$h,substr($s,$j,$sep-$j),0,2,'',false,$link);
+				$i = $sep+1;
+			}
+			$sep = -1;
+			$j = $i;
+			$l = 0;
+			if($nl==1)
+			{
+				$this->x = $this->lMargin;
+				$w = $this->w-$this->rMargin-$this->x;
+				$wmax = ($w-2*$this->cMargin)*1000/$this->FontSize;
+			}
+			$nl++;
+		}
+		else
+			$i++;
+	}
+	// Last chunk
+	if($i!=$j)
+		$this->Cell($l/1000*$this->FontSize,$h,substr($s,$j),0,0,'',false,$link);
+}
+
+function WriteDinesh($h, $txt, $link='')
+{
+	// Output text in flowing mode
+	if(!isset($this->CurrentFont))
+		$this->Error('No font has been set');
+	$cw = $this->CurrentFont['cw'];
+	$w = $this->w-$this->rMargin-$this->x;
+	$wmax = ($w-2*$this->cMargin)*1000/$this->FontSize;
+	$s = str_replace("\r",'',(string)$txt);
+	$nb = strlen($s);
+	$sep = -1;
+	$i = 0;
+	$j = 0;
+	$l = 0;
+	$nl = 1;
+	while($i<$nb)
+	{
+		// Get next character
+		$c = $s[$i];
+		if($c=="\n")
+		{
+			// Explicit line break
+			$this->Cell($w,$h,substr($s,$j,$i-$j),0,2,'',false,$link);
+			$i++;
+			$sep = -1;
+			$j = $i;
+			$l = 0;
+			if($nl==1)
+			{
+				$this->x = $this->lMargin;
+				$w = $this->w-$this->rMargin-$this->x;
+				$wmax = ($w-2*$this->cMargin)*1000/$this->FontSize;
+			}
+			$nl++;
+			continue;
+		}
+		if($c==' ')
+			$sep = $i;
+		$l += $cw[$c];
+		if($l>$wmax)
+		{
+			// Automatic line break
+			if($sep==-1)
+			{
+				if($this->x>$this->lMargin)
+				{
+					// Move to next line
+					$this->x = $this->lMargin;
+					$this->y += $h;
+					$w = $this->w-$this->rMargin-$this->x;
+					$wmax = ($w-2*$this->cMargin)*1000/$this->FontSize;
+					$i++;
+					$nl++;
+					continue;
+				}
+				if($i==$j)
+					$i++;
+				$this->Cell($w,$h,substr($s,$j,$i-$j),0,2,'',false,$link);
+				
+				
 			}
 			else
 			{
