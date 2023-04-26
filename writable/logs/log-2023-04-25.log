@@ -1,0 +1,339 @@
+CRITICAL - 2023-04-25 09:58:22 --> Class 'App\Controllers\DateTime' not found
+in APPPATH\Controllers\Document.php on line 275.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->test()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 05:35:34 --> Call to undefined function App\Controllers\print_array()
+in APPPATH\Controllers\Document.php on line 355.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->test()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 05:39:13 --> DateTimeZone::__construct() expects parameter 1 to be string, array given
+in APPPATH\Controllers\Document.php on line 363.
+ 1 APPPATH\Controllers\Document.php(363): DateTimeZone->__construct([...])
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->test()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 05:39:43 --> DateTimeZone::__construct(): Unknown or bad timezone (Array)
+in APPPATH\Controllers\Document.php on line 363.
+ 1 APPPATH\Controllers\Document.php(363): DateTimeZone->__construct('Array')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->test()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 10:40:35 --> DateTimeZone::__construct(): Unknown or bad timezone (Array)
+in APPPATH\Controllers\Document.php on line 362.
+ 1 APPPATH\Controllers\Document.php(362): DateTimeZone->__construct('Array')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->test()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 11:03:25 --> Object of class DateTimeZone could not be converted to string
+in APPPATH\Controllers\Document.php on line 344.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->test()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-25 11:31:19 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10 OFFSET 0' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `uploadI...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `uploadI...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `uploadI...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(372): CodeIgniter\Database\BaseConnection->query('SELECT `uploadI...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1423): App\Models\Document_Model->getMyDocuments(NULL, 0)
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-04-25 11:31:19 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 373.
+ 1 APPPATH\Controllers\Document.php(1423): App\Models\Document_Model->getMyDocuments(null, 0)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-25 12:19:45 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it.
+ in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:174
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(174): mysqli->real_connect('localhost', 'root', '', 'digital_sign_db', 3306, '', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(98): CodeIgniter\Database\BaseConnection->query('SELECT * FROM `...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(707): App\Models\Document_Model->getSignerDocumentRawData('c84b3c8d1a55dfd...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->sign()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it.
+ in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(98): CodeIgniter\Database\BaseConnection->query('SELECT * FROM `...')
+#3 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(707): App\Models\Document_Model->getSignerDocumentRawData('c84b3c8d1a55dfd...')
+#4 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->sign()
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-04-25 12:19:45 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it.
+
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Models\Document_Model.php(98): CodeIgniter\Database\BaseConnection->query('SELECT * FROM `e_sign_document_signers` WHERE `documentId` = \'c84b3c8d1a55dfd4fc89092de4d8d273\' AND `documentExpired` = 0')
+ 3 APPPATH\Controllers\Document.php(707): App\Models\Document_Model->getSignerDocumentRawData('c84b3c8d1a55dfd4fc89092de4d8d273')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->sign()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-25 12:25:00 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it.
+ in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:174
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(174): mysqli->real_connect('localhost', 'root', '', 'digital_sign_db', 3306, '', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(98): CodeIgniter\Database\BaseConnection->query('SELECT * FROM `...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(707): App\Models\Document_Model->getSignerDocumentRawData('c84b3c8d1a55dfd...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->sign()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it.
+ in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(98): CodeIgniter\Database\BaseConnection->query('SELECT * FROM `...')
+#3 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(707): App\Models\Document_Model->getSignerDocumentRawData('c84b3c8d1a55dfd...')
+#4 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->sign()
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-04-25 12:25:00 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it.
+
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Models\Document_Model.php(98): CodeIgniter\Database\BaseConnection->query('SELECT * FROM `e_sign_document_signers` WHERE `documentId` = \'c84b3c8d1a55dfd4fc89092de4d8d273\' AND `documentExpired` = 0')
+ 3 APPPATH\Controllers\Document.php(707): App\Models\Document_Model->getSignerDocumentRawData('c84b3c8d1a55dfd4fc89092de4d8d273')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->sign()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-25 12:33:34 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', `documentSignDate`, `authType` FROM `e_sign_document_signers` WHERE `documentI' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `p...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `p...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `p...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(472): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `p...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1112): App\Models\Document_Model->getDocDataForCompletionCertificate('c84b3c8d1a55dfd...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->processsign()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-04-25 12:33:34 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 473.
+ 1 APPPATH\Controllers\Document.php(1112): App\Models\Document_Model->getDocDataForCompletionCertificate('c84b3c8d1a55dfd4fc89092de4d8d273')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-25 12:34:04 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', `documentSignDate`, `authType` FROM `e_sign_document_signers` WHERE `documentI' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `p...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `p...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `p...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(472): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `p...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1112): App\Models\Document_Model->getDocDataForCompletionCertificate('c84b3c8d1a55dfd...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->processsign()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-04-25 12:34:04 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 473.
+ 1 APPPATH\Controllers\Document.php(1112): App\Models\Document_Model->getDocDataForCompletionCertificate('c84b3c8d1a55dfd4fc89092de4d8d273')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-25 12:35:31 --> mysqli_sql_exception: Unknown column 'c84b3c8d1a55dfd4fc89092de4d8d273' in 'where clause' in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `p...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `p...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `p...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(472): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `p...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1112): App\Models\Document_Model->getDocDataForCompletionCertificate('c84b3c8d1a55dfd...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->processsign()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-04-25 12:35:31 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 473.
+ 1 APPPATH\Controllers\Document.php(1112): App\Models\Document_Model->getDocDataForCompletionCertificate('c84b3c8d1a55dfd4fc89092de4d8d273')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-25 12:40:48 --> mysqli_sql_exception: Unknown column 'c84b3c8d1a55dfd4fc89092de4d8d273' in 'where clause' in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `p...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `p...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `p...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(472): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `p...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1112): App\Models\Document_Model->getDocDataForCompletionCertificate('c84b3c8d1a55dfd...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->processsign()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-04-25 12:40:48 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 473.
+ 1 APPPATH\Controllers\Document.php(1112): App\Models\Document_Model->getDocDataForCompletionCertificate('c84b3c8d1a55dfd4fc89092de4d8d273')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-25 12:41:43 --> mysqli_sql_exception: Unknown column 'c84b3c8d1a55dfd4fc89092de4d8d273' in 'where clause' in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `p...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `p...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `p...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(472): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `p...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1112): App\Models\Document_Model->getDocDataForCompletionCertificate('c84b3c8d1a55dfd...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->processsign()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-04-25 12:41:43 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 473.
+ 1 APPPATH\Controllers\Document.php(1112): App\Models\Document_Model->getDocDataForCompletionCertificate('c84b3c8d1a55dfd4fc89092de4d8d273')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 13:25:47 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(143): setasign\Fpdi\FpdfTpl->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Controllers\Document.php(1252): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 13:39:24 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(143): setasign\Fpdi\FpdfTpl->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Controllers\Document.php(1253): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 13:42:51 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(143): setasign\Fpdi\FpdfTpl->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Controllers\Document.php(1253): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 13:43:31 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(143): setasign\Fpdi\FpdfTpl->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Controllers\Document.php(1253): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 13:45:20 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(143): setasign\Fpdi\FpdfTpl->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Controllers\Document.php(1253): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 13:47:56 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(163): setasign\Fpdi\FpdfTpl->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Controllers\Document.php(1253): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 13:48:57 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(165): setasign\Fpdi\FpdfTpl->AddPage()
+ 4 APPPATH\Controllers\Document.php(1253): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 13:49:52 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1558): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(467): FPDF->_out('q 0 J 1 w 0 j 0 G 0 g 1.1285 0 0 1.1285 0.0000 0.0000 cm /TPL2 Do Q')
+ 3 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(441): setasign\Fpdi\FpdfTpl->_out('q 0 J 1 w 0 j 0 G 0 g 1.1285 0 0 1.1285 0.0000 0.0000 cm /TPL2 Do Q')
+ 4 FCPATH\vendor\setasign\fpdi\src\Fpdi.php(59): setasign\Fpdi\Fpdi->useImportedPage('FCPATH\\systemtemplates\\CertificateOfCompletion.pdf|1|1|CropBox', 0, 0, 237, null, true)
+ 5 APPPATH\Libraries\GeneratePdf.php(169): setasign\Fpdi\Fpdi->useTemplate('FCPATH\\systemtemplates\\CertificateOfCompletion.pdf|1|1|CropBox', 0, 0, 237, null, true)
+ 6 APPPATH\Controllers\Document.php(1253): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 13:51:28 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(164): setasign\Fpdi\FpdfTpl->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Controllers\Document.php(1253): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 13:56:39 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(163): setasign\Fpdi\FpdfTpl->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Controllers\Document.php(1253): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-25 13:57:22 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(163): setasign\Fpdi\FpdfTpl->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Controllers\Document.php(1253): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()

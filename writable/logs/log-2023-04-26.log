@@ -1,0 +1,124 @@
+CRITICAL - 2023-04-26 05:01:51 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(164): setasign\Fpdi\FpdfTpl->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Controllers\Document.php(1253): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-26 05:15:06 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(187): setasign\Fpdi\FpdfTpl->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 4 APPPATH\Controllers\Document.php(1253): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-26 05:17:33 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(190): setasign\Fpdi\FpdfTpl->AddPage()
+ 4 APPPATH\Controllers\Document.php(1253): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-26 05:23:14 --> Invalid type in $file parameter (NULL)
+in FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php on line 161.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(213): setasign\Fpdi\Fpdi->getPdfReaderId(null)
+ 2 APPPATH\Libraries\GeneratePdf.php(177): setasign\Fpdi\Fpdi->setSourceFile(null)
+ 3 APPPATH\Controllers\Document.php(390): App\Libraries\GeneratePdf->prepareCompletionCertificate(null, null, [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', null)
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->test()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-26 05:24:16 --> fopen(C:/wamp64/www/digitalsignature/systemtemplates/sign.png): failed to open stream: No such file or directory
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 1365.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'fopen(C:/wamp64/www/digitalsignature/systemtemplates/sign.png): failed to open stream: No such file or directory', 'FCPATH\\vendor\\setasign\\fpdf\\fpdf.php', 1365, [...])
+ 2 FCPATH\vendor\setasign\fpdf\fpdf.php(1365): fopen('C:/wamp64/www/digitalsignature/systemtemplates/sign.png', 'rb')
+ 3 FCPATH\vendor\setasign\fpdf\fpdf.php(979): FPDF->_parsepng('C:/wamp64/www/digitalsignature/systemtemplates/sign.png')
+ 4 APPPATH\Libraries\GeneratePdf.php(256): FPDF->Image('C:/wamp64/www/digitalsignature/systemtemplates/sign.png', 110, 230, 0, 0)
+ 5 APPPATH\Controllers\Document.php(390): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->test()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-26 05:38:47 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(191): setasign\Fpdi\FpdfTpl->AddPage()
+ 4 APPPATH\Controllers\Document.php(1253): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-26 05:44:58 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(191): setasign\Fpdi\FpdfTpl->AddPage()
+ 4 APPPATH\Controllers\Document.php(1255): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-26 05:45:24 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(191): setasign\Fpdi\FpdfTpl->AddPage()
+ 4 APPPATH\Controllers\Document.php(1255): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-26 05:47:13 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(191): setasign\Fpdi\FpdfTpl->AddPage()
+ 4 APPPATH\Controllers\Document.php(1279): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-26 05:48:06 --> FPDF error: The document is closed
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(297): FPDF->Error('The document is closed')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'C:\\wamp64\\www\\digitalsignature', 0)
+ 3 APPPATH\Libraries\GeneratePdf.php(191): setasign\Fpdi\FpdfTpl->AddPage()
+ 4 APPPATH\Controllers\Document.php(1279): App\Libraries\GeneratePdf->prepareCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\CertificateOfCompletion.pdf', [...], 'c84b3c8d1a55dfd4fc89092de4d8d273', 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->processsign()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-26 06:43:30 --> file_get_contents(C:\wamp64\www\digitalsignature\650d5885e051cbf1361781a0366dab198ce52007\c84b3c8d1a55dfd4fc89092de4d8d273\c84b3c8d1a55dfd4fc89092de4d8d273_CertificateOfCompletion.pdf): failed to open stream: No such file or directory
+in APPPATH\Controllers\Emailengine.php on line 246.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'file_get_contents(C:\\wamp64\\www\\digitalsignature\\650d5885e051cbf1361781a0366dab198ce52007\\c84b3c8d1a55dfd4fc89092de4d8d273\\c84b3c8d1a55dfd4fc89092de4d8d273_CertificateOfCompletion.pdf): failed to open stream: No such file or directory', 'APPPATH\\Controllers\\Emailengine.php', 246, [...])
+ 2 APPPATH\Controllers\Emailengine.php(246): file_get_contents('FCPATH\\650d5885e051cbf1361781a0366dab198ce52007\\c84b3c8d1a55dfd4fc89092de4d8d273\\c84b3c8d1a55dfd4fc89092de4d8d273_CertificateOfCompletion.pdf')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Emailengine->sendCompletedDocumentToSigner('c84b3c8d1a55dfd4fc89092de4d8d273')
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emailengine))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-26 06:49:37 --> file_get_contents(C:\wamp64\www\digitalsignature\650d5885e051cbf1361781a0366dab198ce52007\c84b3c8d1a55dfd4fc89092de4d8d273\c84b3c8d1a55dfd4fc89092de4d8d273_CertificateOfCompletion.pdf): failed to open stream: No such file or directory
+in APPPATH\Controllers\Emailengine.php on line 246.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'file_get_contents(C:\\wamp64\\www\\digitalsignature\\650d5885e051cbf1361781a0366dab198ce52007\\c84b3c8d1a55dfd4fc89092de4d8d273\\c84b3c8d1a55dfd4fc89092de4d8d273_CertificateOfCompletion.pdf): failed to open stream: No such file or directory', 'APPPATH\\Controllers\\Emailengine.php', 246, [...])
+ 2 APPPATH\Controllers\Emailengine.php(246): file_get_contents('FCPATH\\650d5885e051cbf1361781a0366dab198ce52007\\c84b3c8d1a55dfd4fc89092de4d8d273\\c84b3c8d1a55dfd4fc89092de4d8d273_CertificateOfCompletion.pdf')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Emailengine->sendCompletedDocumentToSigner('c84b3c8d1a55dfd4fc89092de4d8d273')
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emailengine))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-26 06:50:46 --> file_get_contents(C:\wamp64\www\digitalsignature\650d5885e051cbf1361781a0366dab198ce52007\c84b3c8d1a55dfd4fc89092de4d8d273\c84b3c8d1a55dfd4fc89092de4d8d273_CertificateOfCompletion.pdf): failed to open stream: No such file or directory
+in APPPATH\Controllers\Emailengine.php on line 246.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'file_get_contents(C:\\wamp64\\www\\digitalsignature\\650d5885e051cbf1361781a0366dab198ce52007\\c84b3c8d1a55dfd4fc89092de4d8d273\\c84b3c8d1a55dfd4fc89092de4d8d273_CertificateOfCompletion.pdf): failed to open stream: No such file or directory', 'APPPATH\\Controllers\\Emailengine.php', 246, [...])
+ 2 APPPATH\Controllers\Emailengine.php(246): file_get_contents('FCPATH\\650d5885e051cbf1361781a0366dab198ce52007\\c84b3c8d1a55dfd4fc89092de4d8d273\\c84b3c8d1a55dfd4fc89092de4d8d273_CertificateOfCompletion.pdf')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Emailengine->sendCompletedDocumentToSigner('c84b3c8d1a55dfd4fc89092de4d8d273')
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emailengine))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()

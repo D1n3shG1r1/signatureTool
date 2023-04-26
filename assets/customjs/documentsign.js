@@ -2047,6 +2047,7 @@
           "signerId":SIGNERID_GLB
         };
 
+        hasEmptyRequiredField = 0; 
         if(hasEmptyRequiredField == 1){
           
           //fill required fields
@@ -2067,6 +2068,7 @@
           showLoader("finishBttn");
 
           var rqstType = "POST";
+          
           callAjax(rqsturl, postdata, rqstType, function(resp){
               
               if(resp.C == 100){
@@ -2084,6 +2086,9 @@
                 $("#sign-success-modal").modal("show");
 
                 downloadDocument(downloadurl);
+
+                $("#mainPdfBody").remove();
+                $("#mainPageHeader").remove();
 
               }else{
                 

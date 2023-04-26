@@ -93,8 +93,8 @@ class Document_Model extends Model
 	function getSignerDocumentRawData($docId){
 
 		$result = array();	
-		//$cmd = "SELECT * FROM `e_sign_document_signers` WHERE `documentId` = '$docId' AND `documentExpired` = 0 AND `document_status` != 'signed'";
-		$cmd = "SELECT * FROM `e_sign_document_signers` WHERE `documentId` = '$docId' AND `documentExpired` = 0";
+		$cmd = "SELECT * FROM `e_sign_document_signers` WHERE `documentId` = '$docId' AND `documentExpired` = 0 AND `document_status` != 'signed'";
+		//$cmd = "SELECT * FROM `e_sign_document_signers` WHERE `documentId` = '$docId' AND `documentExpired` = 0";
 		$query = $this->db->query($cmd);
 		$signerResult = $query->getRowArray();
 		
@@ -133,7 +133,7 @@ class Document_Model extends Model
 	function updatePartySignStatus($documentId, $email, $status){
 		$isComplete = 1;
 		$cmd = "SELECT `id`, `document_status` FROM `e_sign_documents` WHERE `documentId` = '$documentId'";
-		
+		 
 		$query = $this->db->query($cmd);
 		$parentDocResult = $query->getRowArray();
 		$newUpdateArr = array();
@@ -181,18 +181,50 @@ class Document_Model extends Model
 	
 	
 
-	function updateSignerDocStatus($signerDocumentId, $status){
+	function updateSignerDocStatus($signerDocumentId, $status, $dtTm){
 		
-		$table = $this->db->table('e_sign_document_signers');
-		$table->set('document_status', $status);
-		$table->where('documentId', $signerDocumentId);
-		$table->update();
+		if(strtolower($status) == "viewed"){
+			
+			$table = $this->db->table('e_sign_document_signers');
+			$table->set('document_status', $status);
+			$table->set('documentViewDate', $dtTm);
+			$table->where('documentId', $signerDocumentId);
+			$table->update();
 
-		if($this->db->affectedRows() > 0){
-			return 1;
+			if($this->db->affectedRows() > 0){
+				return 1;
+			}else{
+				return 0;
+			}
+		}else if(strtolower($status) == "signed"){
+			
+			$table = $this->db->table('e_sign_document_signers');
+			$table->set('document_status', $status);
+			$table->set('documentSignDate', $dtTm);
+			$table->where('documentId', $signerDocumentId);
+			$table->update();
+
+			if($this->db->affectedRows() > 0){
+				return 1;
+			}else{
+				return 0;
+			}
+		}else if(strtolower($status) == "sent"){
+			$table = $this->db->table('e_sign_document_signers');
+			$table->set('document_status', $status);
+			$table->set('documentSentDate', $dtTm);
+			$table->where('documentId', $signerDocumentId);
+			$table->update();
+
+			if($this->db->affectedRows() > 0){
+				return 1;
+			}else{
+				return 0;
+			}
 		}else{
-			return 0;
+			return 0;	
 		}
+		
 	}
 
 	function saveDocumentESignHash($insertData){
@@ -434,6 +466,32 @@ class Document_Model extends Model
 
 	}
 
+	function getDocDataForCompletionCertificate($signerDocumentId){
+		
+		$cmd = "SELECT `id`, `parentDocument`, `documentId`, `signerName`, `signerEmail`, `document_status`, `documentViewDate`, `documentSentDate`, `documentSignDate`, `authType` FROM `e_sign_document_signers` WHERE `documentId` = '$signerDocumentId'";
+		$query = $this->db->query($cmd);
+		$result = $query->getRowArray();	
+
+		if(!empty($result)){
+			
+			$parentDocument = $result["parentDocument"];
+			
+			$cmd = "SELECT `uploadId`, `documentTitle` FROM `e_sign_documents` WHERE `id` = $parentDocument";
+			$query = $this->db->query($cmd);
+			$parentDoc = $query->getRowArray();
+
+			$fileId = $parentDoc["uploadId"];
+			$cmd = "SELECT `file_name`, `documentTitle` FROM `e_sign_uploaded_files` WHERE `id` = $fileId";
+			$query = $this->db->query($cmd);
+			$fileResult = $query->getRowArray();
+		
+			$result["fileName"] = $fileResult["file_name"];
+			$result["documentTitle"] = $fileResult["documentTitle"];
+		
+		}
+
+		return $result;
+	}
 
 }
 ?>

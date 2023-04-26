@@ -2,18 +2,14 @@
 
 namespace App\Controllers;
 use App\Models\Document_Model; //load model
-//use Spipu\Html2Pdf\Html2Pdf;
-
-//use setasign\Fpdi\Fpdi;
-//use setasign\Fpdf\Fpdf;
 use App\Libraries\GeneratePdf; //import library
-//use App\Libraries\PDF; //import library
+
 
 use Config\Encryption;
 use Config\Services;
 use Config\Esign;
-
-//use setasign\Fpdi\FpdfTpl;
+use DateTime;
+use DateTimeZone;
 
 class Document extends BaseController
 {
@@ -55,10 +51,10 @@ class Document extends BaseController
 		
 		if(!$loginId || $loginId == "" || $loginId == null){
 			
-			if(strtolower($controllerName) == "document" && strtolower($methodName) != "sign"){
+			if(strtolower($controllerName) == "document" && (strtolower($methodName) != "sign" && strtolower($methodName) != "processsign")){
 				//skip session for signing doc
 				//TEMPORARY COMMENTED DUE TO DEVELOPMENT
-				//customredirect("signin");
+				customredirect("signin");
 			}
 			
 		}
@@ -143,10 +139,6 @@ class Document extends BaseController
 		$fileType = $file['type'];
 		
 
-		$cont = file_get_contents($tmpFileName);
-		
-
-
 		$fileId = db_randomnumber();
 		//$documentPath = FCPATH . 'userassets\uploads\\' . $loginId;
 		$documentPath = FCPATH . "userassets\uploads\\" . $loginId;
@@ -158,12 +150,13 @@ class Document extends BaseController
 		$fileExt = end($fileNameParts);
 		$newFileName = $fileId.".".$fileExt;
 		$file_path = $documentPath."/".$newFileName;
-
+		/*
+		$cont = file_get_contents($tmpFileName);
 		$fp = fopen($file_path, "w+");
 		fwrite($fp, $cont);
 		fclose($fp);
 		echo $file_path;
-		die;
+		die;*/
 		move_uploaded_file($tmpFileName,$file_path);	
 
 		$data = array(
@@ -268,24 +261,133 @@ class Document extends BaseController
 
     }
 
+
+	
+	function ip_info($ip = NULL, $purpose = "location", $deep_detect = TRUE) {
+		$output = NULL;
+		if (filter_var($ip, FILTER_VALIDATE_IP) === FALSE) {
+			$ip = $_SERVER["REMOTE_ADDR"];
+			if ($deep_detect) {
+				if (filter_var(@$_SERVER['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP))
+					$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+				if (filter_var(@$_SERVER['HTTP_CLIENT_IP'], FILTER_VALIDATE_IP))
+					$ip = $_SERVER['HTTP_CLIENT_IP'];
+			}
+		}
+		$purpose    = str_replace(array("name", "\n", "\t", " ", "-", "_"), NULL, strtolower(trim($purpose)));
+		$support    = array("country", "countrycode", "state", "region", "city", "location", "address");
+		$continents = array(
+			"AF" => "Africa",
+			"AN" => "Antarctica",
+			"AS" => "Asia",
+			"EU" => "Europe",
+			"OC" => "Australia (Oceania)",
+			"NA" => "North America",
+			"SA" => "South America"
+		);
+		if (filter_var($ip, FILTER_VALIDATE_IP) && in_array($purpose, $support)) {
+			$ipdat = @json_decode(file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip));
+			if (@strlen(trim($ipdat->geoplugin_countryCode)) == 2) {
+				switch ($purpose) {
+					case "location":
+						$output = array(
+							"city"           => @$ipdat->geoplugin_city,
+							"state"          => @$ipdat->geoplugin_regionName,
+							"country"        => @$ipdat->geoplugin_countryName,
+							"country_code"   => @$ipdat->geoplugin_countryCode,
+							"continent"      => @$continents[strtoupper($ipdat->geoplugin_continentCode)],
+							"continent_code" => @$ipdat->geoplugin_continentCode
+						);
+						break;
+					case "address":
+						$address = array($ipdat->geoplugin_countryName);
+						if (@strlen($ipdat->geoplugin_regionName) >= 1)
+							$address[] = $ipdat->geoplugin_regionName;
+						if (@strlen($ipdat->geoplugin_city) >= 1)
+							$address[] = $ipdat->geoplugin_city;
+						$output = implode(", ", array_reverse($address));
+						break;
+					case "city":
+						$output = @$ipdat->geoplugin_city;
+						break;
+					case "state":
+						$output = @$ipdat->geoplugin_regionName;
+						break;
+					case "region":
+						$output = @$ipdat->geoplugin_regionName;
+						break;
+					case "country":
+						$output = @$ipdat->geoplugin_countryName;
+						break;
+					case "countrycode":
+						$output = @$ipdat->geoplugin_countryCode;
+						break;
+				}
+			}
+		}
+		return $output;
+	}
+
+
 	function test(){
+				/*
+		$arr = $this->ip_info("122.161.198.145");
+		$countryCode = $arr["country_code"];
+		$timezoneArr = DateTimeZone::listIdentifiers(DateTimeZone::PER_COUNTRY, $countryCode);
+		$timezone = $timezoneArr[0];
+		$crrDt = date("Y-m-d H:i:s");
+		//$date = new DateTime($crrDt, new DateTimeZone($timezone));
+		$date = new DateTime($crrDt);
+		//print_r($date->getTimezone());
+		$date->setTimezone(new DateTimeZone($timezone));
+		//$userCrrDtTm = $date->format('Y-m-d H:i:sP'); //with GMT
+		$userCrrDtTm = date("Y-m-d h:i:s a", strtotime($date->format('Y-m-d H:i:sP')));
+		echo $crrDt."-------".$userCrrDtTm; die;
 		
+		$documentId = "3230ca8473e2d077ec9579170727cfee";
+		$senderResult = $this->document_model->getSenderIdByDoc($documentId);
+		echo "Arr:<pre>";
+		print_r($senderResult);
 		
+		$docId = "1332f5043a37f6218c8f4c18536c34ff";
+		$signersData = $this->document_model->getSignerDocumentRawData($docId);
+
+		print_r($signersData);
+
+		die;
+		*/
 		$rootFolder = publicFolder();
 		$secretFolder = $this->esign_config->SECRETFOLDER; 
 		$srcFilePath = $rootFolder."systemtemplates/CertificateOfCompletion.pdf";
 		//$srcFilePath = $rootFolder."systemtemplates/1681966643464579.pdf";
-		$srcFilePath = $rootFolder."systemtemplates/uncompressed.pdf";
+		//$srcFilePath = $rootFolder."systemtemplates/uncompressed.pdf";
 		
 		
 		//echo("pdftk $srcFilePath output $newFilePath uncompress > dev/nul &");
 		//exec("pdftk $srcFilePath output $newFilePath uncompress > dev/nul &", $out);
 		
-		$signerDocumentId = "";
+		$signerDocumentId = "c84b3c8d1a55dfd4fc89092de4d8d273";
 		$data = array();
-		$hash="";
+		$data["documentId"] = "37a3235a19a98fd3e4bf7b0bcbe74669";
+		$data["documentName"] = "Certificate of completion";
+		$data["sentAt"] = "Apr 03, 2023 09:26:12 UTC";
+		$data["title"] = "Sample Aggrement";
+		$data["signType"] = "Selef Signed";
+		$data["status"] = "signed";
+		$data["signerCount"] = 1;
+		$data["hash"] = "e0a306a4ee830b4e4b579c9530f50a045bf129f9a6223526803b489e4a77ed2bd5675c03b624530aecad4fcf696d5dac19d666e0437bd4d0e596b4c5d34ab328bkc2BcW9iJquBUm08X1mppdLG14uVQcAQyfI/m6uztK1I+APrCmbGL/tzAIQZaJWRDVJJZ4becQKV3ta0YkCfzF7DLjaS1vTcemjAQSZPpqRIanh9K4MGTdJBy10JJ0AG+yOTjjux7Kl0IEZy7SPmXa0Xn7O2L6hJorWdRFJZHwzUC6VS3xJn7dL7bQMYQf/qOpKoLoeforRuKtjKEeZbRmki3PbfWe/IB/Axu3wC9H3AQApb7f0UouJwhhsimYBvAni/fHX1fuNarJ0";
+		$data["recipientName"] = "Rashika Sapru";
+		$data["signatureType"] = "Type";
+		$data["timeStamp"] = "Apr 03, 2023 09:26:12 UTC";
+		$data["recipientEmail"] = "upkit.rashikasapru@gmail.com";
+		$data["signatureAuth"] = "OTP";
+		$data["signaturePng"] = $rootFolder."$secretFolder/c84b3c8d1a55dfd4fc89092de4d8d273/sign.png";
+		$data["signedAt"] = "Apr 03, 2023 09:26:12 UTC";
+		$data["signedByName"] = "Rashika Sapru signed the document.";
+		$data["signedByEmail"] = "upkit.rashikasapru@gmail.com";
+		$data["completedAt"] = "Apr 03, 2023 09:26:12 UTC";
 		$this->pdf = new GeneratePdf();
-		$this->pdf->prepareCompletionCertificate($rootFolder, $srcFilePath, $data, $hash, $signerDocumentId, $secretFolder);
+		$this->pdf->prepareCompletionCertificate($rootFolder, $srcFilePath, $data, $signerDocumentId, $secretFolder);
 		
 
 		die;
@@ -377,7 +479,6 @@ class Document extends BaseController
 		$expiresInDays = $docExpiryInfo["expiresInDays"];
 		$expiryDate = $docExpiryInfo["expiryDate"];
 		$alertOneDyBfrExp = $docExpiryInfo["alertOneDyBfrExp"];
-		
 		
 
 		//get sender and reciever Ids
@@ -614,7 +715,8 @@ class Document extends BaseController
 					if($t && $t == $this->session->get("docAccessToken")){
 
 						//update status to viewed from sent
-						$this->document_model->updateSignerDocStatus($docId, "viewed");
+						$viewedDtTm = date("Y-m-d H:i:s");
+						$this->document_model->updateSignerDocStatus($docId, "viewed", $viewedDtTm);
 						
 						$data = array();
 						$data["page_tilte"] = "Document Sign";
@@ -661,6 +763,10 @@ class Document extends BaseController
 
 
 				}else{
+
+					//update status to viewed from sent
+					$viewedDtTm = date("Y-m-d H:i:s");
+					$this->document_model->updateSignerDocStatus($docId, "viewed", $viewedDtTm);
 
 					$data = array();
 					$data["page_tilte"] = "Document Sign";
@@ -1002,15 +1108,17 @@ class Document extends BaseController
 		//$userEmail = $this->session->get('loginEmail');
 		//$userId = $this->request->getPost('signerId');
 		
+		//echo "<pre>"; print_r($this->request); die;
+
 		$rootFolder = publicFolder();
 		$signerName = $this->request->getPost('signerName');
 		$userEmail = $this->request->getPost('signerEmail');
 		$userDir = genshastring($userEmail);
-
+		
 		$signerDocData = $this->request->getPost('data');
 		$documentId = $this->request->getPost('documentId');
 		$signerDocumentId = $this->request->getPost('signerDocumentId');
-		$masterDocument = $documentId.".pdf"; //"6f57ccc8e5b29a2e07824607d4df0ae4.pdf";
+		$masterDocument = $documentId.".pdf";
 		$initialsBS64 = $this->request->getPost('initials');
 		$signBS64 = $this->request->getPost('sign');
 		$signType = $this->request->getPost('signType');
@@ -1075,8 +1183,7 @@ class Document extends BaseController
 
 		}
 		
-		$downloadUrl = site_url($secretFolder."/".$signerDocumentId."/".$signerDocumentId.".pdf");	
-
+		$downloadUrl = base_url($secretFolder."/".$signerDocumentId."/".$signerDocumentId.".pdf");	
 
 		$docData = array_values($signerDocData);
 		$docData = $docData[0];
@@ -1091,23 +1198,66 @@ class Document extends BaseController
 		
 		$hashCode = $this->Encription($userLocaleJson);
 		
-		
-
 		//update user filled data to signer document
 		$updt = $this->document_model->updatePartyFilledData($signerDocumentId, json_encode($signerDocData));
 		
 		$resultFile = $this->pdf->preparePdf($rootFolder, $srcFilePath, $docData, $hashCode, $signerDocumentId, $secretFolder);
-		
+
 		//--- Now saving log for signed document
 	
 		//update document status	
 		$status = 'signed';
-
+		$signedDtTm = date("Y-m-d H:i:s");
+		
 		$updated = $this->document_model->updatePartySignStatus($documentId, $userEmail, $status);
 		//$updated = 1;
+		
 		if($updated > 0){
 			
-			$docStatusUpdated = $this->document_model->updateSignerDocStatus($signerDocumentId, $status);
+			$certfctResult = $this->document_model->getDocDataForCompletionCertificate($signerDocumentId);
+			
+			if(!empty($certfctResult)){
+
+				$docAuthType = $certfctResult["authType"];
+				if($docAuthType == 1){
+					$docAuthTypeTxt = "OTP";
+				}else if($docAuthType == 1){
+					$docAuthTypeTxt = "Access Code";	
+				}else{
+					$docAuthTypeTxt = "-";
+				}
+				
+				
+				$srcCertificateFilePath = $rootFolder."systemtemplates/CertificateOfCompletion.pdf";
+				$signFilePath = $rootFolder."$secretFolder/$signerDocumentId/sign.png";
+				
+				$data = array();
+				$data["documentId"] = $certfctResult["documentId"];
+				$data["documentName"] = $certfctResult["fileName"];
+				$data["sentAt"] = $certfctResult["documentSentDate"]; //"Apr 03, 2023 09:26:12 UTC"
+				$data["title"] = ucwords($certfctResult["documentTitle"]);
+				$data["signType"] = "Self Signature";
+				$data["status"] = ucfirst($certfctResult["document_status"]);
+				$data["signerCount"] = 1;
+				$data["hash"] = $hashCode;
+				$data["recipientName"] = $certfctResult["signerName"];
+				$data["signatureType"] = ucfirst("$signType"); //"Type";
+				$data["timeStamp"] = $signedDtTm; //"Apr 03, 2023 09:26:12 UTC";
+				$data["recipientEmail"] = $certfctResult["signerEmail"];
+				$data["signatureAuth"] = $docAuthTypeTxt; //"OTP";
+				$data["signaturePng"] = $signFilePath; //$rootFolder."systemtemplates/sign.png";
+				$data["signedAt"] = $signedDtTm; //"Apr 03, 2023 09:26:12 UTC";
+				$data["signedByName"] = $certfctResult["signerName"];
+				$data["signedByEmail"] = $certfctResult["signerEmail"];
+				$data["completedAt"] = $signedDtTm; //"Apr 03, 2023 09:26:12 UTC";
+				
+				$this->pdf = new GeneratePdf();
+				$this->pdf->prepareCompletionCertificate($rootFolder, $srcCertificateFilePath, $data, $signerDocumentId, $secretFolder);
+				
+			}
+			
+			$docStatusUpdated = $this->document_model->updateSignerDocStatus($signerDocumentId, $status, $signedDtTm);
+
 			if($docStatusUpdated > 0){
 				
 				$documentInfo = $this->document_model->getDocumentByUser($userEmail, $signerDocumentId);	
@@ -1125,10 +1275,12 @@ class Document extends BaseController
 				
 				$insertRowId = $this->document_model->saveDocumentESignHash($insertData);
 				
-
 				//send completed document to signer
-
-
+				
+				$homePath = FCPATH."index.php";
+				//exec("php $homePath emailengine sendCompletedDocumentToSigner $signerDocumentId > /dev/null &", $out);
+				exec("php $homePath emailengine sendCompletedDocumentToSigner $signerDocumentId", $out);
+				//echo "out:<pre>"; print_r($out); die;
 
 				$result = array("C" => 100, "R" => array("downloadurl" => $downloadUrl), "M" => "success");
 			

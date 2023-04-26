@@ -61,7 +61,7 @@ function acceptTerms(elmId){
 }
 </script>
 <main>
-  
+
     <div id="mainPageHeader" class="container-fluid" style="margin-bottom: 70px;">
           <input type="hidden" id="documentId" value="<?php echo $documentId; ?>">
           <input type="hidden" id="signerDocumentId" value="<?php echo $signerDocumentId; ?>">
@@ -100,7 +100,7 @@ function acceptTerms(elmId){
       
     </div>
 
-    <div class="main-pdf-body">
+    <div id="mainPdfBody" class="main-pdf-body">
      <div id="fieldsContainer">
         <!--
         <div class="bs-form-field-container" >

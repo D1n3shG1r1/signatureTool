@@ -38,8 +38,7 @@ class Emailengine extends BaseController
         $this->email_model = new Email_Model();
 		
 		helper("kitchen");
-
-		helper("EncryDcry");
+        helper("EncryDcry");
 
 	}
 
@@ -202,12 +201,12 @@ class Emailengine extends BaseController
         }
     }
 
-    function sendCompletedDocumentToSigner($documentId=false){
+    function sendCompletedDocumentToSigner($documentId){
         //emailengine/sendCompletedDocumentToSigner
         
 
         $secretFolder = $this->esign_config->SECRETFOLDER;
-        $documentId = "37a3235a19a98fd3e4bf7b0bcbe74669";
+        //$documentId = "37a3235a19a98fd3e4bf7b0bcbe74669";
         $emailDocData = $this->email_model->getCompletedDocument($documentId);
 
         if(!empty($emailDocData)){
