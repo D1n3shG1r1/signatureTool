@@ -493,5 +493,63 @@ class Document_Model extends Model
 		return $result;
 	}
 
+	function getDocumentSignersData($documentID){
+		
+		$finalResult = array();
+
+		$cmd = "SELECT `id`, `uploadId`, `documentTitle`, `documentPath`, `no_of_parties` FROM `e_sign_documents` WHERE `documentId` = '$documentID'";
+		$query = $this->db->query($cmd);
+		$parentDoc = $query->getRowArray();
+
+		$finalResult["parentDocument"] = $parentDoc;
+		//echo "<pre>"; print_r($parentDoc);
+		
+		$parentDocument = $parentDoc["id"];
+		$uploadId = $parentDoc["uploadId"];
+		
+
+		//get signers data
+		$cmd = "SELECT `id`, `documentId`, `signerEmail`, `signerName`, `document_status`, `document_data`, `userfilled_documentdata`, `authType`, `documentSentDate`, `documentViewDate`, `documentSignDate` FROM `e_sign_document_signers` WHERE `parentDocument` = $parentDocument";
+		$query = $this->db->query($cmd);
+		$signerDoc = $query->getResultArray();
+
+		
+		//get signers hash
+		$cmd = "SELECT `id`, `documentId`, `signatureHash`, `signType`, `documentStatus`, `created_at` FROM `e_sign_electronic_signatures` WHERE `parentDocumentId` = $parentDocument";
+		$query = $this->db->query($cmd);
+		$signerHashArr = $query->getResultArray();
+		//print_r($signerHashArr);	
+		$signerWiseHash = array();
+		if(!empty($signerHashArr)){
+			foreach($signerHashArr as $signerHashRw){
+				$tmpHashDocId =	$signerHashRw["documentId"];
+				$signerWiseHash[$tmpHashDocId] = $signerHashRw;
+			}
+		}
+
+		foreach($signerDoc as &$signerDocRw){
+			$tmpHashRw = $signerWiseHash[$signerDocRw["id"]];
+			if(!empty($tmpHashRw)){
+				$signerDocRw["hashData"] = $tmpHashRw;
+			}else{
+				$signerDocRw["hashData"] = array();
+			}
+			
+		}
+		
+		//print_r($signerDoc);
+		$finalResult["signerDocuments"] = $signerDoc;
+
+		//get uploaded file info
+		$cmd = "SELECT `id`, `file_name`, `documentTitle`, `recipients` FROM `e_sign_uploaded_files` WHERE `id` = $uploadId";
+		$query = $this->db->query($cmd);
+		$uploadedFile = $query->getRowArray();
+
+		//print_r($uploadedFile);
+		$finalResult["uploadedFile"] = $uploadedFile;
+		
+		return $finalResult;
+	}
+
 }
 ?>

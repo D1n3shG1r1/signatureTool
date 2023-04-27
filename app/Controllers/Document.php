@@ -54,7 +54,7 @@ class Document extends BaseController
 			if(strtolower($controllerName) == "document" && (strtolower($methodName) != "sign" && strtolower($methodName) != "processsign")){
 				//skip session for signing doc
 				//TEMPORARY COMMENTED DUE TO DEVELOPMENT
-				customredirect("signin");
+				//customredirect("signin");
 			}
 			
 		}
@@ -1132,7 +1132,6 @@ class Document extends BaseController
 		$ownerId = $senderResult["senderId"];
 
 		//create signatures png
-		
 		$secretFolder = $this->esign_config->SECRETFOLDER;
 		
 		$folderPath = FCPATH . "$secretFolder\\" . $signerDocumentId; 
@@ -1202,7 +1201,8 @@ class Document extends BaseController
 		$updt = $this->document_model->updatePartyFilledData($signerDocumentId, json_encode($signerDocData));
 		
 		$resultFile = $this->pdf->preparePdf($rootFolder, $srcFilePath, $docData, $hashCode, $signerDocumentId, $secretFolder);
-
+		
+		
 		//--- Now saving log for signed document
 	
 		//update document status	
@@ -1297,59 +1297,67 @@ class Document extends BaseController
 		
 	}
 
-	function processsignd(){
+	function prepareConsolidatePdfs($documentID=false){
+		$documentID = "085dc7ff38220e7bcbc07cf6999cb729";
+		$result = $this->document_model->getDocumentSignersData($documentID);
+		//echo "<pre>"; print_r($result); die;
+		if(!empty($result)){
+			$parentDocument = $result["parentDocument"];
+			$signerDocuments = $result["signerDocuments"];
+			$uploadedFile = $result["uploadedFile"];
+			
+			$srcFilePath = $parentDocument["documentPath"];
+			$pdfSourceData = array();
+			foreach($signerDocuments as $signerDocRw)	{
+				//echo "<pre>"; print_r($signerDocRw); die;
+				$tmpSignrDocId = $signerDocRw["documentId"];
+				
+				$tmpSignrDocStatus = $signerDocRw["document_status"];
+				
+				if(strtolower($tmpSignrDocStatus) == "signed"){
+
+					$tmpSignerDocData = json_decode($signerDocRw["userfilled_documentdata"], true);
+					
+					//$docData = array_values($tmpSignerDocData);
+					//echo "<pre>"; print_r($tmpSignerDocData); die;
+					foreach($tmpSignerDocData as &$tmpDcRws){
+						foreach($tmpDcRws as &$tmpDcRw){
+							$tmpDcRw["documentId"] = $tmpSignrDocId;
+						}
+						
+					}
+
+					foreach($tmpSignerDocData as $tmpDcRws){
+						foreach($tmpDcRws as $tmpDcRw){
+							$pdfSourceData[] = 	$tmpDcRw;
+						}
+						
+					}
+				}
+				
+			}
+			
+			//echo "<pre>"; print_r($pdfSourceData); die;
+			if(!empty($pdfSourceData)){
+
+				$rootFolder = publicFolder();
+				$secretFolder = $this->esign_config->SECRETFOLDER;
+				$srcFilePath = $rootFolder.$srcFilePath;
+				$this->pdf = new GeneratePdf();	
+				$resultFile = $this->pdf->prepareConsolidatePdf($rootFolder, $srcFilePath, $pdfSourceData, $secretFolder);
+			}
+			
+		}
 		/*
-		$html2pdf = new Html2Pdf();
-		$html2pdf->writeHTML('<h1>HelloWorld</h1>This is my first test<canvas id="cnv123"></canvas>');
-		$html2pdf->output();
+		$this->pdf = new GeneratePdf();	
+		
+		$hashCode = $this->Encription($userLocaleJson);
+		
+		//update user filled data to signer document
+		$updt = $this->document_model->updatePartyFilledData($signerDocumentId, json_encode($signerDocData));
+		
+		$resultFile = $this->pdf->preparePdf($rootFolder, $srcFilePath, $docData, $hashCode, $signerDocumentId, $secretFolder);
 		*/
-
-		//require("vendor/autoload.php");
-
-		//echo "<pre>"; print_r($_SERVER);
-		//$rootFolder = $_SERVER["DOCUMENT_ROOT"]."/digitalsignature";
-		$rootFolder = publicFolder();
-		
-		$srcFilePath = $rootFolder."userassets/mydocuments/1673874254153097/5c960af14d51ddfe1c288a80cf305c98.pdf";	
-		//echo file_get_contents($srcFilePath);
-		
-		//Library Object
-		$this->pdf = new Fpdi();
-
-		
-		$numPages = $this->pdf->setSourceFile($srcFilePath);
-        $fileIndex = $this->pdf->importPage(1);
-		$this->pdf->AddPage();
-		$this->pdf->useTemplate($fileIndex, 0, 0,200);
-		// add content to current page
-		$this->pdf->SetFont("helvetica", "", 20);
-		$this->pdf->SetTextColor(220, 20, 60);
-		$this->pdf->Text(50, 20, "I should not be here!");
-		$this->pdf->Text(80, 40, '<img src="">');
-		$this->pdf->Image( $rootFolder."userassets/mydocuments/1673874254153097/logo.png", 100, 60, 50, 50);
-
-		// move to next page and add content
-		$this->pdf->useTemplate($this->pdf->importPage(2), 0, 0,200);
-
-		$this->pdf->SetFont("arial", "", 15);
-		$this->pdf->SetTextColor(65, 105, 225);
-		$this->pdf->Text(50, 20, "Me neither!!!");
-
-		//show the PDF in page
-		$this->pdf->Output();
-
-
-
-		die;
-	}
-
-	function writesigndata(){
-		
-		$signData = $this->request->getPost('data');
-		$signerDocumentId = $this->request->getPost('signerDocumentId');
-		
-		$elmId = $signData["elemId"];
-		$bs64 = $signData["bs64"];
 	}
 
     public function Encription($myStr)

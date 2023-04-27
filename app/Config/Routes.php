@@ -73,6 +73,8 @@ $routes->get('/logout', 'Admin::logout');
 $routes->get('emailengine/sendCompletedDocumentToSigner/(:any)', 'Emailengine::sendCompletedDocumentToSigner/$1');
 $routes->get('emailengine/sendDocuSingColl/(:any)', 'Emailengine::sendDocuSingColl/$1');
 $routes->get('/test', 'Document::test');
+$routes->get('/prepareConsolidatePdfs/(:any)', 'Document::prepareConsolidatePdfs/$1');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

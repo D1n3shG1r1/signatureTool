@@ -148,11 +148,12 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
                 </div>
               </div>
             </div>
+            <!--
             <div class="bs-form-field-row">
               <div id="checkbox_parent" ondrag="grabDragElementId(this);" class="bs-form-field bs-form-left-field" aria-grabbed="true" draggable="true">
                 <div class="bs-form-field-icon">
                   <span class="sf-icon-Checkbox">
-                    <img class="fields-icon" src="<?php echo base_url("/assets/images/checkbox.png"); ?>" draggable="false"/> 
+                    <img class="fields-icon" src="<?php //echo base_url("/assets/images/checkbox.png"); ?>" draggable="false"/> 
                   </span>
                 </div>
                 <div class="bs-form-field-text">
@@ -162,7 +163,7 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
               <div id="radiobutton_parent" ondrag="grabDragElementId(this);" class="bs-form-field bs-form-right-field" aria-grabbed="true" draggable="true">
                 <div class="bs-form-field-icon">
                   <span class="sf-icon-Radiobutton">
-                    <img class="fields-icon" src="<?php echo base_url("/assets/images/radio.png"); ?>" draggable="false"/> 
+                    <img class="fields-icon" src="<?php //echo base_url("/assets/images/radio.png"); ?>" draggable="false"/> 
                   </span>
                 </div>
                 <div class="bs-form-field-text">
@@ -170,6 +171,7 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
                 </div>
               </div>
             </div>
+            -->
             <div class="bs-form-field-row">
               <div id="name_parent" ondrag="grabDragElementId(this);" class="bs-form-field bs-form-left-field" aria-grabbed="true" draggable="true">
                 <div class="bs-form-field-icon">

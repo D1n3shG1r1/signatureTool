@@ -596,22 +596,22 @@
                           </text>\
                        </g>';
 	
-		    var datepicker = '<g id="datepicker_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'datepicker_'+uniqId+'\');" '+contEditable+'>\
+		    var datepicker = '<g id="datepicker_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'datepicker_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                            <rect id="datepicker_'+uniqId+'_rect2" width="74.078125" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                            <rect id="datepicker_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                           <text id="datepicker_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("dd/MM/yyyy")+'" date-format="dd/MM/yyyy" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
+                           <text id="datepicker_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("dd/MM/yyyy")+'" date-format="dd/MM/yyyy" default-user="'+tmp_default_user+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
                            <tspan style="word-break: break-word;" x="4" dy="13">'+currentDate("dd/MM/yyyy")+'</tspan>\
                            </text>\
                        </g>';
         
-        var checkbox = '<g id="checkbox_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'checkbox_'+uniqId+'\');">\
+        var checkbox = '<g id="checkbox_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'checkbox_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                           <rect id="checkbox_'+uniqId+'_backRect" width="22" height="16" fill="#FDF7DB"></rect>\
                           <rect id="checkbox_'+uniqId+'_rect1" width="2" height="16" fill="#FAEA9E"></rect>\
                           <rect id="checkbox_'+uniqId+'_rect2" x="4" y="1" width="14" height="14" fill="#ffffff" stroke="#b3bbc5" rx="2" ry="2"></rect>\
                           <path id="checkbox_'+uniqId+'_tick" fill="none" stroke="#0565ff" d="M 4 6 L 7.5 9.5 L 14.5 2.5" transform="translate(2,2)" stroke-width="2"></path>\
                        </g>';
 
-        var  radiobutton = '<g id="radiobutton_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'radiobutton_'+uniqId+'\');">\
+        var  radiobutton = '<g id="radiobutton_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'radiobutton_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                               <g id="radioChild_'+uniqId+'" transform="translate(245.5,2057)" class="pdf-child-form-element">\
                                  <rect id="radioChild_'+uniqId+'_backRect" width="22" height="16" fill="#FDF7DB"></rect>\
                                  <rect id="radioChild_'+uniqId+'_rect1" width="2" height="16" fill="#FAEA9E"></rect>\
@@ -624,42 +624,42 @@
                               </g>\
                            </g>';
 
-        var name = '<g id="name_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'name_'+uniqId+'\');" '+contEditable+'>\
+        var name = '<g id="name_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'name_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                        <rect id="name_'+uniqId+'_rect2" width="73.4072265625" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                        <rect id="name_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                       <text id="name_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="Text" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
+                       <text id="name_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
                         <tspan style="word-break: break-word;" x="4" dy="13">'+userName()+'</tspan>\
                        </text>\
                     </g>'; 
 
 
-        var email = '<g id="email_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'email_'+uniqId+'\');" '+contEditable+'>\
+        var email = '<g id="email_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'email_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                        <rect id="email_'+uniqId+'_rect2" width="168.15625" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                        <rect id="email_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                       <text id="email_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
+                       <text id="email_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
                         <tspan style="word-break: break-word;" x="4" dy="13">'+userEmail()+'</tspan>\
                        </text>\
                     </g>';
 
-        var editableDate = '<g id="editableDate_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'editableDate_'+uniqId+'\');" '+contEditable+'>\
+        var editableDate = '<g id="editableDate_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'editableDate_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                              <rect id="editableDate_'+uniqId+'_rect2" width="95" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                              <rect id="editableDate_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
-                             <text id="editableDate_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("MM/dd/yyyy")+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
+                             <text id="editableDate_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("MM/dd/yyyy")+'" default-user="'+tmp_default_user+'"  xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
                               <tspan style="word-break: break-word;" x="4" dy="13">MM/dd/yyyy</tspan>\
                              </text>\
                           </g>';
 
-        var label = '<g id="label_'+uniqId+'" class="pdf-form-element" style="visibility: visible;" onclick="openFieldSettings(\'label_'+uniqId+'\');" '+contEditable+'>\
+        var label = '<g id="label_'+uniqId+'" class="pdf-form-element" style="visibility: visible;" onclick="openFieldSettings(\'label_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                        <rect id="label_'+uniqId+'_rect1" width="80" height="17" fill="#f4f5eb" stroke="transparent"></rect>\
-                       <text id="label_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="Label" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
+                       <text id="label_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'" xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
                         <tspan style="word-break: break-word;" x="4" dy="13">Label</tspan>\
                        </text>\
                     </g>';
 
-        var hyperlink = '<g id="hyperlink_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'hyperlink_'+uniqId+'\');" '+contEditable+'>\
+        var hyperlink = '<g id="hyperlink_'+uniqId+'" class="pdf-form-element" onclick="openFieldSettings(\'hyperlink_'+uniqId+'\');" style="'+tmp_style+'" '+contEditable+'>\
                           <rect id="hyperlink_'+uniqId+'_rect1" width="90" height="20" fill="#f4f5eb" stroke="transparent"></rect>\
                           <image height="16" width="16" id="hyperlink_'+uniqId+'_hyperlinkicon" x="71.6875" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik01IDdDNC43MzQ3OCA3IDQuNDgwNDMgNy4xMDUzNiA0LjI5Mjg5IDcuMjkyODlDNC4xMDUzNiA3LjQ4MDQzIDQgNy43MzQ3OCA0IDhWMTlDNCAxOS4yNjUyIDQuMTA1MzYgMTkuNTE5NiA0LjI5Mjg5IDE5LjcwNzFDNC40ODA0MyAxOS44OTQ2IDQuNzM0NzggMjAgNSAyMEgxNkMxNi4yNjUyIDIwIDE2LjUxOTYgMTkuODk0NiAxNi43MDcxIDE5LjcwNzFDMTYuODk0NiAxOS41MTk2IDE3IDE5LjI2NTIgMTcgMTlWMTNDMTcgMTIuNDQ3NyAxNy40NDc3IDEyIDE4IDEyQzE4LjU1MjMgMTIgMTkgMTIuNDQ3NyAxOSAxM1YxOUMxOSAxOS43OTU3IDE4LjY4MzkgMjAuNTU4NyAxOC4xMjEzIDIxLjEyMTNDMTcuNTU4NyAyMS42ODM5IDE2Ljc5NTcgMjIgMTYgMjJINUM0LjIwNDM1IDIyIDMuNDQxMjkgMjEuNjgzOSAyLjg3ODY4IDIxLjEyMTNDMi4zMTYwNyAyMC41NTg3IDIgMTkuNzk1NiAyIDE5VjhDMiA3LjIwNDM1IDIuMzE2MDcgNi40NDEyOSAyLjg3ODY4IDUuODc4NjhDMy40NDEyOSA1LjMxNjA3IDQuMjA0MzUgNSA1IDVIMTFDMTEuNTUyMyA1IDEyIDUuNDQ3NzIgMTIgNkMxMiA2LjU1MjI4IDExLjU1MjMgNyAxMSA3SDVaIiBmaWxsPSIjMzMzMzMzIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTQgM0MxNCAyLjQ0NzcyIDE0LjQ0NzcgMiAxNSAySDIxQzIxLjU1MjMgMiAyMiAyLjQ0NzcyIDIyIDNWOUMyMiA5LjU1MjI4IDIxLjU1MjMgMTAgMjEgMTBDMjAuNDQ3NyAxMCAyMCA5LjU1MjI4IDIwIDlWNEgxNUMxNC40NDc3IDQgMTQgMy41NTIyOCAxNCAzWiIgZmlsbD0iIzMzMzMzMyIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTIxLjcwNzEgMi4yOTI4OUMyMi4wOTc2IDIuNjgzNDIgMjIuMDk3NiAzLjMxNjU4IDIxLjcwNzEgMy43MDcxMUwxMC43MDcxIDE0LjcwNzFDMTAuMzE2NiAxNS4wOTc2IDkuNjgzNDIgMTUuMDk3NiA5LjI5Mjg5IDE0LjcwNzFDOC45MDIzNyAxNC4zMTY2IDguOTAyMzcgMTMuNjgzNCA5LjI5Mjg5IDEzLjI5MjlMMjAuMjkyOSAyLjI5Mjg5QzIwLjY4MzQgMS45MDIzNyAyMS4zMTY2IDEuOTAyMzcgMjEuNzA3MSAyLjI5Mjg5WiIgZmlsbD0iIzMzMzMzMyIvPgo8L3N2Zz4K" preserveAspectRatio="xMinYMid meet" y="2"></image>\
-                          <text id="hyperlink_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#3E60FF" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
+                          <text id="hyperlink_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#3E60FF" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+tmp_default_value+'" default-user="'+tmp_default_user+'"  xml:space="preserve" y="0" is-readonly="'+tmp_is_readonly+'" is-required="'+tmp_is_required+'" is-value-given="0" placeholder-hint="">\
                            <tspan style="word-break: break-word;" x="4" dy="13">Hyperlink</tspan>\
                           </text>\
                        </g>';  

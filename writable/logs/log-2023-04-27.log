@@ -1,0 +1,50 @@
+ERROR - 2023-04-27 06:52:31 --> mysqli_sql_exception: Unknown column 'signerEmail' in 'field list' in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `documen...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `documen...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `documen...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(506): CodeIgniter\Database\BaseConnection->query('SELECT `documen...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1302): App\Models\Document_Model->getDocumentSignersData('085dc7ff38220e7...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('085dc7ff38220e7...')
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-04-27 06:52:31 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 507.
+ 1 APPPATH\Controllers\Document.php(1302): App\Models\Document_Model->getDocumentSignersData('085dc7ff38220e7bcbc07cf6999cb729')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('085dc7ff38220e7bcbc07cf6999cb729')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-04-27 07:19:53 --> mysqli_sql_exception: Unknown column 'id' in 'field list' in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `s...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `s...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `s...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(513): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `s...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1302): App\Models\Document_Model->getDocumentSignersData('085dc7ff38220e7...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('085dc7ff38220e7...')
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-04-27 07:19:53 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 514.
+ 1 APPPATH\Controllers\Document.php(1302): App\Models\Document_Model->getDocumentSignersData('085dc7ff38220e7bcbc07cf6999cb729')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('085dc7ff38220e7bcbc07cf6999cb729')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-27 13:08:48 --> Call to a member function prepareConsolidatePdf() on null
+in APPPATH\Controllers\Document.php on line 1347.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('085dc7ff38220e7bcbc07cf6999cb729')
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-27 13:19:02 --> Call to a member function prepareConsolidatePdf() on null
+in APPPATH\Controllers\Document.php on line 1347.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('085dc7ff38220e7bcbc07cf6999cb729')
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()

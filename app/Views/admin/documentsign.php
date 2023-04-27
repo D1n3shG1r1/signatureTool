@@ -17,6 +17,8 @@
   $documentSentDate = $signersData["documentSentDate"];
   $created_at = $signersData["created_at"];
   $updated_at = $signersData["updated_at"];
+
+  //echo "<pre>"; print_r(json_decode($document_data, true)); die;
 ?>
 
 <script>
