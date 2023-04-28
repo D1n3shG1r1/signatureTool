@@ -203,7 +203,6 @@ class Emailengine extends BaseController
 
     function sendCompletedDocumentToSigner($documentId){
         //emailengine/sendCompletedDocumentToSigner
-        
 
         $secretFolder = $this->esign_config->SECRETFOLDER;
         //$documentId = "37a3235a19a98fd3e4bf7b0bcbe74669";
@@ -221,10 +220,8 @@ class Emailengine extends BaseController
             $fileUrl_1 =  $folderPath."\\".$documentId.".pdf";
             $fileName_1 = $documentTitle.".pdf";
 
-            $fileUrl_2 =  $folderPath."\\".$documentId."_CertificateOfCompletion.pdf";
-            $fileName_2 = $documentTitle."_Certificate_Of_Completion.pdf";
-
-            
+            $fileUrl_2 =  $folderPath."\\".$documentId."_auditlog.pdf";
+            $fileName_2 = $documentTitle."_auditlog.pdf";
 
             $data = array();
             $data["signerName"] = $signerName;

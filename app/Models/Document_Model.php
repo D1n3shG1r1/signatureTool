@@ -497,7 +497,7 @@ class Document_Model extends Model
 		
 		$finalResult = array();
 
-		$cmd = "SELECT `id`, `uploadId`, `documentTitle`, `documentPath`, `no_of_parties` FROM `e_sign_documents` WHERE `documentId` = '$documentID'";
+		$cmd = "SELECT `id`, `senderId`, `uploadId`, `documentTitle`, `documentPath`, `no_of_parties` FROM `e_sign_documents` WHERE `documentId` = '$documentID'";
 		$query = $this->db->query($cmd);
 		$parentDoc = $query->getRowArray();
 

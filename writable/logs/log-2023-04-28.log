@@ -1,0 +1,112 @@
+ERROR - 2023-04-28 05:19:39 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10 OFFSET 0' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `uploadI...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `uploadI...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `uploadI...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(372): CodeIgniter\Database\BaseConnection->query('SELECT `uploadI...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1429): App\Models\Document_Model->getMyDocuments(NULL, 0)
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-04-28 05:19:39 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 373.
+ 1 APPPATH\Controllers\Document.php(1429): App\Models\Document_Model->getMyDocuments(null, 0)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-28 06:43:13 --> FPDF error: No font has been set
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(563): FPDF->Error('No font has been set')
+ 2 APPPATH\Libraries\GeneratePdf.php(372): FPDF->Text(12.5, 75, '1a171bde8a66e9793d8a2489a6619e3d')
+ 3 APPPATH\Controllers\Document.php(1303): App\Libraries\GeneratePdf->prepareConsolidateCompletionCertificate()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('121')
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-28 06:56:22 --> Pages cannot be added when writing to a template.
+in FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php on line 327.
+ 1 APPPATH\Libraries\GeneratePdf.php(368): setasign\Fpdi\FpdfTpl->AddPage()
+ 2 APPPATH\Controllers\Document.php(1303): App\Libraries\GeneratePdf->prepareConsolidateCompletionCertificate()
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('121')
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-28 06:56:41 --> The page format cannot be changed when writing to a template.
+in FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php on line 51.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(123): setasign\Fpdi\FpdfTpl->setPageFormat([...], 'P')
+ 2 FCPATH\vendor\setasign\fpdi\src\Fpdi.php(66): setasign\Fpdi\FpdfTpl->useTemplate(0, 0, 0, 237, null, true)
+ 3 APPPATH\Libraries\GeneratePdf.php(369): setasign\Fpdi\Fpdi->useTemplate(0, 0, 0, 237, null, true)
+ 4 APPPATH\Controllers\Document.php(1303): App\Libraries\GeneratePdf->prepareConsolidateCompletionCertificate()
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('121')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-28 07:29:06 --> This PDF document probably uses a compression technique which is not supported by the free parser shipped with FPDI. (See https://www.setasign.com/fpdi-pdf-parser for more details)
+in FCPATH\vendor\setasign\fpdi\src\PdfParser\CrossReference\CrossReference.php on line 257.
+ 1 FCPATH\vendor\setasign\fpdi\src\PdfParser\CrossReference\CrossReference.php(209): setasign\Fpdi\PdfParser\CrossReference\CrossReference->initReaderInstance(Object(setasign\Fpdi\PdfParser\Type\PdfIndirectObject))
+ 2 FCPATH\vendor\setasign\fpdi\src\PdfParser\CrossReference\CrossReference.php(67): setasign\Fpdi\PdfParser\CrossReference\CrossReference->readXref(180730)
+ 3 FCPATH\vendor\setasign\fpdi\src\PdfParser\PdfParser.php(157): setasign\Fpdi\PdfParser\CrossReference\CrossReference->__construct(Object(setasign\Fpdi\PdfParser\PdfParser), 0)
+ 4 FCPATH\vendor\setasign\fpdi\src\PdfParser\PdfParser.php(205): setasign\Fpdi\PdfParser\PdfParser->getCrossReference()
+ 5 FCPATH\vendor\setasign\fpdi\src\PdfParser\PdfParser.php(181): setasign\Fpdi\PdfParser\PdfParser->getCatalog()
+ 6 FCPATH\vendor\setasign\fpdi\src\PdfReader\PdfReader.php(84): setasign\Fpdi\PdfParser\PdfParser->getPdfVersion()
+ 7 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(217): setasign\Fpdi\PdfReader\PdfReader->getPdfVersion()
+ 8 APPPATH\Libraries\GeneratePdf.php(366): setasign\Fpdi\Fpdi->setSourceFile('FCPATH\\systemtemplates\\ConsolidateCertificateOfComletion.pdf')
+ 9 APPPATH\Controllers\Document.php(1311): App\Libraries\GeneratePdf->prepareConsolidateCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\ConsolidateCertificateOfComletion.pdf', [], false, 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+10 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('121')
+11 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+12 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+13 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-28 07:49:35 --> FPDF error: No font has been set
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(563): FPDF->Error('No font has been set')
+ 2 APPPATH\Libraries\GeneratePdf.php(377): FPDF->Text(12.5, 75, '1a171bde8a66e9793d8a2489a6619e3d')
+ 3 APPPATH\Controllers\Document.php(1311): App\Libraries\GeneratePdf->prepareConsolidateCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\ConsolidateCertificateOfComletion.pdf', [], false, 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('121')
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-28 12:57:35 --> FPDF error: No page has been added yet
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1554): FPDF->Error('No page has been added yet')
+ 2 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(467): FPDF->_out('q 0 J 1 w 0 j 0 G 0 g 1.1291 0 0 1.1291 0.0000 0.0000 cm /TPL0 Do Q')
+ 3 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(441): setasign\Fpdi\FpdfTpl->_out('q 0 J 1 w 0 j 0 G 0 g 1.1291 0 0 1.1291 0.0000 0.0000 cm /TPL0 Do Q')
+ 4 FCPATH\vendor\setasign\fpdi\src\Fpdi.php(59): setasign\Fpdi\Fpdi->useImportedPage('FCPATH\\systemtemplates\\ConsolidateCertificateOfComletion.pdf|1|1|CropBox', 0, 0, 237, null, true)
+ 5 APPPATH\Libraries\GeneratePdf.php(372): setasign\Fpdi\Fpdi->useTemplate('FCPATH\\systemtemplates\\ConsolidateCertificateOfComletion.pdf|1|1|CropBox', 0, 0, 237, null, true)
+ 6 APPPATH\Controllers\Document.php(1311): App\Libraries\GeneratePdf->prepareConsolidateCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\ConsolidateCertificateOfComletion.pdf', [], false, 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('121')
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-28 13:16:48 --> FPDF error: Unknown page size: l
+in FCPATH\vendor\setasign\fpdf\fpdf.php on line 273.
+ 1 FCPATH\vendor\setasign\fpdf\fpdf.php(1157): FPDF->Error('Unknown page size: l')
+ 2 FCPATH\vendor\setasign\fpdf\fpdf.php(1187): FPDF->_getpagesize('l')
+ 3 FCPATH\vendor\setasign\fpdf\fpdf.php(316): FPDF->_beginpage('P', 'L', 0)
+ 4 FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php(329): FPDF->AddPage('C:\\wamp64\\www\\digitalsignature', 'L', 0)
+ 5 APPPATH\Libraries\GeneratePdf.php(543): setasign\Fpdi\FpdfTpl->AddPage('C:\\wamp64\\www\\digitalsignature', 'L', 0)
+ 6 APPPATH\Controllers\Document.php(1311): App\Libraries\GeneratePdf->prepareConsolidateCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\ConsolidateCertificateOfComletion.pdf', [], false, 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('121')
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-28 13:20:46 --> Page number "2" out of available page range (1 - 1)
+in FCPATH\vendor\setasign\fpdi\src\PdfReader\PdfReader.php on line 128.
+ 1 FCPATH\vendor\setasign\fpdi\src\FpdiTrait.php(262): setasign\Fpdi\PdfReader\PdfReader->getPage(2)
+ 2 APPPATH\Libraries\GeneratePdf.php(548): setasign\Fpdi\Fpdi->importPage(2)
+ 3 APPPATH\Controllers\Document.php(1311): App\Libraries\GeneratePdf->prepareConsolidateCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\ConsolidateCertificateOfComletion.pdf', [], false, 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('121')
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-04-28 13:23:08 --> Template does not exist!
+in FCPATH\vendor\setasign\fpdi\src\FpdfTplTrait.php on line 105.
+ 1 FCPATH\vendor\setasign\fpdi\src\Fpdi.php(66): setasign\Fpdi\FpdfTpl->useTemplate(0, 0, 0, 237, null, true)
+ 2 APPPATH\Libraries\GeneratePdf.php(555): setasign\Fpdi\Fpdi->useTemplate(0, 0, 0, 237, null, true)
+ 3 APPPATH\Controllers\Document.php(1311): App\Libraries\GeneratePdf->prepareConsolidateCompletionCertificate('C:\\wamp64\\www\\digitalsignature', 'FCPATH\\systemtemplates\\ConsolidateCertificateOfComletion.pdf', [], false, 'FCPATH\\650d5885e051cbf1361781a0366dab198ce52007')
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('121')
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()

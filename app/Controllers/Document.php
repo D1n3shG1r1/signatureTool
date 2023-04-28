@@ -1298,13 +1298,29 @@ class Document extends BaseController
 	}
 
 	function prepareConsolidatePdfs($documentID=false){
+
+		$rootFolder = publicFolder();
+		$secretFolder = $this->esign_config->SECRETFOLDER;
+		$srcFilePath = "systemtemplates/ConsolidateCertificateOfComletion.pdf";
+		$srcFilePath = $rootFolder.$srcFilePath;
+		$signerDocumentId = false;
+		
+		$data = array();
+
+		$this->pdf = new GeneratePdf();	
+		$this->pdf->prepareConsolidateCompletionCertificate($rootFolder, $srcFilePath, $data, $signerDocumentId, $secretFolder);
+
+		die;
+		//ok the report code
 		$documentID = "085dc7ff38220e7bcbc07cf6999cb729";
+		
 		$result = $this->document_model->getDocumentSignersData($documentID);
 		//echo "<pre>"; print_r($result); die;
 		if(!empty($result)){
 			$parentDocument = $result["parentDocument"];
 			$signerDocuments = $result["signerDocuments"];
 			$uploadedFile = $result["uploadedFile"];
+			$userId = $parentDocument["senderId"];
 			
 			$srcFilePath = $parentDocument["documentPath"];
 			$pdfSourceData = array();
@@ -1344,20 +1360,11 @@ class Document extends BaseController
 				$secretFolder = $this->esign_config->SECRETFOLDER;
 				$srcFilePath = $rootFolder.$srcFilePath;
 				$this->pdf = new GeneratePdf();	
-				$resultFile = $this->pdf->prepareConsolidatePdf($rootFolder, $srcFilePath, $pdfSourceData, $secretFolder);
+				$resultFile = $this->pdf->prepareConsolidatePdf($rootFolder, $srcFilePath, $pdfSourceData, $secretFolder, $userId, $documentID);
 			}
 			
 		}
-		/*
-		$this->pdf = new GeneratePdf();	
 		
-		$hashCode = $this->Encription($userLocaleJson);
-		
-		//update user filled data to signer document
-		$updt = $this->document_model->updatePartyFilledData($signerDocumentId, json_encode($signerDocData));
-		
-		$resultFile = $this->pdf->preparePdf($rootFolder, $srcFilePath, $docData, $hashCode, $signerDocumentId, $secretFolder);
-		*/
 	}
 
     public function Encription($myStr)
