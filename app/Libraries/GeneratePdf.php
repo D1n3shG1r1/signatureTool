@@ -105,6 +105,7 @@ class GeneratePdf{
                         }else{
                             
                             $this->pdf->SetFont("helvetica", "", $newFontSize);
+
                             $this->pdf->SetTextColor(0, 0, 0);
                             $this->pdf->Text($newLeft, $newTop, $default_value);
                         }
@@ -350,7 +351,7 @@ class GeneratePdf{
         
     }
 
-    function prepareConsolidateCompletionCertificate($rootFolder, $srcFilePath, $data, $signerDocumentId, $secretFolder){
+    function prepareConsolidateCompletionCertificate($rootFolder, $srcFilePath, $bgImg, $data, $signerDocumentId, $secretFolder){
         
         $documentId = "1a171bde8a66e9793d8a2489a6619e3d";
         $documentName = "gorise paypal last transaction1.pdf";
@@ -379,10 +380,11 @@ class GeneratePdf{
 
         $pHeight = $this->pdf->GetPageHeight();
         $pWidth = $this->pdf->GetPageHeight();
-
+        
         $this->pdf->SetFont("helvetica", "", 11);
-        $this->pdf->SetTextColor(0, 0, 0);
-
+        //$this->pdf->SetTextColor(0, 0, 0);
+        //$this->pdf->SetTextColor(60,61,61);
+        $this->pdf->SetTextColor(27,27,27);
         //Summary
         
         //Document Id
@@ -414,6 +416,7 @@ class GeneratePdf{
 
         //Hash
         $this->pdf->SetFont("helvetica", "", 8);
+        $this->pdf->SetTextColor(60,61,61);
         $this->pdf->SetXY(119,147);
         $this->pdf->MultiCell(107, 3, $hash);
         
@@ -521,7 +524,7 @@ class GeneratePdf{
 
     //echo "<pre>"; print_r($recipientsArr); die;
 
-        //recipients loop
+        //Recipients Loop
         $prevLhsX = 0;
         $prevLhsY = 178;
 
@@ -537,16 +540,7 @@ class GeneratePdf{
                 $prevRhsX = 0;
                 $prevRhsY = 5;
                 
-                /*
-                $orientation = '';
-                $size = 'A4';
-                $rotation = 0;
-                $this->pdf->AddPage($orientation, $size, $rotation);
-                */
-
-
                 $fileIndex = $this->pdf->importPage($i);
-        
 
                 $orientation = '';
                 $size = '';
@@ -554,21 +548,15 @@ class GeneratePdf{
                 $this->pdf->AddPage($orientation, $size, $rotation);
                 
                $this->pdf->useTemplate($fileIndex,0,0,237, null,true);
-
-            }
-            /*
-            if($prevLhsY >= $this->pdf->GetPageHeight() || $prevRhsY >= $this->pdf->GetPageHeight()){
-                $this->pdf->AddPage();
-
-                $prevLhsX = 0;
-                $prevLhsY = 178;
-
-                $prevRhsX = 0;
-                $prevRhsX = 178;
+                $x = 0;
+                $y = 0;
+                $w = $pWidth;
+                $h = $pHeight;
                 
+                $this->pdf->Image($bgImg , $x, $y, $w, $h);
+               
             }
-            */
-          
+            
             foreach($recipientBatchRw as $recipientRw){
                 if(!empty($recipientRw)){
                 $newLhsX = 12.5;
@@ -591,42 +579,52 @@ class GeneratePdf{
 
                 //Name
                 $this->pdf->SetFont("helvetica", "B", 13);
-                $this->pdf->Text($newLhsX, $newLhsY, "Name");   
+                $this->pdf->SetTextColor(0,0,0);
+                $this->pdf->Text($newLhsX, $newLhsY, "Name");   //label
                 
                 $newLhsY = $newLhsY + 10;  
                 $this->pdf->SetFont("helvetica", "", 11);
-                $this->pdf->Text($newLhsX, $newLhsY, $rcpntNm);   
+                $this->pdf->SetTextColor(27,27,27);
+                $this->pdf->Text($newLhsX, $newLhsY-5, $rcpntNm);   //value
 
                 //Email ID
                 $this->pdf->SetFont("helvetica", "B", 13);
-                $this->pdf->Text($newRhsX, $newRhsY, "Email ID");   
+                $this->pdf->SetTextColor(0,0,0);
+                $this->pdf->Text($newRhsX, $newRhsY, "Email ID");    //label
                 $newRhsY = $newRhsY + 10; 
                 $this->pdf->SetFont("helvetica", "", 11);
-                $this->pdf->Text($newRhsX, $newRhsY, $rcpntEmlId);   
+                $this->pdf->SetTextColor(27,27,27);
+                $this->pdf->Text($newRhsX, $newRhsY-5, $rcpntEmlId);   //value
                 
                 //signature type
                 $newLhsY = $newLhsY + 10;  
                 $this->pdf->SetFont("helvetica", "B", 13);
-                $this->pdf->Text($newLhsX, $newLhsY, "Signature Type");
+                $this->pdf->SetTextColor(0,0,0);
+                $this->pdf->Text($newLhsX, $newLhsY, "Signature Type");   //label
                 $newLhsY = $newLhsY + 10;  
                 $this->pdf->SetFont("helvetica", "", 11);
-                $this->pdf->Text($newLhsX, $newLhsY, $rcpntSignatureType);
+                $this->pdf->SetTextColor(27,27,27);
+                $this->pdf->Text($newLhsX, $newLhsY-5, $rcpntSignatureType);   //value
                 
                 //Signature Auth
                 $newRhsY = $newRhsY + 10; 
                 $this->pdf->SetFont("helvetica", "B", 13);
-                $this->pdf->Text($newRhsX, $newRhsY, "Security Authentication");
+                $this->pdf->SetTextColor(0,0,0);
+                $this->pdf->Text($newRhsX, $newRhsY, "Security Authentication");   //label
                 $newRhsY = $newRhsY + 10; 
                 $this->pdf->SetFont("helvetica", "", 11);
-                $this->pdf->Text($newRhsX, $newRhsY, $rcpntSecurityAuthentication);
+                $this->pdf->SetTextColor(27,27,27);
+                $this->pdf->Text($newRhsX, $newRhsY-5, $rcpntSecurityAuthentication);   //value
                 
                 //Timestamp
                 $newLhsY = $newLhsY + 10;  
                 $this->pdf->SetFont("helvetica", "B", 13);
-                $this->pdf->Text($newLhsX, $newLhsY, "Timestamps");
+                $this->pdf->SetTextColor(0,0,0);
+                $this->pdf->Text($newLhsX, $newLhsY, "Timestamps");   //label
                 $newLhsY = $newLhsY + 10;  
                 $this->pdf->SetFont("helvetica", "", 11);
-                $this->pdf->Text($newLhsX, $newLhsY, $rcpntTimestamps);
+                $this->pdf->SetTextColor(27,27,27);
+                $this->pdf->Text($newLhsX, $newLhsY-5, $rcpntTimestamps);   //value
                 
                 //Signature
                 $x = 110;
@@ -637,12 +635,19 @@ class GeneratePdf{
                 //$this->pdf->Image($rcpntSignature , $x, $y, $w, $h);
                 $newRhsY = $newRhsY + 10; 
                 $this->pdf->SetFont("helvetica", "B", 13);
-                $this->pdf->Text($newRhsX, $newRhsY, "Signature");
+                $this->pdf->Text($newRhsX, $newRhsY, "Signature");   //label
                 $newRhsY = $newRhsY + 10; 
                 $this->pdf->SetFont("helvetica", "", 11);
-                $this->pdf->Text($newRhsX, $newRhsY, $rcpntSignature);
-
-            
+                $this->pdf->Text($newRhsX, $newRhsY-5, $rcpntSignature);   //value
+                
+                //seprator
+                $x1 = 12; 
+                $y1 = $newLhsY+10;
+                $x2 = 225;
+                $y2 = $newRhsY+10;
+        
+                $this->pdf->Line($x1, $y1, $x2, $y2);
+        
                 
                 $prevLhsX = $newLhsX;
                 $prevLhsY = $newLhsY;
@@ -655,8 +660,498 @@ class GeneratePdf{
             
         }
 
-        //echo "GetPageWidth:".$this->pdf->GetPageWidth(). "GetPageHeight:".$this->pdf->GetPageHeight(). ",GetX:". $this->pdf->GetX().",GetY:". $this->pdf->GetY();
+        
+        //Add Audit Trial
+        //Import and Add New Page
+        $fileIndex = $this->pdf->importPage($i);
 
+        $orientation = '';
+        $size = '';
+        $rotation = 0;
+        $this->pdf->AddPage($orientation, $size, $rotation);
+        
+       $this->pdf->useTemplate($fileIndex,0,0,237, null,true);
+        $x = 0;
+        $y = 0;
+        $w = $pWidth;
+        $h = $pHeight;
+        
+        $this->pdf->Image($bgImg , $x, $y, $w, $h);
+
+
+        //Page Heading    
+        $this->pdf->SetFont("helvetica", "B", 15);
+        $this->pdf->Text(12, 26, "Audit Trial");
+        $x1 = 49; 
+        $y1 = 26;
+        $x2 = 225;
+        $y2 = 26;
+
+        $this->pdf->Line($x1, $y1, $x2, $y2);
+        
+        //Audit Trial Loop
+        $auditTrialBatchArr = array(
+            array(    
+                /*array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),*/
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                )
+            ),
+            array(    
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                )
+            ),
+            array(    
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Signed",
+                    "Name" => "Kishan",
+                    "Email ID" => "kishan@example.com",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => "122.161.198.145"
+                ),
+                array(
+                    "Section" => "Completed",
+                    "Name" => "",
+                    "Email ID" => "",
+                    "DateTime" => date("Y-m-d H:i:s"),
+                    "IP" => ""
+                )
+            )
+        );
+
+
+       
+        foreach($auditTrialBatchArr as $k => $auditTrialBatchRw){
+            $prevLhsX = 12;
+            $prevLhsY = 40;
+            $prevRhsX = 60;
+            $prevRhsY = 40;
+            $newLhsX = $prevLhsX;
+            $newLhsY = $prevLhsY;
+            $newRhsX = $prevRhsX;
+            $newRhsY = $prevRhsY;
+
+            if($k > 0){
+                $newLhsX = $prevLhsX;
+                $newLhsY = $prevLhsY-23;
+                $newRhsX = $prevRhsX;
+                $newRhsY = $prevRhsY-23;
+            }
+
+           foreach($auditTrialBatchRw as $sk=> $auditTrialRw){
+                   
+                    $adtSec = $auditTrialRw["Section"];
+                    $adtNm = $auditTrialRw["Name"];
+                    $adtEml = $auditTrialRw["Email ID"];
+                    $adtDtTm = $auditTrialRw["DateTime"];
+                    $adtIP = $auditTrialRw["IP"];
+                
+                    
+                    $this->pdf->SetFont("helvetica", "B", 11);
+                    $this->pdf->SetTextColor(0,0,0);
+                    $this->pdf->Text($newLhsX+5, $newLhsY, "$adtSec:"); // Label
+                    
+                    $this->pdf->SetTextColor(27,27,27);
+                    if(strtolower($adtSec) == "signed"){
+                        $this->pdf->SetFont("helvetica", "", 11);
+                        $this->pdf->Text($newRhsX+5, $newRhsY, $adtNm." signed the document."); // Name
+                        
+                        $this->pdf->SetFont("helvetica", "", 9);
+                        $this->pdf->Text($newLhsX+5, $newLhsY+7, $adtDtTm); // Date Time
+                        
+                        $this->pdf->SetFont("helvetica", "", 9);
+                        $this->pdf->Text($newRhsX+5, $newRhsY+7, $adtEml); // Email 
+                        
+                        $this->pdf->SetFont("helvetica", "", 9);
+                        $this->pdf->Text($newRhsX+120, $newRhsY+7, "IP: ".$adtIP); // IP    
+                    
+                        $rectX = $newLhsX;
+                        $rectY = $newLhsY-5;
+                        $rectW = 213;
+                        $rectH = 15;
+                        $this->pdf->Rect($rectX, $rectY, $rectW, $rectH, $style='');
+
+                        
+                        $x1 = $newLhsX + 48; 
+                        $y1 = $newRhsY;
+                        $x2 = $newLhsX + 48;
+                        $y2 = $newRhsY;// + 38;
+                        $this->pdf->Line($x1, $y1-5, $x2, $y2+10); //vertical line
+
+                        
+                        $x1 = $newLhsX + 165; 
+                        $y1 = $newRhsY;// + 30.5;
+                        $x2 = $newLhsX + 165;
+                        $y2 = $newRhsY;// + 38;
+                        $this->pdf->Line($x1, $y1+2.5, $x2, $y2+10); //vertical line
+
+
+                        $x1 = $newLhsX+48;
+                        $y1 = $newLhsY+2.5;
+                        $x2 = $newLhsX+213;
+                        $y2 = $newLhsY+2.5;
+                        $this->pdf->Line($x1, $y1, $x2, $y2); //horizontal line
+                        
+                    }else{
+                        
+                        $this->pdf->SetFont("helvetica", "", 11);
+                        $this->pdf->Text($newRhsX+5, $newRhsY, " Document has been completed."); // Document completed
+
+                        $this->pdf->SetFont("helvetica", "", 9);
+                        $this->pdf->Text($newLhsX+5, $newLhsY+7, $adtDtTm); // Date Time
+                        
+                        $rectX = $newLhsX;
+                        $rectY = $newLhsY-5;
+                        $rectW = 213;
+                        $rectH = 15;
+                        $this->pdf->Rect($rectX, $rectY, $rectW, $rectH, $style='');
+                        
+                    }
+                    
+                    $newLhsY = $newLhsY + 20;
+                    $newRhsY = $newRhsY + 20;
+                   
+                  
+                }
+           
+            
+
+                if($k < count($auditTrialBatchArr)-1){
+                    //Import and Add New Page
+                    $fileIndex = $this->pdf->importPage($i);
+
+                    $orientation = '';
+                    $size = '';
+                    $rotation = 0;
+                    $this->pdf->AddPage($orientation, $size, $rotation);
+                    
+                    $this->pdf->useTemplate($fileIndex,0,0,237, null,true);
+                    $x = 0;
+                    $y = 0;
+                    $w = $pWidth;
+                    $h = $pHeight;
+                    
+                    $this->pdf->Image($bgImg , $x, $y, $w, $h);
+                }
+
+        }
+        
         $this->pdf->Output();
         
         /*

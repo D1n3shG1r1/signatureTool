@@ -1,0 +1,65 @@
+ERROR - 2023-05-01 04:38:00 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10 OFFSET 0' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `uploadI...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `uploadI...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `uploadI...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(372): CodeIgniter\Database\BaseConnection->query('SELECT `uploadI...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1442): App\Models\Document_Model->getMyDocuments(NULL, 0)
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-01 04:38:00 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 373.
+ 1 APPPATH\Controllers\Document.php(1442): App\Models\Document_Model->getMyDocuments(null, 0)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-01 12:55:59 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM `e_sign_uploaded_files` WHERE `id` = 1682513163991942' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `file_na...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `file_na...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `file_na...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(511): CodeIgniter\Database\BaseConnection->query('SELECT `file_na...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1367): App\Models\Document_Model->getSignersAuditTrialData('085dc7ff38220e7...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('085dc7ff38220e7...')
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-01 12:55:59 --> Call to a member function getRowArray() on bool
+in APPPATH\Models\Document_Model.php on line 512.
+ 1 APPPATH\Controllers\Document.php(1367): App\Models\Document_Model->getSignersAuditTrialData('085dc7ff38220e7bcbc07cf6999cb729')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('085dc7ff38220e7bcbc07cf6999cb729')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-01 12:56:41 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '`documentId` FROM `e_sign_electronic_signatures` WHERE `documentId` IN(168251342' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `signatu...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `signatu...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `signatu...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(528): CodeIgniter\Database\BaseConnection->query('SELECT `signatu...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1367): App\Models\Document_Model->getSignersAuditTrialData('085dc7ff38220e7...')
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('085dc7ff38220e7...')
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-01 12:56:41 --> Call to a member function getRowArray() on bool
+in APPPATH\Models\Document_Model.php on line 529.
+ 1 APPPATH\Controllers\Document.php(1367): App\Models\Document_Model->getSignersAuditTrialData('085dc7ff38220e7bcbc07cf6999cb729')
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('085dc7ff38220e7bcbc07cf6999cb729')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-01 12:57:00 --> Illegal string offset 'documentId'
+in APPPATH\Models\Document_Model.php on line 534.
+ 1 APPPATH\Models\Document_Model.php(534): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Illegal string offset \'documentId\'', 'APPPATH\\Models\\Document_Model.php', 534, [...])
+ 2 APPPATH\Controllers\Document.php(1367): App\Models\Document_Model->getSignersAuditTrialData('085dc7ff38220e7bcbc07cf6999cb729')
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepareConsolidatePdfs('085dc7ff38220e7bcbc07cf6999cb729')
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()

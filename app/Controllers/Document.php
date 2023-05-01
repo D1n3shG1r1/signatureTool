@@ -1303,15 +1303,15 @@ class Document extends BaseController
 		$secretFolder = $this->esign_config->SECRETFOLDER;
 		$srcFilePath = "systemtemplates/ConsolidateCertificateOfComletion.pdf";
 		$srcFilePath = $rootFolder.$srcFilePath;
-		$signerDocumentId = false;
+		$bgImg = $rootFolder."systemtemplates/kapda.jpeg";
 		
-		$data = array();
+		$signerDocumentIds = array();
+		$auditData = array();
+		$auditData["recipientsData"] = array();
+		$auditData["auditTrialData"] = array();
 
-		$this->pdf = new GeneratePdf();	
-		$this->pdf->prepareConsolidateCompletionCertificate($rootFolder, $srcFilePath, $data, $signerDocumentId, $secretFolder);
 
-		die;
-		//ok the report code
+		//ok the report code for consolidated document
 		$documentID = "085dc7ff38220e7bcbc07cf6999cb729";
 		
 		$result = $this->document_model->getDocumentSignersData($documentID);
@@ -1337,8 +1337,10 @@ class Document extends BaseController
 					//$docData = array_values($tmpSignerDocData);
 					//echo "<pre>"; print_r($tmpSignerDocData); die;
 					foreach($tmpSignerDocData as &$tmpDcRws){
+						$signerDocumentIds[] = $tmpSignrDocId;	
 						foreach($tmpDcRws as &$tmpDcRw){
 							$tmpDcRw["documentId"] = $tmpSignrDocId;
+							
 						}
 						
 					}
@@ -1353,14 +1355,100 @@ class Document extends BaseController
 				
 			}
 			
-			//echo "<pre>"; print_r($pdfSourceData); die;
-			if(!empty($pdfSourceData)){
+			//$auditData = array();
+			//$auditData["recipientsData"] = array();
+			//$auditData["auditTrialData"] = array();
+			//echo "<pre>"; print_r($pdfSourceData); 
 
+			/*if(!empty($signerDocumentIds)){
+				echo "<pre>"; print_r($signerDocumentIds);
+			}*/
+			
+			$auditResult = $this->document_model->getSignersAuditTrialData($documentID);
+			//echo "<pre>"; print_r($auditResult); die;
+			if(!empty($auditResult)){
+				
+				$comletedAt = $auditResult["updated_at"];
+
+
+				foreach($auditResult["signerDocuments"] as $signerDocumentRw){
+					
+					$tmpDocumentId = $signerDocumentRw["documentId"];
+					$tmpSignImg = "";
+					$tmpName = $signerDocumentRw["signerName"];
+					$tmpEmail = $signerDocumentRw["signerEmail"];
+					$tmpDateTime = $signerDocumentRw["documentSignDate"];
+					$tmpAuthType = $signerDocumentRw["authType"];
+					if($tmpAuthType == 1){
+						$tmpAuthTypeTxt = "OTP";
+					}else if($tmpAuthType == 2){
+						$tmpAuthTypeTxt = "Access Code";
+					}else{
+						$tmpAuthTypeTxt = "-";
+					}
+					
+					$tmpSignType = $signerDocumentRw["hashData"]["signType"];
+					$tmpHsh = $signerDocumentRw["hashData"]["signatureHash"];
+					$tmpHshJson = $this->Decryption($tmpHsh);
+					$tmpHshObj = json_decode($tmpHshJson);
+					$tmpIP = $tmpHshObj->ip;
+
+					$auditData["recipientsData"][] = array(
+						"Name" => $tmpName,
+                        "Email ID" => $tmpEmail,
+                        "Signature Type" => ucfirst($tmpSignType),
+                        "Security Authentication" => $tmpAuthTypeTxt,
+                        "Timestamps" => $tmpDateTime,
+                        "Signature" => "Kishan Rathore"
+					);
+					
+					
+
+					$auditData["auditTrialData"][] = array(
+						"Section" => "Signed",
+						"Name" => $tmpName,
+						"Email ID" => $tmpEmail,
+						"DateTime" => $tmpDateTime,
+						"IP" => $tmpIP
+					);
+				}
+				
+				$auditData["auditTrialData"][] = array(
+					"Section" => "Completed",
+					"Name" => "",
+					"Email ID" => "",
+					"DateTime" => $comletedAt,
+					"IP" => ""
+				);
+				
+			}
+
+			echo "<pre>"; print_r($auditData);
+
+			
+
+			die;
+			if(!empty($pdfSourceData)){
+				//Consolidate document
 				$rootFolder = publicFolder();
 				$secretFolder = $this->esign_config->SECRETFOLDER;
 				$srcFilePath = $rootFolder.$srcFilePath;
 				$this->pdf = new GeneratePdf();	
 				$resultFile = $this->pdf->prepareConsolidatePdf($rootFolder, $srcFilePath, $pdfSourceData, $secretFolder, $userId, $documentID);
+			
+			
+				//Consolidate Audit Trial
+				$signerDocumentId = false;
+		
+				
+
+				$this->pdf = new GeneratePdf();	
+				$this->pdf->prepareConsolidateCompletionCertificate($rootFolder, $srcFilePath, $bgImg, $data, $signerDocumentId, $secretFolder);
+
+				die;	
+				
+			
+			
 			}
 			
 		}

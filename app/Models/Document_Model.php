@@ -493,6 +493,72 @@ class Document_Model extends Model
 		return $result;
 	}
 
+	function getSignersAuditTrialData($parentDocumentId){
+	
+		$docWiseHashArr = array();
+
+		$cmd = "SELECT `id`, `uploadId`, `documentId`, `no_of_parties`, `isComplete`, `created_at`, `updated_at` FROM `e_sign_documents` WHERE `documentId` = '$parentDocumentId' AND `isComplete` = 1";
+		$query = $this->db->query($cmd);
+		$parentDoc = $query->getRowArray();
+
+		if(!empty($parentDoc)){
+
+			$Id = $parentDoc["id"];
+			$uploadId = $parentDoc["uploadId"];
+		
+			//get uploaded file info
+			$cmd = "SELECT `file_name`, `documentTitle` FROM `e_sign_uploaded_files` WHERE `id` = $uploadId";
+			$query = $this->db->query($cmd);
+			$uploadedFile = $query->getRowArray();
+
+			//get signers and their hash
+			$cmd = "SELECT `id`, `documentId`, `signerEmail`, `signerName`, `document_status`, `authType`, `documentSentDate`, `documentSignDate` FROM `e_sign_document_signers` WHERE `parentDocument` = $Id";
+			$query = $this->db->query($cmd);
+			$signerDocsArr = $query->getResultArray();
+			
+			$signerDocIdsArr = array();
+			foreach($signerDocsArr as $signerDocRw){
+				$signerDocId = $signerDocRw["id"];
+				$signerDocIdsArr[] = $signerDocId;
+			}
+
+			if(!empty($signerDocIdsArr)){
+				$signerDocIdsStr = implode(",", $signerDocIdsArr);
+				$cmd = "SELECT `signatureHash`, `signType`, `documentId` FROM `e_sign_electronic_signatures` WHERE `documentId` IN($signerDocIdsStr)";
+				$query = $this->db->query($cmd);
+				$signerDocHashArr = $query->getResultArray();
+				
+				if(!empty($signerDocHashArr)){
+				
+					foreach($signerDocHashArr as $signerDocHashRw){
+						$docWiseHashArr[$signerDocHashRw["documentId"]] = $signerDocHashRw;
+					}
+				
+				}
+			}
+			
+			foreach($signerDocsArr as &$tmpSignerDocRw){
+				
+				$signerDocId = $tmpSignerDocRw["id"];
+				$tmpHashData = $docWiseHashArr[$signerDocId];
+
+				if(empty($tmpHashData)){
+					$tmpHashData = array();
+				}
+
+				$tmpSignerDocRw["hashData"] = $tmpHashData;
+			}
+			
+			$parentDoc["signerDocuments"] = $signerDocsArr;
+
+		}
+
+		return $parentDoc;
+
+	}
+
+
+
 	function getDocumentSignersData($documentID){
 		
 		$finalResult = array();
