@@ -175,6 +175,7 @@
                                 <div class="accesscodeProperties" id="accesscodeProperties_1">
                                 <div class="mt-3">
                                     <input type="text" class="form-control accessCode" id="accessCode_1" name="accessCode[1]" placeholder="Access Code">
+                                    <button type="button" class="btn btn-outline-primary col-12" onclick="genAccessCode(1);">Generate Code</button>
                                     <span class="text-danger"><small>This field is required when access code is enabled</small></span>
                                 </div>
                                 <div>Note: You must communicate this access code to the recipient directly</div>
@@ -607,7 +608,7 @@
                                 <input type="hidden" class="accessCodeOtpOpt" name="accessCodeOtpOpt['+newRwId+']" id="accessCodeOtpVal_'+newRwId+'" value="0">\
                                 <div class="accesscodeProperties" id="accesscodeProperties_'+newRwId+'">\
                                 <div class="mt-3">\
-                                    <input type="text" class="form-control accessCode" id="accessCode_'+newRwId+'" name="accessCode['+newRwId+']" placeholder="Access Code">\
+                                    <input type="text" class="form-control accessCode" id="accessCode_'+newRwId+'" name="accessCode['+newRwId+']" placeholder="Access Code"><button type="button" class="btn btn-outline-primary col-12" onclick="genAccessCode('+newRwId+');">Generate Code</button>\
                                     <span class="text-danger"><small>This field is required when access code is enabled</small></span>\
                                 </div>\
                                 <div>Note: You must communicate this access code to the recipient directly</div>\
@@ -635,6 +636,10 @@
 
         }
 
+    function genAccessCode(id){
+        var randNum = Math.floor(100000 + Math.random() * 900000);
+        $("#accessCode_"+id).val(randNum);
+    }
     
     function uploadProcess(){
        

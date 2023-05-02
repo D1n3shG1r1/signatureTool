@@ -176,3 +176,5 @@ function callAjax(rqsturl, postdata, rqstType, cb){
     function redirectTo(url){
         window.location.href = url;
     }
+
+    

@@ -1191,7 +1191,7 @@ class Document extends BaseController
 		$docData = array_values($signerDocData);
 		$docData = $docData[0];
 		
-		$srcFilePath = $rootFolder."userassets/mydocuments/$ownerId//".$masterDocument;	
+		$srcFilePath = $rootFolder."userassets/mydocuments/$ownerId/".$masterDocument;	
 		
 		$this->pdf = new GeneratePdf();	
 		
@@ -1298,25 +1298,20 @@ class Document extends BaseController
 	}
 
 	function prepareConsolidatePdfs($documentID=false){
+		//function is ok for creating and sending the complete document
 
 		$rootFolder = publicFolder();
 		$secretFolder = $this->esign_config->SECRETFOLDER;
-		$srcFilePath = "systemtemplates/ConsolidateCertificateOfComletion.pdf";
-		$srcFilePath = $rootFolder.$srcFilePath;
+	
 		$bgImg = $rootFolder."systemtemplates/kapda.jpeg";
 		
-		$signerDocumentIds = array();
-		$auditData = array();
-		$auditData["recipientsData"] = array();
-		$auditData["auditTrialData"] = array();
-
-
-		//ok the report code for consolidated document
 		$documentID = "085dc7ff38220e7bcbc07cf6999cb729";
 		
 		$result = $this->document_model->getDocumentSignersData($documentID);
 		//echo "<pre>"; print_r($result); die;
 		if(!empty($result)){
+			$signerDocumentIds = array();
+			
 			$parentDocument = $result["parentDocument"];
 			$signerDocuments = $result["signerDocuments"];
 			$uploadedFile = $result["uploadedFile"];
@@ -1334,8 +1329,6 @@ class Document extends BaseController
 
 					$tmpSignerDocData = json_decode($signerDocRw["userfilled_documentdata"], true);
 					
-					//$docData = array_values($tmpSignerDocData);
-					//echo "<pre>"; print_r($tmpSignerDocData); die;
 					foreach($tmpSignerDocData as &$tmpDcRws){
 						$signerDocumentIds[] = $tmpSignrDocId;	
 						foreach($tmpDcRws as &$tmpDcRw){
@@ -1355,79 +1348,6 @@ class Document extends BaseController
 				
 			}
 			
-			//$auditData = array();
-			//$auditData["recipientsData"] = array();
-			//$auditData["auditTrialData"] = array();
-			//echo "<pre>"; print_r($pdfSourceData); 
-
-			/*if(!empty($signerDocumentIds)){
-				echo "<pre>"; print_r($signerDocumentIds);
-			}*/
-			
-			$auditResult = $this->document_model->getSignersAuditTrialData($documentID);
-			//echo "<pre>"; print_r($auditResult); die;
-			if(!empty($auditResult)){
-				
-				$comletedAt = $auditResult["updated_at"];
-
-
-				foreach($auditResult["signerDocuments"] as $signerDocumentRw){
-					
-					$tmpDocumentId = $signerDocumentRw["documentId"];
-					$tmpSignImg = "";
-					$tmpName = $signerDocumentRw["signerName"];
-					$tmpEmail = $signerDocumentRw["signerEmail"];
-					$tmpDateTime = $signerDocumentRw["documentSignDate"];
-					$tmpAuthType = $signerDocumentRw["authType"];
-					if($tmpAuthType == 1){
-						$tmpAuthTypeTxt = "OTP";
-					}else if($tmpAuthType == 2){
-						$tmpAuthTypeTxt = "Access Code";
-					}else{
-						$tmpAuthTypeTxt = "-";
-					}
-					
-					$tmpSignType = $signerDocumentRw["hashData"]["signType"];
-					$tmpHsh = $signerDocumentRw["hashData"]["signatureHash"];
-					$tmpHshJson = $this->Decryption($tmpHsh);
-					$tmpHshObj = json_decode($tmpHshJson);
-					$tmpIP = $tmpHshObj->ip;
-
-					$auditData["recipientsData"][] = array(
-						"Name" => $tmpName,
-                        "Email ID" => $tmpEmail,
-                        "Signature Type" => ucfirst($tmpSignType),
-                        "Security Authentication" => $tmpAuthTypeTxt,
-                        "Timestamps" => $tmpDateTime,
-                        "Signature" => "Kishan Rathore"
-					);
-					
-					
-
-					$auditData["auditTrialData"][] = array(
-						"Section" => "Signed",
-						"Name" => $tmpName,
-						"Email ID" => $tmpEmail,
-						"DateTime" => $tmpDateTime,
-						"IP" => $tmpIP
-					);
-				}
-				
-				$auditData["auditTrialData"][] = array(
-					"Section" => "Completed",
-					"Name" => "",
-					"Email ID" => "",
-					"DateTime" => $comletedAt,
-					"IP" => ""
-				);
-				
-			}
-
-			echo "<pre>"; print_r($auditData);
-
-			
-
-			die;
 			if(!empty($pdfSourceData)){
 				//Consolidate document
 				$rootFolder = publicFolder();
@@ -1438,16 +1358,95 @@ class Document extends BaseController
 			
 			
 				//Consolidate Audit Trial
-				$signerDocumentId = false;
-		
-				
+				$auditResult = $this->document_model->getSignersAuditTrialData($documentID);
+				if(!empty($auditResult)){
+					$auditData = array();
+					$auditData["recipientsData"] = array();
+					$auditData["auditTrialData"] = array();
+					$auditData["documentData"] = array();
 
+					$tmpDocIdsArr = array();
+					$tmpMainDocFileName = $auditResult["uploadInfo"]["file_name"];
+					$tmpMainDocTitle = $auditResult["uploadInfo"]["documentTitle"];
+					$tmpMainDocumentId = $auditResult["documentId"];
+					$tmpNoOfParties = $auditResult["no_of_parties"];
+					$isComplete = $auditResult["isComplete"];
+					$createdAt = $auditResult["created_at"];
+					$comletedAt = $auditResult["updated_at"];
+	
+					foreach($auditResult["signerDocuments"] as $signerDocumentRw){
+						
+						$tmpDocumentId = $signerDocumentRw["documentId"];
+						$tmpSignImg = $rootFolder. $secretFolder."/".$tmpDocumentId."/sign.png";
+						$tmpName = $signerDocumentRw["signerName"];
+						$tmpEmail = $signerDocumentRw["signerEmail"];
+						$tmpDateTime = $signerDocumentRw["documentSignDate"];
+						$tmpAuthType = $signerDocumentRw["authType"];
+						if($tmpAuthType == 1){
+							$tmpAuthTypeTxt = "OTP";
+						}else if($tmpAuthType == 2){
+							$tmpAuthTypeTxt = "Access Code";
+						}else{
+							$tmpAuthTypeTxt = "-";
+						}
+						
+						$tmpSignType = $signerDocumentRw["hashData"]["signType"];
+						$tmpHsh = $signerDocumentRw["hashData"]["signatureHash"];
+						$tmpHshJson = $this->Decryption($tmpHsh);
+						$tmpHshObj = json_decode($tmpHshJson);
+						$tmpIP = $tmpHshObj->ip;
+	
+						$tmpDocIdsArr[] = $tmpDocumentId;
+	
+						$auditData["recipientsData"][] = array(
+							"Name" => $tmpName,
+							"Email ID" => $tmpEmail,
+							"Signature Type" => ucfirst($tmpSignType),
+							"Security Authentication" => $tmpAuthTypeTxt,
+							"Timestamps" => $tmpDateTime,
+							"Signature" => $tmpSignImg
+						);
+						
+	
+						$auditData["auditTrialData"][] = array(
+							"Section" => "Signed",
+							"Name" => $tmpName,
+							"Email ID" => $tmpEmail,
+							"DateTime" => $tmpDateTime,
+							"IP" => $tmpIP
+						);
+					}
+					
+					$auditData["auditTrialData"][] = array(
+						"Section" => "Completed",
+						"Name" => "",
+						"Email ID" => "",
+						"DateTime" => $comletedAt,
+						"IP" => ""
+					);
+	
+	
+					$tmpMainHash =  $this->Encription(json_encode($tmpDocIdsArr));
+					$auditData["documentData"] = array(
+						"documentId" => $tmpMainDocumentId,
+						"documentName" => $tmpMainDocFileName, 
+						"numPages" => "",
+						"sentAt" => $createdAt,
+						"title" => $tmpMainDocTitle,
+						"signType" => "Signature Collection",
+						"status" => "Completed",
+						"signerCount" => $tmpNoOfParties,
+						"completedAt" => $comletedAt,
+						"hash" => $tmpMainHash 
+					);
+					
+				}
+	
+				//echo "<pre>"; print_r($auditData); die;
+				$srcFilePath = "systemtemplates/ConsolidateCertificateOfCompletion.pdf";
+				$srcFilePath = $rootFolder.$srcFilePath;
 				$this->pdf = new GeneratePdf();	
-				$this->pdf->prepareConsolidateCompletionCertificate($rootFolder, $srcFilePath, $bgImg, $data, $signerDocumentId, $secretFolder);
-
-				die;	
-				
-			
+				$this->pdf->prepareConsolidateCompletionCertificate($rootFolder, $srcFilePath, $bgImg, $auditData, $userId);
 			
 			}
 			

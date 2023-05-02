@@ -549,6 +549,7 @@ class Document_Model extends Model
 				$tmpSignerDocRw["hashData"] = $tmpHashData;
 			}
 			
+			$parentDoc["uploadInfo"] = $uploadedFile;
 			$parentDoc["signerDocuments"] = $signerDocsArr;
 
 		}
@@ -556,8 +557,6 @@ class Document_Model extends Model
 		return $parentDoc;
 
 	}
-
-
 
 	function getDocumentSignersData($documentID){
 		
