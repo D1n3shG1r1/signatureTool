@@ -615,6 +615,5 @@ class Document_Model extends Model
 		
 		return $finalResult;
 	}
-
 }
 ?>

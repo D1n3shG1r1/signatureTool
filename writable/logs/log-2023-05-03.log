@@ -1,0 +1,106 @@
+ERROR - 2023-05-03 04:57:42 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10 OFFSET 0' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `uploadI...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `uploadI...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `uploadI...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(372): CodeIgniter\Database\BaseConnection->query('SELECT `uploadI...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1529): App\Models\Document_Model->getMyDocuments(NULL, 0)
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-03 04:57:42 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 373.
+ 1 APPPATH\Controllers\Document.php(1529): App\Models\Document_Model->getMyDocuments(null, 0)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-03 04:57:44 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10 OFFSET 0' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `uploadI...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `uploadI...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `uploadI...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(372): CodeIgniter\Database\BaseConnection->query('SELECT `uploadI...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1529): App\Models\Document_Model->getMyDocuments(NULL, 0)
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-03 04:57:44 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 373.
+ 1 APPPATH\Controllers\Document.php(1529): App\Models\Document_Model->getMyDocuments(null, 0)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-03 09:38:03 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10 OFFSET 0' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `uploadI...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `uploadI...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `uploadI...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(372): CodeIgniter\Database\BaseConnection->query('SELECT `uploadI...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1528): App\Models\Document_Model->getMyDocuments(NULL, 0)
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-03 09:38:03 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 373.
+ 1 APPPATH\Controllers\Document.php(1528): App\Models\Document_Model->getMyDocuments(null, 0)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-03 12:31:39 --> syntax error, unexpected 'd' (T_STRING)
+in APPPATH\Models\Cron_Model.php on line 30.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Models\\Cron_Model.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\Cron_Model')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\Cron_Model')
+ 4 APPPATH\Controllers\Crons.php(12): spl_autoload_call('App\\Models\\Cron_Model')
+ 5 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Crons->__construct()
+ 6 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-03 13:03:58 --> syntax error, unexpected '}', expecting end of file
+in APPPATH\Models\Cron_Model.php on line 64.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Models\\Cron_Model.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\Cron_Model')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\Cron_Model')
+ 4 APPPATH\Controllers\Crons.php(12): spl_autoload_call('App\\Models\\Cron_Model')
+ 5 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Crons->__construct()
+ 6 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-03 13:04:26 --> syntax error, unexpected '}', expecting end of file
+in APPPATH\Models\Cron_Model.php on line 64.
+ 1 SYSTEMPATH\Autoloader\Autoloader.php(289): CodeIgniter\Autoloader\Autoloader->includeFile('APPPATH\\Models\\Cron_Model.php')
+ 2 SYSTEMPATH\Autoloader\Autoloader.php(267): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\Cron_Model')
+ 3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\Cron_Model')
+ 4 APPPATH\Controllers\Crons.php(12): spl_autoload_call('App\\Models\\Cron_Model')
+ 5 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Crons->__construct()
+ 6 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-03 13:04:47 --> mysqli_sql_exception: Unknown column 'userId' in 'field list' in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `f...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `f...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `f...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Cron_Model.php(25): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `f...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Crons.php(17): App\Models\Cron_Model->getExpiredDocuments()
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Crons->getExpireDocuments()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Crons))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-03 13:04:47 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Cron_Model.php on line 26.
+ 1 APPPATH\Controllers\Crons.php(17): App\Models\Cron_Model->getExpiredDocuments()
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Crons->getExpireDocuments()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Crons))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()

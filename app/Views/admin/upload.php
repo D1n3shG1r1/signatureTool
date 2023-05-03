@@ -1,27 +1,7 @@
 <?php include("header.php"); ?>
 
 <script src="<?php echo base_url("/assets/js/pdf.js"); ?>"></script>
-<!---
-<div id="fileUploadMainContainer" class="fileUploadMainContainer">
-    <form action="<?php //echo base_url("fileupload"); ?>" method="POST" onsubmit="return uploadProcess();" enctype="multipart/form-data">
-        <div>
-            <div class="previewMainBox">
-                <div class="browseBox">
-                    <span onclick="browseFile();">Browse File</span>
-                    <input type="file" id="fileupload" name="fileupload" onchange="uploadFile(event);" placeholder="Browse your file" style="height:1px; width:1px; opacity:0;"> 
-                </div>
-                <div class="previewBox">
-                    <canvas id="pdfViewer"></canvas>
-                <div>
-            </div>
-            
-        </div>  
-        <div>
-            <button onclick="uploadProcess();">Save</button>
-        </div>
-    </form>
-</div>
---->
+
 <main>
 <form id="documentForm" action="<?php echo site_url("fileupload"); ?>" method="POST" onsubmit="return next();" enctype="multipart/form-data">
     <div id="mainPageHeader" class="container-fluid" style="margin-bottom: 70px;">
@@ -32,20 +12,16 @@
                 <span class="appName"><img src="<?php echo base_url("/assets/images/logocl.png"); ?>" /></span>
             </figure>
             <div class="">
-              <span class="documentNameContainer conf-fields"><i class="la la-angle-left"></i> Prepare document for signing <small>(
-                Step 1/2)
-              </small></span>
-              
+              <span class="documentNameContainer conf-fields"><i class="la la-angle-left"></i> Prepare document for signing <small>(Step 1/2)</small></span>
             </div>
             <ul class="top-right-btns list-unstyled other-page-top-btns">
-               
-                  <li>
+               <li>
                     <button type="submit" value="Submit" class="btn btn-primary">Next</button>
-                  </li>
-                  <li>
-                    <a class="btn-cross" href="javascript:void(0);">X</a>
-                  </li>
-               
+                </li>
+                <li>
+                    <!--<a class="btn-cross" href="javascript:void(0);">X</a>-->
+                    <a class="btn btn-outline-warning" href="<?php echo site_url("dashboard"); ?>">Back</a>
+                </li>
               </ul>
         </div>
       
@@ -61,13 +37,15 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="file-upload-wrap">
-                            <p class="file-upload-text"><b>Choose from computer</b></p> 
+                        <div class="file-upload-wrap upload-area">
+                        <!--<p class="file-upload-text"><b>Choose from computer</b></p> -->
                             <div>
                                 <a href="javascript:void(0);" class="browseBttn btn btn-outline-primary" onclick="browseFile();">Browse</a>
                                 <input type="file" id="fileupload" name="fileupload" onchange="uploadFile(event);" placeholder="Browse your file" style="height:1px; width:1px; opacity:0;" accept="application/pdf"> 
                             </div>
-                            <p id="prefferedFormatTxt">Preferred format: PDF</p>
+                            <p class="file-upload-text">OR</p>
+                            <p class="file-upload-text active">Drag a file here</p>
+                            <p id="prefferedFormatTxt" class="active">Preferred format: PDF</p>
                         </div>
                     </div>
                     <!---
@@ -162,7 +140,7 @@
                                    <!-- <span class="round-btn"></span> 
                                 </div>-->
                             </h5>
-                            <div class="authenticateOptions" id="authenticateOptions_1">
+                            <div class="authenticateOptions col-12" id="authenticateOptions_1">
                                 <div class="mt-3">
                                     <input id="accessOtpRadio_1" type="radio" name="accessRadio_1" onchange="authTyp(1,1);">
                                     <label for="accessOtpRadio_1">Email OTP (One Time Password)</label>
@@ -174,10 +152,10 @@
                                 <input type="hidden" class="accessCodeOtpOpt" name="accessCodeOtpOpt[1]" id="accessCodeOtpVal_1" value="0">
                                 <div class="accesscodeProperties" id="accesscodeProperties_1">
                                 <div class="mt-3">
-                                    <input type="text" class="form-control accessCode" id="accessCode_1" name="accessCode[1]" placeholder="Access Code">
-                                    <button type="button" class="btn btn-outline-primary col-12" onclick="genAccessCode(1);">Generate Code</button>
-                                    <span class="text-danger"><small>This field is required when access code is enabled</small></span>
+                                    <input type="text" readonly="readonly" class="form-control accessCode" id="accessCode_1" name="accessCode[1]" placeholder="Access Code">
+                                    <button type="button" class="btn btn-outline-primary genAccessCodeBttn" onclick="genAccessCode(1);"><i class="las la-sync"></i> Generate Code</button>
                                 </div>
+                                <span class="text-danger"><small>This field is required when access code is enabled</small></span>
                                 <div>Note: You must communicate this access code to the recipient directly</div>
                                 </div>
                             </div>
@@ -344,6 +322,135 @@
             $('[data-toggle="doctitletooltip"]').tooltip();
             
         },1000);
+
+
+        //File upload by using drag and drop
+         // preventing page from redirecting
+         $("html").on("dragover", function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              $(".file-upload-wrap").addClass("uploadDragDropBorder");
+              
+          });
+      
+          $("html").on("drop", function(e) { e.preventDefault(); e.stopPropagation(); });
+          
+          // Drag enter
+          $('.upload-area').on('dragenter', function (e) {
+              e.stopPropagation();
+              e.preventDefault();
+              
+          });
+      
+          // Drag over
+          $('.upload-area').on('dragover', function (e) {
+              e.stopPropagation();
+              e.preventDefault();
+              
+          });
+      
+          // Drop
+          $('.upload-area').on('drop', function (e) {
+              e.stopPropagation();
+              e.preventDefault();
+                
+              var files = e.originalEvent.dataTransfer.files;
+              console.log("files");
+              console.log(files);
+
+             
+              $("#dragDropHere").text("Upload");
+              var evt = e.originalEvent.dataTransfer;
+              
+              var files = e.originalEvent.dataTransfer.files;
+              var file = files[0];
+              
+              var ftype = file.type;
+              var allowedMimeTypes = ["application/pdf"];
+              var ftypeIdx = allowedMimeTypes.indexOf(ftype);
+             
+              if(ftypeIdx > -1){
+                
+                $("#previewBox").html("");
+                $(".file-upload-wrap").removeClass("errorBorder");
+
+                var preLoadHtml = `<tr>
+                                        <td width="22px"><div class="animate-bg"></div></td>
+                                        <td width="70px"><div class="animate-bg col-sm-11" style="height: 60px; width: 55px;"></div></td>
+                                        <td width="375px">
+                                            <h5><div class="animate-bg col-sm-11"></div></h5>
+                                            <div class="animate-bg col-sm-5"></div>
+                                        </td>
+                                        <td width="375px" class="uploadFileMsg"><div class="animate-bg col-sm-5"></div></td>
+                                        <td class="fileActionBox">
+                                            <a href="javascript:void(0);" class="file-preview-a"><div class="animate-bg col-sm-5"></div></a> 
+                                            <a href="javascript:void(0);" class="file-remove-a"><div class="animate-bg col-sm-5"></div></a>
+                                        </td>
+                                    </tr>`;
+                
+                $("#uploadedFilesRowsBox").html(preLoadHtml);
+
+
+                TMPFILEEVENT = file;
+                //TMPFILEEVENT = evt;
+                //var file = evt.target.files[0]; // FileList object
+                
+                var fileName = file.name;
+                
+                if(file.type == "application/pdf"){
+                    var fileReader = new FileReader();  
+                    fileReader.onload = function() {
+                        var pdfData = new Uint8Array(this.result);
+
+                        // Using DocumentInitParameters object to load binary data.
+                        var loadingTask = pdfjsLib.getDocument({data: pdfData});
+                        loadingTask.promise.then(function(pdf) {
+                            
+                            var tmpDocPages = pdf._pdfInfo.numPages;
+                            var elmId = randomStr();
+                            
+                                var rowHtml = '<tr id="rw_'+elmId+'">\
+                                    <td>1</td>\
+                                    <td width="70px"><img src="<?php echo base_url("assets/images/pdf-icon.png"); ?>" width="50px"></td>\
+                                    <td>\
+                                        <h5 class="no-padding"><b>'+fileName+'</b></h5>\
+                                        <p class="no-padding">'+tmpDocPages+' Pages</p>\
+                                    </td>\
+                                    <td class="uploadFileMsg">Upload Successfully</td>\
+                                    <td class="fileActionBox">\
+                                    <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#DocPreviewModal" class="file-preview-a">Preview</a>\
+                                    <a href="javascript:void(0);" onclick="removeUploadedFile(\'rw_'+elmId+'\');" class="file-remove-a"><i class="la la-trash-alt"></i> Remove</a>\
+                                    </td>\
+                                </tr>';
+                                
+                                setTimeout(function(){$("#uploadedFilesRowsBox").html(rowHtml);},1000);
+
+                        }, function (reason) {
+                            // PDF loading error
+                            console.log("reason");
+                            console.error(reason);
+                            });
+                        };
+                        fileReader.readAsArrayBuffer(file);
+
+                        previewPdf();
+
+                }else{
+                    $("#prefferedFormatTxt").addClass("errorMsg");
+                }
+
+
+
+
+              }else{
+                alert("Invalid file type");
+              }
+              
+          });
+
+
+
+
     });
 
     function browseFile(){
@@ -385,8 +492,9 @@
 
 
 
-        TMPFILEEVENT = evt;
+        //TMPFILEEVENT = evt;
         var file = evt.target.files[0]; // FileList object
+        TMPFILEEVENT = file;
         var fileName = file.name;
         
         if(file.type == "application/pdf"){
@@ -508,7 +616,8 @@
     function previewPdf(){
         
         const startPdf = () => {
-            var filett = TMPFILEEVENT.target.files[0]; // FileList object
+            //var filett = TMPFILEEVENT.target.files[0]; // FileList object
+            var filett = TMPFILEEVENT; // FileList object
 		    $("#DocPreviewModalLabel").html(filett.name);
             if(filett.type == "application/pdf"){
                 var fileReader = new FileReader();  
@@ -608,9 +717,10 @@
                                 <input type="hidden" class="accessCodeOtpOpt" name="accessCodeOtpOpt['+newRwId+']" id="accessCodeOtpVal_'+newRwId+'" value="0">\
                                 <div class="accesscodeProperties" id="accesscodeProperties_'+newRwId+'">\
                                 <div class="mt-3">\
-                                    <input type="text" class="form-control accessCode" id="accessCode_'+newRwId+'" name="accessCode['+newRwId+']" placeholder="Access Code"><button type="button" class="btn btn-outline-primary col-12" onclick="genAccessCode('+newRwId+');">Generate Code</button>\
-                                    <span class="text-danger"><small>This field is required when access code is enabled</small></span>\
+                                    <input type="text" readonly="readonly" class="form-control accessCode" id="accessCode_'+newRwId+'" name="accessCode['+newRwId+']" placeholder="Access Code">\
+                                    <button type="button" class="btn btn-outline-primary genAccessCodeBttn" onclick="genAccessCode('+newRwId+');"><i class="las la-sync"></i> Generate Code</button>\
                                 </div>\
+                                <span class="text-danger"><small>This field is required when access code is enabled</small></span>\
                                 <div>Note: You must communicate this access code to the recipient directly</div>\
                                 </div>\
                                 </div>\
@@ -639,6 +749,7 @@
     function genAccessCode(id){
         var randNum = Math.floor(100000 + Math.random() * 900000);
         $("#accessCode_"+id).val(randNum);
+        $("#accessCode_"+id).addClass("notEmpty");
     }
     
     function uploadProcess(){
@@ -679,6 +790,8 @@
             $("#accesscodeProperties_"+cnt).show();
         }else{
             $("#accesscodeProperties_"+cnt).hide();
+            $("#accessCode_"+cnt).val("");
+            $("#accessCode_"+cnt).removeClass("notEmpty");
         }
 
         $("#authenticateOptions_"+cnt).removeClass("errorBorder");

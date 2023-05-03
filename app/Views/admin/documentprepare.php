@@ -79,19 +79,20 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
                 <span class="appName"><img src="<?php echo base_url("/assets/images/logocl.png"); ?>" /></span>
             </figure>
             <div class="">
-              <span class="documentNameContainer conf-fields">Configure fields</span>
-              <span class="documentNameContainer">Samplepdf.pdf</span>
+              <span class="documentNameContainer conf-fields">Configure fields <small>(Step 2/2)</small></span>
+              <span class="documentNameContainer"><?php echo $fileName; ?></span>
             </div>
             <ul class="top-right-btns list-unstyled">
-               
+                  <!--
                   <li>
                     <button class="btn btn-primary">Preview</button>
-                  </li>
+                  </li>-->
                   <li>
                     <button class="btn btn-warning" id="sendBttn" onclick="extractAndSaveGElements();">Send</button>
                   </li>
                   <li>
-                    <a class="btn-cross" href="javascript:void(0);">X</a>
+                    <!--<a class="btn-cross" href="javascript:void(0);">X</a>-->
+                    <a class="btn btn-outline-warning" href="<?php echo site_url("dashboard"); ?>">Back</a>
                   </li>
                
               </ul>

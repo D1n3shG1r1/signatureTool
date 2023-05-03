@@ -1249,7 +1249,7 @@
   height: 100px;
 }
 
-.uploadDragDropBorder{border: 2px dashed #0d6efd;}
+.uploadDragDropBorder{border: 2px dashed #0d6efd !important;}
 
 #signImgContainer{display:none;}
 
@@ -1378,7 +1378,7 @@
 }
 .file-upload-wrap p
 {
-  color: #999;
+  /*color: #999;*/
 }
 .cloud-icons-wrap,
 .choose-temp-wrap
@@ -1456,19 +1456,20 @@
 }
 .add-recipient-table td button
 {
-  width: 100%;
+  /*width: 100%;*/
   text-align: left;
-  color: #666;
-  border: 1px solid #ddd;
+  /*color: #666;
+  border: 1px solid #ddd;*/
   box-shadow: none !important;
 }
 
 .add-recipient-table td button:hover,
 .add-recipient-table td button:focus
 {
-  background: none !important;
-  color: #666 !important;
+  /*background: none !important;
+  color: #666 !important;*/
 }
+
 .add-recipient-table td button:after
 {
   position: absolute;
@@ -1713,7 +1714,7 @@
 
 .authenticateOptions{
   display:none;
-  width: 275px;
+  /*width: 275px;*/
   padding: 0px 0px 15px 15px;
   border-radius: 4px;
 }
@@ -1732,6 +1733,32 @@
 
 .accesscodeProperties{
   display: none;
+}
+
+.accesscodeProperties div{
+  display:flex;
+}
+
+.accessCode{
+  width: 132px !important;
+}
+
+.accessCode.notEmpty{ 
+  letter-spacing: 10px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.genAccessCodeBttn{
+  /*width: 132px !important;*/
+  margin-left: 22px;
+}
+
+.genAccessCodeBttn:hover,
+.genAccessCodeBttn:focus{
+  color: #0d6efd !important;
+  background-color: #e5efff !important;
+  border-color: #0d6efd !important;
 }
 
 .errorBorder{

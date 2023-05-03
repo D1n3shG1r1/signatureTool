@@ -694,7 +694,6 @@ class Document extends BaseController
 	} 
 
 	function sign(){
-		//http://localhost/digitalsignature/sign/?documentId=086256e9e2d5e7549c8e44bd4b062e30
 		
 		if($this->request->is('get')){
 
@@ -1254,6 +1253,8 @@ class Document extends BaseController
 				$this->pdf = new GeneratePdf();
 				$this->pdf->prepareCompletionCertificate($rootFolder, $srcCertificateFilePath, $data, $signerDocumentId, $secretFolder);
 				
+				//prepare consolidate document
+				$this->prepareConsolidatePdfs($documentId);
 			}
 			
 			$docStatusUpdated = $this->document_model->updateSignerDocStatus($signerDocumentId, $status, $signedDtTm);
@@ -1297,7 +1298,7 @@ class Document extends BaseController
 		
 	}
 
-	function prepareConsolidatePdfs($documentID=false){
+	function prepareConsolidatePdfs($documentID){
 		//function is ok for creating and sending the complete document
 
 		$rootFolder = publicFolder();
@@ -1305,7 +1306,7 @@ class Document extends BaseController
 	
 		$bgImg = $rootFolder."systemtemplates/kapda.jpeg";
 		
-		$documentID = "085dc7ff38220e7bcbc07cf6999cb729";
+		//$documentID = "085dc7ff38220e7bcbc07cf6999cb729";
 		
 		$result = $this->document_model->getDocumentSignersData($documentID);
 		//echo "<pre>"; print_r($result); die;
@@ -1539,11 +1540,13 @@ class Document extends BaseController
 		$userId = $this->session->get('loginId');
 		$result = $this->document_model->getSignedDocument($documentId, $userId);
 
-		//echo "result:<pre>"; print_r($result);
+		//echo "result:<pre>"; print_r($result); die;
+		$folderId = $this->esign_config->SECRETFOLDER;
 
 		$data = array();
 		$data["page_tilte"] = "Overview";
 		$data["document"] = $result;
+		$data["folderId"] = $folderId;
 		return view('admin/documentOverview', $data);		
 
 	}

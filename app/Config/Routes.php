@@ -75,6 +75,10 @@ $routes->get('emailengine/sendDocuSingColl/(:any)', 'Emailengine::sendDocuSingCo
 $routes->get('/test', 'Document::test');
 $routes->get('/prepareConsolidatePdfs/(:any)', 'Document::prepareConsolidatePdfs/$1');
 
+$routes->get('/getExpireDocuments', 'Crons::getExpireDocuments');
+
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

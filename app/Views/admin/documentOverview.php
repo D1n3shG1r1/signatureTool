@@ -1,10 +1,16 @@
 <?php include("header.php"); 
-$folderId = "650d5885e051cbf1361781a0366dab198ce52007";
 $masterDocument = $document["masterDocument"];
 $sender = $document["sender"];
 $recipentsData = $document["recipents"];
 $recipents = json_decode($recipentsData["recipients"]);
 $documentTitle = $recipentsData["documentTitle"];
+
+$isComplete = $masterDocument["isComplete"];
+$documentPath = $masterDocument["documentPath"];
+
+$completedDocumentPath = str_replace(".pdf", "_completed.pdf",$documentPath);
+$downloadurlCompltDoc = $completedDocumentPath;
+$downloadurlAuditDoc = str_replace(".pdf", "_auditlog.pdf",$documentPath);
 
 ?>
 
@@ -101,6 +107,8 @@ $documentTitle = $recipentsData["documentTitle"];
 .documentNameContainer{
     color:#666e80;   
 }
+
+.top-right-btns .dropdown-menu{width: min-content;}
 </style>
 
 <main>
@@ -111,10 +119,21 @@ $documentTitle = $recipentsData["documentTitle"];
         <figure class="logo-wrap">
             <span class="appName"><img src="<?php echo base_url("/assets/images/logocl.png"); ?>"></span>
         </figure>
-        <div class="">
-            <!--<span class="documentNameContainer conf-fields">Configure fields</span>-->
+        <div class="" style="width:69% !important;">
             <span class="documentNameContainer"><?php echo $documentTitle; ?></span>
         </div>
+        <ul class="top-right-btns list-unstyled other-page-top-btns" style="width:auto;">
+            <li>
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">More Actions</button>
+                <ul class="dropdown-menu" style="">
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="downloadDocument('<?php echo base_url($downloadurlCompltDoc); ?>');">Download Document</a></li>
+                    <li><a class="dropdown-item" href="javascript:void(0);" onclick="downloadDocument('<?php echo base_url($downloadurlAuditDoc); ?>');">Download Audit Log</a></li>
+                </ul>
+            </li>
+            <li>
+                <button type="button" class="btn btn-outline-warning" onclick="viewMainDocument();">View Document</button>
+            </li>
+        </ul>
     </div>    
 </div>
      
@@ -165,7 +184,7 @@ $documentTitle = $recipentsData["documentTitle"];
                     <label class="overview-text-label">Title:</label>
                 </div>
                 <div class="col-8">
-                    <span class="overview-text">123154fsfgd456468dgf</span>
+                    <span class="overview-text"><?php echo $documentTitle; ?></span>
                 </div>
             </div>
 
@@ -212,6 +231,8 @@ $documentTitle = $recipentsData["documentTitle"];
                             $tmpEmail = $tmpRecipent->email;
                             $tmpName =  $tmpRecipent->name;
                             $tmpAuthType = $tmpRecipent->authType;
+                            $tmpAccessCode = $tmpRecipent->accessCode;
+                            
                             $tmpDocStatus = $tmpRecipent->document->document_status;
                             $tmpDocumentId = $tmpRecipent->document->documentId;
                             
@@ -220,7 +241,7 @@ $documentTitle = $recipentsData["documentTitle"];
                                 $tmpAuthTypeTxt = "OTP";
                             }else if($tmpAuthType == 2){
                                 //access code
-                                $tmpAuthTypeTxt = "Access Code";
+                                $tmpAuthTypeTxt = "Access Code - <span style=\"letter-spacing:5px; font-weight:500;\" class=\"\">$tmpAccessCode</span>";
                             }else{
                                 //nil
                                 $tmpAuthTypeTxt = "-";
@@ -261,11 +282,26 @@ $documentTitle = $recipentsData["documentTitle"];
 
 <script>
     
+    function viewMainDocument(){
+        var url = '<?php echo base_url("$completedDocumentPath"); ?> ';
+        window.open(url,"_blank");
+    }                    
+
     function showDocument(docId){
         var url = '<?php echo base_url("$folderId"); ?>/'+docId+'/'+docId+'.pdf';
         window.open(url,"_blank");
     }
 
+    function downloadDocument(downloadurl){
+        
+        var downloadurlArr = downloadurl.split("/");
+        var tmpFlNm = downloadurlArr[downloadurlArr.length - 1];
+        var link = document.createElement('a');
+        link.href = downloadurl;
+        link.download = tmpFlNm;
+        link.dispatchEvent(new MouseEvent('click'));
+
+    }
 
 </script>
 
