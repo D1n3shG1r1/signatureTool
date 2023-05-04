@@ -76,6 +76,14 @@ if(!function_exists('fileWrite')){
     }
 }
 
+if(!function_exists('fileRemove')){
+    function fileRemove($file){
+        unlink($file);
+    }
+}
+ 
+
+
 if(!function_exists('chadarmodbs64')){
     function chadarmodbs64($str){
         $newstr = str_replace("+","#DKG#",$str);

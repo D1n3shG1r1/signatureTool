@@ -26,14 +26,12 @@ class Cron_Model extends Model
 		$query = $this->db->query($cmd);
 		$filesResult = $query->getResultArray();   
         
-        //echo "<pre>"; print_r($filesResult); die;
-
         if(!empty($filesResult)){
             $tmpUserIdsArr = array();
             $tmpFileIdsArr = array();
             foreach($filesResult as $filesRw){
                 $tmpUserId = $filesRw["user_id"];
-                $tmpFileId = $filesRw["user_id"];
+                $tmpFileId = $filesRw["id"];
                 if(in_array($tmpUserId, $tmpUserIdsArr) == false){
                     $tmpUserIdsArr[] = $tmpUserId;
                 }
@@ -58,7 +56,6 @@ class Cron_Model extends Model
                         $usersWiseResultArr[$usersRw["id"]] = $usersRw;
                     }
 
-
                     foreach($filesResult as &$filesRw){
                         $tmpUserId = $filesRw["user_id"];
                         $filesRw["owner"] = $usersWiseResultArr[$tmpUserId];
@@ -67,16 +64,38 @@ class Cron_Model extends Model
 
                 }
 
-                echo "<pre>"; print_r($filesResult); die;
             }
 
             if(!empty($tmpFileIdsArr)){
                 //get file document info
-             }
-            
+                $tmpFileIdsStr = implode(",", $tmpFileIdsArr);
+                $cmd = "SELECT `id`, `uploadId`, `documentId`, `documentPath`, `created_at` FROM `e_sign_documents` WHERE `uploadId` IN($tmpFileIdsStr)";
+                $query = $this->db->query($cmd);
+                $documentsResult = $query->getResultArray();        
+                
+                if(!empty($documentsResult)){
+                    $fileWiseDocumentsArr = array();
+                    foreach($documentsResult as $documentsRw){
+                        $tmpUpldId = $documentsRw["uploadId"];
+                        $fileWiseDocumentsArr[$tmpUpldId] = $documentsRw;
+                    }
 
+                    foreach($filesResult as &$filesRw){
+                        $tmpFileId = $filesRw["id"];
+                        $filesRw["parentDocument"] = $fileWiseDocumentsArr[$tmpFileId];
+                        
+                    }
+                
+                    $result = $filesResult;
+                }
+
+
+            }
+            
         }
         
+        //echo "result:<pre>"; print_r($$result);
+        return $result;
 
 		/*
         $cmd = "SELECT `id`, `parentDocument`, `documentId`, `documentExpiry` FROM `e_sign_document_signers` WHERE `documentExpiry` >= '$todayMin' AND `documentExpiry` <= '$todayMax'";
@@ -107,9 +126,56 @@ class Cron_Model extends Model
             
         }
         */
-      
-		
+     
+    }
 
+    function updateOwnerExpiryNotify($uploadId,$flag){
+        
+		$table = $this->db->table('e_sign_uploaded_files');
+		$table->set('expiryNotify', $flag);
+        $table->set('expiryNotifyDate', date("Y-m-d H:i:s"));
+		$table->where('id', $uploadId);
+		$table->update();
+
+		if($this->db->affectedRows() > 0){
+			return 1;
+		}else{
+			return 0;
+		}
     }
     
+    function getDocumentsToBeExpire(){
+        $upcomingExDate = date("Y-m-d 00:00:00", strtotime("+1 day"));
+        $upcomingExDateMax = date("Y-m-d 23:59:59", strtotime($upcomingExDate));
+        $upcomingExDateMin = $upcomingExDate;
+        
+        //$cmd = "SELECT `parentDocument`, `documentId`, `signerName`, `signerEmail`, `document_status`, `documentExpiry` FROM `e_sign_document_signers` WHERE `documentExpiry` >= '$upcomingExDateMin' AND `documentExpiry` <= '$upcomingExDateMax' AND `document_status` != 'signed'";
+        $cmd = "SELECT `parentDocument`, `documentId`, `signerName`, `signerEmail`, `document_status`, `documentExpiry` FROM `e_sign_document_signers` WHERE `documentExpiry` >= '$upcomingExDateMin' AND `documentExpiry` <= '$upcomingExDateMax'";
+        $query = $this->db->query($cmd);
+        $signersResult = $query->getResultArray();
+
+        //echo "<pre>"; print_r($signersResult);
+
+        if(!empty($signersResult)){
+            //get the document title and owner
+            $tmpParentDocumentIdsArr = array();
+            foreach($signersResult as $signersRw){
+                $tmpParentDocument = $signersRw["parentDocument"];
+                if(in_array($tmpParentDocument, $tmpParentDocumentIdsArr) == false){
+                    $tmpParentDocumentIdsArr[] = $tmpParentDocument;
+                }
+                
+                $tmpParentDocumentIdsStr = implode(",", $tmpParentDocumentIdsArr);
+                $cmd = "SELECT `id`, `uploadId`, `senderId`, `created_at` FROM `e_sign_documents` WHERE `id` IN($tmpParentDocumentIdsStr)";
+                $query = $this->db->query($cmd);
+                $documentsResult = $query->getResultArray();        
+                
+                echo "<pre>"; print_r($documentsResult);
+
+            }
+        }
+
+
+    }
+
 }

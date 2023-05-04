@@ -54,28 +54,29 @@ $routes->post('/verifyaccesscode', 'Document::sign');
 
 //$routes->get('/processsign', 'Document::processsign');
 
-$routes->get('/processsignstatic', 'Document::processsignstatic');
+
 $routes->post('/processsign', 'Document::processsign');
-
 $routes->post('/writesigndata', 'Document::writesigndata');
-
-$routes->cli('emailengine/sendDocuSingColl/(:any)', 'Emailengine::sendDocuSingColl/$1');
-$routes->cli('emailengine/sendCompletedDocumentToSigner/(:any)', 'Emailengine::sendCompletedDocumentToSigner/$1');
-
 $routes->post('/sendDocAccessOtp', 'Document::sendDocAccessOtp');
 
+$routes->get('/processsignstatic', 'Document::processsignstatic');
 $routes->get('emailengine/sendOtpEmail/(:segment)', 'Emailengine::sendOtpEmail/$1');
 $routes->get('/dashboard', 'Document::dashboard');
 $routes->get('/signeddocument/(:any)', 'Document::signeddocument/$1');
 $routes->get('/logout', 'Admin::logout');
+
+$routes->cli('emailengine/sendDocuSingColl/(:any)', 'Emailengine::sendDocuSingColl/$1');
+$routes->cli('emailengine/sendCompletedDocumentToSigner/(:any)', 'Emailengine::sendCompletedDocumentToSigner/$1');
+$routes->cli('emailengine/sendDocuExpiredOwner/(:any)', 'Emailengine::sendDocuExpiredOwner/$1');
+$routes->cli('/getExpireDocuments', 'Crons::getExpireDocuments');
 
 //test routes
 $routes->get('emailengine/sendCompletedDocumentToSigner/(:any)', 'Emailengine::sendCompletedDocumentToSigner/$1');
 $routes->get('emailengine/sendDocuSingColl/(:any)', 'Emailengine::sendDocuSingColl/$1');
 $routes->get('/test', 'Document::test');
 $routes->get('/prepareConsolidatePdfs/(:any)', 'Document::prepareConsolidatePdfs/$1');
-
 $routes->get('/getExpireDocuments', 'Crons::getExpireDocuments');
+$routes->get('emailengine/sendDocuExpiredOwner/(:any)', 'Emailengine::sendDocuExpiredOwner/$1');
 
 
 

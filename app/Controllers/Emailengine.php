@@ -3,6 +3,8 @@
 namespace App\Controllers;
 use App\Models\Document_Model; //load model
 use App\Models\Email_Model; //load model
+use App\Models\Cron_Model; //load model
+
 use App\Controllers\BaseController;
 //use App\Libraries\GeneratePdf; //import library
 //use Config\Encryption;
@@ -14,6 +16,7 @@ class Emailengine extends BaseController
 
     public $document_model = null;
     public $email_model = null;
+    public $cron_model = null;
     public $request = null;
 	public $session = null;
     public $esign_config = null;
@@ -36,6 +39,7 @@ class Emailengine extends BaseController
 		//Model Object
 		$this->document_model = new Document_Model();
         $this->email_model = new Email_Model();
+        $this->cron_model = new Cron_Model();
 		
 		helper("kitchen");
         helper("EncryDcry");
@@ -256,6 +260,88 @@ class Emailengine extends BaseController
         
         }
         
+    }
+
+    function sendDocuExpiredOwner($fileId){
+        
+        $homePath = FCPATH."index.php";
+        $rootFolder = publicFolder();
+        $CRONASSETSDIR = $this->esign_config->CRONASSETSDIR;
+        
+        $tmpDirPath = FCPATH.$CRONASSETSDIR."/$fileId/";
+        $filePath = $tmpDirPath.$fileId.".txt";
+        
+        $fileContent = fileRead($filePath);
+        if($fileContent != ""){
+            
+            $fileContentArr = json_decode($fileContent);
+            
+            $fileId = $fileContentArr->id;
+            $fileName = $fileContentArr->file_name;
+            $fileDocumentTitle = $fileContentArr->documentTitle;
+            $fileUserId = $fileContentArr->user_id;
+            $fileExpiry = $fileContentArr->expiryDate;
+            $fileExpireStatus = $fileContentArr->expired;
+           
+            $owner = $fileContentArr->owner;
+            $ownerId = $owner->id;
+            $ownerFirstName = $owner->first_name;
+            $ownerLastName = $owner->last_name;
+            $ownerEmail = $owner->email;
+            
+            $parentDocument = $fileContentArr->parentDocument;
+            $parentDocumentId = $parentDocument->id;
+            $parentDocumentUploadId = $parentDocument->uploadId;
+            $parentDocumentDocumentId = $parentDocument->documentId;
+            $parentDocumentDocumentPath = $parentDocument->documentPath;
+            $parentDocumentCreatedAt = $parentDocument->created_at;
+            
+
+            //Ok Report Template
+            $data = array();
+            $data["ownerName"] = ucwords($ownerFirstName." ".$ownerLastName);
+            $data["documentTitle"] = $fileDocumentTitle;
+            $data["sentDate"] = $parentDocumentCreatedAt;
+            $data["expiryDate"] = $fileExpiry;
+            $data["documentLink"] = site_url("signeddocument/$parentDocumentDocumentId");
+            
+            $template = view('emailtemplates/DocuExpiredOwner_Template', $data);
+            $message = $template;
+            
+            $to = $ownerEmail;
+            $subject = "Signature request for $fileDocumentTitle has expired";
+            
+            $email = \Config\Services::email();
+            $email->setTo($to);
+            $email->setFrom($this->FROMEMAIL, $this->FROMNAME);
+            
+            $email->setSubject($subject);
+            $email->setMessage($message);
+            
+            if ($email->send()) 
+            {
+                //echo 'Email successfully sent';
+
+                //update notify flag and notify date then remove the temp files
+                $flag = 1;   
+                $this->cron_model->updateOwnerExpiryNotify($fileId,$flag);
+                
+                //remove file
+                fileRemove($filePath);
+                
+                echo 'Email successfully sent';
+                //return 1;
+            } 
+            else 
+            {
+                //write log if email failed
+                echo $data = $email->printDebugger(['headers']);
+                //return 0;
+                
+            }
+
+
+        }
     }
 }
 ?>
