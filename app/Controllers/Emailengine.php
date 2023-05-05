@@ -329,18 +329,108 @@ class Emailengine extends BaseController
                 //remove file
                 fileRemove($filePath);
                 
-                echo 'Email successfully sent';
+                //echo 'Email successfully sent';
                 //return 1;
             } 
             else 
             {
                 //write log if email failed
-                echo $data = $email->printDebugger(['headers']);
+                //echo $data = $email->printDebugger(['headers']);
                 //return 0;
                 
             }
 
 
+        }
+    }
+
+    function sendDocuExpiredReminder($fileId){
+        $homePath = FCPATH."index.php";
+        $rootFolder = publicFolder();
+        $CRONASSETSDIR = $this->esign_config->CRONASSETSDIR;
+        
+        $tmpDirPath = FCPATH.$CRONASSETSDIR."/$fileId/";
+        $filePath = $tmpDirPath.$fileId."_reminder.txt";
+        
+        $fileContent = fileRead($filePath);
+        if($fileContent != ""){
+            
+            $fileContentArr = json_decode($fileContent, true);
+            
+            $signerId = $fileContentArr["id"];
+            $parentDocument = $fileContentArr["parentDocument"];
+            $documentId = $fileContentArr["documentId"];
+            $signerName = $fileContentArr["signerName"];
+            $signerEmail = $fileContentArr["signerEmail"];
+            $document_status = $fileContentArr["document_status"];
+            $documentExpiry = $fileContentArr["documentExpiry"];
+           
+            $documentDetails = $fileContentArr["documentDetails"];
+            $documentDetails_id = $documentDetails["id"];
+            $documentDetails_uploadId = $documentDetails["uploadId"];
+            $documentDetails_senderId = $documentDetails["senderId"];
+            $documentDetails_created_at = $documentDetails["created_at"];
+                    
+            $uploadFileDetails = $documentDetails["uploadFileDetails"];
+            $uploadFileDetails_id = $uploadFileDetails["id"];
+            $uploadFileDetails_documentTitle = $uploadFileDetails["documentTitle"];
+            $uploadFileDetails_recipientMessage = $uploadFileDetails["recipientMessage"];
+            
+            $uploadFileDetails_expiryDate = $uploadFileDetails["expiryDate"];
+            $uploadFileDetails_user_id =$uploadFileDetails["user_id"];
+                        
+
+            $ownerDetails = $documentDetails["ownerDetails"];
+            $ownerDetails_id = $ownerDetails["id"];
+            $ownerDetails_first_name = $ownerDetails["first_name"];
+            $ownerDetails_last_name = $ownerDetails["last_name"];
+            $ownerDetails_email = $ownerDetails["email"];
+            
+            
+            $data = array();
+
+            $data["expireyDate"] = $documentExpiry;
+            $data["docTitle"] = $uploadFileDetails_documentTitle;
+            $data["docLink"] = site_url("sign/?documentId=$documentId");
+            $data["additionalMessage"] = $uploadFileDetails_recipientMessage;
+            $data["ownerName"] = ucwords($ownerDetails_first_name." ".$ownerDetails_last_name);
+            $data["ownerEmail"] = $ownerDetails_email;
+            $data["signerName"] = ucwords($signerName);
+
+            $subject = ucwords($ownerDetails_first_name." ".$ownerDetails_last_name)." has sent you a reminder to review and sign ".$uploadFileDetails_documentTitle;
+            $template = view('emailtemplates/DocuReminderSigner_Template', $data);
+
+            $message = $template;
+            
+            $to = $signerEmail;
+            
+            $email = \Config\Services::email();
+            $email->setTo($to);
+            $email->setFrom($this->FROMEMAIL, $this->FROMNAME);
+            $email->setSubject($subject);
+            $email->setMessage($message);
+            
+            if ($email->send()) 
+            {
+                //echo 'Email successfully sent';
+
+                //update notify flag and notify date then remove the temp files
+                $flag = 1;   
+                $this->cron_model->updateReminderNotify($fileId,$flag);
+                
+                //remove file
+                fileRemove($filePath);
+                
+                //echo 'Email successfully sent';
+                //return 1;
+            } 
+            else 
+            {
+                //write log if email failed
+                //echo $data = $email->printDebugger(['headers']);
+                //return 0;
+                
+            }   
         }
     }
 }

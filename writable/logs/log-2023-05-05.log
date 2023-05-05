@@ -1,0 +1,86 @@
+ERROR - 2023-05-05 04:48:31 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10 OFFSET 0' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `uploadI...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `uploadI...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `uploadI...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(372): CodeIgniter\Database\BaseConnection->query('SELECT `uploadI...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1530): App\Models\Document_Model->getMyDocuments(NULL, 0)
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-05 04:48:31 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 373.
+ 1 APPPATH\Controllers\Document.php(1530): App\Models\Document_Model->getMyDocuments(null, 0)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-05 05:49:28 --> mysqli_sql_exception: Unknown column 'userId' in 'field list' in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `d...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `d...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `d...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Cron_Model.php(200): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `d...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Crons.php(22): App\Models\Cron_Model->getDocumentsToBeExpire()
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Crons->getExpireDocuments()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Crons))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-05 05:49:28 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Cron_Model.php on line 201.
+ 1 APPPATH\Controllers\Crons.php(22): App\Models\Cron_Model->getDocumentsToBeExpire()
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Crons->getExpireDocuments()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Crons))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-05 05:52:12 --> mysqli_sql_exception: Unknown column 'first_name' in 'field list' in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `id`, `f...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `id`, `f...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `id`, `f...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Cron_Model.php(205): CodeIgniter\Database\BaseConnection->query('SELECT `id`, `f...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Crons.php(22): App\Models\Cron_Model->getDocumentsToBeExpire()
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Crons->getExpireDocuments()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Crons))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-05 05:52:12 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Cron_Model.php on line 206.
+ 1 APPPATH\Controllers\Crons.php(22): App\Models\Cron_Model->getDocumentsToBeExpire()
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Crons->getExpireDocuments()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Crons))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-05 07:00:26 --> Invalid argument supplied for foreach()
+in APPPATH\Views\emailtemplates\DocuReminderSigner_Template.php on line 290.
+ 1 APPPATH\Views\emailtemplates\DocuReminderSigner_Template.php(290): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argument supplied for foreach()', 'APPPATH\\Views\\emailtemplates\\DocuReminderSigner_Template.php', 290, [])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\emailtemplates\\DocuReminderSigner_Template.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('emailtemplates/DocuReminderSigner_Template', [], true)
+ 5 APPPATH\Controllers\Crons.php(31): view('emailtemplates/DocuReminderSigner_Template', [])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Crons->getExpireDocuments()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Crons))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-05 11:26:22 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Emailengine.php on line 360.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Emailengine->sendDocuExpiredReminder('1682513423336272')
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emailengine))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-05 11:26:22 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Emailengine.php on line 360.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Emailengine->sendDocuExpiredReminder('1682513423352977')
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emailengine))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-05 11:26:23 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Emailengine.php on line 360.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Emailengine->sendDocuExpiredReminder('1682513423782787')
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Emailengine))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()

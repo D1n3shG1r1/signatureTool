@@ -67,8 +67,14 @@ $routes->get('/logout', 'Admin::logout');
 
 $routes->cli('emailengine/sendDocuSingColl/(:any)', 'Emailengine::sendDocuSingColl/$1');
 $routes->cli('emailengine/sendCompletedDocumentToSigner/(:any)', 'Emailengine::sendCompletedDocumentToSigner/$1');
+
+//cron routing
 $routes->cli('emailengine/sendDocuExpiredOwner/(:any)', 'Emailengine::sendDocuExpiredOwner/$1');
+$routes->cli('emailengine/sendDocuExpiredReminder/(:any)', 'Emailengine::sendDocuExpiredReminder/$1');
 $routes->cli('/getExpireDocuments', 'Crons::getExpireDocuments');
+$routes->cli('/reminderToSign', 'Crons::reminderToSign');
+$routes->cli('/setDocumentToBeExpired', 'Crons::setDocumentToBeExpired');
+
 
 //test routes
 $routes->get('emailengine/sendCompletedDocumentToSigner/(:any)', 'Emailengine::sendCompletedDocumentToSigner/$1');
@@ -76,8 +82,9 @@ $routes->get('emailengine/sendDocuSingColl/(:any)', 'Emailengine::sendDocuSingCo
 $routes->get('/test', 'Document::test');
 $routes->get('/prepareConsolidatePdfs/(:any)', 'Document::prepareConsolidatePdfs/$1');
 $routes->get('/getExpireDocuments', 'Crons::getExpireDocuments');
+$routes->get('/reminderToSign', 'Crons::reminderToSign');
 $routes->get('emailengine/sendDocuExpiredOwner/(:any)', 'Emailengine::sendDocuExpiredOwner/$1');
-
+$routes->get('emailengine/sendDocuExpiredReminder/(:any)', 'Emailengine::sendDocuExpiredReminder/$1');
 
 
 /*
