@@ -432,7 +432,7 @@ class Document_Model extends Model
 			$finalResult["sender"] = $userRow;
 
 			//get uploaded file
-			$cmd = "SELECT `file_name`, `documentTitle`, `recipients` FROM `e_sign_uploaded_files` WHERE `id` = $uploadId";
+			$cmd = "SELECT `file_name`, `documentTitle`, `recipients`, `expiryDate`, `expired` FROM `e_sign_uploaded_files` WHERE `id` = $uploadId";
 			$query = $this->db->query($cmd);
 			$recipentsRow = $query->getRowArray();	
 			$recipients = json_decode($recipentsRow['recipients'], true);

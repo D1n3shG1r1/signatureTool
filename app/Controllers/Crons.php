@@ -74,7 +74,7 @@ class Crons extends BaseController
                 //fire exec to send email
                 //exec("php $homePath emailengine sendDocuExpiredReminder $tmpSignerId > /dev/null &", $out);
 				exec("php $homePath emailengine sendDocuExpiredReminder $tmpSignerId", $out);
-                echo "<pre>"; print_r($out);
+               // echo "<pre>"; print_r($out);
 
             }
         }

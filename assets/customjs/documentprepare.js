@@ -34,28 +34,6 @@ $(function(){
       e.stopPropagation();
       e.preventDefault();
 
-
-      console.log("e:");
-      console.log(e);
-
-
-      //create virtual element
-
-
-      /*$("#dragDropHere").text("Upload");
-    
-      var files = e.originalEvent.dataTransfer.files;
-      var file = files[0];
-      
-      var ftype = file.type;
-      var allowedMimeTypes = ["image/bmp", "image/jpeg", "image/png"];
-      var ftypeIdx = allowedMimeTypes.indexOf(ftype);
-      if(ftypeIdx > -1){
-        renderSignFile(file);
-      }else{
-        alert("Invalid file type");
-      }*/
-    
   });
 
 });
@@ -69,7 +47,7 @@ $(function(){
         //ctx = canvas.getContext('2d'),
         scale = 1.5,
         numPage = 1;
-        console.log('hi');
+       
 
         const GeneratePDF = numPage => {
           
@@ -77,11 +55,9 @@ $(function(){
           TOTALPDFPAGES = totalPages; //total no of pages
 
           pdfDoc.getPage(numPage).then(page => {
-            console.log(page);
-
+           
             let viewport = page.getViewport({scale:scale});
-            console.log("viewport");
-            console.log(viewport);
+          
             //canvas = document.querySelector('#cnv'),
             //ctx = canvas.getContext('2d'),
 
@@ -583,7 +559,7 @@ function grabDragElementId(obj){
                   <rect id="signature_'+uniqId+'_rect2" width="124" height="32" fill="#FDF7DB" stroke="#fdf7db"></rect>\
                   <rect id="signature_'+uniqId+'_rect1" width="4" height="32" fill="#FAEA9E" stroke="#fdf7db"></rect>\
                   <text id="signature_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="Signature of '+CURRENTUSERNAME_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" is-required="0" is-readonly="0" placeholder-hint="Sign Here">\
-				  <tspan style="word-break: break-word;" x="4" dy="13">Signature</tspan>\
+				  <tspan style="word-break: break-word; font-family: CourierPrime-Regular;" x="4" dy="13">Signature</tspan>\
                   </text>\
                </g>'; 
 
@@ -591,7 +567,7 @@ function grabDragElementId(obj){
                           <rect id="signaturein_'+uniqId+'_rect2" width="48" height="32" fill="#FDF7DB" stroke="#fdf7db"></rect>\
                           <rect id="signaturein_'+uniqId+'_rect1" width="4" height="32" fill="#FAEA9E" stroke="#fdf7db"></rect>\
                           <text id="signaturein_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+CURRENTUSERINITIALS_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" is-required="0" is-readonly="0" placeholder-hint="Sign Here">\
-						  <tspan style="word-break: break-word;" x="4" dy="13">Initials</tspan>\
+						  <tspan style="word-break: break-word; font-family: CourierPrime-Regular;" x="4" dy="13">Initials</tspan>\
 						  </text>\
                        </g>';
 
@@ -599,7 +575,7 @@ function grabDragElementId(obj){
                           <rect id="textbox_'+uniqId+'_rect2" width="80" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                           <rect id="textbox_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
                           <text id="textbox_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="Text" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" is-required="0" is-readonly="0" placeholder-hint="Text..." data-textcolor-rgb="0,0,0" data-textcolor-hex="#000">\
-                          <tspan style="word-break: break-word;" x="4" dy="13">Text</tspan>\
+                          <tspan style="word-break: break-word; font-family: CourierPrime-Regular;" x="4" dy="13">Text</tspan>\
                           </text>\
                        </g>';
 	
@@ -607,7 +583,7 @@ function grabDragElementId(obj){
                            <rect id="datepicker_'+uniqId+'_rect2" width="74.078125" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                            <rect id="datepicker_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
                            <text id="datepicker_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("dd/MM/yyyy")+'" date-format="dd/MM/yyyy" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-required="0" is-readonly="0" placeholder-hint="DD/MM/YYYY" data-textcolor-rgb="0,0,0" data-textcolor-hex="#000">\
-                           <tspan style="word-break: break-word;" x="4" dy="13">'+currentDate("dd/MM/yyyy")+'</tspan>\
+                           <tspan style="word-break: break-word; font-family: CourierPrime-Regular;" x="4" dy="13">'+currentDate("dd/MM/yyyy")+'</tspan>\
                            </text>\
                        </g>';
         
@@ -635,7 +611,7 @@ function grabDragElementId(obj){
                        <rect id="name_'+uniqId+'_rect2" width="73.4072265625" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                        <rect id="name_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
                        <text id="name_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="Text" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-required="0" is-readonly="0" placeholder-hint="Name" data-textcolor-rgb="0,0,0" data-textcolor-hex="#000">\
-                        <tspan style="word-break: break-word;" x="4" dy="13">'+userName()+'</tspan>\
+                        <tspan style="word-break: break-word; font-family: CourierPrime-Regular;" x="4" dy="13">'+userName()+'</tspan>\
                        </text>\
                     </g>'; 
 
@@ -644,7 +620,7 @@ function grabDragElementId(obj){
                        <rect id="email_'+uniqId+'_rect2" width="168.15625" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                        <rect id="email_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
                        <text id="email_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" xml:space="preserve" y="0" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-required="0" is-readonly="0" placeholder-hint="Email" data-textcolor-rgb="0,0,0" data-textcolor-hex="#000">\
-                        <tspan style="word-break: break-word;" x="4" dy="13">'+userEmail()+'</tspan>\
+                        <tspan style="word-break: break-word; font-family: CourierPrime-Regular;" x="4" dy="13">'+userEmail()+'</tspan>\
                        </text>\
                     </g>';
 
@@ -652,14 +628,14 @@ function grabDragElementId(obj){
                              <rect id="editableDate_'+uniqId+'_rect2" width="95" height="17" fill="#FDF7DB" stroke="transparent"></rect>\
                              <rect id="editableDate_'+uniqId+'_rect1" width="4" height="17" fill="#FAEA9E" stroke="transparent"></rect>\
                              <text id="editableDate_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+currentDate("MM/dd/yyyy")+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-required="0" is-readonly="0" placeholder-hint="MM/DD/YYYY" data-textcolor-rgb="0,0,0" data-textcolor-hex="#000">\
-                              <tspan style="word-break: break-word;" x="4" dy="13">MM/DD/YYYY</tspan>\
+                              <tspan style="word-break: break-word; font-family: CourierPrime-Regular;" x="4" dy="13">MM/DD/YYYY</tspan>\
                              </text>\
                           </g>';
 
         var label = '<g id="label_'+uniqId+'" class="pdf-form-element" style="visibility: visible;" onclick="openFieldSettings(\'label_'+uniqId+'\');" style="height:30px; width:90px; left:'+x+'px; top:'+y+'px;" page="1" pagetop="'+y+'px">\
                        <rect id="label_'+uniqId+'_rect1" width="80" height="17" fill="#f4f5eb" stroke="transparent"></rect>\
                        <text id="label_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#000000" font-style="normal" font-weight="normal" text-decoration="none" default-value="Label" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'" xml:space="preserve" y="0" is-required="0" is-readonly="0" placeholder-hint="Label" data-textcolor-rgb="0,0,0" data-textcolor-hex="#000">\
-                        <tspan style="word-break: break-word;" x="4" dy="13">Label</tspan>\
+                        <tspan style="word-break: break-word; font-family: CourierPrime-Regular;" x="4" dy="13">Label</tspan>\
                        </text>\
                     </g>';
 
@@ -667,7 +643,7 @@ function grabDragElementId(obj){
                           <rect id="hyperlink_'+uniqId+'_rect1" width="90" height="20" fill="#f4f5eb" stroke="transparent"></rect>\
                           <image height="16" width="16" id="hyperlink_'+uniqId+'_hyperlinkicon" x="71.6875" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik01IDdDNC43MzQ3OCA3IDQuNDgwNDMgNy4xMDUzNiA0LjI5Mjg5IDcuMjkyODlDNC4xMDUzNiA3LjQ4MDQzIDQgNy43MzQ3OCA0IDhWMTlDNCAxOS4yNjUyIDQuMTA1MzYgMTkuNTE5NiA0LjI5Mjg5IDE5LjcwNzFDNC40ODA0MyAxOS44OTQ2IDQuNzM0NzggMjAgNSAyMEgxNkMxNi4yNjUyIDIwIDE2LjUxOTYgMTkuODk0NiAxNi43MDcxIDE5LjcwNzFDMTYuODk0NiAxOS41MTk2IDE3IDE5LjI2NTIgMTcgMTlWMTNDMTcgMTIuNDQ3NyAxNy40NDc3IDEyIDE4IDEyQzE4LjU1MjMgMTIgMTkgMTIuNDQ3NyAxOSAxM1YxOUMxOSAxOS43OTU3IDE4LjY4MzkgMjAuNTU4NyAxOC4xMjEzIDIxLjEyMTNDMTcuNTU4NyAyMS42ODM5IDE2Ljc5NTcgMjIgMTYgMjJINUM0LjIwNDM1IDIyIDMuNDQxMjkgMjEuNjgzOSAyLjg3ODY4IDIxLjEyMTNDMi4zMTYwNyAyMC41NTg3IDIgMTkuNzk1NiAyIDE5VjhDMiA3LjIwNDM1IDIuMzE2MDcgNi40NDEyOSAyLjg3ODY4IDUuODc4NjhDMy40NDEyOSA1LjMxNjA3IDQuMjA0MzUgNSA1IDVIMTFDMTEuNTUyMyA1IDEyIDUuNDQ3NzIgMTIgNkMxMiA2LjU1MjI4IDExLjU1MjMgNyAxMSA3SDVaIiBmaWxsPSIjMzMzMzMzIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTQgM0MxNCAyLjQ0NzcyIDE0LjQ0NzcgMiAxNSAySDIxQzIxLjU1MjMgMiAyMiAyLjQ0NzcyIDIyIDNWOUMyMiA5LjU1MjI4IDIxLjU1MjMgMTAgMjEgMTBDMjAuNDQ3NyAxMCAyMCA5LjU1MjI4IDIwIDlWNEgxNUMxNC40NDc3IDQgMTQgMy41NTIyOCAxNCAzWiIgZmlsbD0iIzMzMzMzMyIvPgo8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTIxLjcwNzEgMi4yOTI4OUMyMi4wOTc2IDIuNjgzNDIgMjIuMDk3NiAzLjMxNjU4IDIxLjcwNzEgMy43MDcxMUwxMC43MDcxIDE0LjcwNzFDMTAuMzE2NiAxNS4wOTc2IDkuNjgzNDIgMTUuMDk3NiA5LjI5Mjg5IDE0LjcwNzFDOC45MDIzNyAxNC4zMTY2IDguOTAyMzcgMTMuNjgzNCA5LjI5Mjg5IDEzLjI5MjlMMjAuMjkyOSAyLjI5Mjg5QzIwLjY4MzQgMS45MDIzNyAyMS4zMTY2IDEuOTAyMzcgMjEuNzA3MSAyLjI5Mjg5WiIgZmlsbD0iIzMzMzMzMyIvPgo8L3N2Zz4K" preserveAspectRatio="xMinYMid meet" y="2"></image>\
                           <text id="hyperlink_'+uniqId+'_text" x="4" font-size="13px" font-family="CourierPrime-Regular" fill="#3E60FF" font-style="normal" font-weight="normal" text-decoration="none" default-value="'+CURRENTUSEREMAIL_1+'" default-user="'+CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1+'"  xml:space="preserve" y="0" is-required="0" is-readonly="0" placeholder-hint="Hyperlink" data-textcolor-rgb="0,0,0" data-textcolor-hex="#000">\
-                           <tspan style="word-break: break-word;" x="4" dy="13">Hyperlink</tspan>\
+                           <tspan style="word-break: break-word; font-family: CourierPrime-Regular;" x="4" dy="13">Hyperlink</tspan>\
                           </text>\
                        </g>';  
 
@@ -784,6 +760,8 @@ function grabDragElementId(obj){
         var is_readonly = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("is-readonly");
         var data_textcolor_rgb = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("data-textcolor-rgb");
         var data_textcolor_hex = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("data-textcolor-hex");
+        var placeholder_hint = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("placeholder-hint");
+        
       
         if(isReal(font_size) == false){
           font_size = "13px";
@@ -797,7 +775,10 @@ function grabDragElementId(obj){
           text_decoration = "none";
         }else if(isReal(default_value) == false){
           default_value = "Text";
-        }else if(isReal(default_user) == false){
+        }else if(isReal(placeholder_hint) == false){
+          placeholder_hint = "";
+        }
+        else if(isReal(default_user) == false){
           default_user = CURRENTUSERNAME_1+SEPERATOR+CURRENTUSEREMAIL_1+SEPERATOR+CURRENTUSERTAG_1+SEPERATOR+CURRENTUSERCOLOR_1;
         }else if(isReal(line_height) == false){
           line_height = "15px";
@@ -805,17 +786,16 @@ function grabDragElementId(obj){
           date_format = "dd/MM/yyyy";
         }
       
-        return {"font-size":font_size, "font-family":font_family, "font-style":font_style, "font-weight":font_weight, "text-decoration":text_decoration, "default-value":default_value, "default-user":default_user, "line-height":line_height, "date-format":date_format, "is_required":is_required, "is_readonly":is_readonly, "data_textcolor_rgb":data_textcolor_rgb, "data_textcolor_hex":data_textcolor_hex};
+        return {"font-size":font_size, "font-family":font_family, "font-style":font_style, "font-weight":font_weight, "text-decoration":text_decoration, "default-value":default_value, "default-user":default_user, "line-height":line_height, "date-format":date_format, "is_required":is_required, "is_readonly":is_readonly, "data_textcolor_rgb":data_textcolor_rgb, "data_textcolor_hex":data_textcolor_hex, "placeholder_hint":placeholder_hint};
       
       }
 
     function openFieldSettings(elmId){
  
- 
         event.stopPropagation();
 		    //hideElementBorder();
         $("#bs-thumbnail-prepare").hide();
-        
+        $(".pdf-form-element").removeClass("pdf-form-element-border");
         $("#"+elmId).addClass("pdf-form-element-border");
         initResizeElement(document.getElementById(elmId));
 
@@ -827,8 +807,7 @@ function grabDragElementId(obj){
 		//"font-size":font_size, "font-family":font_family, "font-style":font_style, "font-weight":font_weight, "text-decoration":text_decoration, "default-value":default_value, "default-user":default_user, "line-height":line_height, "date-format":date_format
 
 		var fieldValuesObj = getElementSavedAttributes(elmId);
-		console.log("fieldValuesObj");
-		console.log(fieldValuesObj);
+		
 		
 		var font_size = fieldValuesObj["font-size"];
 		var font_family = fieldValuesObj["font-family"];
@@ -839,12 +818,17 @@ function grabDragElementId(obj){
 		var default_user = fieldValuesObj["default-user"];
 		var line_height = fieldValuesObj["line-height"];
 		var date_format = fieldValuesObj["date-format"];
-
+    var data_textcolor_hex = fieldValuesObj["data_textcolor_hex"];
+    var data_textcolor_rgb = fieldValuesObj["data_textcolor_rgb"];
+    var is_readonly = fieldValuesObj["is_readonly"];
+    var is_required = fieldValuesObj["is_required"];
+    var placeholder_hint = fieldValuesObj["placeholder_hint"];
+    
 		//Dynamic HTML Strings
 		//Action buttons html for close & reset
 
-		var resetButton = '<a href="#"><i class="la la-redo-alt"></i></a>';
-		var closeButton = '<a class="settingsClose" href="javascript:void(0);"><i class="la la-times"></i></a>';
+		var resetButton = '<a href="#" style="display:none;"><i class="la la-redo-alt"></i></a>';
+		var closeButton = '<a class="settingsClose" href="javascript:void(0);" onclick="hideElementBorder();"><i class="la la-times"></i></a>';
 			
 			
 		//Date format html		
@@ -860,7 +844,7 @@ function grabDragElementId(obj){
               </select>\
             </div>';
 		
-		//Font options html
+		//Font options html  
 		var fontOptions = '<div class="settingRow">\
               <label class="settingRowLabel">Font</label>\
               <select class="settingRowFields borderColor textColor" id="font-family" onchange="changeFontFamily(this, \''+elmId+'\');">\
@@ -944,9 +928,11 @@ function grabDragElementId(obj){
 		});
 
 		usersHtml += '</ul></div></div>';
-    
+   
     var readOnlyRequiredHtml = '<div class="readonlyRequiredContainer"><ul class="readonlyRequiredUl list-unstyled"><li class="readonlyRequiredLi custom-checkbox"><input onchange="setRequiredField(this,\''+elmId+'\');" type="checkbox" id="requiredCheck" /><label for="requiredCheck">Required</label></li><li class="readonlyRequiredLi custom-checkbox"><input onchange="setReadOnlyField(this,\''+elmId+'\');" type="checkbox" id="readOnlyCheck" /><label for="readOnlyCheck">Read Only</label></li></ul></div>';
 
+    
+    
 
 		//Signature settings html
         var signatureSettings = '<div class="textSettingsConatiner">\
@@ -1134,11 +1120,12 @@ function grabDragElementId(obj){
             
         }
 		
-		setTimeout(function(){
+		//setTimeout(function(){
 			
 			//set values for settings elements
 			
 			$("#default-text").val(default_value);
+      $("#default-text-placeholder").val(placeholder_hint);
 			$("#font-family").val(font_family);
 			var tmpFontSize = font_size.replace("px","");
 			var tmpLineHeight = line_height.replace("px","");
@@ -1148,12 +1135,34 @@ function grabDragElementId(obj){
 				$("#date-format").val(date_format);	
 			}
 			
+      if(font_weight == "bold"){
+        $("#font-weight .bold").addClass("selected");
+      }
+      
+      if(font_style == "italic"){
+        $("#font-weight .italic").addClass("selected");
+      }
+      
+      if(text_decoration == "underline"){
+        $("#font-weight .underline").addClass("selected");
+      }
+      
 			$('.userLI.'+tmpUserClass).trigger("click");
 			
+
+      if(parseInt(is_readonly) == 1){
+        $("#readOnlyCheck").attr("checked","checked");
+      }
+  
+      if(parseInt(is_required) == 1){
+        $("#requiredCheck").attr("checked","checked");
+      }
+
+
       if($('#colorPicker').length > 0){
         openColorPicker(elmId);
       }
-		}, 500);
+		//}, 100);
         
       }
 
@@ -1244,6 +1253,7 @@ function grabDragElementId(obj){
             defltVl = "";
           }
 
+          var tmpFontFamily = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("font-family");
           $("#"+elmTyp+"_"+elmIdStr+"_text").attr("default-value", defltVl);
 
           if(defltVl != "" && defltVl != null && defltVl != undefined){
@@ -1251,14 +1261,14 @@ function grabDragElementId(obj){
             
             var textHtml = '';
             $.each(defltVlArr, function(i,v){
-              textHtml += '<tspan style="word-break: break-word; width: 100%; float: left;" x="4" dy="13">'+v+'</tspan>';
+              textHtml += '<tspan style="word-break: break-word; width: 100%; float: left; font-family:'+tmpFontFamily+'" x="4" dy="13">'+v+'</tspan>';
             })
             
             //$("#"+elmTyp+"_"+elmIdStr+"_text tspan").text(defltVl);
             $("#"+elmTyp+"_"+elmIdStr+"_text").html(textHtml);
           }else{
             var tmpPlcHldr = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("placeholder-hint");
-            var textHtml = '<tspan style="word-break: break-word; width: 100%; float: left;" x="4" dy="13">'+tmpPlcHldr+'</tspan>';
+            var textHtml = '<tspan style="word-break: break-word; width: 100%; float: left; font-family:'+tmpFontFamily+'" x="4" dy="13">'+tmpPlcHldr+'</tspan>';
             if(tmpPlcHldr != "" && tmpPlcHldr != null && tmpPlcHldr != undefined){
               $("#"+elmTyp+"_"+elmIdStr+"_text").html(textHtml);
             }
@@ -1284,6 +1294,7 @@ function grabDragElementId(obj){
           var  elmIdStr = elmIdParts[1];
 
           var defltVlArr = defltVl.split("\n");
+          var tmpFontFamily = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("font-family");
           $("#"+elmTyp+"_"+elmIdStr+"_text").attr("default-Hyperlink", defltVl);
           
           //var textHtml = '';
@@ -1304,11 +1315,12 @@ function grabDragElementId(obj){
 
           var dt = $("#datePicker").val();
           var defltVl = currentDate(dtFormat, dt);
+          var tmpFontFamily = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("font-family");
           $("#"+elmTyp+"_"+elmIdStr+"_text").attr("default-value", defltVl);
           $("#"+elmTyp+"_"+elmIdStr+"_text").attr("date-format", dtFormat);
           
           
-          var textHtml = '<tspan style="word-break: break-word;" x="4" dy="13" style="width: 100%; float: left;">'+defltVl+'</tspan>';
+          var textHtml = '<tspan style="word-break: break-word; font-family:'+tmpFontFamily+'" x="4" dy="13" style="width: 100%; float: left;">'+defltVl+'</tspan>';
           
           
           //$("#"+elmTyp+"_"+elmIdStr+"_text tspan").text(defltVl);
@@ -1322,12 +1334,12 @@ function grabDragElementId(obj){
           var elmIdParts = DstElmId.split("_");
           var  elmTyp = elmIdParts[0];
           var  elmIdStr = elmIdParts[1];
-
+          var tmpFontFamily = $("#"+elmTyp+"_"+elmIdStr+"_text").attr("font-family");
           $("#"+elmTyp+"_"+elmIdStr+"_text").attr("default-value", defltVl);
           //$("#"+elmTyp+"_"+elmIdStr+"_text").attr("date-format", dtFormat);
           
           
-          var textHtml = '<tspan style="word-break: break-word;" x="4" dy="13" style="width: 100%; float: left;">'+defltVl+'</tspan>';
+          var textHtml = '<tspan style="word-break: break-word; font-family:'+tmpFontFamily+'" x="4" dy="13" style="width: 100%; float: left;">'+defltVl+'</tspan>';
           
           $("#"+elmTyp+"_"+elmIdStr+"_text").html(textHtml);
 
@@ -1493,6 +1505,10 @@ function grabDragElementId(obj){
           }
 
           function elementDrag(e) {
+
+            console.log("darg e");
+            console.log(e);
+
             if (!elmnt) {
               return;
             }
@@ -1659,6 +1675,7 @@ function grabDragElementId(obj){
         //}
 
         function initDrag(e) {
+          
           element = this.parentPopup;
 
           startX = e.clientX;
@@ -1676,14 +1693,28 @@ function grabDragElementId(obj){
         }
 
         function doDrag(e) {
-          //element.style.width = startWidth + e.clientX - startX + "px";
-          //element.style.height = startHeight + e.clientY - startY + "px";
 
           console.log("startWidth:"+startWidth+",e.clientX:"+e.clientX+",startX:"+startX);
           console.log("startHeight:"+startHeight+",e.clientY:"+e.clientY+",startY:"+startY);
 
-          element.style.width = startWidth + e.clientX - startX + "px";
-          element.style.height = startHeight + e.clientY - startY + "px";
+          var tmpWdth = startWidth + e.clientX - startX;
+          var tmpHght = startHeight + e.clientY - startY;  
+
+          var elmLft = element.style.left;
+          var elmXArea = parseInt(elmLft) + parseInt(tmpWdth);
+
+          var elmTp = element.style.top;
+          var elmYArea = parseInt(elmTp) + parseInt(tmpHght);
+
+          if(elmXArea < parseInt(FORMELEMENTSCONTAINER_WIDTH)){
+            element.style.width = tmpWdth + "px";
+          }
+
+          if(elmYArea < parseInt(FORMELEMENTSCONTAINER_HEIGHT)){
+            element.style.height = tmpHght + "px";            
+          }
+
+          
         }
 
         function stopDrag() {

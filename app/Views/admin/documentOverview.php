@@ -2,6 +2,9 @@
 $masterDocument = $document["masterDocument"];
 $sender = $document["sender"];
 $recipentsData = $document["recipents"];
+
+$expiryDate = $recipentsData["expiryDate"];
+$expiryStatus = $recipentsData["expired"];
 $recipents = json_decode($recipentsData["recipients"]);
 $documentTitle = $recipentsData["documentTitle"];
 
@@ -178,6 +181,44 @@ $downloadurlAuditDoc = str_replace(".pdf", "_auditlog.pdf",$documentPath);
                     <span class="overview-text"><?php echo date("M-d, Y h:i A", strtotime($masterDocument["created_at"])); ?> </span>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <label class="overview-text-label">Expires on:</label>
+                </div>
+                <div class="col-8">
+                    <span class="overview-text"><?php echo date("M-d, Y h:i A", strtotime($expiryDate)); ?> </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-2">
+                    <label class="overview-text-label">Expired:</label>
+                </div>
+                <div class="col-8">
+                    <span class="overview-text"><?php  
+                        if($expiryStatus == 1){
+                            //expired
+                            echo '<i class="las la-exclamation-circle"></i> Document has been expired on '.date("M-d, Y h:i A", strtotime($expiryDate));
+                        }else{
+                            
+                           
+                            $now = time(); // or your date as well
+                            $your_date = strtotime($expiryDate);
+                            $datediff = $now - $your_date;
+                            $days = round($datediff / (60 * 60 * 24));
+                            if($days > 1){
+                                $daysStr = $days." days";
+                            }else{
+                                $daysStr = $days." day";
+                            }
+                            //not expired
+                            echo '<i class="las la-exclamation-circle"></i> Document will expires after '.$daysStr;
+                        }
+                    ?> </span>
+                </div>
+            </div>
+            
 
             <div class="row">
                 <div class="col-2">

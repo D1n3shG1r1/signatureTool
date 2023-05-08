@@ -1,0 +1,87 @@
+ERROR - 2023-05-08 04:49:40 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10 OFFSET 0' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `uploadI...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `uploadI...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `uploadI...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(372): CodeIgniter\Database\BaseConnection->query('SELECT `uploadI...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1530): App\Models\Document_Model->getMyDocuments(NULL, 0)
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-08 04:49:40 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 373.
+ 1 APPPATH\Controllers\Document.php(1530): App\Models\Document_Model->getMyDocuments(null, 0)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-08 04:49:41 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LIMIT 10 OFFSET 0' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `uploadI...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `uploadI...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `uploadI...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(372): CodeIgniter\Database\BaseConnection->query('SELECT `uploadI...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(1530): App\Models\Document_Model->getMyDocuments(NULL, 0)
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-08 04:49:41 --> Call to a member function getResultArray() on bool
+in APPPATH\Models\Document_Model.php on line 373.
+ 1 APPPATH\Controllers\Document.php(1530): App\Models\Document_Model->getMyDocuments(null, 0)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->dashboard()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-08 06:11:00 --> Object of class DateTime could not be converted to string
+in APPPATH\Views\admin\documentOverview.php on line 211.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('admin/documentOverview', [], true)
+ 4 APPPATH\Controllers\Document.php(1550): view('admin/documentOverview', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->signeddocument('085dc7ff38220e7bcbc07cf6999cb729')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-08 06:11:51 --> Object of class DateTime could not be converted to string
+in APPPATH\Views\admin\documentOverview.php on line 211.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('admin/documentOverview', [], true)
+ 4 APPPATH\Controllers\Document.php(1550): view('admin/documentOverview', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->signeddocument('085dc7ff38220e7bcbc07cf6999cb729')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-05-08 06:13:24 --> Object of class DateTime could not be converted to string
+in APPPATH\Views\admin\documentOverview.php on line 210.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('admin/documentOverview', [], true)
+ 4 APPPATH\Controllers\Document.php(1550): view('admin/documentOverview', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->signeddocument('085dc7ff38220e7bcbc07cf6999cb729')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-05-08 09:26:31 --> mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\wamp64\www\digitalsignature\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT `file_na...', 0)
+#1 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('SELECT `file_na...')
+#2 C:\wamp64\www\digitalsignature\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `file_na...')
+#3 C:\wamp64\www\digitalsignature\app\Models\Document_Model.php(37): CodeIgniter\Database\BaseConnection->query('SELECT `file_na...')
+#4 C:\wamp64\www\digitalsignature\app\Controllers\Document.php(222): App\Models\Document_Model->getUploadedFileData('168352683933057...', NULL)
+#5 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(934): App\Controllers\Document->prepare('168352683933057...')
+#6 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+#7 C:\wamp64\www\digitalsignature\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\wamp64\www\digitalsignature\index.php(68): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-08 09:26:31 --> Call to a member function getRowArray() on bool
+in APPPATH\Models\Document_Model.php on line 38.
+ 1 APPPATH\Controllers\Document.php(222): App\Models\Document_Model->getUploadedFileData('1683526839330571', null)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Document->prepare('1683526839330571')
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Document))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(68): CodeIgniter\CodeIgniter->run()

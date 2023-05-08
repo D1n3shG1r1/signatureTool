@@ -51,10 +51,12 @@ class Document extends BaseController
 		
 		if(!$loginId || $loginId == "" || $loginId == null){
 			
-			if(strtolower($controllerName) == "document" && (strtolower($methodName) != "sign" && strtolower($methodName) != "processsign")){
+			$methodNames = array("sign", "senddocaccessotp", "processsign");
+
+			if(strtolower($controllerName) == "document" && in_array(strtolower($methodName), $methodNames) == false){
 				//skip session for signing doc
 				//TEMPORARY COMMENTED DUE TO DEVELOPMENT
-				//customredirect("signin");
+				customredirect("signin");
 			}
 			
 		}
