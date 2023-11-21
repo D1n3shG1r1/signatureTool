@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="63" height="69" viewBox="0 0 63 69">
+    <defs>
+        <rect id="b" width="635" height="518" rx="5"/>
+        <filter id="a" width="132.9%" height="140.3%" x="-16.5%" y="-14.6%" filterUnits="objectBoundingBox">
+            <feOffset dy="29" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="30"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.1 0"/>
+        </filter>
+        <linearGradient id="c" x1="25.417%" x2="77.891%" y1="79.531%" y2="17.493%">
+            <stop offset="0%" stop-color="#1A9AFF"/>
+            <stop offset="26.349%" stop-color="#14A6FD"/>
+            <stop offset="52.886%" stop-color="#0FB7FF"/>
+            <stop offset="76.555%" stop-color="#0BBEFF"/>
+            <stop offset="100%" stop-color="#06CAFF"/>
+        </linearGradient>
+        <filter id="d" width="331.4%" height="331.4%" x="-115.7%" y="-115.7%" filterUnits="objectBoundingBox">
+            <feOffset dx="1" dy="7" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="7"/>
+            <feColorMatrix in="shadowBlurOuter1" result="shadowMatrixOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"/>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+        <linearGradient id="e" x1="66.736%" x2="27.365%" y1="14.323%" y2="97.753%">
+            <stop offset="0%" stop-color="#FFF"/>
+            <stop offset="100%" stop-color="#CAEDFF"/>
+        </linearGradient>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="translate(-288 -42)">
+            <use fill="#000" filter="url(#a)" xlink:href="#b"/>
+            <use fill="#FFF" xlink:href="#b"/>
+        </g>
+        <g>
+            <circle cx="30" cy="30" r="30" fill="url(#c)"/>
+            <path fill="url(#e)" fill-rule="nonzero" d="M17.494 0C7.837 0 .001 7.826.001 17.485c0 9.668 7.836 17.503 17.493 17.503 9.664 0 17.493-7.835 17.493-17.503C34.987 7.825 27.157 0 17.494 0zm0 6.917a1.808 1.808 0 1 1 0 3.615 1.808 1.808 0 0 1 0-3.615zm1.809 18.52c0 1.092-.81 1.976-1.808 1.976s-1.808-.884-1.808-1.975v-11.07c0-1.09.81-1.975 1.808-1.975.999 0 1.808.884 1.808 1.976v11.069z" filter="url(#d)" transform="translate(13 13)"/>
+        </g>
+    </g>
+</svg>

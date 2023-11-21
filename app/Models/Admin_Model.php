@@ -41,6 +41,7 @@ class Admin_Model extends Model{
 		$cmd = "SELECT `id`, `first_name`, 	`last_name`, `email`, `email_verified` FROM `users` WHERE `email` = '$email' AND `password` = '$password'";
 		
 		$query = $this->db->query($cmd);
+		
 		$result = $query->getRowArray();
 		
 		if(!empty($result)){

@@ -1,0 +1,325 @@
+CRITICAL - 2023-11-08 16:24:34 --> Class "Locale" not found
+in SYSTEMPATH/CodeIgniter.php on line 194.
+ 1 ROOTPATH/spark(83): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2023-11-08 11:13:00 --> Class "Locale" not found
+in SYSTEMPATH/I18n/TimeTrait.php on line 74.
+ 1 SYSTEMPATH/I18n/TimeTrait.php(115): CodeIgniter\I18n\Time->__construct()
+ 2 SYSTEMPATH/Session/Session.php(201): CodeIgniter\I18n\Time::now()
+ 3 SYSTEMPATH/Config/Services.php(670): CodeIgniter\Session\Session->__construct()
+ 4 SYSTEMPATH/Config/BaseService.php(252): CodeIgniter\Config\Services::session()
+ 5 SYSTEMPATH/Config/BaseService.php(193): CodeIgniter\Config\BaseService::__callStatic()
+ 6 SYSTEMPATH/Config/Services.php(641): CodeIgniter\Config\BaseService::getSharedInstance()
+ 7 SYSTEMPATH/Config/BaseService.php(252): CodeIgniter\Config\Services::session()
+ 8 APPPATH/Controllers/Admin.php(15): CodeIgniter\Config\BaseService::__callStatic()
+ 9 SYSTEMPATH/CodeIgniter.php(906): App\Controllers\Admin->__construct()
+10 SYSTEMPATH/CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+11 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+12 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-08 11:13:02 --> Class "Locale" not found
+in SYSTEMPATH/I18n/TimeTrait.php on line 74.
+ 1 SYSTEMPATH/I18n/TimeTrait.php(115): CodeIgniter\I18n\Time->__construct()
+ 2 SYSTEMPATH/Session/Session.php(201): CodeIgniter\I18n\Time::now()
+ 3 SYSTEMPATH/Config/Services.php(670): CodeIgniter\Session\Session->__construct()
+ 4 SYSTEMPATH/Config/BaseService.php(252): CodeIgniter\Config\Services::session()
+ 5 SYSTEMPATH/Config/BaseService.php(193): CodeIgniter\Config\BaseService::__callStatic()
+ 6 SYSTEMPATH/Config/Services.php(641): CodeIgniter\Config\BaseService::getSharedInstance()
+ 7 SYSTEMPATH/Config/BaseService.php(252): CodeIgniter\Config\Services::session()
+ 8 APPPATH/Controllers/Admin.php(15): CodeIgniter\Config\BaseService::__callStatic()
+ 9 SYSTEMPATH/CodeIgniter.php(906): App\Controllers\Admin->__construct()
+10 SYSTEMPATH/CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+11 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+12 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-08 16:44:21 --> Class "Locale" not found
+in SYSTEMPATH/CodeIgniter.php on line 194.
+ 1 FCPATH/index.php(55): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2023-11-08 16:57:36 --> Class "Locale" not found
+in SYSTEMPATH/CodeIgniter.php on line 194.
+ 1 FCPATH/index.php(55): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2023-11-08 11:33:56 --> Undefined variable $recipients
+in APPPATH/Views/admin/header.php on line 60.
+ 1 APPPATH/Views/admin/header.php(60): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Views/admin/signin.php(1): include('APPPATH/Views/admin/header.php')
+ 3 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/admin/signin.php')
+ 4 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH/Common.php(1177): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/Admin.php(101): view()
+ 7 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Admin->signin()
+ 8 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+10 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-08 11:35:08 --> Undefined variable $recipients
+in APPPATH/Views/admin/header.php on line 60.
+ 1 APPPATH/Views/admin/header.php(60): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Views/admin/signin.php(1): include('APPPATH/Views/admin/header.php')
+ 3 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/admin/signin.php')
+ 4 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH/Common.php(1177): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/Admin.php(101): view()
+ 7 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Admin->signin()
+ 8 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+10 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-08 11:35:12 --> Undefined variable $recipients
+in APPPATH/Views/admin/header.php on line 60.
+ 1 APPPATH/Views/admin/header.php(60): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Views/admin/signin.php(1): include('APPPATH/Views/admin/header.php')
+ 3 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/admin/signin.php')
+ 4 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH/Common.php(1177): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/Admin.php(101): view()
+ 7 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Admin->signin()
+ 8 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+10 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-08 11:37:57 --> Undefined array key 0
+in APPPATH/Views/admin/header.php on line 80.
+ 1 APPPATH/Views/admin/header.php(80): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Views/admin/signin.php(1): include('APPPATH/Views/admin/header.php')
+ 3 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/admin/signin.php')
+ 4 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH/Common.php(1177): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/Admin.php(104): view()
+ 7 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Admin->signin()
+ 8 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+10 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-08 11:38:50 --> Undefined array key 0
+in APPPATH/Views/admin/header.php on line 83.
+ 1 APPPATH/Views/admin/header.php(83): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Views/admin/signin.php(1): include('APPPATH/Views/admin/header.php')
+ 3 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/admin/signin.php')
+ 4 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH/Common.php(1177): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/Admin.php(104): view()
+ 7 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Admin->signin()
+ 8 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+10 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-08 11:40:31 --> Undefined variable $page_title
+in APPPATH/Views/admin/header.php on line 122.
+ 1 APPPATH/Views/admin/header.php(122): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Views/admin/signin.php(1): include('APPPATH/Views/admin/header.php')
+ 3 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/admin/signin.php')
+ 4 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH/Common.php(1177): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/Admin.php(104): view()
+ 7 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Admin->signin()
+ 8 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+10 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-11-08 11:52:50 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: YES) in /var/www/html/signatureTool/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/signatureTool/system/Database/MySQLi/Connection.php(174): mysqli->real_connect()
+#1 /var/www/html/signatureTool/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /var/www/html/signatureTool/system/Database/BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/signatureTool/app/Models/Admin_Model.php(43): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/signatureTool/app/Controllers/Admin.php(80): App\Models\Admin_Model->signin()
+#5 /var/www/html/signatureTool/system/CodeIgniter.php(934): App\Controllers\Admin->signin()
+#6 /var/www/html/signatureTool/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/signatureTool/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/signatureTool/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in /var/www/html/signatureTool/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/signatureTool/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /var/www/html/signatureTool/system/Database/BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/signatureTool/app/Models/Admin_Model.php(43): CodeIgniter\Database\BaseConnection->query()
+#3 /var/www/html/signatureTool/app/Controllers/Admin.php(80): App\Models\Admin_Model->signin()
+#4 /var/www/html/signatureTool/system/CodeIgniter.php(934): App\Controllers\Admin->signin()
+#5 /var/www/html/signatureTool/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/signatureTool/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/signatureTool/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-11-08 11:52:50 --> Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH/Models/Admin_Model.php(43): CodeIgniter\Database\BaseConnection->query()
+ 3 APPPATH/Controllers/Admin.php(80): App\Models\Admin_Model->signin()
+ 4 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Admin->signin()
+ 5 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-11-08 11:54:25 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: YES) in /var/www/html/signatureTool/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/signatureTool/system/Database/MySQLi/Connection.php(174): mysqli->real_connect()
+#1 /var/www/html/signatureTool/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /var/www/html/signatureTool/system/Database/BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/signatureTool/app/Models/Admin_Model.php(43): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/signatureTool/app/Controllers/Admin.php(80): App\Models\Admin_Model->signin()
+#5 /var/www/html/signatureTool/system/CodeIgniter.php(934): App\Controllers\Admin->signin()
+#6 /var/www/html/signatureTool/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/signatureTool/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/signatureTool/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in /var/www/html/signatureTool/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/signatureTool/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /var/www/html/signatureTool/system/Database/BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/signatureTool/app/Models/Admin_Model.php(43): CodeIgniter\Database\BaseConnection->query()
+#3 /var/www/html/signatureTool/app/Controllers/Admin.php(80): App\Models\Admin_Model->signin()
+#4 /var/www/html/signatureTool/system/CodeIgniter.php(934): App\Controllers\Admin->signin()
+#5 /var/www/html/signatureTool/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/signatureTool/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/signatureTool/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-11-08 11:54:25 --> Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH/Models/Admin_Model.php(43): CodeIgniter\Database\BaseConnection->query()
+ 3 APPPATH/Controllers/Admin.php(80): App\Models\Admin_Model->signin()
+ 4 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Admin->signin()
+ 5 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-11-08 11:57:52 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: YES) in /var/www/html/signatureTool/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/signatureTool/system/Database/MySQLi/Connection.php(174): mysqli->real_connect()
+#1 /var/www/html/signatureTool/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /var/www/html/signatureTool/system/Database/BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/signatureTool/app/Models/Admin_Model.php(43): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/signatureTool/app/Controllers/Admin.php(82): App\Models\Admin_Model->signin()
+#5 /var/www/html/signatureTool/system/CodeIgniter.php(934): App\Controllers\Admin->signin()
+#6 /var/www/html/signatureTool/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/signatureTool/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/signatureTool/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in /var/www/html/signatureTool/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/signatureTool/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /var/www/html/signatureTool/system/Database/BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/signatureTool/app/Models/Admin_Model.php(43): CodeIgniter\Database\BaseConnection->query()
+#3 /var/www/html/signatureTool/app/Controllers/Admin.php(82): App\Models\Admin_Model->signin()
+#4 /var/www/html/signatureTool/system/CodeIgniter.php(934): App\Controllers\Admin->signin()
+#5 /var/www/html/signatureTool/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/signatureTool/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/signatureTool/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-11-08 11:57:52 --> Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH/Models/Admin_Model.php(43): CodeIgniter\Database\BaseConnection->query()
+ 3 APPPATH/Controllers/Admin.php(82): App\Models\Admin_Model->signin()
+ 4 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Admin->signin()
+ 5 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-11-08 11:59:50 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: YES) in /var/www/html/signatureTool/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/signatureTool/system/Database/MySQLi/Connection.php(174): mysqli->real_connect()
+#1 /var/www/html/signatureTool/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /var/www/html/signatureTool/system/Database/BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/signatureTool/app/Models/Admin_Model.php(43): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/signatureTool/app/Controllers/Admin.php(82): App\Models\Admin_Model->signin()
+#5 /var/www/html/signatureTool/system/CodeIgniter.php(934): App\Controllers\Admin->signin()
+#6 /var/www/html/signatureTool/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/signatureTool/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/signatureTool/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in /var/www/html/signatureTool/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/signatureTool/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /var/www/html/signatureTool/system/Database/BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/signatureTool/app/Models/Admin_Model.php(43): CodeIgniter\Database\BaseConnection->query()
+#3 /var/www/html/signatureTool/app/Controllers/Admin.php(82): App\Models\Admin_Model->signin()
+#4 /var/www/html/signatureTool/system/CodeIgniter.php(934): App\Controllers\Admin->signin()
+#5 /var/www/html/signatureTool/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/signatureTool/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/signatureTool/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-11-08 11:59:50 --> Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH/Models/Admin_Model.php(43): CodeIgniter\Database\BaseConnection->query()
+ 3 APPPATH/Controllers/Admin.php(82): App\Models\Admin_Model->signin()
+ 4 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Admin->signin()
+ 5 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2023-11-08 12:00:42 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: YES) in /var/www/html/signatureTool/system/Database/MySQLi/Connection.php:174
+Stack trace:
+#0 /var/www/html/signatureTool/system/Database/MySQLi/Connection.php(174): mysqli->real_connect()
+#1 /var/www/html/signatureTool/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 /var/www/html/signatureTool/system/Database/BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 /var/www/html/signatureTool/app/Models/Admin_Model.php(43): CodeIgniter\Database\BaseConnection->query()
+#4 /var/www/html/signatureTool/app/Controllers/Admin.php(82): App\Models\Admin_Model->signin()
+#5 /var/www/html/signatureTool/system/CodeIgniter.php(934): App\Controllers\Admin->signin()
+#6 /var/www/html/signatureTool/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#7 /var/www/html/signatureTool/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#8 /var/www/html/signatureTool/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: YES) in /var/www/html/signatureTool/system/Database/MySQLi/Connection.php:218
+Stack trace:
+#0 /var/www/html/signatureTool/system/Database/BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 /var/www/html/signatureTool/system/Database/BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 /var/www/html/signatureTool/app/Models/Admin_Model.php(43): CodeIgniter\Database\BaseConnection->query()
+#3 /var/www/html/signatureTool/app/Controllers/Admin.php(82): App\Models\Admin_Model->signin()
+#4 /var/www/html/signatureTool/system/CodeIgniter.php(934): App\Controllers\Admin->signin()
+#5 /var/www/html/signatureTool/system/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+#6 /var/www/html/signatureTool/system/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+#7 /var/www/html/signatureTool/public/index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-11-08 12:00:42 --> Unable to connect to the database.
+Main connection [MySQLi]: Access denied for user '****'@'localhost' (using password: YES)
+in SYSTEMPATH/Database/BaseConnection.php on line 427.
+ 1 SYSTEMPATH/Database/BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH/Models/Admin_Model.php(43): CodeIgniter\Database\BaseConnection->query()
+ 3 APPPATH/Controllers/Admin.php(82): App\Models\Admin_Model->signin()
+ 4 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Admin->signin()
+ 5 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 6 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 7 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-08 12:03:14 --> Undefined variable $recipients
+in APPPATH/Views/admin/header.php on line 60.
+ 1 APPPATH/Views/admin/header.php(60): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Views/admin/dashboard.php(1): include('APPPATH/Views/admin/header.php')
+ 3 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/admin/dashboard.php')
+ 4 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH/Common.php(1177): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/Document.php(1537): view()
+ 7 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Document->dashboard()
+ 8 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+10 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-08 12:05:40 --> Undefined variable $tr
+in APPPATH/Views/admin/dashboard.php on line 63.
+ 1 APPPATH/Views/admin/dashboard.php(63): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/admin/dashboard.php')
+ 3 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1177): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Document.php(1538): view()
+ 6 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Document->dashboard()
+ 7 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-08 12:07:17 --> Undefined variable $recipients
+in APPPATH/Views/admin/header.php on line 60.
+ 1 APPPATH/Views/admin/header.php(60): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 APPPATH/Views/admin/upload.php(1): include('APPPATH/Views/admin/header.php')
+ 3 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/admin/upload.php')
+ 4 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 5 SYSTEMPATH/Common.php(1177): CodeIgniter\View\View->render()
+ 6 APPPATH/Controllers/Document.php(73): view()
+ 7 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Document->upload()
+ 8 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 9 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+10 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-11-08 12:08:20 --> Undefined variable $documentId
+in APPPATH/Views/admin/upload.php on line 8.
+ 1 APPPATH/Views/admin/upload.php(8): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/View/View.php(213): include('APPPATH/Views/admin/upload.php')
+ 3 SYSTEMPATH/View/View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH/Common.php(1177): CodeIgniter\View\View->render()
+ 5 APPPATH/Controllers/Document.php(74): view()
+ 6 SYSTEMPATH/CodeIgniter.php(934): App\Controllers\Document->upload()
+ 7 SYSTEMPATH/CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController()
+ 8 SYSTEMPATH/CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest()
+ 9 FCPATH/index.php(67): CodeIgniter\CodeIgniter->run()

@@ -69,7 +69,9 @@ class Admin extends BaseController
 	
 	function signin(){
 		
+
 		if($this->request->isAJAX()){
+			
 			$email = $this->request->getPost('email');
 			$password = $this->request->getPost('password');
 			
@@ -98,6 +100,9 @@ class Admin extends BaseController
 			$data = array();
 			$data["page_tilte"] = "Sign In";
 			$data["accountVerification"] = 0;
+			$data["recipients"] = array();
+			
+			//echo "<pre>"; print_r($data); die;
 			return view('admin/signin', $data);
 		
 		}

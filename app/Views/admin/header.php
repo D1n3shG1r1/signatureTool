@@ -60,28 +60,39 @@ $SELECTEDUSERS = array();
 if(!$recipients){
 	$recipients = array();
 }
-foreach($recipients as $k=> $tmpRcp){
+if(!empty($recipients)){
+	foreach($recipients as $k=> $tmpRcp){
   
-  $tag = $tmpRcp["name"];
-  if(strtolower($tmpRcp["email"]) == strtolower($loginEmail)){
-    $tag = "Me";
-  }
-
-  $SELECTEDUSERS[] = array(
-    "name" => $tmpRcp["name"],
-    "initials" => ucwords($tmpRcp["name"]),
-    "email" => $tmpRcp["email"],
-    "tag" => ucfirst($tag),
-    "color" => $COLORSINDXARR[$k]
-  );
+		$tag = $tmpRcp["name"];
+		if(strtolower($tmpRcp["email"]) == strtolower($loginEmail)){
+		  $tag = "Me";
+		}
+	  
+		$SELECTEDUSERS[] = array(
+		  "name" => $tmpRcp["name"],
+		  "initials" => ucwords($tmpRcp["name"]),
+		  "email" => $tmpRcp["email"],
+		  "tag" => ucfirst($tag),
+		  "color" => $COLORSINDXARR[$k]
+		);
+	}
 }
+
   //$hostUrl = "http://localhost/esigntool/";
+  if(!empty($SELECTEDUSERS)){
+	$CURRENTUSERNAME_1 = $SELECTEDUSERS[0]["name"];
+	$CURRENTUSERINITIALS_1 = $SELECTEDUSERS[0]["initials"];
+	$CURRENTUSEREMAIL_1 = $SELECTEDUSERS[0]["email"];
+	$CURRENTUSERTAG_1 = $SELECTEDUSERS[0]["tag"];
+	$CURRENTUSERCOLOR_1 = $SELECTEDUSERS[0]["color"];
+  }else{
+	$CURRENTUSERNAME_1 = '';
+	$CURRENTUSERINITIALS_1 = '';
+	$CURRENTUSEREMAIL_1 = '';
+	$CURRENTUSERTAG_1 = '';
+	$CURRENTUSERCOLOR_1 = '';
+  }
   
-  $CURRENTUSERNAME_1 = $SELECTEDUSERS[0]["name"];
-  $CURRENTUSERINITIALS_1 = $SELECTEDUSERS[0]["initials"];
-  $CURRENTUSEREMAIL_1 = $SELECTEDUSERS[0]["email"];
-  $CURRENTUSERTAG_1 = $SELECTEDUSERS[0]["tag"];
-  $CURRENTUSERCOLOR_1 = $SELECTEDUSERS[0]["color"];
 /*
   $CURRENTUSERNAME_2 = "Kishan Rathore";
   $CURRENTUSERINITIALS_2 = "KR";
@@ -108,7 +119,7 @@ foreach($recipients as $k=> $tmpRcp){
 	<head>
 		<meta charset="UTF-8"></meta>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
-		<title><?php echo $page_title; ?></title>
+		<title><?php //echo $page_title; ?></title>
 
 		<style>
 			

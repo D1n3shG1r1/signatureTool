@@ -70,6 +70,7 @@ class Document extends BaseController
 	function upload(){
 		$data = array();
 		$data["page_tilte"] = "Upload";
+		$data["recipients"] = array();		
 		return view('admin/upload', $data);	
 	}
 
@@ -1533,6 +1534,7 @@ class Document extends BaseController
 		
 		$data = array();
 		$data["page_tilte"] = "Dashboard";
+		$data["recipients"] = array();
 		$data["documents"] = $result;
 		return view('admin/dashboard', $data);	
 	}

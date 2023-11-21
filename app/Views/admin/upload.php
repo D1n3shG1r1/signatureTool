@@ -5,7 +5,7 @@
 <main>
 <form id="documentForm" action="<?php echo site_url("fileupload"); ?>" method="POST" onsubmit="return next();" enctype="multipart/form-data">
     <div id="mainPageHeader" class="container-fluid" style="margin-bottom: 70px;">
-          <input type="hidden" id="documentId" value="<?php echo $documentId; ?>">
+          <input type="hidden" id="documentId" value="<?php //echo $documentId; ?>">
         <div class="top-menu">
             <figure class="logo-wrap">
                 <!--<span class="appName"><img src="<?php //echo base_url("/assets/images/boldsign_sitelogo.svg"); ?>" /></span>-->

@@ -28,6 +28,7 @@
             </thead>
             <tbody>
                 <?php
+                $tr = '';
                     if(!empty($documents)){
                         
                         foreach($documents as $k => $tmpDoc){

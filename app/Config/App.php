@@ -23,7 +23,8 @@ class App extends BaseConfig
      * environments.
      */
     //public string $baseURL = 'http://localhost:8080/';
-    public string $baseURL = 'http://localhost/digitalsignature/';
+    //public string $baseURL = 'http://localhost/signatureTool/';
+    public string $baseURL = 'http://local.digitalsignature.com/';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
