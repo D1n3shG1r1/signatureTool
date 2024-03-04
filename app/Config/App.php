@@ -50,7 +50,7 @@ class App extends BaseConfig
      * variable so that it is blank.
      */
     public string $indexPage = 'index.php';
-
+    //public string $indexPage = '';
     /**
      * --------------------------------------------------------------------------
      * URI PROTOCOL
@@ -67,6 +67,7 @@ class App extends BaseConfig
      * WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
      */
     public string $uriProtocol = 'REQUEST_URI';
+    
 
     /**
      * --------------------------------------------------------------------------

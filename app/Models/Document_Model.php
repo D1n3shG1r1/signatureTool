@@ -30,9 +30,27 @@ class Document_Model extends Model
 		}
 	}
 
+	function UpdateUploadedFile($documentId, $insertData){
+		//echo "insertData:<pre>"; print_r($insertData); die;
+		$table = $this->db->table('e_sign_uploaded_files');
+		$table->where('id', $documentId);
+		$table->update($insertData);
+
+		return $documentId;
+		//echo $query = $this->db->getLastQuery();
+		/*
+		if($this->db->affectedRows() > 0){
+			return $insertData["id"];
+		}else{
+			return 0;
+		}
+		*/
+
+	}
+
 	function getUploadedFileData($id, $userId){
 		
-		$cmd = "SELECT `file_name`,`recipients`,`documentTitle` FROM `e_sign_uploaded_files` WHERE `id` = $id AND `user_id` = $userId";
+		$cmd = "SELECT `file_name`,`file_type`,`recipients`,`documentTitle`,`recipientMessage`,`expiresInDays`,`expiryDate`,`alertOneDyBfrExp` FROM `e_sign_uploaded_files` WHERE `id` = $id AND `user_id` = $userId";
 		
 		$query = $this->db->query($cmd);
 		$result = $query->getRowArray();
@@ -123,11 +141,11 @@ class Document_Model extends Model
 		$table->where('documentId', $documentId);
 		$table->update();
 
-		if($this->db->affectedRows() > 0){
+		//if($this->db->affectedRows() > 0){
 			return 1;
-		}else{
-			return 0;
-		}
+		//}else{
+		//	return 0;
+		//}
 	}
 
 	function updatePartySignStatus($documentId, $email, $status){
@@ -138,6 +156,7 @@ class Document_Model extends Model
 		$parentDocResult = $query->getRowArray();
 		$newUpdateArr = array();
 		
+		//echo "parentDocResult:<pre>"; print_r($parentDocResult); die;
 
 		if(!empty($parentDocResult)){
 			$id = $parentDocResult["id"];
@@ -157,7 +176,7 @@ class Document_Model extends Model
 				}
 			}
 		}
-
+		//echo "newUpdateArr:<pre>"; print_r($newUpdateArr); die;
 		if(!empty($newUpdateArr)){
 			$newUpdateJson = json_encode($newUpdateArr);
 			
@@ -167,11 +186,11 @@ class Document_Model extends Model
 			$table->where('documentId', $documentId);
 			$table->update();
 			
-			if($this->db->affectedRows() > 0){
+			//if($this->db->affectedRows() > 0){
 				return 1;
-			}else{
-				return 0;
-			}
+			//}else{
+			//	return 0;
+			//}
 		}else{
 			return 0;
 		}
@@ -191,11 +210,11 @@ class Document_Model extends Model
 			$table->where('documentId', $signerDocumentId);
 			$table->update();
 
-			if($this->db->affectedRows() > 0){
+			//if($this->db->affectedRows() > 0){
 				return 1;
-			}else{
-				return 0;
-			}
+			//}else{
+				//return 0;
+			//}
 		}else if(strtolower($status) == "signed"){
 			
 			$table = $this->db->table('e_sign_document_signers');
@@ -204,11 +223,11 @@ class Document_Model extends Model
 			$table->where('documentId', $signerDocumentId);
 			$table->update();
 
-			if($this->db->affectedRows() > 0){
+			//if($this->db->affectedRows() > 0){
 				return 1;
-			}else{
-				return 0;
-			}
+			//}else{
+			//	return 0;
+			//}
 		}else if(strtolower($status) == "sent"){
 			$table = $this->db->table('e_sign_document_signers');
 			$table->set('document_status', $status);
@@ -216,11 +235,11 @@ class Document_Model extends Model
 			$table->where('documentId', $signerDocumentId);
 			$table->update();
 
-			if($this->db->affectedRows() > 0){
+			//if($this->db->affectedRows() > 0){
 				return 1;
-			}else{
-				return 0;
-			}
+			//}else{
+			//	return 0;
+			//}
 		}else{
 			return 0;	
 		}
@@ -500,6 +519,8 @@ class Document_Model extends Model
 		$cmd = "SELECT `id`, `uploadId`, `documentId`, `no_of_parties`, `isComplete`, `created_at`, `updated_at` FROM `e_sign_documents` WHERE `documentId` = '$parentDocumentId' AND `isComplete` = 1";
 		$query = $this->db->query($cmd);
 		$parentDoc = $query->getRowArray();
+		
+		//echo "<pre>"; print_r($parentDoc); die;
 
 		if(!empty($parentDoc)){
 
@@ -516,18 +537,20 @@ class Document_Model extends Model
 			$query = $this->db->query($cmd);
 			$signerDocsArr = $query->getResultArray();
 			
+			
+
 			$signerDocIdsArr = array();
 			foreach($signerDocsArr as $signerDocRw){
 				$signerDocId = $signerDocRw["id"];
 				$signerDocIdsArr[] = $signerDocId;
 			}
-
+			//echo "<pre>"; print_r($signerDocIdsArr); die;
 			if(!empty($signerDocIdsArr)){
 				$signerDocIdsStr = implode(",", $signerDocIdsArr);
 				$cmd = "SELECT `signatureHash`, `signType`, `documentId` FROM `e_sign_electronic_signatures` WHERE `documentId` IN($signerDocIdsStr)";
 				$query = $this->db->query($cmd);
 				$signerDocHashArr = $query->getResultArray();
-				
+				//echo "<pre>"; print_r($signerDocHashArr); die;
 				if(!empty($signerDocHashArr)){
 				
 					foreach($signerDocHashArr as $signerDocHashRw){
@@ -540,9 +563,15 @@ class Document_Model extends Model
 			foreach($signerDocsArr as &$tmpSignerDocRw){
 				
 				$signerDocId = $tmpSignerDocRw["id"];
-				$tmpHashData = $docWiseHashArr[$signerDocId];
 
-				if(empty($tmpHashData)){
+				if(array_key_exists($signerDocId,$docWiseHashArr)){
+					$tmpHashData = $docWiseHashArr[$signerDocId];
+
+					if(empty($tmpHashData)){
+						$tmpHashData = array();
+					}
+
+				}else{
 					$tmpHashData = array();
 				}
 
@@ -552,6 +581,8 @@ class Document_Model extends Model
 			$parentDoc["uploadInfo"] = $uploadedFile;
 			$parentDoc["signerDocuments"] = $signerDocsArr;
 
+		}else{
+			$parentDoc = array();	
 		}
 
 		return $parentDoc;
@@ -567,7 +598,7 @@ class Document_Model extends Model
 		$parentDoc = $query->getRowArray();
 
 		$finalResult["parentDocument"] = $parentDoc;
-		//echo "<pre>"; print_r($parentDoc);
+		//echo "<pre>"; print_r($parentDoc); die;
 		
 		$parentDocument = $parentDoc["id"];
 		$uploadId = $parentDoc["uploadId"];
@@ -584,6 +615,7 @@ class Document_Model extends Model
 		$query = $this->db->query($cmd);
 		$signerHashArr = $query->getResultArray();
 		//print_r($signerHashArr);	
+		//echo "<pre>"; print_r($signerHashArr); die;
 		$signerWiseHash = array();
 		if(!empty($signerHashArr)){
 			foreach($signerHashArr as $signerHashRw){
@@ -591,18 +623,22 @@ class Document_Model extends Model
 				$signerWiseHash[$tmpHashDocId] = $signerHashRw;
 			}
 		}
-
+		//echo "<pre>"; print_r($signerDoc); die;
 		foreach($signerDoc as &$signerDocRw){
-			$tmpHashRw = $signerWiseHash[$signerDocRw["id"]];
-			if(!empty($tmpHashRw)){
-				$signerDocRw["hashData"] = $tmpHashRw;
+			if(array_key_exists($signerDocRw["id"],$signerWiseHash)){
+				$tmpHashRw = $signerWiseHash[$signerDocRw["id"]];
+				if(!empty($tmpHashRw)){
+					$signerDocRw["hashData"] = $tmpHashRw;
+				}else{
+					$signerDocRw["hashData"] = array();
+				}
 			}else{
 				$signerDocRw["hashData"] = array();
 			}
 			
 		}
 		
-		//print_r($signerDoc);
+		//echo "<pre>"; print_r($signerDoc); die;
 		$finalResult["signerDocuments"] = $signerDoc;
 
 		//get uploaded file info

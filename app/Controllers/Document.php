@@ -133,7 +133,7 @@ class Document extends BaseController
 			$recipientsArr[$tmpEml]["accessCode"] = $tmpAccessCode; 
 			$recipientsArr[$tmpEml]["otp"] = $tmpOtp; 
 		}
-
+		
 		//print_r($recipientsArr); die;
 		
 		$file = $_FILES["fileupload"];
@@ -144,7 +144,9 @@ class Document extends BaseController
 
 		$fileId = db_randomnumber();
 		//$documentPath = FCPATH . 'userassets\uploads\\' . $loginId;
-		$documentPath = FCPATH . "userassets\uploads\\" . $loginId;
+		
+		$documentPath = FCPATH . "userassets/uploads/" . $loginId;
+		//echo $documentPath; die;
 		if(!file_exists($documentPath)){
 			create_local_folder($documentPath);
 		}
@@ -207,6 +209,124 @@ class Document extends BaseController
 
 	}
 
+	function fileuploadedit(){
+
+		$loginId = $this->session->get('loginId');
+		//$loginId = "1673874254153097";
+
+		/*echo "loginId:" . $loginId . ",FILES:<pre>";
+		print_r($_POST);
+		print_r($_FILES);
+		die;*/
+		
+		$RecipientNamesArr = $this->request->getPost('RecipientName');
+		$RecipientEmailsArr = $this->request->getPost('RecipientEmail');
+		$recipientAuthInputBttnsArr = $this->request->getPost('recipientAuthInputBttn');
+		$accessCodeOtpOptArr = $this->request->getPost('accessCodeOtpOpt');
+		$accessCodeArr = $this->request->getPost('accessCode');
+		$documentTitle  = $this->request->getPost('documentTitle');
+		$recipientMessage  = $this->request->getPost('recipientMessage');
+		$expiresInDays  = $this->request->getPost('expiresInDays');
+		$expiryDate = $this->request->getPost('expiryDate');
+		//$alertOneDyBfrExp = $this->request->getPost('alertOneDyBfrExp');
+		$alertOneDyBfrExp = $this->request->getPost('alertOneDyBfrExpInput');
+
+		$fileChange = $this->request->getPost('filechange');
+		$fileId = $this->request->getPost('fileid');
+		
+		$recipientsArr = array();			
+			
+		foreach($RecipientEmailsArr as $k => $RcpntEmlRw){
+			
+			$tmpRwId = $k;
+			$tmpNm = $RecipientNamesArr[$tmpRwId];
+			$tmpEml = $RcpntEmlRw;
+
+			$tmpAuthChecked = $recipientAuthInputBttnsArr[$tmpRwId];
+			$tmpAccCodeOpt = $accessCodeOtpOptArr[$tmpRwId];
+			$authType = 0;
+			$tmpOtp = "";
+			$tmpAccessCode = "";
+
+			if($tmpAuthChecked == 1){
+				//checked
+				if($tmpAccCodeOpt == 1){
+					//otp
+					$authType = 1;
+					$tmpOtp = genOtp();
+				}else if($tmpAccCodeOpt == 2){
+					//access code
+					$authType = 2;
+					$tmpAccessCode = $accessCodeArr[$tmpRwId];
+				}
+			}else{
+				//unchecked
+				$authType = 0;
+			}
+
+			$recipientsArr[$tmpEml]["email"] = $tmpEml;
+			$recipientsArr[$tmpEml]["name"] = $tmpNm; 
+			$recipientsArr[$tmpEml]["authType"] = $authType; 
+			$recipientsArr[$tmpEml]["accessCode"] = $tmpAccessCode; 
+			$recipientsArr[$tmpEml]["otp"] = $tmpOtp; 
+		}
+		
+		//print_r($recipientsArr); die;
+		
+		$data = array(
+			//'id' => $fileId,
+			//'user_id' => $loginId,
+			'recipients' => json_encode($recipientsArr),
+			'documentTitle' => $documentTitle,
+			'recipientMessage' => $recipientMessage,
+			'expiresInDays' => $expiresInDays,
+			'expiryDate' => date("Y-m-d H:i:s", strtotime($expiryDate)),
+			'alertOneDyBfrExp' => $alertOneDyBfrExp
+		);
+
+		if($fileChange > 0){
+			//$fileId
+		
+			$file = $_FILES["fileupload"];
+			$fileName = $file['name'];
+			$tmpFileName = $file['tmp_name'];
+			$fileType = $file['type'];
+		
+			//$fileId = db_randomnumber();
+			//$documentPath = FCPATH . 'userassets\uploads\\' . $loginId;
+			
+			$documentPath = FCPATH . "userassets/uploads/" . $loginId;
+			//echo $documentPath; die;
+			if(!file_exists($documentPath)){
+				create_local_folder($documentPath);
+			}
+
+			$fileNameParts = explode(".", $fileName);
+			$fileExt = end($fileNameParts);
+			$newFileName = $fileId.".".$fileExt;
+			$file_path = $documentPath."/".$newFileName;
+			/*
+			$cont = file_get_contents($tmpFileName);
+			$fp = fopen($file_path, "w+");
+			fwrite($fp, $cont);
+			fclose($fp);
+			echo $file_path;
+			die;*/
+			move_uploaded_file($tmpFileName,$file_path);	
+		
+			$data['file_name'] = $fileName;
+			$data['system_file_name'] = $newFileName;
+			$data['file_type'] = $fileType;
+		}
+		
+		//echo "<pre>"; print_r($data); die;
+
+		$uploadId = $this->document_model->UpdateUploadedFile($fileId, $data);
+		
+		return redirect()->to("prepare/$uploadId");
+
+	}
+
 	function filedelete(){
 		echo "<pre>";
 		print_r($_FILES);
@@ -215,6 +335,59 @@ class Document extends BaseController
 
 	function pagenotfound(){
 		echo "404 page not found"; die;
+	}
+
+	function edit($fileId){
+		$loginId = $this->session->get('loginId');
+		$loginEmail = $this->session->get('loginEmail');
+
+		$fileData = $this->document_model->getUploadedFileData($fileId, $loginId);
+		//echo "fileData:<pre>"; print_r($fileData); die;
+		
+		if(!empty($fileData)){
+			
+			$tmprecipientsJson = $fileData["recipients"];
+			$tmprecipientsArr = json_decode($tmprecipientsJson, true);
+			$finalRecipients = array();
+			$k = 0;
+			foreach($tmprecipientsArr as $rcpntrw){
+				$finalRecipients[$k]["name"] = $rcpntrw["name"];
+				$finalRecipients[$k]["email"] = $rcpntrw["email"];
+				$finalRecipients[$k]["authType"] = $rcpntrw["authType"];
+				$finalRecipients[$k]["accessCode"] = $rcpntrw["accessCode"];
+				$finalRecipients[$k]["otp"] = $rcpntrw["otp"];
+				
+				$k++;
+			}
+
+
+
+			$documentPath = "/userassets/uploads/" . $loginId;
+		
+			$fileExt = ".pdf";
+			$newFileName = $fileId.$fileExt;
+			$file_path = $documentPath."/".$newFileName;
+
+			$data = array();
+			$data["loginId"] = $loginId;
+			$data["loginEmail"] = $loginEmail;
+			$data["page_tilte"] = "Document Prepare";
+			$data["document"] = $file_path;
+			$data["documentId"] = $fileId;
+			$data["fileName"] = $fileData["file_name"];
+			$data["fileType"] = $fileData["file_type"];
+			$data["documentTitle"] = $fileData["documentTitle"];
+			$data["recipientMessage"] = $fileData["recipientMessage"];
+			$data["expiresInDays"] = $fileData["expiresInDays"];
+			$data["alertOneDyBfrExp"] = $fileData["alertOneDyBfrExp"];
+			$data["recipients"] = $finalRecipients;
+			//echo "<pre>"; print_r($data); die;
+			//return view('admin/documentprepare', $data);
+			return view('admin/editupload', $data);	
+
+		}else{
+			return redirect()->to("upload");
+		}
 	}
 
     function prepare($fileId){
@@ -255,7 +428,7 @@ class Document extends BaseController
 			$data["fileName"] = $fileData["file_name"];
 			$data["documentTitle"] = $fileData["documentTitle"];
 			$data["recipients"] = $finalRecipients;
-			
+			//echo "<pre>"; print_r($data); die;
 			return view('admin/documentprepare', $data);
 
 		}else{
@@ -429,13 +602,13 @@ class Document extends BaseController
 	function saveandsenddocument(){
 		$docId = $this->request->getPost('documentId'); //file id
 		$docdata = $this->request->getPost('data');
+		/*
+		echo "docId:".$docId."<br>";
+		echo "<pre>";
+		print_r($docdata);
 		
-		//echo "docId:".$docId."<br>";
-		//echo "<pre>";
-		//print_r($docdata);
-		
-		//die;
-		
+		die;
+		*/
 		$fileId = $docId;
 		
 		$loginId = $this->session->get('loginId');
@@ -725,7 +898,7 @@ class Document extends BaseController
 						$data["document"] = $signersData["parentDoc"]["documentPath"];
 						$data["documentId"] = $signersData["parentDoc"]["documentId"];
 						$data["signersData"] = $signersData["signerData"];
-						
+						$data["recipients"] = "";
 						return view('admin/documentsign', $data);
 						
 					}else{
@@ -743,7 +916,7 @@ class Document extends BaseController
 							$data["documentId"] = $docId;
 							$data["authType"] = $authType; //$signersData["signerData"]["authType"];
 							$data["ownerEmail"] = $ownerResult["email"];
-
+							$data["recipients"] = "";
 							return view('admin/accesscoderequired', $data);
 						
 						}else if($authType == 1){
@@ -758,7 +931,7 @@ class Document extends BaseController
 							$data["documentId"] = $docId;
 							$data["authType"] = $authType; // $signersData["signerData"]["authType"];
 							$data["ownerEmail"] = $ownerResult["email"];
-
+							$data["recipients"] = "";
 							return view('admin/accesscoderequired', $data);
 						}
 					}
@@ -775,7 +948,7 @@ class Document extends BaseController
 					$data["document"] = $signersData["parentDoc"]["documentPath"];
 					$data["documentId"] = $signersData["parentDoc"]["documentId"];
 					$data["signersData"] = $signersData["signerData"];
-					
+					$data["recipients"] = "";					
 					//echo "data:<pre>"; print_r($data); die;
 
 					return view('admin/documentsign', $data);
@@ -1135,29 +1308,32 @@ class Document extends BaseController
 
 		//create signatures png
 		$secretFolder = $this->esign_config->SECRETFOLDER;
+		create_local_folder(FCPATH . "$secretFolder/");	
+		$folderPath = FCPATH . "$secretFolder/" . $signerDocumentId; 
 		
-		$folderPath = FCPATH . "$secretFolder\\" . $signerDocumentId; 
-	
 		create_local_folder($folderPath);
+		
 		if($initialsBS64 != "" && $initialsBS64 != null){
 			//write initials
 			$foldedChadarCode = chadarmodbs64($initialsBS64);
-			$file = $folderPath."\\initials.txt";
+			//$file = $folderPath."\\initials.txt";
+			$file = $folderPath."/initials.txt";
 			fileWrite($file,$foldedChadarCode);
 			//echo $file."<br>";
 		}
-
+		
 		if($signBS64 != "" && $signBS64 != null){
 			//write full signatures
 			$foldedChadarCode = chadarmodbs64($signBS64);
-			$file = $folderPath."\\sign.txt";
+			//$file = $folderPath."\\sign.txt";
+			$file = $folderPath."/sign.txt";
 			fileWrite($file,$foldedChadarCode);
 			//echo $file."<br>";
 		}
 
 		
 		//write sign png
-		$filePath = $folderPath."\\sign.txt";
+		$filePath = $folderPath."/sign.txt";
 		$fileContent = fileRead($filePath);
 		if($fileContent != "" && $fileContent != null){
 			$fileContentOk = chadarsidhibs64($fileContent);
@@ -1165,13 +1341,13 @@ class Document extends BaseController
 			//$fileContentOkParts[0];
 			$bs64Cont = $fileContentOkParts[1];
 			$bs64DecodedCont = base64_decode($bs64Cont);
-			$file = $folderPath."\\sign.png";
+			$file = $folderPath."/sign.png";
 			fileWrite($file,$bs64DecodedCont);
 
 		}
 		
 		//write initials png
-		$filePath = $folderPath."\\initials.txt";
+		$filePath = $folderPath."/initials.txt";
 		$fileContent = fileRead($filePath);
 		if($fileContent != "" && $fileContent != null){
 			$fileContentOk = chadarsidhibs64($fileContent);
@@ -1179,7 +1355,7 @@ class Document extends BaseController
 			//$fileContentOkParts[0];
 			$bs64Cont = $fileContentOkParts[1];
 			$bs64DecodedCont = base64_decode($bs64Cont);
-			$file = $folderPath."\\initials.png";
+			$file = $folderPath."/initials.png";
 			fileWrite($file,$bs64DecodedCont);
 
 		}
@@ -1200,10 +1376,10 @@ class Document extends BaseController
 		$hashCode = $this->Encription($userLocaleJson);
 		
 		//update user filled data to signer document
+		
 		$updt = $this->document_model->updatePartyFilledData($signerDocumentId, json_encode($signerDocData));
 		
 		$resultFile = $this->pdf->preparePdf($rootFolder, $srcFilePath, $docData, $hashCode, $signerDocumentId, $secretFolder);
-		
 		
 		//--- Now saving log for signed document
 	
@@ -1212,12 +1388,14 @@ class Document extends BaseController
 		$signedDtTm = date("Y-m-d H:i:s");
 		
 		$updated = $this->document_model->updatePartySignStatus($documentId, $userEmail, $status);
+		//echo 'up'.$updated; die;
 		//$updated = 1;
 		
 		if($updated > 0){
 			
 			$certfctResult = $this->document_model->getDocDataForCompletionCertificate($signerDocumentId);
 			
+			//echo "certfctResult:<pre>"; print_r($certfctResult); die;
 			if(!empty($certfctResult)){
 
 				$docAuthType = $certfctResult["authType"];
@@ -1231,6 +1409,7 @@ class Document extends BaseController
 				
 				
 				$srcCertificateFilePath = $rootFolder."systemtemplates/CertificateOfCompletion.pdf";
+				
 				$signFilePath = $rootFolder."$secretFolder/$signerDocumentId/sign.png";
 				
 				$data = array();
@@ -1252,12 +1431,12 @@ class Document extends BaseController
 				$data["signedByName"] = $certfctResult["signerName"];
 				$data["signedByEmail"] = $certfctResult["signerEmail"];
 				$data["completedAt"] = $signedDtTm; //"Apr 03, 2023 09:26:12 UTC";
-				
+				//echo "data:<pre>"; print_r($data); die;
 				$this->pdf = new GeneratePdf();
 				$this->pdf->prepareCompletionCertificate($rootFolder, $srcCertificateFilePath, $data, $signerDocumentId, $secretFolder);
 				
 				//prepare consolidate document
-				$this->prepareConsolidatePdfs($documentId);
+				//$this->prepareConsolidatePdfs($documentId);
 			}
 			
 			$docStatusUpdated = $this->document_model->updateSignerDocStatus($signerDocumentId, $status, $signedDtTm);
@@ -1279,6 +1458,8 @@ class Document extends BaseController
 				
 				$insertRowId = $this->document_model->saveDocumentESignHash($insertData);
 				
+				//prepare consolidate document
+				$this->prepareConsolidatePdfs($documentId);
 				//send completed document to signer
 				
 				$homePath = FCPATH."index.php";
@@ -1351,7 +1532,7 @@ class Document extends BaseController
 				}
 				
 			}
-			
+			//echo "pdfSourceData<pre>"; print_r($pdfSourceData); die;
 			if(!empty($pdfSourceData)){
 				//Consolidate document
 				$rootFolder = publicFolder();
@@ -1359,10 +1540,12 @@ class Document extends BaseController
 				$srcFilePath = $rootFolder.$srcFilePath;
 				$this->pdf = new GeneratePdf();	
 				$resultFile = $this->pdf->prepareConsolidatePdf($rootFolder, $srcFilePath, $pdfSourceData, $secretFolder, $userId, $documentID);
-			
-			
+				
+				
 				//Consolidate Audit Trial
 				$auditResult = $this->document_model->getSignersAuditTrialData($documentID);
+				
+				//echo 'auditResult:<pre>'; print_r($auditResult); die;
 				if(!empty($auditResult)){
 					$auditData = array();
 					$auditData["recipientsData"] = array();
@@ -1377,7 +1560,7 @@ class Document extends BaseController
 					$isComplete = $auditResult["isComplete"];
 					$createdAt = $auditResult["created_at"];
 					$comletedAt = $auditResult["updated_at"];
-	
+					
 					foreach($auditResult["signerDocuments"] as $signerDocumentRw){
 						
 						$tmpDocumentId = $signerDocumentRw["documentId"];
@@ -1394,32 +1577,39 @@ class Document extends BaseController
 							$tmpAuthTypeTxt = "-";
 						}
 						
-						$tmpSignType = $signerDocumentRw["hashData"]["signType"];
-						$tmpHsh = $signerDocumentRw["hashData"]["signatureHash"];
-						$tmpHshJson = $this->Decryption($tmpHsh);
-						$tmpHshObj = json_decode($tmpHshJson);
-						$tmpIP = $tmpHshObj->ip;
-	
-						$tmpDocIdsArr[] = $tmpDocumentId;
-	
-						$auditData["recipientsData"][] = array(
-							"Name" => $tmpName,
-							"Email ID" => $tmpEmail,
-							"Signature Type" => ucfirst($tmpSignType),
-							"Security Authentication" => $tmpAuthTypeTxt,
-							"Timestamps" => $tmpDateTime,
-							"Signature" => $tmpSignImg
-						);
-						
-	
-						$auditData["auditTrialData"][] = array(
-							"Section" => "Signed",
-							"Name" => $tmpName,
-							"Email ID" => $tmpEmail,
-							"DateTime" => $tmpDateTime,
-							"IP" => $tmpIP
-						);
+						if(!empty($signerDocumentRw["hashData"])){
+							$tmpSignType = $signerDocumentRw["hashData"]["signType"];
+							$tmpHsh = $signerDocumentRw["hashData"]["signatureHash"];
+							$tmpHshJson = $this->Decryption($tmpHsh);
+							$tmpHshObj = json_decode($tmpHshJson);
+							$tmpIP = $tmpHshObj->ip;
+							
+							$tmpDocIdsArr[] = $tmpDocumentId;
+		
+							$auditData["recipientsData"][] = array(
+								"Name" => $tmpName,
+								"Email ID" => $tmpEmail,
+								"Signature Type" => ucfirst($tmpSignType),
+								"Security Authentication" => $tmpAuthTypeTxt,
+								"Timestamps" => $tmpDateTime,
+								"Signature" => $tmpSignImg
+							);
+							
+							
+							$auditData["auditTrialData"][] = array(
+								"Section" => "Signed",
+								"Name" => $tmpName,
+								"Email ID" => $tmpEmail,
+								"DateTime" => $tmpDateTime,
+								"IP" => $tmpIP
+							);
+
+							
+						}
+
 					}
+					
+					
 					
 					$auditData["auditTrialData"][] = array(
 						"Section" => "Completed",
@@ -1428,8 +1618,8 @@ class Document extends BaseController
 						"DateTime" => $comletedAt,
 						"IP" => ""
 					);
-	
-	
+					
+					//echo "2<pre>"; print_r($auditData); die;
 					$tmpMainHash =  $this->Encription(json_encode($tmpDocIdsArr));
 					$auditData["documentData"] = array(
 						"documentId" => $tmpMainDocumentId,
@@ -1444,13 +1634,16 @@ class Document extends BaseController
 						"hash" => $tmpMainHash 
 					);
 					
+					//echo "<pre>"; print_r($auditData); die;
+					$srcFilePath = "systemtemplates/ConsolidateCertificateOfCompletion.pdf";
+					$srcFilePath = $rootFolder.$srcFilePath;
+					$this->pdf = new GeneratePdf();	
+					$this->pdf->prepareConsolidateCompletionCertificate($rootFolder, $srcFilePath, $bgImg, $auditData, $userId);
+					
 				}
-	
-				//echo "<pre>"; print_r($auditData); die;
-				$srcFilePath = "systemtemplates/ConsolidateCertificateOfCompletion.pdf";
-				$srcFilePath = $rootFolder.$srcFilePath;
-				$this->pdf = new GeneratePdf();	
-				$this->pdf->prepareConsolidateCompletionCertificate($rootFolder, $srcFilePath, $bgImg, $auditData, $userId);
+				
+				
+				
 			
 			}
 			
@@ -1551,6 +1744,7 @@ class Document extends BaseController
 		$data["page_tilte"] = "Overview";
 		$data["document"] = $result;
 		$data["folderId"] = $folderId;
+		$data["recipients"] = "";
 		return view('admin/documentOverview', $data);		
 
 	}

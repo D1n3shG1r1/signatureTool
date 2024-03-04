@@ -57,6 +57,8 @@
 
 	
 $SELECTEDUSERS = array();
+//$recipients = array();
+//echo "<pre>"; print_r($recipients); die;
 if(!$recipients){
 	$recipients = array();
 }

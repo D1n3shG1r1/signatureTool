@@ -92,7 +92,9 @@ var UPLOADEDFILE = BASEURL + '<?php echo $document; ?>';
                   </li>
                   <li>
                     <!--<a class="btn-cross" href="javascript:void(0);">X</a>-->
-                    <a class="btn btn-outline-warning" href="<?php echo site_url("dashboard"); ?>">Back</a>
+                    <!--<a class="btn btn-outline-warning" href="<?php //echo site_url("dashboard"); ?>">Back</a>-->
+                    <a class="btn btn-outline-warning" href="<?php echo site_url("edit/".$documentId); ?>">Back</a>
+                    
                   </li>
                
               </ul>

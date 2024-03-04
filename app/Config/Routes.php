@@ -45,8 +45,11 @@ $routes->get('/upload', 'Document::upload');
 $routes->post('/file-upload', 'Document::FileUpload');
 $routes->post('/file-delete', 'Document::FileDelete');
 //$routes->get('/prepare/(:num)', 'Document::prepare/$1');
+$routes->get('/edit/(:any)', 'Document::edit/$1');
 $routes->get('/prepare/(:any)', 'Document::prepare/$1');
 $routes->post('/fileupload', 'Document::fileupload');
+$routes->post('/fileuploadedit', 'Document::fileuploadedit');
+
 $routes->post('/filedelete', 'Document::filedelete');
 $routes->post('/send', 'Document::saveandsenddocument');
 $routes->get('/sign', 'Document::sign');

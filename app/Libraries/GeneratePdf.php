@@ -44,7 +44,7 @@ class GeneratePdf{
             $adjustpagesize = true;
             
             $this->pdf->useTemplate($fileIndex,0,0,237, null,true);
-            
+            //echo "<pre>"; print_r($data); die;
             foreach($data as $k => $vl){
 
                     $elmType = $vl["elmType"];
@@ -61,16 +61,16 @@ class GeneratePdf{
                 
 
                     $styleArr = explode(";", $style);
+                    $styleArr = array_filter($styleArr);
                     $styleAttributes = array();
                     foreach($styleArr as $tmpStyleRw){
+                        
                         $tmpStyleRwVal = explode(":", $tmpStyleRw);
                         $attrName = $tmpStyleRwVal[0];
                         $attrValue = $tmpStyleRwVal[1];
 
                         $styleAttributes[trim($attrName)] = trim($attrValue);
                     }
-
-                    //echo "styleAttributes:<pre>"; print_r($styleAttributes); die;
 
                     $left = $styleAttributes["left"];
                     $top = $styleAttributes["top"];
@@ -90,7 +90,7 @@ class GeneratePdf{
                     $newFontSize = str_replace("px", "", $font_size);    
                     $newFontSize = (int) $newFontSize - 2.5;
                     $newFontSize = 12;
-    
+                    
                     // add content to current page
                     if($i == $page){
                         if($elmType == "signature" || $elmType == "signaturein"){
@@ -124,6 +124,7 @@ class GeneratePdf{
        
 		//show the PDF in page
 		//$this->pdf->Output();
+        
         $this->pdf->Output($rootFolder."$secretFolder/$signerDocumentId/$signerDocumentId.pdf", "F");
         
     }
@@ -246,13 +247,16 @@ class GeneratePdf{
        }
         
         //show the PDF in page
+        
 		//$this->pdf->Output();
+        
         $this->pdf->Output($rootFolder."$secretFolder/$signerDocumentId/$signerDocumentId"."_auditlog.pdf", "F");
     }
 
     function prepareConsolidatePdf($rootFolder, $srcFilePath, $data, $secretFolder, $userId, $parentDocument){
         
         $numPages = $this->pdf->setSourceFile($srcFilePath);
+       
 
         $pxInMM = 3.77; //1mm equals to 3.77px
         $mmInPx = 0.26; //1px equals to 0.26mm
@@ -287,6 +291,7 @@ class GeneratePdf{
                 
 
                     $styleArr = explode(";", $style);
+                    $styleArr = array_filter($styleArr);
                     $styleAttributes = array();
                     foreach($styleArr as $tmpStyleRw){
                         $tmpStyleRwVal = explode(":", $tmpStyleRw);
@@ -340,6 +345,7 @@ class GeneratePdf{
     
 		//show the PDF in page
 		//$this->pdf->Output();
+        
         $this->pdf->Output($rootFolder."userassets/mydocuments/$userId/$parentDocument"."_completed.pdf", "F");
         
     }

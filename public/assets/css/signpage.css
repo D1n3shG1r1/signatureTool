@@ -3,3 +3,11 @@
     cursor: auto;
     box-shadow: none !important;
 }
+
+.read-only-element {
+    border-width: 0px 0px 0px 0px !important;
+    border-style: none !important;
+    border-color: rgb(255 255 255 / 0%) !important;
+    border-image: initial !important;
+    background-color: rgb(255 255 255 / 0%) !important;
+}

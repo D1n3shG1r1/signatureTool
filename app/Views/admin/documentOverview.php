@@ -266,7 +266,7 @@ $downloadurlAuditDoc = str_replace(".pdf", "_auditlog.pdf",$documentPath);
                 </thead>
                 <tbody>
                     <?php 
-                    
+                    $tr = '';
                     if(!empty($recipents)){
                         foreach($recipents as $tmpRecipent){
                             $tmpEmail = $tmpRecipent->email;
@@ -291,7 +291,13 @@ $downloadurlAuditDoc = str_replace(".pdf", "_auditlog.pdf",$documentPath);
                             
                             if(strtolower($tmpDocStatus) == "signed"){
                                 $tmpDocStatus = '<i class="las la-check-circle"></i>'.$tmpDocStatus;
+
+                                $viewBttn = '<button type="button" class="btn btn-outline-primary col-12" onclick="showDocument(\''.$tmpDocumentId.'\');">View</button>';
+                            }else{
+                                $viewBttn = '<button type="button" class="btn btn-outline-primary col-12 disabled">View</button>';
                             }
+
+
 
                             
                             $tr .= '<tr>
@@ -300,7 +306,7 @@ $downloadurlAuditDoc = str_replace(".pdf", "_auditlog.pdf",$documentPath);
                                 <td>0000-00-00 00:00:00</td>
                                 <td>'.$tmpDocStatus.'</td>
                                 <td>'.$tmpAuthTypeTxt.'</td>
-                                <td><button type="button" class="btn btn-outline-primary col-12" onclick="showDocument(\''.$tmpDocumentId.'\');">View</button></td>
+                                <td>'.$viewBttn.'</td>
                             </tr>';   
                             
                         }
